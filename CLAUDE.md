@@ -24,6 +24,31 @@ GSM8K split come from `xbill9/lazy-gemma`) in the README and the post.
 Thinking goes to `reasoning_content`; only `content` is graded. Use `/v1/chat/completions`. Thinking is
 off by default (`--think` turns it on), so `max_tokens` 1024 is enough.
 
+## Host: the T4 VM (chosen 2026-10-27)
+
+Facts below are from `~/gemma4-dev/gpu-vllm-t4-2b/tpu.env` (measured 2026-09-17/18). Re-check each one.
+
+- GCE `n1-standard-2`, `us-west2-b`: Tesla T4, 15360 MiB, compute capability 7.5, 2 vCPU, 7.8 GB RAM.
+- **Turing has no bfloat16 datapath.** BF16 stays the accuracy reference, but its speed on this card is
+  not comparable with the other rungs. Record whether llama.cpp's CUDA backend offloads the BF16 GGUF at
+  all, and report BF16 speed separately. F16 is the fastest 16-bit rung here.
+- **Disk: work on `/opt1`** (~249 GB free). `/` has ~4 GB and `/tmp` ~3.9 GB: the BF16 checkpoint, the
+  nine GGUFs and a llama.cpp build do not fit there. Put the HF download, `~/graveyard-gguf` and any
+  llama.cpp build under `/opt1` (`~/.cache` already links there).
+- **Swap is not persistent.** No swap as provisioned; the 16 GB swapfile is not in fstab. If
+  `swapon --show` is empty: `sudo fallocate -l 16G /opt1/swapfile && sudo chmod 600 /opt1/swapfile &&
+  sudo mkswap /opt1/swapfile && sudo swapon /opt1/swapfile`. Conversion of a 10 GB checkpoint on 7.8 GB RAM
+  needs it.
+- **Python:** `/usr/bin/python3.13` with `PYTHONUSERBASE=/opt1/pyuser PIP_CACHE_DIR=/opt1/pipcache
+  TMPDIR=/opt1/tmp`; `pip install --user --break-system-packages`. The default `python3` (pyenv 3.12)
+  has its site-packages on the full root disk. `convert_hf_to_gguf.py` needs llama.cpp's `gguf-py`
+  requirements; `f16_range.py` needs numpy only.
+- **llama.cpp on this host is unchecked.** If none is built, clone to `/opt1/llama.cpp` and build with
+  `-DGGML_CUDA=ON -DCMAKE_CUDA_ARCHITECTURES=75`, then pass `--llama /opt1/llama.cpp` and the same path as
+  `ladder.sh`'s third argument. 2 vCPU makes the build slow; use `-j2`.
+- vLLM rigs share this GPU on port 8000 (`pgrep -af vllm`). Stop them before running; the graveyard
+  uses port 8090.
+
 ## Layout
 
 Scripts at the root, `Makefile` with `test` and `lint` (`ruff check` on an explicit file list: add each

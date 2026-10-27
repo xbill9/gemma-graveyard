@@ -23,7 +23,8 @@ what that loss buys.
 
 ## Machine
 
-Pick one; the 3050 is the default because the Week 3 llama.cpp build and the GSM8K data are already there.
+**Chosen 2026-10-27: the T4 VM.** Host details, disk layout and the BF16-on-Turing caveat are in
+`CLAUDE.md` → "Host: the T4 VM".
 
 | Machine | Open question, answered by check 1 |
 |---|---|
@@ -49,9 +50,13 @@ Sizes are unmeasured until check 1 records them.
 
 ## Run commands
 
+On the T4 (paths on `/opt1`; see `CLAUDE.md`):
+
 ```
-hf download google/gemma-4-E2B-it --local-dir ~/models/hf/gemma-4-E2B-it
-./ladder.sh ~/models/hf/gemma-4-E2B-it ~/graveyard-gguf
+hf download google/gemma-4-E2B-it --local-dir /opt1/models/gemma-4-E2B-it
+./ladder.sh /opt1/models/gemma-4-E2B-it /opt1/graveyard-gguf /opt1/llama.cpp
+ln -sfn /opt1/graveyard-gguf ~/graveyard-gguf
+# and add --llama /opt1/llama.cpp to every graveyard.py run below
 D=runs/$(date +%F)-ladder
 for r in BF16 F16 Q8_0 Q6_K Q5_K_M Q4_K_M Q4_0 Q3_K_M Q2_K; do
   ./graveyard.py run $r ~/graveyard-gguf/e2b-$r.gguf data/heldout.jsonl $D

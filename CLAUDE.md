@@ -43,14 +43,18 @@ Facts below are from `~/gemma4-dev/gpu-vllm-t4-2b/tpu.env` (measured 2026-09-17/
   TMPDIR=/opt1/tmp`; `pip install --user --break-system-packages`. The default `python3` (pyenv 3.12)
   has its site-packages on the full root disk. `convert_hf_to_gguf.py` needs llama.cpp's `gguf-py`
   requirements; `f16_range.py` needs numpy only.
-- **llama.cpp on this host is unchecked.** If none is built, clone to `/opt1/llama.cpp` and build with
-  `-DGGML_CUDA=ON -DCMAKE_CUDA_ARCHITECTURES=75`, then pass `--llama /opt1/llama.cpp` and the same path as
-  `ladder.sh`'s third argument. 2 vCPU makes the build slow; use `-j2`.
+- **llama.cpp is built at `/opt1/llama.cpp`** (`b11699`, `GGML_CUDA=ON`, `CMAKE_CUDA_ARCHITECTURES=75`,
+  checked 2026-10-27). There is no `~/llama.cpp`, which both scripts default to: pass `--llama /opt1/llama.cpp`
+  and the same path as `ladder.sh`'s third argument. Rebuild with `-j2` (2 vCPU).
+- `swapon` is `/sbin/swapon` (not on `PATH`). 2026-10-27: no swap active, `/` at 94% with 1.9 GB free.
 - vLLM rigs share this GPU on port 8000 (`pgrep -af vllm`). Stop them before running; the graveyard
   uses port 8090.
 
 ## Layout
 
 Scripts at the root, `Makefile` with `test` and `lint` (`ruff check` on an explicit file list: add each
-new module), runs under `runs/<date>-<name>/` with a `REPORT.md`. Python: the machine's own `python3`,
-no virtualenvs. GGUF files live outside the repo (`*.gguf` is ignored).
+new module), runs under `runs/<date>-<name>/` with a `REPORT.md`; `runs/*/` is gitignored, so commit a
+report with `git add -f`. `ladder.sh` skips any GGUF that already exists, so delete a partial file before
+rebuilding. `graveyard.py run` launches its own `llama-server` (`-ngl 99 --seed 0`); stop any other
+`llama-server` on the GPU first. Python: the machine's own `python3`, no virtualenvs. GGUF files live
+outside the repo (`*.gguf` is ignored).

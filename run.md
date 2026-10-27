@@ -73,6 +73,22 @@ setsid nohup runs/2026-10-27-ladder/run-ladder.sh > runs/2026-10-27-ladder/run-l
 terminal goes away. To resume after an interruption, start it again: a rung whose `meta.json` shows
 `n` = 250 is skipped.
 
+### After the VM stops
+
+The VM stops itself around 6 PM. Everything on `/opt1` and in `runs/` survives. A rung writes its
+`meta.json` only after its last question, and `graveyard.py run` rewrites the rung's `.jsonl` from the
+start, so the rung that was cut off reruns from question 1 and every finished rung is kept. After
+restarting the VM:
+
+```
+cd ~/gemma-graveyard
+pgrep -af 'llama-server|vllm'                 # nothing should hold the GPU
+setsid nohup runs/2026-10-27-ladder/run-ladder.sh >> runs/2026-10-27-ladder/run-ladder.log 2>&1 < /dev/null &
+cat runs/2026-10-27-ladder/run-ladder.log     # "skip" for each finished rung, then "start" for the next
+```
+
+Swap is not needed for this step.
+
 Watch it:
 
 ```

@@ -4,7 +4,7 @@ import unittest
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from graveyard import bury_rows
+from graveyard import autopsy_rows, bury_rows, looped
 
 
 def row(i, ok, said):
@@ -45,6 +45,27 @@ class Bury(unittest.TestCase):
         del self.by["C"]["q2"]
         with self.assertRaises(ValueError):
             bury_rows(self.by, ["A", "B", "C", "D"])
+
+
+class Autopsy(unittest.TestCase):
+    def test_looped(self):
+        self.assertTrue(looped({"text": "the same line\n" * 5}))
+        self.assertFalse(looped({"text": "the same line\n" * 4}))
+        self.assertFalse(looped({"text": "short\n" * 9}))  # under 8 characters
+        self.assertTrue(looped({"text": "", "reasoning": "a thought again\n" * 6}))
+
+    def test_counts(self):
+        ref = {"q1": dict(row("q1", True, 1), text="Answer: 1", finish="stop"),
+               "q2": dict(row("q2", True, 1), text="Answer: 1", finish="stop")}
+        low = {"q1": dict(row("q1", False, None), text="", reasoning="so it is 1", finish="length"),
+               "q2": dict(row("q2", False, 7), text="going round\n" * 6, finish="length")}
+        a = {x["rung"]: x for x in autopsy_rows({"A": ref, "B": low}, ["A", "B"])}
+        self.assertEqual(a["A"]["dead"], 0)
+        b = a["B"]
+        self.assertEqual((b["cut_off"], b["looped"], b["empty_content"], b["empty_right_in_reasoning"]), (2, 1, 1, 1))
+        self.assertEqual((a["A"]["thought"], b["thought"]), (0, 1))
+        self.assertEqual((b["dead"], b["dead_cut_off"], b["dead_looped"], b["dead_empty_content"]), (2, 2, 1, 1))
+        self.assertEqual((b["first_deaths"], b["first_deaths_right_again_lower"]), (2, 0))
 
 
 if __name__ == "__main__":

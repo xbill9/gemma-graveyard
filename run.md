@@ -102,8 +102,11 @@ Stop it: `pkill -f run-ladder.sh; pkill -f graveyard.py; pkill llama-server`.
 Bury by hand (same as the script's last step):
 
 ```
-./graveyard.py bury runs/2026-10-27-ladder BF16 F16 Q8_0 Q6_K Q5_K_M Q4_K_M Q4_0 Q3_K_M Q2_K
+./graveyard.py bury runs/2026-10-27-ladder BF16 F16 Q8_0 Q6_K Q5_K_M Q4_K_M Q4_0 Q3_K_M Q2_K --json graveyard-ladder.json
 ```
+
+`bury` writes per-question tombstones to `graveyard.json` unless `--json` names another file; without it a
+second bury in the same directory replaces the first.
 
 ## 6. QAT Q4_0 (off the ladder)
 
@@ -118,7 +121,7 @@ writes `bury-qat.txt` (`bury BF16 QAT_Q4_0 Q4_0`). It resumes the same way as th
 3,349,516,256 bytes, sha256 `fa401b55b07ee70a54c6dae3903c783a6e65064312529ea57175cb5f8dec6634`
 (`runs/2026-10-27-ladder/qat.tsv`).
 
-## Results so far (2026-10-28)
+## Results (2026-10-28, all checks passed)
 
 | Check | Result |
 |---|---|
@@ -128,5 +131,7 @@ writes `bury-qat.txt` (`bury BF16 QAT_Q4_0 Q4_0`). It resumes the same way as th
 | 4 | 50 questions twice: 0 mismatched `extracted`, 0 mismatched text, 46/50 both times. |
 | 5 | All nine rungs, 250 questions each, 0 errors. Right: BF16 229, F16 229, Q8_0 227, Q6_K 229, Q5_K_M 231, Q4_K_M 224, Q4_0 222, Q3_K_M 191, Q2_K 3. Dead vs BF16: 1, 4, 4, 3, 9, 15, 42, 226; 226 tombstones, 11 ghosts. Q2_K hits the 1,024-token cap on 246 of 250 and opens a thinking block on its own in 75 (63 with empty `content`); no other rung does. `runs/2026-10-27-ladder/bury.txt` |
 | 6 | QAT Q4_0: 221/250 right, 0 errors, 6 cut off, median 87.8 tok/s, 1,629 GPU MiB. 15 dead vs BF16, same as plain Q4_0 (222 right, 15 dead), but only 6 of the 15 are the same questions; 9 die only under QAT, 9 only under plain Q4_0. No thinking blocks. `runs/2026-10-27-ladder/bury-qat.txt` |
+
+Write-up of the run: `runs/2026-10-27-ladder/REPORT.md`.
 
 Run directories are gitignored (`runs/*/`); commit a report with `git add -f`.

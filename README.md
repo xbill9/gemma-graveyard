@@ -3,12 +3,18 @@
 Gemma 4 E2B quantized from BF16 down to Q2_K, every rung asked the same 250 GSM8K questions, and each
 answer buried at the rung where it first goes wrong. Hacktoberfest 2026 Week 4: Ghost in the Machine.
 
-Status: harness written, no ladder run yet. See `SPEC.md`.
+Status: every check in `SPEC.md` has passed; results in
+[`runs/2026-10-27-ladder/REPORT.md`](runs/2026-10-27-ladder/REPORT.md).
+
+On one Tesla T4, against the 229 of 250 questions BF16 gets right: Q8_0 to Q5_K_M stay within 2 of it,
+Q4_K_M and Q4_0 lose 5 and 7, Q3_K_M loses 38 (most of its deaths cut off at 1,024 tokens), and Q2_K gets 3
+right. Google's QAT Q4_0 scores 221 against the plain Q4_0's 222, and the two lose different questions.
 
 - `ladder.sh` — builds the BF16, F16 and seven quantized GGUFs with llama.cpp.
 - `f16_range.py` — counts BF16 weights that overflow or underflow when cast to F16.
 - `graveyard.py run` — one rung: llama-server, greedy answers, file size, GPU memory, decode speed.
 - `graveyard.py bury` — deaths, tombstones and ghosts per rung, computed in code.
+- `graveyard.py autopsy` — per rung, answers cut off, looping, thinking unprompted, or with empty content.
 
 Reused: `lazy_eval.py` (prompt, answer extraction, grading) and `data/` (GSM8K test split, seed 0) from
 [xbill9/lazy-gemma](https://github.com/xbill9/lazy-gemma); the grader there came from

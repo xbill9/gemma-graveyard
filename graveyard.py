@@ -3,14 +3,19 @@
 
   graveyard.py run <rung> <model.gguf> <data.jsonl> <out-dir> [--llama DIR] [--port P] [--limit N]
                    [--think] [--max-tokens M] [--ctx C]
-  graveyard.py bury <out-dir> <rung> [<rung> ...]
+  graveyard.py bury <out-dir> <rung> [<rung> ...] [--json FILE]
+  graveyard.py autopsy <out-dir> <rung> [<rung> ...]
 
 run starts a llama-server on one GGUF, asks every question once (greedy, one request at a time,
 no prompt cache) and writes <out-dir>/<rung>.jsonl plus <rung>.meta.json (file size, load time,
 GPU memory after load, server command). bury reads the rungs in the order given; the first one is
 the reference. A question dies at the first rung that gets it wrong after the reference got it right;
 it is a ghost at any rung that gets it right after the reference got it wrong. Every count is
-computed here, never by a model.
+computed here, never by a model. bury writes the per-question tombstones to <out-dir>/graveyard.json
+(--json picks another name, so a second bury in the same directory keeps the first). autopsy counts,
+per rung, answers cut off at max tokens, answers with any reasoning_content, answers that repeat one line five or more times, answers with
+empty content, and empty answers whose reasoning holds the right number (a diagnostic; only content is
+graded).
 
 Prompt, answer extraction and grading are lazy_eval.py's (copied from the Week 3 repo, which copied
 them from gemma4-dev/jev-tpu-v5e1/gen_eval.py).
@@ -183,8 +188,57 @@ def bury_rows(by_rung, rungs):
     return {"reference": rungs[0], "table": table, "tombstones": tombstones, "ghosts": ghosts}
 
 
+def looped(row, repeats=5, min_len=8):
+    """True when one line of at least min_len characters appears `repeats` or more times in the output."""
+    lines = [s.strip() for s in ((row.get("text") or "") + "\n" + (row.get("reasoning") or "")).splitlines()]
+    counts = {}
+    for s in lines:
+        if len(s) >= min_len:
+            counts[s] = counts.get(s, 0) + 1
+    return max(counts.values(), default=0) >= repeats
+
+
+def autopsy_rows(by_rung, rungs):
+    """How each rung's answers fail: cut off, empty content, looping, right only in the reasoning."""
+    g = bury_rows(by_rung, rungs)
+    ref = by_rung[rungs[0]]
+    ids = sorted(ref)
+    out = []
+    for r in rungs:
+        rows = [by_rung[r][i] for i in ids if "error" not in by_rung[r][i]]
+        dead = [by_rung[r][i] for i in ids if ref[i]["right"] and not by_rung[r][i]["right"]]
+        empty = [x for x in rows if not (x.get("text") or "").strip()]
+        stones = [t for t in g["tombstones"] if t["died_at"] == r]
+        out.append(
+            {
+                "rung": r,
+                "cut_off": sum(x.get("finish") == "length" for x in rows),
+                "looped": sum(looped(x) for x in rows),
+                "thought": sum(bool((x.get("reasoning") or "").strip()) for x in rows),
+                "empty_content": len(empty),
+                "empty_right_in_reasoning": sum(right(x.get("reasoning"), x["answer"]) for x in empty),
+                "dead": len(dead),
+                "dead_cut_off": sum(x.get("finish") == "length" for x in dead),
+                "dead_looped": sum(looped(x) for x in dead),
+                "dead_empty_content": sum(not (x.get("text") or "").strip() for x in dead),
+                "first_deaths": len(stones),
+                "first_deaths_right_again_lower": sum(bool(t["right_again_at"]) for t in stones),
+            }
+        )
+    return out
+
+
+def load_rungs(out_dir, rungs):
+    return {r: {row["id"]: row for row in load(os.path.join(out_dir, f"{r}.jsonl"))} for r in rungs}
+
+
+def autopsy(a):
+    for r in autopsy_rows(load_rungs(a.out_dir, a.rungs), a.rungs):
+        print(json.dumps(r))
+
+
 def bury(a):
-    by_rung = {r: {row["id"]: row for row in load(os.path.join(a.out_dir, f"{r}.jsonl"))} for r in a.rungs}
+    by_rung = load_rungs(a.out_dir, a.rungs)
     g = bury_rows(by_rung, a.rungs)
     for r in g["table"]:
         meta = os.path.join(a.out_dir, f"{r['rung']}.meta.json")
@@ -192,7 +246,7 @@ def bury(a):
             with open(meta) as f:
                 m = json.load(f)
             r.update(bytes=m["bytes"], gpu_mib_loaded=m.get("gpu_mib_loaded"), gpu_mib_before=m.get("gpu_mib_before"))
-    with open(os.path.join(a.out_dir, "graveyard.json"), "w") as f:
+    with open(os.path.join(a.out_dir, a.json), "w") as f:
         json.dump(g, f, indent=1)
     for r in g["table"]:
         print(json.dumps(r))
@@ -219,8 +273,12 @@ def main():
     b = sub.add_parser("bury")
     b.add_argument("out_dir")
     b.add_argument("rungs", nargs="+")
+    b.add_argument("--json", default="graveyard.json", help="file in out-dir for per-question tombstones")
+    x = sub.add_parser("autopsy")
+    x.add_argument("out_dir")
+    x.add_argument("rungs", nargs="+")
     a = p.parse_args()
-    run(a) if a.cmd == "run" else bury(a)
+    {"run": run, "bury": bury, "autopsy": autopsy}[a.cmd](a)
 
 
 if __name__ == "__main__":

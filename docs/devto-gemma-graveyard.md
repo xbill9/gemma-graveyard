@@ -1,5 +1,5 @@
 ---
-title: "The Gemma Graveyard: Which Answers Gemma 4 E2B Loses at Each Quantization Rung"
+title: "Accuracy vs Speed: Gemma 4 E2B Quantization Tradeoffs, BF16 to Q2_K"
 published: false
 description: "Gemma 4 E2B quantized from BF16 to Q2_K on one Tesla T4, every rung asked the same 250 GSM8K questions, and each answer buried at the rung where it first goes wrong. Q5_K_M and above hold the score; Q3_K_M loses 38; Q2_K gets 3 right. With thinking on, Q3_K_M wins back 17."
 tags: devchallenge, hf26challenge, gemma, llamacpp

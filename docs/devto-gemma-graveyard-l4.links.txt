@@ -1,0 +1,5 @@
+devto_draft = https://dev.to/gde/same-weights-different-graves-gemma-4-e2b-quantization-on-an-nvidia-l4-and-a-tesla-t4-5b56-temp-slug-3583047
+devto_id = 4937281
+medium = PENDING
+substack = PENDING
+linkedin = PENDING

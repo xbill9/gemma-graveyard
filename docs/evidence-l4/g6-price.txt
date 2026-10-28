@@ -1,0 +1,3 @@
+# aws pricing get-products, g6.xlarge us-west-2 Linux shared on-demand, fetched 2026-10-28
+{"instanceType": "g6.xlarge", "regionCode": "us-west-2", "vcpu": "4", "memory": "16 GiB", "gpu": "1", "gpuMemory": "24 GB", "physicalProcessor": "AMD EPYC 7R13 Processor"}
+$0.8048 per On Demand Linux g6.xlarge Instance Hour {'USD': '0.8048000000'}

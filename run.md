@@ -108,9 +108,15 @@ Bury by hand (same as the script's last step):
 ## 6. QAT Q4_0 (off the ladder)
 
 ```
-./graveyard.py run QAT_Q4_0 <qat-q4_0.gguf> data/heldout.jsonl runs/2026-10-27-ladder --llama /opt1/llama.cpp
-./graveyard.py bury runs/2026-10-27-ladder BF16 QAT_Q4_0 Q4_0
+TMPDIR=/opt1/tmp hf download google/gemma-4-E2B-it-qat-q4_0-gguf gemma-4-E2B_q4_0-it.gguf README.md \
+  --local-dir /opt1/models/gemma-4-E2B-it-qat-q4_0-gguf
+setsid nohup runs/2026-10-27-ladder/run-qat.sh > runs/2026-10-27-ladder/run-qat.log 2>&1 < /dev/null &
 ```
+
+`run-qat.sh` waits for `run-ladder.log` to say `done`, runs `QAT_Q4_0` on the same 250 questions, then
+writes `bury-qat.txt` (`bury BF16 QAT_Q4_0 Q4_0`). It resumes the same way as the ladder script. The GGUF is
+3,349,516,256 bytes, sha256 `fa401b55b07ee70a54c6dae3903c783a6e65064312529ea57175cb5f8dec6634`
+(`runs/2026-10-27-ladder/qat.tsv`).
 
 ## Results so far (2026-10-27)
 

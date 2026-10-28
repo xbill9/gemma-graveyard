@@ -8,3 +8,4 @@
 {"rung": "Q3_K_M", "right": 191, "median_decode_tps": 74.2, "decode_x_bf16": 1.85, "dominated_by": ["Q5_K_M", "Q4_K_M", "Q4_0"]}
 {"rung": "Q2_K", "right": 3, "median_decode_tps": 74.0, "decode_x_bf16": 1.85, "dominated_by": ["Q5_K_M", "Q4_K_M", "Q4_0", "Q3_K_M"]}
 {"q4_0_decode_x_q5_k_m": 1.19, "right_q5_k_m_minus_q4_0": 9}
+{"q5_k_m_vs_bf16": {"dead": 3, "ghosts": 5, "exact_mcnemar_p": 0.73}}

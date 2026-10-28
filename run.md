@@ -127,6 +127,6 @@ writes `bury-qat.txt` (`bury BF16 QAT_Q4_0 Q4_0`). It resumes the same way as th
 | 3 | 10/10 right, 0 errors, median 43.0 tok/s. All 36 layers on the GPU (4,384.87 MiB); the two embedding tables stay memory-mapped on the CPU (4,480 + 768 MiB). |
 | 4 | 50 questions twice: 0 mismatched `extracted`, 0 mismatched text, 46/50 both times. |
 | 5 | All nine rungs, 250 questions each, 0 errors. Right: BF16 229, F16 229, Q8_0 227, Q6_K 229, Q5_K_M 231, Q4_K_M 224, Q4_0 222, Q3_K_M 191, Q2_K 3. Dead vs BF16: 1, 4, 4, 3, 9, 15, 42, 226; 226 tombstones, 11 ghosts. Q2_K hits the 1,024-token cap on 246 of 250 and opens a thinking block on its own in 75 (63 with empty `content`); no other rung does. `runs/2026-10-27-ladder/bury.txt` |
-| 6 | QAT Q4_0 running (started 2026-10-28 01:37 UTC). |
+| 6 | QAT Q4_0: 221/250 right, 0 errors, 6 cut off, median 87.8 tok/s, 1,629 GPU MiB. 15 dead vs BF16, same as plain Q4_0 (222 right, 15 dead), but only 6 of the 15 are the same questions; 9 die only under QAT, 9 only under plain Q4_0. No thinking blocks. `runs/2026-10-27-ladder/bury-qat.txt` |
 
 Run directories are gitignored (`runs/*/`); commit a report with `git add -f`.

@@ -6,6 +6,11 @@ answer buried at the rung where it first goes wrong. Hacktoberfest 2026 Week 4: 
 Status: every check in `SPEC.md` has passed; results in
 [`runs/2026-10-27-ladder/REPORT.md`](runs/2026-10-27-ladder/REPORT.md).
 
+Follow-on (not part of the challenge entry): the same ladder on an NVIDIA L4 (AWS `g6.xlarge`) with
+byte-identical GGUFs, in [`runs/2026-10-28-l4/`](runs/2026-10-28-l4/) and
+[`docs/devto-gemma-graveyard-l4.md`](docs/devto-gemma-graveyard-l4.md). `docs/gpu_derived.py` compares the two
+GPUs question by question.
+
 On one Tesla T4, against the 229 of 250 questions BF16 gets right: Q8_0 to Q5_K_M stay within 2 of it,
 Q4_K_M and Q4_0 lose 5 and 7, Q3_K_M loses 38 (most of its deaths cut off at 1,024 tokens), and Q2_K gets 3
 right. Google's QAT Q4_0 scores 221 against the plain Q4_0's 222, and the two lose different questions.

@@ -1,0 +1,7 @@
+# arithmetic behind article figures, from committed files (docs/evidence-l4)
+L4 run window: 4.05 h (run-l4.log 18:18:37 to 22:21:39) x $0.8048/h (g6-price.txt) = $3.26
+Q2_K wrong on the L4: 250 - 6 right = 244 of 250
+Q2_K looped on the L4: 218 of 250 (autopsy.txt)
+Q2_K dead on both GPUs: 221 of 226 (derived-gpu.txt)
+F16 to Q5_K_M T4 deaths dead again on the L4 at that rung: 7 of 12
+g6.xlarge: 4 vCPU (g6-price.txt "vcpu": "4")

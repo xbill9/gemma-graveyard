@@ -1,0 +1,5 @@
+nproc: 2 vCPU
+               total        used        free      shared  buff/cache   available
+Mem:            7436        2019        2643           3        2983        5416
+projects/1056842563084/machineTypes/n1-standard-2
+projects/1056842563084/zones/us-west2-b

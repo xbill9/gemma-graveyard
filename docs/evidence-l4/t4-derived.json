@@ -1,0 +1,32 @@
+{
+ "pct_of_bf16_bytes": {
+  "BF16": 100.0,
+  "F16": 100.0,
+  "Q8_0": 53.3,
+  "Q6_K": 41.3,
+  "Q5_K_M": 39.0,
+  "Q4_K_M": 36.8,
+  "Q4_0": 36.1,
+  "Q3_K_M": 34.4,
+  "Q2_K": 32.1
+ },
+ "right_minus_bf16": {
+  "BF16": 0,
+  "F16": 0,
+  "Q8_0": -2,
+  "Q6_K": 0,
+  "Q5_K_M": 2,
+  "Q4_K_M": -5,
+  "Q4_0": -7,
+  "Q3_K_M": -38,
+  "Q2_K": -226
+ },
+ "first_deaths_F16_to_Q4_0": 23,
+ "of_them_right_again_lower": 16,
+ "qat_dead_shared_with_q4_0": 6,
+ "qat_only": 9,
+ "q4_0_only": 9,
+ "q5_k_m_decode_x_bf16": 1.97,
+ "gpu_mib_q4_0_minus_q3_k_m": 150,
+ "right_q4_0_minus_q3_k_m": 31
+}

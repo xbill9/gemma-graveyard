@@ -1,0 +1,9 @@
+# pip list --user on the L4 (g6.xlarge), 2026-10-28, before and after `pip install -U transformers`
+# before (installed by llama.cpp requirements/requirements-convert_hf_to_gguf.txt):
+tokenizers      0.22.2
+transformers    4.57.6
+# convert_hf_to_gguf.py with 4.57.6 (ladder.log of the failed attempt, last line):
+AttributeError: 'list' object has no attribute 'keys'
+# after:
+tokenizers      0.23.3
+transformers    5.21.0

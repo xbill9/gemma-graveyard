@@ -20,7 +20,14 @@ A score per quantization level says how many answers a smaller file loses; a gra
 
 Quantization is the most common thing done to an open-weight model before it ships to a small device. The usual report is one accuracy number per file size. Two files with the same score can still get different questions wrong, and a net loss hides its parts: Q4_0 here is 7 answers down on BF16, made of 15 questions lost and 8 gained.
 
-The gemma-graveyard asks every rung of a quantization ladder the same questions at temperature 0, so each answer is the model's single most likely one, and records each answer. A question that BF16 gets right and a lower rung gets wrong gets a tombstone at the first rung where it dies. A question BF16 gets wrong and a lower rung gets right is a ghost. Ghosts measure how much a score moves by chance between two nearly identical models, so the article reports both.
+The gemma-graveyard asks every rung of a quantization ladder the same 250 questions at temperature 0, so each answer is the model's single most likely one. BF16 is the reference, and every question a rung answers differently from BF16 lands in one of four records:
+
+- **Dead**: BF16 answers it right and the rung answers it wrong. A rung's dead count is every such question at that rung.
+- **Tombstone**: one per question, placed at the first rung, going down from BF16, where the question dies. A question dead at Q8_0 and again at Q4_0 has one tombstone, at Q8_0.
+- **Rose again**: a lower rung answers a tombstoned question right once more. test-687 dies at F16 and is right again at Q8_0, Q6_K, Q5_K_M and Q4_K_M.
+- **Ghost**: BF16 answers it wrong and the rung answers it right. test-1166 asks for an avocado tree's fruit over ten years, answer 2,350. BF16 says 1,000; Q8_0, Q6_K and Q4_0 get it right.
+
+A rung's score is BF16's 229, minus its dead, plus its ghosts: Q4_0 is 229 − 15 + 8 = 222. Quantization moves answers in both directions, and a score that holds can hide questions lost and found, so the article reports both.
 
 For Día de los Muertos: the dead are remembered one at a time, by name. Each tombstone here carries the question's id, the right answer, the wrong answer the rung gave, and every lower rung where it rose again.
 
@@ -191,7 +198,7 @@ A changed answer at a lower rung comes from the weights.
 {"first_deaths_by_rung": {"Q2_K": 177, "Q3_K_M": 26, "Q4_0": 9, "Q8_0": 4, "Q5_K_M": 2, "Q4_K_M": 6, "Q6_K": 1, "F16": 1}, "tombstones": 226, "ghosts": 11}
 ```
 
-226 tombstones and 11 ghosts. Per-question detail is in `graveyard-ladder.json`. The one question that dies at F16:
+226 tombstones and 11 ghosts: 226 different questions die at some rung, and 11 questions BF16 gets wrong come back right at one rung or more. The first-death counts add up to the tombstones, one per question; the per-rung dead counts in the ladder table add up to more, because one question can be dead at several rungs. Per-question detail is in `graveyard-ladder.json`. The one question that dies at F16:
 
 ```text
 {'id': 'test-687', 'died_at': 'F16', 'answer': '13', 'said': 17.0, 'right_again_at': ['Q8_0', 'Q6_K', 'Q5_K_M', 'Q4_K_M']}

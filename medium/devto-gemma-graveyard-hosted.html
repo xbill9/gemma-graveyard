@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc 3.11" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Accuracy vs Speed: Gemma 4 E2B Quantization Tradeoffs, BF16 to Q2_K</title>
+  <meta name="description" content="Gemma 4 E2B quantized from BF16 to Q2_K on one Tesla T4, every rung asked the same 250 GSM8K questions, and each answer buried at the rung where it first goes wrong. Q5_K_M and above hold the score; Q3_K_M loses 38; Q2_K gets 3 right. With thinking on, Q3_K_M wins back 17." />
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      white-space: pre-wrap;
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+  <style>
+    body{font-family:-apple-system,'Segoe UI',Roboto,'Liberation Sans',Arial,sans-serif;
+         font-size:18px;line-height:1.58;max-width:42em;color:#242424;}
+    h1,h2,h3,h4{font-weight:700;line-height:1.25;margin-top:1.8em;}
+    h4{font-size:1.25em;}
+    img{max-width:100%;height:auto;display:block;margin:1.6em 0;}
+    pre{background:#f7f7f7;border:1px solid #e6e6e6;border-radius:4px;
+        padding:12px 14px;overflow-x:auto;font-size:14px;line-height:1.45;}
+    code{font-family:'Liberation Mono',Menlo,Consolas,monospace;}
+    :not(pre)>code{background:#f2f2f2;padding:1px 5px;border-radius:3px;font-size:.9em;}
+    blockquote{border-left:3px solid #ddd;margin-left:0;padding-left:1em;color:#555;}
+    hr{border:0;border-top:1px solid #e6e6e6;margin:2.4em 0;}
+  </style>
+</head>
+<body>
+<p><em>This is a submission for the <a
+href="https://dev.to/challenges/hacktoberfest-week4-2026-10-26">Hacktoberfest
+Open-Source AI Challenge Week 4: Ghost in the Machine</a></em></p>
+<figure><img src="https://raw.githubusercontent.com/xbill9/gemma-graveyard/main/medium/img/devto-cover.50dc7d50.jpg" alt="Accuracy vs Speed: Gemma 4 E2B Quantization Tradeoffs, BF16 to Q2_K" /></figure>
+<p>This article provides a step by step guide to quantizing Gemma 4 E2B
+down a ladder of nine GGUF files with llama.cpp, asking every rung the
+same 250 maths questions on one Tesla T4, and burying each answer at the
+rung where it first goes wrong. Every count is computed by code and
+every row is committed.</p>
+<p><a
+href="https://github.com/xbill9/gemma-graveyard">https://github.com/xbill9/gemma-graveyard</a></p>
+<p>A score per quantization level says how many answers a smaller file
+loses; a graveyard says which ones. Against the 229 of 250 questions
+BF16 gets right, Q8_0, Q6_K and Q5_K_M stay within 2, Q4_K_M and Q4_0
+lose 5 and 7, Q3_K_M loses 38 and Q2_K gets 3 right. Above Q3_K_M most
+of the dead come back: 16 of the 23 questions that die between F16 and
+Q4_0 are right again at a lower rung. With thinking on, Q3_K_M climbs
+from 191 to 208.</p>
+<hr />
+<h4 id="what-i-built">What I Built</h4>
+<p>Quantization is the most common thing done to an open-weight model
+before it ships to a small device. The usual report is one accuracy
+number per file size. Two files with the same score can still get
+different questions wrong, and a net loss hides its parts: Q4_0 here is
+7 answers down on BF16, made of 15 questions lost and 8 gained.</p>
+<p>The gemma-graveyard asks every rung of a quantization ladder the same
+250 questions at temperature 0, so each answer is the model's single
+most likely one. BF16 is the reference, and every question a rung
+answers differently from BF16 lands in one of four records:</p>
+<ul>
+<li><strong>Dead</strong>: BF16 answers it right and the rung answers it
+wrong. A rung's dead count is every such question at that rung.</li>
+<li><strong>Tombstone</strong>: one per question, placed at the first
+rung, going down from BF16, where the question dies. A question dead at
+Q8_0 and again at Q4_0 has one tombstone, at Q8_0.</li>
+<li><strong>Rose again</strong>: a lower rung answers a tombstoned
+question right once more. test-687 dies at F16 and is right again at
+Q8_0, Q6_K, Q5_K_M and Q4_K_M.</li>
+<li><strong>Ghost</strong>: BF16 answers it wrong and the rung answers
+it right. test-1166 asks for an avocado tree's fruit over ten years,
+answer 2,350. BF16 says 1,000; Q8_0, Q6_K and Q4_0 get it right.</li>
+</ul>
+<p>A rung's score is BF16's 229, minus its dead, plus its ghosts: Q4_0
+is 229 − 15 + 8 = 222. Quantization moves answers in both directions,
+and a score that holds can hide questions lost and found, so the article
+reports both.</p>
+<p>For Día de los Muertos: the dead are remembered one at a time, by
+name. Each tombstone here carries the question's id, the right answer,
+the wrong answer the rung gave, and every lower rung where it rose
+again.</p>
+<p>What the project delivers:</p>
+<ul>
+<li><code>ladder.sh</code>: BF16, F16 and seven quantized GGUFs of Gemma
+4 E2B, with bytes and sha256</li>
+<li><code>graveyard.py run</code>: one rung, its own llama-server, 250
+questions, answers graded in code</li>
+<li><code>graveyard.py bury</code>: deaths, tombstones and ghosts per
+rung, computed in code</li>
+<li><code>graveyard.py autopsy</code>: how each rung's answers fail (cut
+off, looping, writing into the thinking block)</li>
+<li><code>graveyard.py repeat</code>: two runs of one rung compared
+question by question</li>
+<li>one run of the whole ladder plus Google's QAT Q4_0 on a Tesla T4,
+committed with its report</li>
+<li>a second pass with thinking on, over seven rungs from BF16 to
+Q3_K_M</li>
+</ul>
+<hr />
+<h4 id="demo">Demo</h4>
+<h4 id="the-results-in-brief">The Results in Brief</h4>
+<p>Q5_K_M is the best trade between speed and accuracy on the T4. It
+keeps BF16's score, 231 right against 229, at 39.0% of the bytes and
+1.97 times BF16's decode speed. The 2 extra right answers come from the
+8 questions where the two disagree, 5 ghosts against 3 dead; two equally
+accurate models split 8 questions at least that unevenly about three
+times in four, so the gap is within the noise. Q4_0 is the fastest rung
+at 2.34 times BF16, and costs 9 right answers against Q5_K_M for 1.19
+times its speed. Q4_K_M sits between the two.</p>
+<p>Every other rung is beaten on both counts by one of those three: Q8_0
+and Q6_K are slower than Q5_K_M with fewer or equal right answers, and
+Q3_K_M is slower than Q4_0 with 31 fewer. Below Q4 the accuracy
+collapses: Q3_K_M loses 38 and Q2_K gets 3 right. With thinking on, the
+order holds: Q5_K_M 230, Q4_K_M 226 and Q4_0 219, against BF16's
+227.</p>
+<p>The cover is the graveyard. One row per rung, BF16 at the top and
+Q2_K at the bottom, one cell per question: marigold where the rung
+answers right, a grey headstone where it answers wrong.
+<code>docs/make_cover.py</code> draws it from the committed rows.</p>
+<p>The ladder, from <code>graveyard.py bury</code>, on 250 GSM8K test
+questions:</p>
+<p><img src="https://raw.githubusercontent.com/xbill9/gemma-graveyard/main/medium/img/devto-gemma-graveyard-table-1.png"
+alt="Table: Rung, % of BF16 bytes, Right, Dead, Ghosts, Median tok/s" /></p>
+<p><strong>Dead</strong>: BF16 right, this rung wrong.
+<strong>Ghosts</strong>: BF16 wrong, this rung right.</p>
+<hr />
+<h4 id="code">Code</h4>
+<p><a
+href="https://github.com/xbill9/gemma-graveyard">https://github.com/xbill9/gemma-graveyard</a></p>
+<p><img src="https://raw.githubusercontent.com/xbill9/gemma-graveyard/main/medium/img/devto-gemma-graveyard-table-2.png"
+alt="Table: Path, What" /></p>
+<hr />
+<h4 id="how-i-built-it">How I Built It</h4>
+<h4 id="at-this-point-you-should-have">At This Point You Should
+Have…</h4>
+<ul>
+<li>A GCE <code>n1-standard-2</code> in <code>us-west2-b</code> with one
+Tesla T4, 15,360 MiB, driver 615.71.10, 2 vCPU and 7,436 MiB of RAM</li>
+<li>llama.cpp built with CUDA for compute capability 7.5, at
+<code>b11699</code></li>
+<li><code>google/gemma-4-E2B-it</code> from Hugging Face, the BF16
+checkpoint, text model only</li>
+<li><code>google/gemma-4-E2B-it-qat-q4_0-gguf</code>, Google's
+quantization-aware Q4_0 file</li>
+<li>A clone:
+<code>git clone https://github.com/xbill9/gemma-graveyard</code></li>
+</ul>
+<hr />
+<h4 id="step-1--build-the-ladder">Step 1 — Build the Ladder</h4>
+<p><code>ladder.sh</code> converts the checkpoint twice, to BF16 and to
+F16, then quantizes seven rungs from the BF16 file with plain
+<code>llama-quantize</code>, with no importance matrix. That is the
+default a user gets.</p>
+<pre class="text"><code>TMPDIR=/opt1/tmp ./ladder.sh /opt1/models/gemma-4-E2B-it /opt1/graveyard-gguf /opt1/llama.cpp
+rung    file    bytes   sha256
+BF16    /opt1/graveyard-gguf/e2b-BF16.gguf  9311305152  9fe40af9a72302151a5abc28a5057c5fe335eb80145e795ba745085fc73a2ad6
+F16 /opt1/graveyard-gguf/e2b-F16.gguf   9311305152  5ab927e4b24a248de319e70467fc74d4ab87347ee9d6fb3ee60b293b12198cf8
+Q8_0    /opt1/graveyard-gguf/e2b-Q8_0.gguf  4967497152  6b0301104c89a43c3bec5bae4b14d744f6000bc21e00e46e887fbbfe024de38a
+Q6_K    /opt1/graveyard-gguf/e2b-Q6_K.gguf  3845346752  e800e0389f48646994d8ff6d3409dbf0c13b3fc217d0647b481385da33bd3d99
+Q5_K_M  /opt1/graveyard-gguf/e2b-Q5_K_M.gguf    3630288320  f6c3f4395a9d3839535d8c14ae48ab784096945cfc4485005853eede915cb4a9
+Q4_K_M  /opt1/graveyard-gguf/e2b-Q4_K_M.gguf    3427880384  dd9dc465bb535989205f158d77f28f6f8348e47d8ac8870920c152b5996cbc16
+Q4_0    /opt1/graveyard-gguf/e2b-Q4_0.gguf  3360161216  2d84758474be87d0a74edfa98efbeb602484e26f2e5fa8695fd9641ad323c7b2
+Q3_K_M  /opt1/graveyard-gguf/e2b-Q3_K_M.gguf    3201351104  b10c1f38c93635ccee1c7f382e03f5d2f4e9516087d7d62a73ca7de0f52693ab
+Q2_K    /opt1/graveyard-gguf/e2b-Q2_K.gguf  2989088192  65850f1a31efed2013ed148adc5dc937e973a8e79fd55cdba31edd53369fddb2</code></pre>
+<p>The reference is BF16 because that is the checkpoint's own dtype, so
+the BF16 GGUF holds the trained weights unchanged. F16 is a rung.</p>
+<hr />
+<h4 id="step-2--check-what-f16-costs-before-running-it">Step 2 — Check
+What F16 Costs Before Running It</h4>
+<p>F16 has more mantissa than BF16 and less exponent range, so the cast
+can overflow or round small weights to zero. <code>f16_range.py</code>
+counts both on the checkpoint, one line per tensor and a total:</p>
+<pre class="text"><code>python3 f16_range.py /opt1/models/gemma-4-E2B-it/model.safetensors &gt; runs/2026-10-27-f16-range/out.txt
+grep -E &#39;position_embedding_table|TOTAL&#39; runs/2026-10-27-f16-range/out.txt
+{&quot;tensor&quot;: &quot;model.vision_tower.patch_embedder.position_embedding_table&quot;, &quot;n&quot;: 15728640, &quot;overflow&quot;: 0, &quot;underflow&quot;: 5507733, &quot;subnormal&quot;: 834716, &quot;absmax&quot;: 0.431640625}
+{&quot;tensor&quot;: &quot;TOTAL&quot;, &quot;tensors&quot;: 2011, &quot;n&quot;: 5123178979, &quot;overflow&quot;: 0, &quot;underflow&quot;: 5523265, &quot;subnormal&quot;: 7013885, &quot;absmax&quot;: 900.0}</code></pre>
+<p>No weight overflows. Of the 5,523,265 that underflow, 5,507,733 are
+in the vision tower's position table, which the text GGUF does not
+carry.</p>
+<hr />
+<h4 id="step-3--ask-one-rung-250-questions">Step 3 — Ask One Rung 250
+Questions</h4>
+<p><code>graveyard.py run</code> starts its own
+<code>llama-server</code> on one GGUF and asks each question once:
+temperature 0, one request at a time, no prompt cache, thinking off,
+1,024 max tokens. Only the reply's <code>content</code> is graded, in
+code: the number after <code>Answer:</code>, compared with the
+reference.</p>
+<pre class="text"><code>./graveyard.py run BF16 /opt1/graveyard-gguf/e2b-BF16.gguf data/heldout.jsonl runs/2026-10-27-ladder --llama /opt1/llama.cpp
+{&quot;rung&quot;: &quot;BF16&quot;, &quot;n&quot;: 250, &quot;right&quot;: 229, &quot;errors&quot;: 0, &quot;truncated&quot;: 4, &quot;median_decode_tps&quot;: 40.0, &quot;mean_tokens&quot;: 391.2}</code></pre>
+<p>The whole model fits on the T4 at BF16:</p>
+<pre class="text"><code>load_tensors: offloaded 36/36 layers to GPU
+load_tensors:   CPU_Mapped model buffer size =   768.00 MiB
+load_tensors:        CUDA0 model buffer size =  4384.87 MiB</code></pre>
+<p>🔎 <strong>Tip: Gemma 4 E2B keeps its embedding tables in CPU
+memory.</strong> The per-layer embedding table holds 2,348,810,240 of
+the checkpoint's weights, and llama.cpp leaves it memory-mapped on the
+CPU with <code>-ngl 99</code>. So each rung's GPU memory is about half
+its file size: 4,671 MiB in use at BF16 for a 9.3 GB file, 1,639 MiB at
+Q4_0, 1,287 MiB at Q2_K.</p>
+<hr />
+<h4 id="step-4--prove-the-same-rung-gives-the-same-answers">Step 4 —
+Prove the Same Rung Gives the Same Answers</h4>
+<p>A tombstone means something only if the same model on the same
+question always gives the same answer. BF16 on 50 questions, twice:</p>
+<pre class="text"><code>for i in 1 2; do
+  ./graveyard.py run BF16 /opt1/graveyard-gguf/e2b-BF16.gguf data/heldout.jsonl runs/2026-10-27-determinism-$i \
+    --llama /opt1/llama.cpp --limit 50
+done</code></pre>
+<p>The two runs compared in code, question by question:</p>
+<pre class="text"><code>0 mismatched extracted, 0 mismatched text, 46/50 both times</code></pre>
+<p>Every answer and every character of text matched. The same holds
+below BF16. <code>graveyard.py repeat</code> compares a second full run
+of four rungs with the ladder's:</p>
+<pre class="text"><code>./graveyard.py repeat runs/2026-10-27-ladder runs/2026-10-28-repeat Q4_0 Q3_K_M Q8_0 F16 --common
+{&quot;rung&quot;: &quot;Q4_0&quot;, &quot;n&quot;: 250, &quot;mismatched_extracted&quot;: 0, &quot;mismatched_text&quot;: 0, &quot;mismatched_right&quot;: 0, &quot;right_a&quot;: 222, &quot;right_b&quot;: 222}
+{&quot;rung&quot;: &quot;Q3_K_M&quot;, &quot;n&quot;: 250, &quot;mismatched_extracted&quot;: 0, &quot;mismatched_text&quot;: 0, &quot;mismatched_right&quot;: 0, &quot;right_a&quot;: 191, &quot;right_b&quot;: 191}
+{&quot;rung&quot;: &quot;Q8_0&quot;, &quot;n&quot;: 250, &quot;mismatched_extracted&quot;: 0, &quot;mismatched_text&quot;: 0, &quot;mismatched_right&quot;: 0, &quot;right_a&quot;: 227, &quot;right_b&quot;: 227}
+{&quot;rung&quot;: &quot;F16&quot;, &quot;n&quot;: 250, &quot;mismatched_extracted&quot;: 0, &quot;mismatched_text&quot;: 0, &quot;mismatched_right&quot;: 0, &quot;right_a&quot;: 229, &quot;right_b&quot;: 229}</code></pre>
+<p>A changed answer at a lower rung comes from the weights.</p>
+<hr />
+<h4 id="step-5--run-the-ladder-and-bury-it">Step 5 — Run the Ladder and
+Bury It</h4>
+<p><code>runs/2026-10-27-ladder/run-ladder.sh</code> runs the nine rungs
+in order and skips any rung whose results are complete, so it picks up
+again after the VM's evening stop. Then <code>bury</code>:</p>
+<pre class="text"><code>./graveyard.py bury runs/2026-10-27-ladder BF16 F16 Q8_0 Q6_K Q5_K_M Q4_K_M Q4_0 Q3_K_M Q2_K --json graveyard-ladder.json
+{&quot;first_deaths_by_rung&quot;: {&quot;Q2_K&quot;: 177, &quot;Q3_K_M&quot;: 26, &quot;Q4_0&quot;: 9, &quot;Q8_0&quot;: 4, &quot;Q5_K_M&quot;: 2, &quot;Q4_K_M&quot;: 6, &quot;Q6_K&quot;: 1, &quot;F16&quot;: 1}, &quot;tombstones&quot;: 226, &quot;ghosts&quot;: 11}</code></pre>
+<p>226 tombstones and 11 ghosts: 226 different questions die at some
+rung, and 11 questions BF16 gets wrong come back right at one rung or
+more. The first-death counts add up to the tombstones, one per question;
+the per-rung dead counts in the ladder table add up to more, because one
+question can be dead at several rungs. Per-question detail is in
+<code>graveyard-ladder.json</code>. The one question that dies at
+F16:</p>
+<pre class="text"><code>{&#39;id&#39;: &#39;test-687&#39;, &#39;died_at&#39;: &#39;F16&#39;, &#39;answer&#39;: &#39;13&#39;, &#39;said&#39;: 17.0, &#39;right_again_at&#39;: [&#39;Q8_0&#39;, &#39;Q6_K&#39;, &#39;Q5_K_M&#39;, &#39;Q4_K_M&#39;]}</code></pre>
+<p>"One twin is 7 years older than one triplet. If their combined ages
+are 44, how old is one of the twins?" BF16 answers 13, from two twins
+and three triplets. F16 adds up two twins and one triplet, and answers
+17. Four lower rungs answer 13 again.</p>
+<hr />
+<h4 id="step-6--autopsy-how-each-rung-dies">Step 6 — Autopsy: How Each
+Rung Dies</h4>
+<p><code>graveyard.py autopsy</code> counts, per rung, answers cut off
+at 1,024 tokens, answers that repeat one line five or more times, and
+answers that put text in the thinking block:</p>
+<pre class="text"><code>./graveyard.py autopsy runs/2026-10-27-ladder BF16 F16 Q8_0 Q6_K Q5_K_M Q4_K_M Q4_0 Q3_K_M Q2_K
+{&quot;rung&quot;: &quot;Q3_K_M&quot;, &quot;cut_off&quot;: 49, &quot;looped&quot;: 0, &quot;thought&quot;: 0, &quot;empty_content&quot;: 0, &quot;empty_right_in_reasoning&quot;: 0, &quot;dead&quot;: 42, &quot;dead_cut_off&quot;: 34, &quot;dead_looped&quot;: 0, &quot;dead_empty_content&quot;: 0, &quot;first_deaths&quot;: 26, &quot;first_deaths_right_again_lower&quot;: 0}
+{&quot;rung&quot;: &quot;Q2_K&quot;, &quot;cut_off&quot;: 246, &quot;looped&quot;: 228, &quot;thought&quot;: 75, &quot;empty_content&quot;: 63, &quot;empty_right_in_reasoning&quot;: 2, &quot;dead&quot;: 226, &quot;dead_cut_off&quot;: 222, &quot;dead_looped&quot;: 207, &quot;dead_empty_content&quot;: 60, &quot;first_deaths&quot;: 177, &quot;first_deaths_right_again_lower&quot;: 0}</code></pre>
+<p>Every rung:</p>
+<p><img src="https://raw.githubusercontent.com/xbill9/gemma-graveyard/main/medium/img/devto-gemma-graveyard-table-3.png"
+alt="Table: Rung, Cut off, Looped, Thinking unprompted, Dead, Dead, cut off" /></p>
+<p>Three kinds of death:</p>
+<ul>
+<li><strong>F16 to Q4_0, a different road through the same
+problem.</strong> 23 first deaths; 16 of them are right again at some
+lower rung. Down to Q5_K_M most of the dead answers end normally with a
+wrong number: 4 of 12 were cut off. At Q4_K_M and Q4_0, 11 of 24 were.
+From F16 to Q5_K_M, ghosts (1 to 5 per rung) match deaths (1 to 4), so
+the score holds. From Q4_K_M down, deaths outnumber ghosts, 9 to 4 and
+15 to 8.</li>
+<li><strong>Q3_K_M, out of room.</strong> 34 of its 42 deaths were cut
+off at 1,024 tokens, still working, with no repeated lines. BF16 used a
+median 466.5 tokens on the 44 questions Q3_K_M got wrong while cut
+off.</li>
+<li><strong>Q2_K, collapse.</strong> 246 of 250 answers run to the limit
+and 228 repeat a line five or more times. With thinking off, 75 answers
+open a thinking block anyway, and in 63 of them the whole answer lands
+there, leaving <code>content</code> empty. No other rung writes into the
+thinking block at all.</li>
+</ul>
+<p>🔎 <strong>Tip: give two buries in one directory two names.</strong>
+<code>bury</code> writes its per-question tombstones to
+<code>graveyard.json</code>; <code>--json</code> picks the file, so the
+QAT comparison in Step 7 keeps the ladder's file intact.</p>
+<hr />
+<h4 id="step-7--googles-qat-q4_0-beside-the-plain-q4_0">Step 7 —
+Google's QAT Q4_0 Beside the Plain Q4_0</h4>
+<p>Google publishes a Q4_0 GGUF of Gemma 4 E2B trained for 4-bit
+(quantization-aware training). Its weights differ from the base
+checkpoint, so it sits beside the ladder, against the same BF16
+reference:</p>
+<pre class="text"><code>./graveyard.py bury runs/2026-10-27-ladder BF16 QAT_Q4_0 Q4_0 --json graveyard-qat.json
+{&quot;rung&quot;: &quot;QAT_Q4_0&quot;, &quot;n&quot;: 250, &quot;right&quot;: 221, &quot;errors&quot;: 0, &quot;truncated&quot;: 6, &quot;median_decode_tps&quot;: 87.8, &quot;mean_tokens&quot;: 391.9, &quot;dead&quot;: 15, &quot;ghosts&quot;: 7, &quot;answer_changed&quot;: 27, &quot;bytes&quot;: 3349516256, &quot;gpu_mib_loaded&quot;: 1629, &quot;gpu_mib_before&quot;: 0}
+{&quot;rung&quot;: &quot;Q4_0&quot;, &quot;n&quot;: 250, &quot;right&quot;: 222, &quot;errors&quot;: 0, &quot;truncated&quot;: 10, &quot;median_decode_tps&quot;: 93.6, &quot;mean_tokens&quot;: 430.4, &quot;dead&quot;: 15, &quot;ghosts&quot;: 8, &quot;answer_changed&quot;: 27, &quot;bytes&quot;: 3360161216, &quot;gpu_mib_loaded&quot;: 1639, &quot;gpu_mib_before&quot;: 0}</code></pre>
+<p>Same number of deaths, same number of changed answers, one right
+answer apart. The graves differ: 6 of the 15 dead are the same question,
+9 die only under QAT and 9 only under the plain Q4_0. QAT runs out of
+room less often: 2 of its deaths were cut off at 1,024 tokens, against 8
+for the plain Q4_0.</p>
+<hr />
+<h4 id="step-8--bury-the-ladder-again-with-thinking-on">Step 8 — Bury
+the Ladder Again With Thinking On</h4>
+<p>Gemma 4 can think before it answers. <code>--think</code> turns it
+on; the thinking goes to <code>reasoning_content</code> and only
+<code>content</code> is graded. Thinking needs room, so this pass allows
+4,096 tokens in an 8,192-token context. It covers seven rungs, BF16 to
+Q3_K_M; F16, Q2_K and QAT Q4_0 were not run with thinking on. Each rung
+is buried against BF16 with thinking on, which gets 227 right. A second
+BF16 run of 50 questions matched the first exactly, 47 right both
+times.</p>
+<pre class="text"><code>./graveyard.py bury runs/2026-10-28-think BF16 Q8_0 Q6_K Q5_K_M Q4_K_M Q4_0 Q3_K_M --json graveyard.json
+{&quot;rung&quot;: &quot;BF16&quot;, &quot;n&quot;: 250, &quot;right&quot;: 227, &quot;errors&quot;: 0, &quot;truncated&quot;: 0, &quot;median_decode_tps&quot;: 34.5, &quot;mean_tokens&quot;: 842.2, &quot;dead&quot;: 0, &quot;ghosts&quot;: 0, &quot;answer_changed&quot;: 0, &quot;bytes&quot;: 9311305152, &quot;gpu_mib_loaded&quot;: 4699, &quot;gpu_mib_before&quot;: 0}
+{&quot;rung&quot;: &quot;Q3_K_M&quot;, &quot;n&quot;: 250, &quot;right&quot;: 208, &quot;errors&quot;: 0, &quot;truncated&quot;: 11, &quot;median_decode_tps&quot;: 68.0, &quot;mean_tokens&quot;: 1320.1, &quot;dead&quot;: 26, &quot;ghosts&quot;: 7, &quot;answer_changed&quot;: 42, &quot;bytes&quot;: 3201351104, &quot;gpu_mib_loaded&quot;: 1517, &quot;gpu_mib_before&quot;: 0}</code></pre>
+<p><code>docs/think_derived.py</code> lines the two passes up question
+by question:</p>
+<pre class="text"><code>python3 docs/think_derived.py | tail -3
+ &quot;q3_dead_cut_off_with_thinking_off&quot;: 34,
+ &quot;of_them_right_with_thinking_on&quot;: 21
+}</code></pre>
+<p><img src="https://raw.githubusercontent.com/xbill9/gemma-graveyard/main/medium/img/devto-gemma-graveyard-table-4.png"
+alt="Table: Rung, Right, thinking off, Right, thinking on, Dead, off, Dead, on, Dead in both" /></p>
+<p>Three things change:</p>
+<ul>
+<li><strong>Q3_K_M recovers most of its loss.</strong> It gains 17 right
+answers. Of the 34 questions it lost by running out of room at 1,024
+tokens, 21 are right with thinking on and 4,096 tokens. Both the
+thinking and the larger limit changed at once, so this run cannot say
+which one did it.</li>
+<li><strong>Above Q3_K_M the score holds and the graves move.</strong>
+Each rung stays within 3 answers of its thinking-off score, but the
+questions it loses are almost all new: 0 of the deaths at Q8_0, Q6_K and
+Q5_K_M are shared between the two passes, 1 of 9 at Q4_K_M and 3 of 15
+at Q4_0. BF16 itself gets 218 questions right in both modes.</li>
+<li><strong>The cost is time.</strong> Answers use 2.08 to 2.18 times as
+many tokens, decoding runs at 0.79 to 0.93 of the thinking-off speed,
+and each rung takes 2.22 to 2.70 times as long on the T4.</li>
+</ul>
+<hr />
+<h4 id="compare-and-contrast">Compare and Contrast</h4>
+<p><img src="https://raw.githubusercontent.com/xbill9/gemma-graveyard/main/medium/img/devto-gemma-graveyard-table-5.png"
+alt="Table: Q5_K_M, Q4_K_M, Q4_0, QAT Q4_0, Q3_K_M" /></p>
+<hr />
+<h4 id="so-which-one">So, Which One?</h4>
+<p>To ship Gemma 4 E2B on a small GPU with BF16's score, take Q5_K_M:
+39.0% of the bytes, 231 right against 229, and 1.97 times BF16's decode
+speed on the T4 (arithmetic from the medians). For the fastest file that
+stays within 7 answers, take Q4_0 or Q4_K_M. Below Q4, the losses stop
+being a few flipped answers: Q3_K_M saves 150 MiB of GPU memory over
+Q4_0 and costs 31 right answers, and Q2_K stops answering. With thinking
+on and 4,096 tokens, Q3_K_M gets 208 right, 11 short of Q4_0, at more
+than twice the time per question.</p>
+<hr />
+<h4 id="prior-work">Prior Work</h4>
+<ul>
+<li><strong>Prompt, answer extraction and grading</strong>
+(<code>lazy_eval.py</code>) and <strong>the 250-question GSM8K
+split</strong> (<code>data/</code>, seed 0): from my Week 3 entry, <a
+href="https://github.com/xbill9/lazy-gemma">lazy-gemma</a>, whose grader
+came from my earlier Gemma 4 TPU work.</li>
+<li><strong>Open source used</strong>: <a
+href="https://github.com/ggml-org/llama.cpp">llama.cpp</a> (MIT) for
+conversion, quantization and serving; Gemma 4 E2B and Google's QAT Q4_0
+GGUF (Gemma terms); <a
+href="https://github.com/openai/grade-school-math">GSM8K</a>.</li>
+</ul>
+<hr />
+<h4 id="why-does-open-innovation-matter">Why Does Open Innovation
+Matter?</h4>
+<p>A graveyard needs the same model at nine sizes, run the same way.</p>
+<ul>
+<li><strong>The weights are on the disk, so the ladder is built
+here.</strong> <code>ladder.sh</code> produces every rung from one BF16
+file with the open converter and quantizer, and <code>ladder.tsv</code>
+records each file's sha256. A hosted API serves whichever quantization
+its provider chose, and it can change without notice.</li>
+<li><strong>The same answer twice.</strong> Greedy decoding on a fixed
+llama.cpp build gave identical text on every repeated run, BF16 to
+Q3_K_M, so every tombstone counts. That check needs control of the
+server, the seed and the build.</li>
+<li><strong>The failure is visible.</strong> Q2_K's answers in the
+thinking block show up only because llama-server returns
+<code>reasoning_content</code> and <code>content</code> separately and
+every row is kept.</li>
+<li><strong>No per-token bill.</strong> Ten models times 250 questions
+ran on one rented T4.</li>
+</ul>
+<hr />
+<h4 id="the-spirit-of-it">The Spirit of It</h4>
+<p>Every row in the graveyard is a grade-school maths problem, and each
+tombstone keeps its own epitaph:</p>
+<ul>
+<li><strong>test-687</strong>, twins and triplets, answer 13. Died at
+F16, said 17. Rose again at Q8_0, Q6_K, Q5_K_M and Q4_K_M.</li>
+<li><strong>test-2</strong>, a house flipped for profit, answer 70,000.
+Died at Q4_0, said 120,000. Never rose.</li>
+<li><strong>test-564</strong>, Judy's two weeks of reading, answer 240.
+Died at Q8_0, said 3. Rose again at every rung from Q6_K to Q4_0.</li>
+</ul>
+<p>Most graves above Q3_K_M have someone come back to them: 16 of
+23.</p>
+<hr />
+<h4 id="prize-categories">Prize Categories</h4>
+<p><strong>Gemma</strong>: Gemma 4 E2B, quantized locally with llama.cpp
+at nine levels and compared with Google's quantization-aware Q4_0
+release, served on one Tesla T4.</p>
+<hr />
+<h4 id="summary">Summary</h4>
+<p>The goal of this project was to find which answers Gemma 4 E2B loses
+at each quantization level, one question at a time. The key was a
+deterministic run: greedy decoding on one llama.cpp build, checked to
+give identical text twice at five rungs, so every changed answer comes
+from the weights. The results were:</p>
+<ul>
+<li>🟢 Q8_0, Q6_K and Q5_K_M stay within 2 right answers of BF16's 229
+of 250; Q5_K_M scores 231 at 39.0% of the bytes.</li>
+<li>🟢 Every rung fits on the T4, BF16 included: all 36 layers on the
+GPU, 4,671 MiB in use, with the embedding tables in CPU memory.</li>
+<li>🟢 Above Q3_K_M, 16 of the 23 questions that die are right again at
+a lower rung.</li>
+<li>⚠️ Q4_K_M and Q4_0 lose 5 and 7, with 9 and 15 deaths.</li>
+<li>⚠️ Google's QAT Q4_0 scores 221 against the plain Q4_0's 222; the
+two share 6 of their 15 deaths.</li>
+<li>🟢 Q4_0, Q3_K_M, Q8_0 and F16 run a second time give the same text
+on all 250 questions.</li>
+<li>⚠️ With thinking on, rungs above Q3_K_M keep their score but lose
+different questions; at Q4_0, 3 of 15 deaths are shared.</li>
+<li>⚠️ Thinking on costs 2.1 times the tokens and 2.2 to 2.7 times the
+time per rung.</li>
+<li>❌ Q3_K_M loses 38; 34 of its 42 deaths are cut off at 1,024 tokens.
+With thinking on and 4,096 tokens it loses 19.</li>
+<li>❌ Q2_K gets 3 right: 246 answers hit the token limit, 228 loop, and
+75 write into a thinking block with thinking off.</li>
+</ul>
+<p>Scope: one Tesla T4 on GCE, llama.cpp <code>b11699</code>, 250 GSM8K
+test questions per rung, greedy. Thinking off with a 1,024-token limit
+on all ten models; thinking on with a 4,096-token limit on seven rungs,
+BF16 to Q3_K_M. Determinism checked at BF16, F16, Q8_0, Q4_0 and Q3_K_M.
+No importance matrix, none of the other 1,069 GSM8K test questions, and
+no other machine. Speeds compare rungs on this T4 only.</p>
+<p>The strategy for burying Gemma 4's answers one quantization rung at a
+time was validated with an incremental step by step approach.</p>
+<hr />
+<h4 id="references">References</h4>
+<ul>
+<li><a
+href="https://dev.to/challenges/hacktoberfest-week4-2026-10-26">Hacktoberfest
+Open-Source AI Challenge, Week 4: Ghost in the Machine</a></li>
+<li><a href="https://github.com/xbill9/gemma-graveyard">gemma-graveyard
+on GitHub</a></li>
+<li><a
+href="https://github.com/xbill9/gemma-graveyard/blob/main/runs/2026-10-27-ladder/REPORT.md">Run
+report: runs/2026-10-27-ladder/REPORT.md</a></li>
+<li><a href="https://github.com/xbill9/lazy-gemma">lazy-gemma, the Week
+3 entry</a></li>
+<li><a href="https://github.com/ggml-org/llama.cpp">llama.cpp</a></li>
+<li><a
+href="https://huggingface.co/google/gemma-4-E2B-it">google/gemma-4-E2B-it</a></li>
+<li><a
+href="https://huggingface.co/google/gemma-4-E2B-it-qat-q4_0-gguf">google/gemma-4-E2B-it-qat-q4_0-gguf</a></li>
+<li><a href="https://github.com/openai/grade-school-math">GSM8K</a></li>
+</ul>
+</body>
+</html>

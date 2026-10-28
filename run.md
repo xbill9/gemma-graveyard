@@ -118,7 +118,7 @@ writes `bury-qat.txt` (`bury BF16 QAT_Q4_0 Q4_0`). It resumes the same way as th
 3,349,516,256 bytes, sha256 `fa401b55b07ee70a54c6dae3903c783a6e65064312529ea57175cb5f8dec6634`
 (`runs/2026-10-27-ladder/qat.tsv`).
 
-## Results so far (2026-10-27)
+## Results so far (2026-10-28)
 
 | Check | Result |
 |---|---|
@@ -126,6 +126,7 @@ writes `bury-qat.txt` (`bury BF16 QAT_Q4_0 Q4_0`). It resumes the same way as th
 | 2 | 0 overflow in 5,123,178,979 weights; 5,523,265 underflow, 5,507,733 of them in the vision tower's `position_embedding_table` (not in the text GGUF). `runs/2026-10-27-f16-range/out.txt` |
 | 3 | 10/10 right, 0 errors, median 43.0 tok/s. All 36 layers on the GPU (4,384.87 MiB); the two embedding tables stay memory-mapped on the CPU (4,480 + 768 MiB). |
 | 4 | 50 questions twice: 0 mismatched `extracted`, 0 mismatched text, 46/50 both times. |
-| 5 | BF16: 229/250 right, 0 errors, 4 cut off at 1,024 tokens, median 40.0 tok/s, 2,502 s of requests. Other rungs running. |
+| 5 | All nine rungs, 250 questions each, 0 errors. Right: BF16 229, F16 229, Q8_0 227, Q6_K 229, Q5_K_M 231, Q4_K_M 224, Q4_0 222, Q3_K_M 191, Q2_K 3. Dead vs BF16: 1, 4, 4, 3, 9, 15, 42, 226; 226 tombstones, 11 ghosts. Q2_K hits the 1,024-token cap on 246 of 250 and opens a thinking block on its own in 75 (63 with empty `content`); no other rung does. `runs/2026-10-27-ladder/bury.txt` |
+| 6 | QAT Q4_0 running (started 2026-10-28 01:37 UTC). |
 
 Run directories are gitignored (`runs/*/`); commit a report with `git add -f`.

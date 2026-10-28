@@ -1,0 +1,29 @@
+2026-10-27T17:49:38Z start BF16
+{"rung": "BF16", "n": 250, "right": 229, "errors": 0, "truncated": 4, "median_decode_tps": 40.0, "mean_tokens": 391.2}
+2026-10-27T18:31:27Z start F16
+{"rung": "F16", "n": 250, "right": 229, "errors": 0, "truncated": 4, "median_decode_tps": 39.6, "mean_tokens": 390.5}
+2026-10-27T19:13:32Z start Q8_0
+{"rung": "Q8_0", "n": 250, "right": 227, "errors": 0, "truncated": 9, "median_decode_tps": 64.3, "mean_tokens": 394.5}
+2026-10-27T19:40:00Z start Q6_K
+{"rung": "Q6_K", "n": 250, "right": 229, "errors": 0, "truncated": 4, "median_decode_tps": 70.8, "mean_tokens": 394.3}
+2026-10-27T20:03:58Z start Q5_K_M
+{"rung": "Q5_K_M", "n": 250, "right": 231, "errors": 0, "truncated": 3, "median_decode_tps": 78.7, "mean_tokens": 377.3}
+2026-10-27T20:24:48Z start Q4_K_M
+{"rung": "Q4_K_M", "n": 250, "right": 224, "errors": 0, "truncated": 6, "median_decode_tps": 84.1, "mean_tokens": 392.4}
+2026-10-27T20:44:57Z start Q4_0
+{"rung": "Q4_0", "n": 250, "right": 222, "errors": 0, "truncated": 10, "median_decode_tps": 93.6, "mean_tokens": 430.4}
+2026-10-27T21:04:48Z start Q3_K_M
+{"rung": "Q3_K_M", "n": 250, "right": 191, "errors": 0, "truncated": 49, "median_decode_tps": 74.2, "mean_tokens": 617.6}
+2026-10-27T21:40:12Z start Q2_K
+skip BF16
+skip F16
+skip Q8_0
+skip Q6_K
+skip Q5_K_M
+skip Q4_K_M
+skip Q4_0
+skip Q3_K_M
+2026-10-28T00:39:02Z start Q2_K
+{"rung": "Q2_K", "n": 250, "right": 3, "errors": 0, "truncated": 246, "median_decode_tps": 74.0, "mean_tokens": 1009.2}
+2026-10-28T01:36:35Z bury
+2026-10-28T01:36:36Z done exit 0

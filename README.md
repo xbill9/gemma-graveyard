@@ -16,6 +16,9 @@ right. Google's QAT Q4_0 scores 221 against the plain Q4_0's 222, and the two lo
 - `graveyard.py bury` — deaths, tombstones and ghosts per rung, computed in code.
 - `graveyard.py autopsy` — per rung, answers cut off, looping, thinking unprompted, or with empty content.
 
+Article: [`docs/devto-gemma-graveyard.md`](docs/devto-gemma-graveyard.md), its cover drawn from the rows by
+`docs/make_cover.py`, every figure traced to a file in `docs/evidence/`.
+
 Reused: `lazy_eval.py` (prompt, answer extraction, grading) and `data/` (GSM8K test split, seed 0) from
 [xbill9/lazy-gemma](https://github.com/xbill9/lazy-gemma); the grader there came from
 `gemma4-dev/jev-tpu-v5e1/gen_eval.py`.

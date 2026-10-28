@@ -1,0 +1,27 @@
+{
+ "rung": "BF16",
+ "model": "/opt1/graveyard-gguf/e2b-BF16.gguf",
+ "bytes": 9311305152,
+ "load_seconds": 4.0,
+ "gpu_mib_before": 0,
+ "gpu_mib_loaded": 4671,
+ "think": false,
+ "max_tokens": 1024,
+ "cmd": [
+  "/opt1/llama.cpp/build/bin/llama-server",
+  "-m",
+  "/opt1/graveyard-gguf/e2b-BF16.gguf",
+  "-ngl",
+  "99",
+  "-c",
+  "4096",
+  "-np",
+  "1",
+  "--port",
+  "8090",
+  "--seed",
+  "0"
+ ],
+ "n": 250,
+ "gpu_mib_after": 4755
+}

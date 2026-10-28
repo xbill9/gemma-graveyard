@@ -1,0 +1,3 @@
+BF16 right: 229 of 250
+Q2_K cut off: 246 of 250
+F16 to Q4_0 first deaths right again lower: 16 of 23

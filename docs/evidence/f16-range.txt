@@ -1,0 +1,11 @@
+{"tensor": "model.vision_tower.patch_embedder.position_embedding_table", "n": 15728640, "overflow": 0, "underflow": 5507733, "subnormal": 834716, "absmax": 0.431640625}
+{"tensor": "model.language_model.embed_tokens_per_layer.weight", "n": 2348810240, "overflow": 0, "underflow": 1746, "subnormal": 1841185, "absmax": 1.125}
+{"tensor": "model.language_model.embed_tokens.weight", "n": 402653184, "overflow": 0, "underflow": 690, "subnormal": 676723, "absmax": 0.55859375}
+{"tensor": "model.vision_tower.patch_embedder.input_proj.weight", "n": 589824, "overflow": 0, "underflow": 9565, "subnormal": 142199, "absmax": 0.337890625}
+{"tensor": "model.language_model.layers.23.mlp.down_proj.weight", "n": 18874368, "overflow": 0, "underflow": 52, "subnormal": 47869, "absmax": 0.41796875}
+{"tensor": "model.language_model.layers.22.mlp.down_proj.weight", "n": 18874368, "overflow": 0, "underflow": 50, "subnormal": 44913, "absmax": 0.49609375}
+{"tensor": "model.language_model.layers.15.mlp.down_proj.weight", "n": 18874368, "overflow": 0, "underflow": 32, "subnormal": 44463, "absmax": 0.52734375}
+{"tensor": "model.language_model.layers.24.mlp.down_proj.weight", "n": 18874368, "overflow": 0, "underflow": 35, "subnormal": 43580, "absmax": 0.75}
+{"tensor": "model.language_model.layers.19.mlp.down_proj.weight", "n": 18874368, "overflow": 0, "underflow": 43, "subnormal": 43015, "absmax": 0.53515625}
+{"tensor": "model.language_model.layers.16.mlp.down_proj.weight", "n": 18874368, "overflow": 0, "underflow": 44, "subnormal": 42891, "absmax": 0.5546875}
+{"tensor": "TOTAL", "tensors": 2011, "n": 5123178979, "overflow": 0, "underflow": 5523265, "subnormal": 7013885, "absmax": 900.0}

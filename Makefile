@@ -5,6 +5,6 @@ test:
 
 # A NEW TOP-LEVEL MODULE IS UNLINTED UNTIL IT IS ADDED HERE.
 lint:
-	ruff check graveyard.py f16_range.py lazy_eval.py tests
+	ruff check graveyard.py f16_range.py lazy_eval.py docs/make_cover.py tests
 	bash -n ladder.sh
 	@echo "lint OK"

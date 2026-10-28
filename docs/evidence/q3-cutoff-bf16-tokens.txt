@@ -1,0 +1,1 @@
+{"q3_cut_off_wrong": 44, "bf16_median_tokens_on_them": 466.5}

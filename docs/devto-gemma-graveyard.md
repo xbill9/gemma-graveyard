@@ -38,6 +38,12 @@ What the project delivers:
 
 ## Demo
 
+#### The Results in Brief
+
+Q5_K_M is the best trade between speed and accuracy on the T4. It keeps BF16's score, 231 right against 229, at 39.0% of the bytes and 1.97 times BF16's decode speed. Q4_0 is the fastest rung at 2.34 times BF16, and costs 9 right answers against Q5_K_M for 1.19 times its speed. Q4_K_M sits between the two.
+
+Every other rung is beaten on both counts by one of those three: Q8_0 and Q6_K are slower than Q5_K_M with fewer or equal right answers, and Q3_K_M is slower than Q4_0 with 31 fewer. Below Q4 the accuracy collapses: Q3_K_M loses 38 and Q2_K gets 3 right. With thinking on, the order holds: Q5_K_M 230, Q4_K_M 226 and Q4_0 219, against BF16's 227.
+
 The cover is the graveyard. One row per rung, BF16 at the top and Q2_K at the bottom, one cell per question: marigold where the rung answers right, a grey headstone where it answers wrong. `docs/make_cover.py` draws it from the committed rows.
 
 The ladder, from `graveyard.py bury`, on 250 GSM8K test questions:

@@ -1,0 +1,10 @@
+{"rung": "BF16", "right": 229, "median_decode_tps": 40.0, "decode_x_bf16": 1.0, "dominated_by": ["Q6_K", "Q5_K_M"]}
+{"rung": "F16", "right": 229, "median_decode_tps": 39.6, "decode_x_bf16": 0.99, "dominated_by": ["BF16", "Q6_K", "Q5_K_M"]}
+{"rung": "Q8_0", "right": 227, "median_decode_tps": 64.3, "decode_x_bf16": 1.61, "dominated_by": ["Q6_K", "Q5_K_M"]}
+{"rung": "Q6_K", "right": 229, "median_decode_tps": 70.8, "decode_x_bf16": 1.77, "dominated_by": ["Q5_K_M"]}
+{"rung": "Q5_K_M", "right": 231, "median_decode_tps": 78.7, "decode_x_bf16": 1.97, "dominated_by": []}
+{"rung": "Q4_K_M", "right": 224, "median_decode_tps": 84.1, "decode_x_bf16": 2.1, "dominated_by": []}
+{"rung": "Q4_0", "right": 222, "median_decode_tps": 93.6, "decode_x_bf16": 2.34, "dominated_by": []}
+{"rung": "Q3_K_M", "right": 191, "median_decode_tps": 74.2, "decode_x_bf16": 1.85, "dominated_by": ["Q5_K_M", "Q4_K_M", "Q4_0"]}
+{"rung": "Q2_K", "right": 3, "median_decode_tps": 74.0, "decode_x_bf16": 1.85, "dominated_by": ["Q5_K_M", "Q4_K_M", "Q4_0", "Q3_K_M"]}
+{"q4_0_decode_x_q5_k_m": 1.19, "right_q5_k_m_minus_q4_0": 9}

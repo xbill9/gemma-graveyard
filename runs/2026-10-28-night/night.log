@@ -1,0 +1,89 @@
+2026-10-28T02:26:57Z start runs/2026-10-28-repeat Q4_0
+{"rung": "Q4_0", "n": 250, "right": 222, "errors": 0, "truncated": 10, "median_decode_tps": 87.7, "mean_tokens": 430.4}
+2026-10-28T02:47:57Z start runs/2026-10-28-repeat Q3_K_M
+{"rung": "Q3_K_M", "n": 250, "right": 191, "errors": 0, "truncated": 49, "median_decode_tps": 67.9, "mean_tokens": 617.6}
+2026-10-28T03:26:40Z start runs/2026-10-28-repeat Q8_0
+{"rung": "Q8_0", "n": 250, "right": 227, "errors": 0, "truncated": 9, "median_decode_tps": 60.1, "mean_tokens": 394.5}
+2026-10-28T03:54:54Z start runs/2026-10-28-repeat F16
+{"rung": "F16", "n": 250, "right": 229, "errors": 0, "truncated": 4, "median_decode_tps": 33.9, "mean_tokens": 390.5}
+2026-10-28T04:43:53Z A done
+2026-10-28T04:43:53Z start imatrix
+2026-10-28T04:51:58Z quantize Q4_K_M with imatrix
+runs/2026-10-28-night/night.sh: line 68: 26882 Killed                  $L/build/bin/llama-quantize --imatrix $IM $G/e2b-BF16.gguf "$f.part" $r > $B/quantize-$r.log 2>&1
+2026-10-28T04:53:17Z quantize Q4_0 with imatrix
+runs/2026-10-28-night/night.sh: line 68: 26932 Killed                  $L/build/bin/llama-quantize --imatrix $IM $G/e2b-BF16.gguf "$f.part" $r > $B/quantize-$r.log 2>&1
+2026-10-28T04:54:39Z quantize Q3_K_M with imatrix
+runs/2026-10-28-night/night.sh: line 68: 26983 Killed                  $L/build/bin/llama-quantize --imatrix $IM $G/e2b-BF16.gguf "$f.part" $r > $B/quantize-$r.log 2>&1
+2026-10-28T04:56:01Z quantize Q2_K with imatrix
+runs/2026-10-28-night/night.sh: line 68: 27039 Killed                  $L/build/bin/llama-quantize --imatrix $IM $G/e2b-BF16.gguf "$f.part" $r > $B/quantize-$r.log 2>&1
+2026-10-28T04:57:22Z start runs/2026-10-28-imatrix Q4_K_M_IMAT
+Traceback (most recent call last):
+  File "/home/xbill_glitnir_com/gemma-graveyard/./graveyard.py", line 317, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/home/xbill_glitnir_com/gemma-graveyard/./graveyard.py", line 313, in main
+    {"run": run, "bury": bury, "autopsy": autopsy, "repeat": repeat}[a.cmd](a)
+  File "/home/xbill_glitnir_com/gemma-graveyard/./graveyard.py", line 107, in run
+    load_s = wait_healthy(url, proc)
+             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/xbill_glitnir_com/gemma-graveyard/./graveyard.py", line 52, in wait_healthy
+    raise RuntimeError(f"llama-server exited with {proc.returncode}")
+RuntimeError: llama-server exited with 1
+2026-10-28T04:57:28Z start runs/2026-10-28-imatrix Q4_0_IMAT
+Traceback (most recent call last):
+  File "/home/xbill_glitnir_com/gemma-graveyard/./graveyard.py", line 317, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/home/xbill_glitnir_com/gemma-graveyard/./graveyard.py", line 313, in main
+    {"run": run, "bury": bury, "autopsy": autopsy, "repeat": repeat}[a.cmd](a)
+  File "/home/xbill_glitnir_com/gemma-graveyard/./graveyard.py", line 107, in run
+    load_s = wait_healthy(url, proc)
+             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/xbill_glitnir_com/gemma-graveyard/./graveyard.py", line 52, in wait_healthy
+    raise RuntimeError(f"llama-server exited with {proc.returncode}")
+RuntimeError: llama-server exited with 1
+2026-10-28T04:57:31Z start runs/2026-10-28-imatrix Q3_K_M_IMAT
+Traceback (most recent call last):
+  File "/home/xbill_glitnir_com/gemma-graveyard/./graveyard.py", line 317, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/home/xbill_glitnir_com/gemma-graveyard/./graveyard.py", line 313, in main
+    {"run": run, "bury": bury, "autopsy": autopsy, "repeat": repeat}[a.cmd](a)
+  File "/home/xbill_glitnir_com/gemma-graveyard/./graveyard.py", line 107, in run
+    load_s = wait_healthy(url, proc)
+             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/xbill_glitnir_com/gemma-graveyard/./graveyard.py", line 52, in wait_healthy
+    raise RuntimeError(f"llama-server exited with {proc.returncode}")
+RuntimeError: llama-server exited with 1
+2026-10-28T04:57:33Z start runs/2026-10-28-imatrix Q2_K_IMAT
+Traceback (most recent call last):
+  File "/home/xbill_glitnir_com/gemma-graveyard/./graveyard.py", line 317, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/home/xbill_glitnir_com/gemma-graveyard/./graveyard.py", line 313, in main
+    {"run": run, "bury": bury, "autopsy": autopsy, "repeat": repeat}[a.cmd](a)
+  File "/home/xbill_glitnir_com/gemma-graveyard/./graveyard.py", line 107, in run
+    load_s = wait_healthy(url, proc)
+             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/xbill_glitnir_com/gemma-graveyard/./graveyard.py", line 52, in wait_healthy
+    raise RuntimeError(f"llama-server exited with {proc.returncode}")
+RuntimeError: llama-server exited with 1
+2026-10-28T04:57:36Z B done
+2026-10-28T04:57:36Z start runs/2026-10-28-think BF16
+{"rung": "BF16", "n": 250, "right": 227, "errors": 0, "truncated": 0, "median_decode_tps": 34.5, "mean_tokens": 842.2}
+2026-10-28T06:41:27Z start runs/2026-10-28-think-repeat BF16
+{"rung": "BF16", "n": 50, "right": 47, "errors": 0, "truncated": 0, "median_decode_tps": 34.6, "mean_tokens": 809.7}
+2026-10-28T07:01:38Z start runs/2026-10-28-think Q4_0
+{"rung": "Q4_0", "n": 250, "right": 219, "errors": 0, "truncated": 3, "median_decode_tps": 87.3, "mean_tokens": 897.0}
+2026-10-28T07:45:17Z start runs/2026-10-28-think Q3_K_M
+{"rung": "Q3_K_M", "n": 250, "right": 208, "errors": 0, "truncated": 11, "median_decode_tps": 68.0, "mean_tokens": 1320.1}
+2026-10-28T09:07:15Z start runs/2026-10-28-think Q5_K_M
+{"rung": "Q5_K_M", "n": 250, "right": 230, "errors": 0, "truncated": 0, "median_decode_tps": 71.7, "mean_tokens": 806.2}
+2026-10-28T09:55:02Z start runs/2026-10-28-think Q4_K_M
+{"rung": "Q4_K_M", "n": 250, "right": 226, "errors": 0, "truncated": 1, "median_decode_tps": 77.2, "mean_tokens": 856.8}
+2026-10-28T10:42:17Z start runs/2026-10-28-think Q8_0
+{"rung": "Q8_0", "n": 250, "right": 230, "errors": 0, "truncated": 2, "median_decode_tps": 59.9, "mean_tokens": 851.8}
+2026-10-28T11:42:32Z start runs/2026-10-28-think Q6_K
+{"rung": "Q6_K", "n": 250, "right": 230, "errors": 0, "truncated": 2, "median_decode_tps": 55.6, "mean_tokens": 838.5}
+2026-10-28T12:46:37Z start runs/2026-10-28-think F16
+2026-10-28T13:27:58Z stopped by hand during think F16; D not started

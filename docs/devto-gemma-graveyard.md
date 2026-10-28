@@ -1,7 +1,7 @@
 ---
 title: "The Gemma Graveyard: Which Answers Gemma 4 E2B Loses at Each Quantization Rung"
 published: false
-description: "Gemma 4 E2B quantized from BF16 to Q2_K on one Tesla T4, every rung asked the same 250 GSM8K questions, and each answer buried at the rung where it first goes wrong. Q5_K_M and above hold the score; Q3_K_M loses 38; Q2_K gets 3 right."
+description: "Gemma 4 E2B quantized from BF16 to Q2_K on one Tesla T4, every rung asked the same 250 GSM8K questions, and each answer buried at the rung where it first goes wrong. Q5_K_M and above hold the score; Q3_K_M loses 38; Q2_K gets 3 right. With thinking on, Q3_K_M wins back 17."
 tags: devchallenge, hf26challenge, gemma, llamacpp
 cover_image: https://raw.githubusercontent.com/xbill9/gemma-graveyard/main/docs/devto-cover.50dc7d50.jpg
 ---
@@ -12,7 +12,7 @@ This article provides a step by step guide to quantizing Gemma 4 E2B down a ladd
 
 https://github.com/xbill9/gemma-graveyard
 
-**A score per quantization level says how many answers a smaller file loses. A graveyard says which ones. Against the 229 of 250 questions BF16 gets right: Q8_0, Q6_K and Q5_K_M stay within 2 of it, Q4_K_M and Q4_0 lose 5 and 7, Q3_K_M loses 38, and Q2_K gets 3 right. From Q8_0 to Q5_K_M the score holds while 11 to 13 answers change, because questions die and come back at about the same rate. 16 of the 23 questions that die between F16 and Q4_0 are right again at some lower rung. Q3_K_M dies differently: 34 of its 42 deaths run out of room at 1,024 tokens. Q2_K collapses into repeated lines and, with thinking off, writes 75 answers into its thinking block. Google's quantization-aware Q4_0 scores 221 against the plain Q4_0's 222, and of the 15 questions each one loses, only 6 are the same.**
+**A score per quantization level says how many answers a smaller file loses. A graveyard says which ones. Against the 229 of 250 questions BF16 gets right: Q8_0, Q6_K and Q5_K_M stay within 2 of it, Q4_K_M and Q4_0 lose 5 and 7, Q3_K_M loses 38, and Q2_K gets 3 right. From Q8_0 to Q5_K_M the score holds while 11 to 13 answers change, because questions die and come back at about the same rate. 16 of the 23 questions that die between F16 and Q4_0 are right again at some lower rung. Q3_K_M dies differently: 34 of its 42 deaths run out of room at 1,024 tokens. Q2_K collapses into repeated lines and, with thinking off, writes 75 answers into its thinking block. Google's quantization-aware Q4_0 scores 221 against the plain Q4_0's 222, and of the 15 questions each one loses, only 6 are the same. Every rung run twice gives the same text on every question. With thinking on, answers run 2.1 times as long, Q3_K_M climbs from 191 to 208, and the rungs above it lose different questions from the ones they lose with thinking off: at Q4_0, 3 of 15.**
 
 ---
 
@@ -30,7 +30,9 @@ What the project delivers:
 - `graveyard.py run`: one rung, its own llama-server, 250 questions, answers graded in code
 - `graveyard.py bury`: deaths, tombstones and ghosts per rung, computed in code
 - `graveyard.py autopsy`: how each rung's answers fail (cut off, looping, writing into the thinking block)
+- `graveyard.py repeat`: two runs of one rung compared question by question
 - one run of the whole ladder plus Google's QAT Q4_0 on a Tesla T4, committed with its report
+- a second pass with thinking on, over seven rungs from BF16 to Q3_K_M
 
 ---
 
@@ -64,7 +66,8 @@ https://github.com/xbill9/gemma-graveyard
 | :--- | :--- |
 | `ladder.sh` | Converts the checkpoint to BF16 and F16 GGUF, quantizes seven rungs from BF16, writes `ladder.tsv` |
 | `f16_range.py` | Counts the weights that overflow or underflow when BF16 is cast to F16 |
-| `graveyard.py` | `run`, `bury` and `autopsy` |
+| `graveyard.py` | `run`, `bury`, `autopsy` and `repeat` |
+| `docs/think_derived.py` | Thinking on against thinking off, question by question |
 | `lazy_eval.py` | Prompt, answer extraction and grading, reused from Week 3 |
 | `run.md` | Every command for the T4, in order, and how to resume after the VM stops |
 | `runs/2026-10-27-ladder/` | `REPORT.md`, the bury and autopsy tables, per-question tombstones |
@@ -142,7 +145,17 @@ A tombstone means something only if the same model on the same question always g
 0 mismatched extracted, 0 mismatched text, 46/50 both times
 ```
 
-Every answer and every character of text matched. A changed answer at a lower rung comes from the weights.
+Every answer and every character of text matched. The same holds below BF16. `graveyard.py repeat` compares a second full run of four rungs with the ladder's:
+
+```text
+./graveyard.py repeat runs/2026-10-27-ladder runs/2026-10-28-repeat Q4_0 Q3_K_M Q8_0 F16
+{"rung": "Q4_0", "n": 250, "mismatched_extracted": 0, "mismatched_text": 0, "mismatched_right": 0, "right_a": 222, "right_b": 222}
+{"rung": "Q3_K_M", "n": 250, "mismatched_extracted": 0, "mismatched_text": 0, "mismatched_right": 0, "right_a": 191, "right_b": 191}
+{"rung": "Q8_0", "n": 250, "mismatched_extracted": 0, "mismatched_text": 0, "mismatched_right": 0, "right_a": 227, "right_b": 227}
+{"rung": "F16", "n": 250, "mismatched_extracted": 0, "mismatched_text": 0, "mismatched_right": 0, "right_a": 229, "right_b": 229}
+```
+
+A changed answer at a lower rung comes from the weights.
 
 ---
 
@@ -204,6 +217,28 @@ Same deaths, same number of changed answers, one right answer apart. The graves 
 
 ---
 
+#### Step 8 — Bury the Ladder Again With Thinking On
+
+Gemma 4 can think before it answers. `--think` turns it on; the thinking goes to `reasoning_content` and only `content` is graded. Thinking needs room, so this pass allows 4,096 tokens in an 8,192-token context. It covers seven rungs, BF16 to Q3_K_M; F16, Q2_K and QAT Q4_0 were not run with thinking on. Each rung is buried against BF16 with thinking on, which gets 227 right. A second BF16 run of 50 questions matched the first exactly, 47 right both times.
+
+| Rung | Right, thinking off | Right, thinking on | Dead, off | Dead, on | Dead in both |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| BF16 | 229 | 227 | — | — | — |
+| Q8_0 | 227 | 🥇 230 | 4 | 2 | 0 |
+| Q6_K | 229 | 🥇 230 | 4 | 6 | 0 |
+| Q5_K_M | 231 | 🥇 230 | 3 | 6 | 0 |
+| Q4_K_M | 224 | 226 | 9 | 9 | 1 |
+| Q4_0 | 222 | 219 | 15 | 15 | 3 |
+| Q3_K_M | 191 | 208 | 42 | 26 | 12 |
+
+Three things change:
+
+- **Q3_K_M recovers most of its loss.** It gains 17 right answers. Of the 34 questions it lost by running out of room at 1,024 tokens, 21 are right with thinking on and 4,096 tokens. Both the thinking and the larger limit changed at once, so this run cannot say which one did it.
+- **Above Q3_K_M the score holds and the graves move.** Each rung stays within 3 answers of its thinking-off score, but the questions it loses are almost all new: 0 of the deaths at Q8_0, Q6_K and Q5_K_M are shared between the two passes, 1 of 9 at Q4_K_M and 3 of 15 at Q4_0. BF16 itself gets 218 questions right in both modes.
+- **The cost is time.** Answers use 2.08 to 2.18 times as many tokens, decoding runs at 0.79 to 0.93 of the thinking-off speed, and each rung takes 2.22 to 2.70 times as long on the T4.
+
+---
+
 #### Compare and Contrast
 
 | | Q5_K_M | Q4_K_M | Q4_0 | QAT Q4_0 | Q3_K_M |
@@ -219,7 +254,7 @@ Same deaths, same number of changed answers, one right answer apart. The graves 
 
 #### So, Which One?
 
-To ship Gemma 4 E2B on a small GPU with BF16's score, take Q5_K_M: 39.0% of the bytes, 231 right against 229, and 1.97 times BF16's decode speed on the T4 (arithmetic from the medians). For the fastest file that stays within 7 answers, take Q4_0 or Q4_K_M. Below Q4, the losses stop being a few flipped answers: Q3_K_M saves 150 MiB of GPU memory over Q4_0 and costs 31 right answers, and Q2_K stops answering.
+To ship Gemma 4 E2B on a small GPU with BF16's score, take Q5_K_M: 39.0% of the bytes, 231 right against 229, and 1.97 times BF16's decode speed on the T4 (arithmetic from the medians). For the fastest file that stays within 7 answers, take Q4_0 or Q4_K_M. Below Q4, the losses stop being a few flipped answers: Q3_K_M saves 150 MiB of GPU memory over Q4_0 and costs 31 right answers, and Q2_K stops answering. With thinking on and 4,096 tokens, Q3_K_M gets 208 right, 11 short of Q4_0, at more than twice the time per question.
 
 ---
 
@@ -235,7 +270,7 @@ To ship Gemma 4 E2B on a small GPU with BF16's score, take Q5_K_M: 39.0% of the 
 A graveyard needs the same model at nine sizes, run the same way.
 
 - **The weights are on the disk, so the ladder is built here.** `ladder.sh` produces every rung from one BF16 file with the open converter and quantizer, and `ladder.tsv` records each file's sha256. A hosted API serves whichever quantization its provider chose, and it can change without notice.
-- **The same answer twice.** Greedy decoding on a fixed llama.cpp build gave identical text on two runs of 50 questions, so every tombstone counts. That check needs control of the server, the seed and the build.
+- **The same answer twice.** Greedy decoding on a fixed llama.cpp build gave identical text on every repeated run, BF16 to Q3_K_M, so every tombstone counts. That check needs control of the server, the seed and the build.
 - **The failure is visible.** Q2_K's answers in the thinking block show up only because llama-server returns `reasoning_content` and `content` separately and every row is kept.
 - **No per-token bill.** Ten models times 250 questions ran on one rented T4.
 
@@ -261,17 +296,20 @@ Most graves above Q3_K_M have someone come back to them: 16 of 23.
 
 ## Summary
 
-The goal of this project was to find which answers Gemma 4 E2B loses at each quantization level, one question at a time. The key was a deterministic run: greedy decoding on one llama.cpp build, checked to give identical text twice, so every changed answer comes from the weights. The results were:
+The goal of this project was to find which answers Gemma 4 E2B loses at each quantization level, one question at a time. The key was a deterministic run: greedy decoding on one llama.cpp build, checked to give identical text twice at five rungs, so every changed answer comes from the weights. The results were:
 
 - 🟢 Q8_0, Q6_K and Q5_K_M stay within 2 right answers of BF16's 229 of 250; Q5_K_M scores 231 at 39.0% of the bytes.
 - 🟢 Every rung fits on the T4, BF16 included: all 36 layers on the GPU, 4,671 MiB in use, with the embedding tables in CPU memory.
 - 🟢 Above Q3_K_M, 16 of the 23 questions that die are right again at a lower rung.
 - ⚠️ Q4_K_M and Q4_0 lose 5 and 7, with 9 and 15 deaths.
 - ⚠️ Google's QAT Q4_0 scores 221 against the plain Q4_0's 222; the two share 6 of their 15 deaths.
-- ❌ Q3_K_M loses 38; 34 of its 42 deaths are cut off at 1,024 tokens.
+- 🟢 Q4_0, Q3_K_M, Q8_0 and F16 run a second time give the same text on all 250 questions.
+- ⚠️ With thinking on, rungs above Q3_K_M keep their score but lose different questions; at Q4_0, 3 of 15 deaths are shared.
+- ⚠️ Thinking on costs 2.1 times the tokens and 2.2 to 2.7 times the time per rung.
+- ❌ Q3_K_M loses 38; 34 of its 42 deaths are cut off at 1,024 tokens. With thinking on and 4,096 tokens it loses 19.
 - ❌ Q2_K gets 3 right: 246 answers hit the token limit, 228 loop, and 75 write into a thinking block with thinking off.
 
-Scope: one Tesla T4 on GCE, llama.cpp `b11699`, one greedy run of 250 GSM8K test questions per rung with thinking off and a 1,024-token limit; determinism checked on BF16 only. No importance matrix, no thinking-on pass, and no other machine. Speeds compare rungs on this T4 only.
+Scope: one Tesla T4 on GCE, llama.cpp `b11699`, 250 GSM8K test questions per rung, greedy. Thinking off with a 1,024-token limit on all ten models; thinking on with a 4,096-token limit on seven rungs, BF16 to Q3_K_M. Determinism checked at BF16, F16, Q8_0, Q4_0 and Q3_K_M. No importance matrix, none of the other 1,069 GSM8K test questions, and no other machine. Speeds compare rungs on this T4 only.
 
 The strategy for burying Gemma 4's answers one quantization rung at a time was validated with an incremental step by step approach.
 

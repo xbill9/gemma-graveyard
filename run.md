@@ -150,3 +150,12 @@ solutions (none of them test questions), Q4_K_M, Q4_0, Q3_K_M and Q2_K quantized
 (`runs/2026-10-28-imatrix/bury.txt`). C: thinking on, 4,096 max tokens, `-c 8192`, plus a 50-question BF16
 repeat (`runs/2026-10-28-think/bury.txt`). D: the other 1,069 questions, thinking off
 (`runs/2026-10-28-rest/bury.txt`). Each stage buries after every rung.
+
+### Where it stopped (2026-10-28 13:24 UTC, stopped by hand)
+
+| Stage | Result |
+|---|---|
+| A | Done. All four rungs match the ladder on all 250 questions: 0 mismatched `extracted`, 0 mismatched text. `docs/evidence/repeat.txt` |
+| B | No data. The importance matrix was built (`/opt1/graveyard-gguf/imatrix-gsm8k-train.gguf`), but the kernel's out-of-memory killer stopped all four `llama-quantize` runs at about 6 GB resident with swap off, leaving only `.part` files. To redo it: turn swap on (section 0), delete `/opt1/graveyard-gguf/*-imat.gguf.part`, start `night.sh` again with the GPU free. |
+| C | Seven rungs done: BF16, Q8_0, Q6_K, Q5_K_M, Q4_K_M, Q4_0, Q3_K_M, plus the 50-question BF16 repeat (47 right both times, 0 mismatched). F16 stopped at 92 of 250; QAT_Q4_0 and Q2_K not run. `docs/evidence/bury-think.txt`, `autopsy-think.txt`, `derived-think.txt` |
+| D | Not started. |

@@ -1,0 +1,27 @@
+{
+ "rung": "Q8_0",
+ "model": "/opt/dlami/nvme/graveyard-gguf/e2b-Q8_0.gguf",
+ "bytes": 4967497152,
+ "load_seconds": 14.0,
+ "gpu_mib_before": 0,
+ "gpu_mib_loaded": 2732,
+ "think": false,
+ "max_tokens": 1024,
+ "cmd": [
+  "/opt/dlami/nvme/llama.cpp/build/bin/llama-server",
+  "-m",
+  "/opt/dlami/nvme/graveyard-gguf/e2b-Q8_0.gguf",
+  "-ngl",
+  "99",
+  "-c",
+  "4096",
+  "-np",
+  "1",
+  "--port",
+  "8090",
+  "--seed",
+  "0"
+ ],
+ "n": 250,
+ "gpu_mib_after": 2756
+}

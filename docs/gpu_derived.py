@@ -125,5 +125,11 @@ for name, rungs, bury in (("ladder", LADDER, "bury.txt"), ("qat", QAT, "bury-qat
     if name == "ladder":
         st = {t["id"]: t["died_at"] for t in jload(f"{T4}/graveyard-ladder.json")["tombstones"]}
         sl = {t["id"]: t["died_at"] for t in jload(f"{L4}/graveyard-ladder.json")["tombstones"]}
+        out[name]["bf16_graded_differently"] = [
+            {"id": i, "answer": rows["BF16"][i]["answer"], "t4_right": t4["BF16"][i], "l4_said": rows["BF16"][i]["extracted"]}
+            for i in IDS
+            if t4["BF16"][i] != l4["BF16"][i]
+        ]
+        out[name]["tombstoned_both_t4_only_l4_only"] = [len(set(st) & set(sl)), len(set(st) - set(sl)), len(set(sl) - set(st))]
         out[name]["tombstones_t4_l4_same_question_same_rung"] = [len(st), len(sl), sum(sl.get(i) == r for i, r in st.items())]
 print(json.dumps(out, indent=1))

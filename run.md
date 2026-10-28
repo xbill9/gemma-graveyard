@@ -135,3 +135,18 @@ writes `bury-qat.txt` (`bury BF16 QAT_Q4_0 Q4_0`). It resumes the same way as th
 Write-up of the run: `runs/2026-10-27-ladder/REPORT.md`.
 
 Run directories are gitignored (`runs/*/`); commit a report with `git add -f`.
+
+## Overnight queue (2026-10-28)
+
+```
+setsid nohup runs/2026-10-28-night/night.sh >> runs/2026-10-28-night/night.log 2>&1 < /dev/null &
+cat runs/2026-10-28-night/night.log
+```
+
+Four stages, most important first; each skips finished rungs, so the same command resumes it.
+A: Q4_0, Q3_K_M, Q8_0 and F16 again, compared with the ladder by `graveyard.py repeat`
+(`runs/2026-10-28-repeat/repeat.txt`). B: importance matrix from 2,000 GSM8K train problems with worked
+solutions (none of them test questions), Q4_K_M, Q4_0, Q3_K_M and Q2_K quantized with it
+(`runs/2026-10-28-imatrix/bury.txt`). C: thinking on, 4,096 max tokens, `-c 8192`, plus a 50-question BF16
+repeat (`runs/2026-10-28-think/bury.txt`). D: the other 1,069 questions, thinking off
+(`runs/2026-10-28-rest/bury.txt`). Each stage buries after every rung.

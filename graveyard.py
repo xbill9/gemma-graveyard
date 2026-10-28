@@ -5,6 +5,7 @@
                    [--think] [--max-tokens M] [--ctx C]
   graveyard.py bury <out-dir> <rung> [<rung> ...] [--json FILE]
   graveyard.py autopsy <out-dir> <rung> [<rung> ...]
+  graveyard.py repeat <dir-a> <dir-b> <rung> [<rung> ...] [--common]
 
 run starts a llama-server on one GGUF, asks every question once (greedy, one request at a time,
 no prompt cache) and writes <out-dir>/<rung>.jsonl plus <rung>.meta.json (file size, load time,
@@ -15,7 +16,8 @@ computed here, never by a model. bury writes the per-question tombstones to <out
 (--json picks another name, so a second bury in the same directory keeps the first). autopsy counts,
 per rung, answers cut off at max tokens, answers with any reasoning_content, answers that repeat one line five or more times, answers with
 empty content, and empty answers whose reasoning holds the right number (a diagnostic; only content is
-graded).
+graded). repeat compares two runs of the same rung question by question (answer, text, right), the
+determinism check; --common limits it to the questions both runs have.
 
 Prompt, answer extraction and grading are lazy_eval.py's (copied from the Week 3 repo, which copied
 them from gemma4-dev/jev-tpu-v5e1/gen_eval.py).
@@ -228,6 +230,31 @@ def autopsy_rows(by_rung, rungs):
     return out
 
 
+def repeat_rows(a, b):
+    """a, b: {id: row} from two runs of one rung. Same questions required; counts what differs."""
+    if set(a) != set(b):
+        raise ValueError(f"the two runs cover different questions ({len(set(a) ^ set(b))} differ)")
+    ids = sorted(a)
+    return {
+        "n": len(ids),
+        "mismatched_extracted": sum(a[i].get("extracted") != b[i].get("extracted") for i in ids),
+        "mismatched_text": sum((a[i].get("text"), a[i].get("reasoning")) != (b[i].get("text"), b[i].get("reasoning")) for i in ids),
+        "mismatched_right": sum(a[i]["right"] != b[i]["right"] for i in ids),
+        "right_a": sum(a[i]["right"] for i in ids),
+        "right_b": sum(b[i]["right"] for i in ids),
+    }
+
+
+def repeat(a):
+    for r in a.rungs:
+        x = {row["id"]: row for row in load(os.path.join(a.dir_a, f"{r}.jsonl"))}
+        y = {row["id"]: row for row in load(os.path.join(a.dir_b, f"{r}.jsonl"))}
+        if a.common:
+            keep = set(x) & set(y)
+            x, y = {i: x[i] for i in keep}, {i: y[i] for i in keep}
+        print(json.dumps({"rung": r, **repeat_rows(x, y)}))
+
+
 def load_rungs(out_dir, rungs):
     return {r: {row["id"]: row for row in load(os.path.join(out_dir, f"{r}.jsonl"))} for r in rungs}
 
@@ -277,8 +304,13 @@ def main():
     x = sub.add_parser("autopsy")
     x.add_argument("out_dir")
     x.add_argument("rungs", nargs="+")
+    y = sub.add_parser("repeat")
+    y.add_argument("dir_a")
+    y.add_argument("dir_b")
+    y.add_argument("rungs", nargs="+")
+    y.add_argument("--common", action="store_true", help="compare only the questions both runs have")
     a = p.parse_args()
-    {"run": run, "bury": bury, "autopsy": autopsy}[a.cmd](a)
+    {"run": run, "bury": bury, "autopsy": autopsy, "repeat": repeat}[a.cmd](a)
 
 
 if __name__ == "__main__":

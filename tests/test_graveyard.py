@@ -4,7 +4,7 @@ import unittest
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from graveyard import autopsy_rows, bury_rows, looped
+from graveyard import autopsy_rows, bury_rows, looped, repeat_rows
 
 
 def row(i, ok, said):
@@ -66,6 +66,20 @@ class Autopsy(unittest.TestCase):
         self.assertEqual((a["A"]["thought"], b["thought"]), (0, 1))
         self.assertEqual((b["dead"], b["dead_cut_off"], b["dead_looped"], b["dead_empty_content"]), (2, 2, 1, 1))
         self.assertEqual((b["first_deaths"], b["first_deaths_right_again_lower"]), (2, 0))
+
+
+class Repeat(unittest.TestCase):
+    def test_counts(self):
+        a = {"q1": dict(row("q1", True, 1), text="x"), "q2": dict(row("q2", True, 1), text="y")}
+        b = {"q1": dict(row("q1", True, 1), text="x"), "q2": dict(row("q2", False, 2), text="z")}
+        r = repeat_rows(a, b)
+        self.assertEqual((r["n"], r["mismatched_extracted"], r["mismatched_text"], r["mismatched_right"]), (2, 1, 1, 1))
+        self.assertEqual((r["right_a"], r["right_b"]), (2, 1))
+        self.assertEqual(repeat_rows(a, a)["mismatched_text"], 0)
+
+    def test_different_questions_refuses(self):
+        with self.assertRaises(ValueError):
+            repeat_rows({"q1": row("q1", True, 1)}, {"q2": row("q2", True, 1)})
 
 
 if __name__ == "__main__":

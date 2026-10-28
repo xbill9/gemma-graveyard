@@ -1,0 +1,14 @@
+Accuracy vs Speed: Gemma 4 E2B Quantization Tradeoffs, BF16 to Q2_K
+
+Gemma 4 E2B quantized from BF16 to Q2_K on one Tesla T4, every rung asked the same 250 GSM8K questions, and each answer buried at the rung where it first goes wrong. Q5_K_M and above hold the score; Q3_K_M loses 38; Q2_K gets 3 right. With thinking on, Q3_K_M wins back 17.
+
+What is in it:
+
+- 🟢 Q8_0, Q6_K and Q5_K_M stay within 2 right answers of BF16's 229 of 250; Q5_K_M scores 231 at 39.0% of the bytes.
+- 🟢 Every rung fits on the T4, BF16 included: all 36 layers on the GPU, 4,671 MiB in use, with the embedding tables in CPU memory.
+- 🟢 Above Q3_K_M, 16 of the 23 questions that die are right again at a lower rung.
+- ⚠️ Q4_K_M and Q4_0 lose 5 and 7, with 9 and 15 deaths.
+
+dev.to: https://dev.to/gde/accuracy-vs-speed-gemma-4-e2b-quantization-tradeoffs-bf16-to-q2k-aea
+Medium: https://xbill999.medium.com/accuracy-vs-speed-gemma-4-e2b-quantization-tradeoffs-bf16-to-q2-k-bc7993b3e538
+Substack: https://xbill9.substack.com/p/accuracy-vs-speed-gemma-4-e2b-quantization

@@ -1,3 +1,4 @@
 devto = https://dev.to/gde/accuracy-vs-speed-gemma-4-e2b-quantization-tradeoffs-bf16-to-q2k-aea
 medium = https://xbill999.medium.com/accuracy-vs-speed-gemma-4-e2b-quantization-tradeoffs-bf16-to-q2-k-bc7993b3e538
 substack = https://xbill9.substack.com/p/accuracy-vs-speed-gemma-4-e2b-quantization
+linkedin = https://www.linkedin.com/feed/update/urn:li:activity:7521250360301109248/

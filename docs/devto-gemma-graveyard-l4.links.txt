@@ -3,4 +3,4 @@ devto-aws = https://dev.to/aws-builders/performance-vs-quality-gemma-4-e2b-quant
 devto-gde = https://dev.to/gde/performance-vs-quality-gemma-4-e2b-quantization-on-an-nvidia-l4-and-a-tesla-t4-4b90
 medium = https://medium.com/@xbill999/performance-vs-quality-gemma-4-e2b-quantization-on-an-nvidia-l4-and-a-tesla-t4-51ba19c4e142
 substack = https://xbill9.substack.com/p/performance-vs-quality-gemma-4-e2b
-linkedin = PENDING
+linkedin = https://www.linkedin.com/feed/update/urn:li:activity:7521591257354215424/

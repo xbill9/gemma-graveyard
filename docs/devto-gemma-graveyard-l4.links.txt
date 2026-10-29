@@ -2,5 +2,5 @@ builder = https://builder.aws.com/content/3LN86FouUu7Hk2R7IjgUQoLyJzM/performanc
 devto-aws = https://dev.to/aws-builders/performance-vs-quality-gemma-4-e2b-quantization-on-an-nvidia-l4-and-a-tesla-t4-404g
 devto-gde = https://dev.to/gde/performance-vs-quality-gemma-4-e2b-quantization-on-an-nvidia-l4-and-a-tesla-t4-4b90
 medium = https://medium.com/@xbill999/performance-vs-quality-gemma-4-e2b-quantization-on-an-nvidia-l4-and-a-tesla-t4-51ba19c4e142
-substack = PENDING
+substack = https://xbill9.substack.com/p/performance-vs-quality-gemma-4-e2b
 linkedin = PENDING

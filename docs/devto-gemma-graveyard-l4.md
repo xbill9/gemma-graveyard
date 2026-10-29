@@ -1,16 +1,16 @@
 ---
-title: "Same Weights, Different Graves: Gemma 4 E2B Quantization on an NVIDIA L4 and a Tesla T4"
+title: "Performance vs Quality: Gemma 4 E2B Quantization on an NVIDIA L4 and a Tesla T4"
 published: false
-description: "The Gemma 4 E2B quantization graveyard again, on an AWS L4 with byte-identical GGUF files and the same llama.cpp build as the Tesla T4. The L4 decodes 1.25 to 1.89 times faster, Q5_K_M is still the best trade, and switching GPUs changes nearly as many grades as quantizing from BF16 to Q5_K_M."
+description: "Gemma 4 E2B from BF16 to Q2_K, speed against GSM8K accuracy, on an AWS L4 with byte-identical GGUF files and the same llama.cpp build as the Tesla T4. The L4 decodes 1.25 to 1.89 times faster, Q5_K_M is still the best trade, and switching GPUs changes nearly as many grades as quantizing from BF16 to Q5_K_M."
 tags: gemma, llamacpp, aws, quantization
 cover_image: https://raw.githubusercontent.com/xbill9/gemma-graveyard/main/docs/devto-cover-l4.82c50f0e.jpg
 ---
 
-This article provides a step by step guide to running the Gemma 4 E2B quantization graveyard a second time, on an NVIDIA L4 in AWS, with the same nine GGUF files and the same llama.cpp build as the Tesla T4 run, and comparing the two GPUs question by question.
+This article provides a step by step guide to measuring Gemma 4 E2B's speed and accuracy at every quantization rung a second time, on an NVIDIA L4 in AWS, with the same nine GGUF files and the same llama.cpp build as the Tesla T4 run, and comparing the two GPUs question by question.
 
 https://github.com/xbill9/gemma-graveyard
 
-The [first article](https://dev.to/gde/accuracy-vs-speed-gemma-4-e2b-quantization-tradeoffs-bf16-to-q2k-aea) quantized Gemma 4 E2B from BF16 to Q2_K on one Tesla T4, asked every rung the same 250 GSM8K questions, and buried each answer at the rung where it first goes wrong. This one moves the whole ladder to a `g6.xlarge`. The nine files have the same sha256 on both machines, both run llama.cpp `b11699`, and each machine gives identical text when a rung is run twice. The GPU changes, and with it the driver, the CUDA version and the kernels that do the arithmetic.
+The [first article](https://dev.to/gde/accuracy-vs-speed-gemma-4-e2b-quantization-tradeoffs-bf16-to-q2k-aea) quantized Gemma 4 E2B from BF16 to Q2_K on one Tesla T4, asked every rung the same 250 GSM8K questions, and recorded each answer's grade at every rung. This one moves the whole ladder to a `g6.xlarge`. The nine files have the same sha256 on both machines, both run llama.cpp `b11699`, and each machine gives identical text when a rung is run twice. The GPU changes, and with it the driver, the CUDA version and the kernels that do the arithmetic.
 
 ---
 
@@ -18,9 +18,9 @@ The [first article](https://dev.to/gde/accuracy-vs-speed-gemma-4-e2b-quantizatio
 
 The L4 decodes every rung faster than the T4, from 1.25 times at BF16 to 1.89 times at Q2_K, and Q5_K_M stays the best trade between speed and accuracy: 228 right against BF16's 229, at 2.15 times BF16's decode speed on the L4.
 
-The graves move with the GPU. With the same file and the same build, the L4 and the T4 grade 2 questions differently at BF16, 7 at Q5_K_M, 16 at Q4_0 and 33 at Q3_K_M. At Q5_K_M that is nearly the whole quantization effect on the T4, where Q5_K_M against BF16 was 8 questions: 3 dead and 5 ghosts. Of the 226 questions buried on each GPU, 180 die at the same rung on both.
+The grades move with the GPU. With the same file and the same build, the L4 and the T4 grade 2 questions differently at BF16, 7 at Q5_K_M, 16 at Q4_0 and 33 at Q3_K_M. At Q5_K_M that is nearly the whole quantization effect on the T4, where Q5_K_M against BF16 was 8 questions: 3 lost and 5 gained. Of the 226 questions lost at some rung on each GPU, 180 are first lost at the same rung on both.
 
-The cover is the two graveyards laid over each other. One row per rung, BF16 at the top and Q2_K at the bottom, one cell per question: marigold where both GPUs answer right, a grey headstone where both answer wrong, violet where the two GPUs disagree. `docs/make_cover_gpu.py` draws it from the committed rows.
+The cover lays the two GPUs' grades over each other. One row per rung, BF16 at the top and Q2_K at the bottom, one cell per question: marigold where both GPUs answer right, grey where both answer wrong, violet where the two GPUs disagree. `docs/make_cover_gpu.py` draws it from the committed rows.
 
 ---
 
@@ -132,16 +132,15 @@ Every character matches. Each GPU on its own is deterministic, so a difference b
 
 ---
 
-#### Step 5 — Run the Ladder on the L4 and Bury It
+#### Step 5 — Run the Ladder on the L4 and Score It
 
-`run-l4.sh` runs the nine rungs and QAT Q4_0, then buries both:
+`run-l4.sh` runs the nine rungs and QAT Q4_0, then scores each against BF16:
 
 ```text
 ./graveyard.py bury runs/2026-10-28-l4 BF16 F16 Q8_0 Q6_K Q5_K_M Q4_K_M Q4_0 Q3_K_M Q2_K --json graveyard-ladder.json
-{"first_deaths_by_rung": {"Q2_K": 169, "Q3_K_M": 27, "Q4_0": 11, "Q6_K": 3, "Q4_K_M": 9, "Q5_K_M": 3, "Q8_0": 3, "F16": 1}, "tombstones": 226, "ghosts": 15}
 ```
 
-| Rung | Right, T4 | Right, L4 | Dead, L4 | Ghosts, L4 | Median tok/s, L4 |
+| Rung | Right, T4 | Right, L4 | Lost, L4 | Gained, L4 | Median tok/s, L4 |
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | BF16 | 229 | 229 | 0 | 0 | 50.1 |
 | F16 | 229 | 229 | 1 | 1 | 50.0 |
@@ -153,9 +152,9 @@ Every character matches. Each GPU on its own is deterministic, so a difference b
 | Q3_K_M | 191 | 186 | 45 | 2 | 111.1 |
 | Q2_K | 3 | 6 | 225 | 2 | 🥇 139.5 |
 
-**Dead**: BF16 right, this rung wrong. **Ghosts**: BF16 wrong, this rung right. Both are counted against the same GPU's own BF16.
+**Lost**: BF16 right, this rung wrong. **Gained**: BF16 wrong, this rung right. Both are counted against the same GPU's own BF16.
 
-The shape of the ladder holds. Q8_0 to Q5_K_M stay within 2 of BF16; Q4_K_M and Q4_0 lose 8 and 9; Q3_K_M loses 43; Q2_K collapses. The autopsy gives the same three kinds of death as on the T4: Q3_K_M runs out of room (36 of its 45 deaths cut off at 1,024 tokens), and Q2_K loops (218 of 250 answers repeat a line five or more times, 71 open a thinking block with thinking off, 63 leave `content` empty).
+The shape of the ladder holds. Q8_0 to Q5_K_M stay within 2 of BF16; Q4_K_M and Q4_0 lose 8 and 9; Q3_K_M loses 43; Q2_K collapses. The failures fall into the same kinds as on the T4: Q3_K_M runs out of room (36 of its 45 losses cut off at 1,024 tokens), and Q2_K loops (218 of 250 answers repeat a line five or more times, 71 open a thinking block with thinking off, 63 leave `content` empty).
 
 🔎 **Tip: llama-server can refuse an answer it cannot parse.** One Q2_K question, `test-194`, came back as HTTP 500 on the L4: `The model produced output that does not match the expected peg-gemma4 format`. `graveyard.py` records it as an error and grades it wrong, so Q2_K's 6 right are out of 250 with 1 error.
 
@@ -163,13 +162,13 @@ The shape of the ladder holds. Q8_0 to Q5_K_M stay within 2 of BF16; Q4_K_M and 
 
 #### Step 6 — Line the Two GPUs Up, Question by Question
 
-`docs/gpu_derived.py` rebuilds the T4's right/wrong grid for all 250 questions at all nine rungs from its committed results, and the rebuilt grid reproduces all 2,250 cells of the T4 article's cover and the T4's own right, dead and ghost counts at every rung.
+`docs/gpu_derived.py` rebuilds the T4's right/wrong grid for all 250 questions at all nine rungs from its committed results, and the rebuilt grid reproduces all 2,250 cells of the T4 article's cover and the T4's own right, lost and gained counts at every rung.
 
 ```text
 python3 docs/gpu_derived.py > docs/evidence-l4/derived-gpu.txt
 ```
 
-| Rung | Graded differently, T4 vs L4 | Dead, T4 | Dead, L4 | Dead on both |
+| Rung | Graded differently, T4 vs L4 | Lost, T4 | Lost, L4 | Lost on both |
 | :--- | :--- | :--- | :--- | :--- |
 | BF16 | 2 | — | — | — |
 | F16 | 4 | 1 | 1 | 0 |
@@ -185,11 +184,11 @@ python3 docs/gpu_derived.py > docs/evidence-l4/derived-gpu.txt
 
 Three things show in the grid:
 
-- **Above Q4_K_M, the GPU moves nearly as many grades as the quantization.** At Q5_K_M the two GPUs disagree on 7 questions; on the T4, Q5_K_M and BF16 disagree on 8 (3 dead, 5 ghosts). Q5_K_M's 231 on the T4 and 228 on the L4 sit either side of BF16's 229 on both.
-- **Most graves are shared, at a different rung.** 222 questions are tombstoned on both GPUs, 4 only on the T4 and 4 only on the L4. 180 of them die at the same rung on both.
-- **The deep deaths are the stable ones.** Q2_K's dead are 221 of 226 shared and Q3_K_M's 28 of 42. Between F16 and Q5_K_M, 7 of 12 T4 deaths are dead again on the L4 at the same rung.
+- **Above Q4_K_M, the GPU moves nearly as many grades as the quantization.** At Q5_K_M the two GPUs disagree on 7 questions; on the T4, Q5_K_M and BF16 disagree on 8 (3 lost, 5 gained). Q5_K_M's 231 on the T4 and 228 on the L4 sit either side of BF16's 229 on both.
+- **Most losses are shared, often at a different rung.** 222 questions are lost at some rung on both GPUs, 4 only on the T4 and 4 only on the L4. 180 of them are first lost at the same rung on both.
+- **The deep losses are the stable ones.** Q2_K's losses are 221 of 226 shared and Q3_K_M's 28 of 42. Between F16 and Q5_K_M, 7 of 12 T4 losses are lost again on the L4 at the same rung.
 
-The twins and triplets question shows it. The T4 article's one F16 death, `test-687` (answer 13), was right at BF16 on the T4 and answered 17 at F16. On the L4, BF16 itself answers 17, so the question is a ghost there: wrong at BF16, right again at Q8_0, Q6_K, Q5_K_M and Q4_0. `test-93` (answer 36) runs the other way: a ghost on the T4, right at BF16 on the L4 and dead from Q8_0 on.
+The twins and triplets question shows it. The T4 article's one F16 loss, `test-687` (answer 13), was right at BF16 on the T4 and answered 17 at F16. On the L4, BF16 itself answers 17, so the question counts as gained there: wrong at BF16, right again at Q8_0, Q6_K, Q5_K_M and Q4_0. `test-93` (answer 36) runs the other way: gained on the T4, right at BF16 on the L4 and lost from Q8_0 on.
 
 ---
 
@@ -197,11 +196,14 @@ The twins and triplets question shows it. The T4 article's one F16 death, `test-
 
 ```text
 ./graveyard.py bury runs/2026-10-28-l4 BF16 QAT_Q4_0 Q4_0 --json graveyard-qat.json
-{"rung": "QAT_Q4_0", "n": 250, "right": 219, "errors": 0, "truncated": 8, "median_decode_tps": 125.7, "mean_tokens": 394.5, "dead": 15, "ghosts": 5, "answer_changed": 27, "bytes": 3349516256, "gpu_mib_loaded": 1730, "gpu_mib_before": 0}
-{"rung": "Q4_0", "n": 250, "right": 220, "errors": 0, "truncated": 12, "median_decode_tps": 125.6, "mean_tokens": 437.6, "dead": 16, "ghosts": 7, "answer_changed": 28, "bytes": 3360161216, "gpu_mib_loaded": 1740, "gpu_mib_before": 0}
 ```
 
-The same picture as the T4, one right answer apart again: 219 against the plain Q4_0's 220, where the T4 had 221 against 222. On the L4 the two decode at the same speed, 125.7 and 125.6 tok/s; on the T4 the plain Q4_0 was faster, 93.6 against 87.8. 10 of QAT Q4_0's 15 deaths on the T4 are dead on the L4 too.
+| File | Right | Lost | Gained | Cut off at 1,024 | Median tok/s | Bytes | GPU MiB |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| QAT Q4_0 | 219 | 15 | 5 | 8 | 125.7 | 3,349,516,256 | 1,730 |
+| Q4_0 | 220 | 16 | 7 | 12 | 125.6 | 3,360,161,216 | 1,740 |
+
+The same picture as the T4, one right answer apart again: 219 against the plain Q4_0's 220, where the T4 had 221 against 222. On the L4 the two decode at the same speed, 125.7 and 125.6 tok/s; on the T4 the plain Q4_0 was faster, 93.6 against 87.8. 10 of QAT Q4_0's 15 losses on the T4 are lost on the L4 too.
 
 ---
 
@@ -224,7 +226,7 @@ The same picture as the T4, one right answer apart again: 219 against the plain 
 - **Q3_K_M is slower than Q4_K_M and Q4_0 on both cards.**
 - **The L4 uses 101 MiB more GPU memory at every rung** (`nvidia-smi` after load: 4,772 against 4,671 MiB at BF16, 1,740 against 1,639 at Q4_0), the same fixed amount whatever the file size.
 
-The L4 run took 4 hours 3 minutes from the start of the ladder build to the last bury (`run-l4.log`), about $3.26 at the on-demand price (arithmetic).
+The L4 run took 4 hours 3 minutes from the start of the ladder build to the last scoring pass (`run-l4.log`), about $3.26 at the on-demand price (arithmetic).
 
 ---
 
@@ -244,26 +246,26 @@ The L4 run took 4 hours 3 minutes from the start of the ladder build to the last
 
 #### So, Which One?
 
-On either card, take Q5_K_M: 39.0% of BF16's bytes, within 1 of BF16's score on the L4 and 2 above it on the T4, and 1.97 times BF16's decode speed on the T4 or 2.15 times on the L4. For the fastest file that stays within 9 answers, take Q4_0. The L4 is the faster card at every rung, by 1.25 to 1.89 times. To compare two quantizations question by question, run both on one GPU: a different card moves a few graves at every rung, and up to 33 at Q3_K_M.
+On either card, take Q5_K_M: 39.0% of BF16's bytes, within 1 of BF16's score on the L4 and 2 above it on the T4, and 1.97 times BF16's decode speed on the T4 or 2.15 times on the L4. For the fastest file that stays within 9 answers, take Q4_0. The L4 is the faster card at every rung, by 1.25 to 1.89 times. To compare two quantizations question by question, run both on one GPU: a different card moves a few grades at every rung, and up to 33 at Q3_K_M.
 
 ---
 
 #### Summary
 
-The goal of this article was to rerun the Gemma 4 E2B quantization graveyard on a second GPU and see which graves stay put. The key was holding everything else fixed: byte-identical GGUFs, the same llama.cpp tag and the same sampling, with each GPU checked to give identical text twice. The L4 results were:
+The goal of this article was to rerun Gemma 4 E2B's quantization ladder on a second GPU, measure speed against accuracy at every rung, and see which grades stay put. The key was holding everything else fixed: byte-identical GGUFs, the same llama.cpp tag and the same sampling, with each GPU checked to give identical text twice. The L4 results were:
 
 - 🟢 All nine GGUFs and the QAT file match the T4's sha256; BF16 on the L4 gives identical text twice on 50 questions, the one rung checked for determinism.
 - 🟢 BF16 scores 229 of 250 on both GPUs, and the ladder keeps its shape: Q8_0 to Q5_K_M within 2, Q4_K_M and Q4_0 within 9.
 - 🟢 Q5_K_M is the best trade on both: 228 right at 2.15 times BF16's speed on the L4.
 - 🟢 The L4 decodes 1.25 to 1.89 times faster than the T4, and BF16 runs at F16's speed on both cards.
 - ⚠️ The two GPUs grade 2 questions differently at BF16, 7 at Q5_K_M and 16 at Q4_0; above Q4_K_M that is nearly the size of the quantization effect.
-- ⚠️ 180 of 226 tombstones fall at the same rung on both GPUs; 222 questions are buried on both at some rung.
+- ⚠️ 180 of 226 lost questions are first lost at the same rung on both GPUs; 222 questions are lost on both at some rung.
 - ⚠️ QAT Q4_0 scores 219 against the plain Q4_0's 220 on the L4, one apart again, at the same speed.
-- ❌ Q3_K_M loses 43, 36 of its 45 deaths cut off at 1,024 tokens; Q2_K gets 6 right, with 218 looping answers and 1 answer the server refused to parse.
+- ❌ Q3_K_M loses 43, 36 of its 45 losses cut off at 1,024 tokens; Q2_K gets 6 right, with 218 looping answers and 1 answer the server refused to parse.
 
-Scope: one Tesla T4 on GCE (`n1-standard-2`, us-west2-b) and one NVIDIA L4 on AWS (`g6.xlarge`, us-west-2c, $0.8048 per hour on demand), one run of each rung per GPU, 250 GSM8K test questions, greedy, thinking off, 1,024 max tokens, llama.cpp `b11699` built for each card. Determinism checked on the L4 at BF16. The T4 grid is rebuilt from its committed tombstones, ghosts and cover. The two hosts also differ in CPU, RAM, driver and CUDA version.
+Scope: one Tesla T4 on GCE (`n1-standard-2`, us-west2-b) and one NVIDIA L4 on AWS (`g6.xlarge`, us-west-2c, $0.8048 per hour on demand), one run of each rung per GPU, 250 GSM8K test questions, greedy, thinking off, 1,024 max tokens, llama.cpp `b11699` built for each card. Determinism checked on the L4 at BF16. The T4 grid is rebuilt from its committed per-question results and cover. The two hosts also differ in CPU, RAM, driver and CUDA version.
 
-The strategy for burying Gemma 4's answers one quantization rung at a time on two GPUs was validated with an incremental step by step approach.
+The strategy for measuring Gemma 4's speed and accuracy one quantization rung at a time on two GPUs was validated with an incremental step by step approach.
 
 ---
 

@@ -1,0 +1,26 @@
+More Gemma 4 adventures.
+Same model files, same llama.cpp build, two different GPUs. Do they agree on which answers a quantized model gets wrong?
+
+Gemma 4 E2B, nine quantization rungs from BF16 down to Q2_K, byte-identical GGUF files, 250 GSM8K questions, on an NVIDIA L4 in AWS and a Tesla T4 in Google Cloud.
+
+The L4 decodes 1.25 to 1.89 times faster than the T4 at every rung.
+
+Q5_K_M is the best trade on both cards: 228 of 250 right on the L4 against BF16's 229, at 2.15 times BF16's speed.
+
+Switching GPUs moves grades too. At Q5_K_M the two cards grade 7 questions differently, against 8 for quantizing from BF16 to Q5_K_M on the T4.
+
+Write ups are here:
+
+dev.to:
+https://dev.to/gde/performance-vs-quality-gemma-4-e2b-quantization-on-an-nvidia-l4-and-a-tesla-t4-4b90
+
+AWS Builder Center:
+https://builder.aws.com/content/3LN86FouUu7Hk2R7IjgUQoLyJzM/performance-vs-quality-gemma-4-e2b-quantization-on-an-nvidia-l4-and-a-tesla-t4
+
+Medium:
+https://medium.com/@xbill999/performance-vs-quality-gemma-4-e2b-quantization-on-an-nvidia-l4-and-a-tesla-t4-51ba19c4e142
+
+Substack:
+https://xbill9.substack.com/p/performance-vs-quality-gemma-4-e2b
+
+#gemma #llamacpp #quantization #aws #gpu

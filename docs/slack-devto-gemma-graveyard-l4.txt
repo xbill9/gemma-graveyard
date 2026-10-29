@@ -1,0 +1,20 @@
+Same nine Gemma 4 E2B GGUF files and the same llama.cpp build, run on an NVIDIA L4 (g6.xlarge) and a Tesla T4, 250 GSM8K questions at every quantization rung from BF16 to Q2_K.
+The L4 decodes 1.25 to 1.89 times faster at every rung, and Q5_K_M is the best trade on both cards: 228 of 250 right on the L4 at 2.15 times BF16's speed.
+Switching GPUs moves grades too: at Q5_K_M the two cards grade 7 questions differently, against 8 for quantizing from BF16 to Q5_K_M.
+
+Builder Center Article is here:
+https://builder.aws.com/content/3LN86FouUu7Hk2R7IjgUQoLyJzM/performance-vs-quality-gemma-4-e2b-quantization-on-an-nvidia-l4-and-a-tesla-t4
+
+Medium is here:
+https://medium.com/@xbill999/performance-vs-quality-gemma-4-e2b-quantization-on-an-nvidia-l4-and-a-tesla-t4-51ba19c4e142
+
+Substack is here:
+https://xbill9.substack.com/p/performance-vs-quality-gemma-4-e2b
+
+Dev.to is here:
+https://dev.to/aws-builders/performance-vs-quality-gemma-4-e2b-quantization-on-an-nvidia-l4-and-a-tesla-t4-404g
+
+Linked In is here:
+https://www.linkedin.com/feed/update/urn:li:activity:7521591257354215424/
+
+#Gemma4 #llamacpp #Quantization #EC2 #GPU

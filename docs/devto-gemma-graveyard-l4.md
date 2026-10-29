@@ -140,17 +140,17 @@ Every character matches. Each GPU on its own is deterministic, so a difference b
 ./graveyard.py bury runs/2026-10-28-l4 BF16 F16 Q8_0 Q6_K Q5_K_M Q4_K_M Q4_0 Q3_K_M Q2_K --json graveyard-ladder.json
 ```
 
-| Rung | Right, T4 | Right, L4 | Lost, L4 | Gained, L4 | Median tok/s, L4 |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| BF16 | 229 | 229 | 0 | 0 | 50.1 |
-| F16 | 229 | 229 | 1 | 1 | 50.0 |
-| Q8_0 | 227 | 🥇 228 | 3 | 2 | 83.0 |
-| Q6_K | 229 | 227 | 6 | 4 | 98.1 |
-| Q5_K_M | 231 | 🥇 228 | 6 | 5 | 107.7 |
-| Q4_K_M | 224 | 221 | 14 | 6 | 118.7 |
-| Q4_0 | 222 | 220 | 16 | 7 | 125.6 |
-| Q3_K_M | 191 | 186 | 45 | 2 | 111.1 |
-| Q2_K | 3 | 6 | 225 | 2 | 🥇 139.5 |
+| Rung | Right, T4 | Right, L4 | Lost, L4 | Gained, L4 |
+| :--- | :--- | :--- | :--- | :--- |
+| BF16 | 229 | 229 | 0 | 0 |
+| F16 | 229 | 229 | 1 | 1 |
+| Q8_0 | 227 | 🥇 228 | 3 | 2 |
+| Q6_K | 229 | 227 | 6 | 4 |
+| Q5_K_M | 231 | 🥇 228 | 6 | 5 |
+| Q4_K_M | 224 | 221 | 14 | 6 |
+| Q4_0 | 222 | 220 | 16 | 7 |
+| Q3_K_M | 191 | 186 | 45 | 2 |
+| Q2_K | 3 | 6 | 225 | 2 |
 
 **Lost**: BF16 right, this rung wrong. **Gained**: BF16 wrong, this rung right. Both are counted against the same GPU's own BF16.
 
@@ -198,10 +198,12 @@ The twins and triplets question shows it. The T4 article's one F16 loss, `test-6
 ./graveyard.py bury runs/2026-10-28-l4 BF16 QAT_Q4_0 Q4_0 --json graveyard-qat.json
 ```
 
-| File | Right | Lost | Gained | Cut off at 1,024 | Median tok/s | Bytes | GPU MiB |
-| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| QAT Q4_0 | 219 | 15 | 5 | 8 | 125.7 | 3,349,516,256 | 1,730 |
-| Q4_0 | 220 | 16 | 7 | 12 | 125.6 | 3,360,161,216 | 1,740 |
+| File | Right | Lost | Cut off at 1,024 | Median tok/s |
+| :--- | :--- | :--- | :--- | :--- |
+| QAT Q4_0 | 219 | 15 | 8 | 125.7 |
+| Q4_0 | 220 | 16 | 12 | 125.6 |
+
+QAT Q4_0 gains 5 questions against BF16 and Q4_0 gains 7. The QAT file is 3,349,516,256 bytes and loads in 1,730 MiB; the plain Q4_0 is 3,360,161,216 bytes and loads in 1,740 MiB.
 
 The same picture as the T4, one right answer apart again: 219 against the plain Q4_0's 220, where the T4 had 221 against 222. On the L4 the two decode at the same speed, 125.7 and 125.6 tok/s; on the T4 the plain Q4_0 was faster, 93.6 against 87.8. 10 of QAT Q4_0's 15 losses on the T4 are lost on the L4 too.
 
@@ -209,17 +211,17 @@ The same picture as the T4, one right answer apart again: 219 against the plain 
 
 #### Step 8 — Speed and Memory on Each Card
 
-| Rung | Median tok/s, T4 | Median tok/s, L4 | L4 ÷ T4 | × BF16, T4 | × BF16, L4 |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| BF16 | 40.0 | 50.1 | 1.25 | 1.00 | 1.00 |
-| F16 | 39.6 | 50.0 | 1.26 | 0.99 | 1.00 |
-| Q8_0 | 64.3 | 83.0 | 1.29 | 1.61 | 1.66 |
-| Q6_K | 70.8 | 98.1 | 1.39 | 1.77 | 1.96 |
-| Q5_K_M | 78.7 | 107.7 | 1.37 | 1.97 | 2.15 |
-| Q4_K_M | 84.1 | 118.7 | 1.41 | 2.10 | 2.37 |
-| Q4_0 | 93.6 | 125.6 | 1.34 | 2.34 | 2.51 |
-| Q3_K_M | 74.2 | 111.1 | 1.50 | 1.85 | 2.22 |
-| Q2_K | 74.0 | 139.5 | 1.89 | 1.85 | 2.78 |
+| Rung | Median tok/s, T4 | Median tok/s, L4 | L4 ÷ T4 | × BF16, T4 / L4 |
+| :--- | :--- | :--- | :--- | :--- |
+| BF16 | 40.0 | 50.1 | 1.25 | 1.00 / 1.00 |
+| F16 | 39.6 | 50.0 | 1.26 | 0.99 / 1.00 |
+| Q8_0 | 64.3 | 83.0 | 1.29 | 1.61 / 1.66 |
+| Q6_K | 70.8 | 98.1 | 1.39 | 1.77 / 1.96 |
+| Q5_K_M | 78.7 | 107.7 | 1.37 | 1.97 / 2.15 |
+| Q4_K_M | 84.1 | 118.7 | 1.41 | 2.10 / 2.37 |
+| Q4_0 | 93.6 | 125.6 | 1.34 | 2.34 / 2.51 |
+| Q3_K_M | 74.2 | 111.1 | 1.50 | 1.85 / 2.22 |
+| Q2_K | 74.0 | 139.5 | 1.89 | 1.85 / 2.78 |
 
 - **BF16 and F16 run at the same speed on both cards**, within 0.4 tok/s of each other on each GPU.
 - **The smaller the file, the bigger the L4's lead**, up to 1.89 times at Q2_K. Q2_K is the fastest rung on the L4 and among the slowest on the T4; it is also wrong on 244 of 250 questions.

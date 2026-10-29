@@ -1,5 +1,6 @@
-devto-aws = https://dev.to/aws-builders/same-weights-different-graves-gemma-4-e2b-quantization-on-an-nvidia-l4-and-a-tesla-t4-5b56-temp-slug-3583047
-devto-gde = https://dev.to/gde/performance-vs-quality-gemma-4-e2b-quantization-on-an-nvidia-l4-and-a-tesla-t4-3hh7-temp-slug-1868575
-medium = PENDING
+builder = https://builder.aws.com/content/3LN86FouUu7Hk2R7IjgUQoLyJzM/performance-vs-quality-gemma-4-e2b-quantization-on-an-nvidia-l4-and-a-tesla-t4
+devto-aws = https://dev.to/aws-builders/performance-vs-quality-gemma-4-e2b-quantization-on-an-nvidia-l4-and-a-tesla-t4-404g
+devto-gde = https://dev.to/gde/performance-vs-quality-gemma-4-e2b-quantization-on-an-nvidia-l4-and-a-tesla-t4-4b90
+medium = https://medium.com/@xbill999/performance-vs-quality-gemma-4-e2b-quantization-on-an-nvidia-l4-and-a-tesla-t4-51ba19c4e142
 substack = PENDING
 linkedin = PENDING

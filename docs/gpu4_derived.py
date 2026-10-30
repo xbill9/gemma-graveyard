@@ -5,8 +5,19 @@ python3 docs/gpu4_derived.py > runs/2026-10-29-3050/four-gpus.txt"""
 import json
 from itertools import combinations
 
-from gpu_derived import IDS, L4, LADDER, QAT, T4, counts, cover_cells, dead, jload, lines, t4_grid
 from gpu3_derived import G1650, rows_grid
+from gpu_derived import (
+    IDS,
+    L4,
+    LADDER,
+    QAT,
+    T4,
+    counts,
+    cover_cells,
+    dead,
+    jload,
+    t4_grid,
+)
 
 G3050 = "runs/2026-10-29-3050"
 DIRS = {"t4": T4, "l4": L4, "1650": G1650, "3050": G3050}

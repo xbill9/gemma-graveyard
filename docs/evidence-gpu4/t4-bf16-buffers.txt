@@ -1,0 +1,9 @@
+0.02.192.681 I load_tensors: offloaded 36/36 layers to GPU
+0.02.192.686 I load_tensors:   CPU_Mapped model buffer size =   768.00 MiB
+0.02.192.688 I load_tensors:        CUDA0 model buffer size =  4384.87 MiB
+0.02.192.690 I load_tensors:   CPU_Mapped model buffer size =  4480.00 MiB
+0.03.737.187 I llama_context:  CUDA_Host  output buffer size =     1.00 MiB
+0.03.737.619 I llama_kv_cache:      CUDA0 KV buffer size =    24.00 MiB
+0.03.738.121 I llama_kv_cache:      CUDA0 KV buffer size =    12.00 MiB
+0.03.773.727 I sched_reserve:      CUDA0 compute buffer size =   124.02 MiB
+0.03.773.775 I sched_reserve:  CUDA_Host compute buffer size =    34.53 MiB

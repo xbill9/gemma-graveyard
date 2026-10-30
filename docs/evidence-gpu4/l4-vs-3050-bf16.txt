@@ -1,0 +1,1 @@
+{"rung": "BF16", "n": 250, "mismatched_extracted": 4, "mismatched_text": 31, "mismatched_right": 3, "right_a": 229, "right_b": 232}

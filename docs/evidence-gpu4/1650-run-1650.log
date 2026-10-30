@@ -1,0 +1,28 @@
+2026-10-29T15:48:29Z ladder
+2026-10-29T15:49:52Z ladder matches T4 sha256
+2026-10-29T15:50:04Z start runs/2026-10-29-1650/determinism-1 BF16
+{"rung": "BF16", "n": 50, "right": 46, "errors": 0, "truncated": 0, "median_decode_tps": 8.1, "mean_tokens": 367.6}
+2026-10-29T16:27:57Z start runs/2026-10-29-1650/determinism-2 BF16
+{"rung": "BF16", "n": 50, "right": 46, "errors": 0, "truncated": 0, "median_decode_tps": 7.0, "mean_tokens": 367.6}
+2026-10-29T17:10:32Z start runs/2026-10-29-1650 BF16
+{"rung": "BF16", "n": 250, "right": 229, "errors": 0, "truncated": 4, "median_decode_tps": 9.2, "mean_tokens": 389.1}
+2026-10-29T20:26:13Z start runs/2026-10-29-1650 F16
+{"rung": "F16", "n": 250, "right": 228, "errors": 0, "truncated": 5, "median_decode_tps": 9.6, "mean_tokens": 395.4}
+2026-10-29T23:24:35Z start runs/2026-10-29-1650 Q8_0
+{"rung": "Q8_0", "n": 250, "right": 229, "errors": 0, "truncated": 4, "median_decode_tps": 45.9, "mean_tokens": 388.5}
+2026-10-30T00:01:17Z start runs/2026-10-29-1650 Q6_K
+{"rung": "Q6_K", "n": 250, "right": 226, "errors": 0, "truncated": 6, "median_decode_tps": 57.2, "mean_tokens": 402.9}
+2026-10-30T00:32:05Z start runs/2026-10-29-1650 Q5_K_M
+{"rung": "Q5_K_M", "n": 250, "right": 226, "errors": 0, "truncated": 2, "median_decode_tps": 61.9, "mean_tokens": 372.1}
+2026-10-30T00:58:35Z start runs/2026-10-29-1650 Q4_K_M
+{"rung": "Q4_K_M", "n": 250, "right": 222, "errors": 0, "truncated": 8, "median_decode_tps": 66.5, "mean_tokens": 395.1}
+2026-10-30T01:24:46Z start runs/2026-10-29-1650 Q4_0
+{"rung": "Q4_0", "n": 250, "right": 216, "errors": 0, "truncated": 7, "median_decode_tps": 70.8, "mean_tokens": 429.4}
+2026-10-30T01:51:30Z start runs/2026-10-29-1650 Q3_K_M
+{"rung": "Q3_K_M", "n": 250, "right": 183, "errors": 0, "truncated": 49, "median_decode_tps": 55.9, "mean_tokens": 628.1}
+2026-10-30T02:39:48Z start runs/2026-10-29-1650 Q2_K
+{"rung": "Q2_K", "n": 250, "right": 5, "errors": 0, "truncated": 247, "median_decode_tps": 62.2, "mean_tokens": 1011.8}
+2026-10-30T03:49:08Z start runs/2026-10-29-1650 QAT_Q4_0
+{"rung": "QAT_Q4_0", "n": 250, "right": 222, "errors": 0, "truncated": 6, "median_decode_tps": 70.9, "mean_tokens": 395.7}
+2026-10-30T04:13:47Z bury
+2026-10-30T04:13:48Z done

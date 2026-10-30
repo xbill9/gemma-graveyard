@@ -1,0 +1,1 @@
+disk: GGUFs, QAT file and checkpoint = 57672587681 bytes (57.7 GB), measured 2026-10-30 on the RTX 3050 host

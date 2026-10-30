@@ -15,7 +15,8 @@ GPUs question by question. A third run, on a 4 GB GTX 1650 laptop with the same 
 and build (every rung on the GPU), is in [`runs/2026-10-29-3050/`](runs/2026-10-29-3050/REPORT.md);
 `docs/gpu4_derived.py` compares all four. On every GPU, F16 to Q4_0 lose between 1 and 19 of the answers
 that GPU's BF16 gets right, Q3_K_M loses 42 to 49, and Q2_K gets 3 to 6 right; 218 questions are tombstoned
-on all four.
+on all four. Article: [`docs/devto-gemma-graveyard-gpu4.md`](docs/devto-gemma-graveyard-gpu4.md), every figure
+traced to a file in `docs/evidence-gpu4/` (derived ones by `docs/gpu4_arith.py`).
 
 On one Tesla T4, against the 229 of 250 questions BF16 gets right: Q8_0 to Q5_K_M stay within 2 of it,
 Q4_K_M and Q4_0 lose 5 and 7, Q3_K_M loses 38 (most of its deaths cut off at 1,024 tokens), and Q2_K gets 3

@@ -1,0 +1,78 @@
+rung gpu right lost gained cut_off tok/s x_bf16 x_q8_0
+BF16 t4 229 0 0 4 40.0 1.00 0.62
+BF16 l4 229 0 0 4 50.1 1.00 0.60
+BF16 1650 229 0 0 4 9.2 1.00 0.20
+BF16 3050 232 0 0 4 40.3 1.00 0.59
+F16 t4 229 1 1 4 39.6 0.99 0.62
+F16 l4 229 1 1 4 50.0 1.00 0.60
+F16 1650 228 2 1 5 9.6 1.04 0.21
+F16 3050 232 1 1 4 40.3 1.00 0.59
+Q8_0 t4 227 4 2 9 64.3 1.61 1.00
+Q8_0 l4 228 3 2 5 83.0 1.66 1.00
+Q8_0 1650 229 2 2 4 45.9 4.99 1.00
+Q8_0 3050 226 7 1 9 67.8 1.68 1.00
+Q6_K t4 229 4 4 4 70.8 1.77 1.10
+Q6_K l4 227 6 4 7 98.1 1.96 1.18
+Q6_K 1650 226 7 4 6 57.2 6.22 1.25
+Q6_K 3050 227 8 3 6 75.3 1.87 1.11
+Q5_K_M t4 231 3 5 3 78.7 1.97 1.22
+Q5_K_M l4 228 6 5 3 107.7 2.15 1.30
+Q5_K_M 1650 226 6 3 2 61.9 6.73 1.35
+Q5_K_M 3050 226 8 2 2 82.2 2.04 1.21
+Q4_K_M t4 224 9 4 6 84.1 2.10 1.31
+Q4_K_M l4 221 14 6 8 118.7 2.37 1.43
+Q4_K_M 1650 222 12 5 8 66.5 7.23 1.45
+Q4_K_M 3050 221 14 3 7 91.5 2.27 1.35
+Q4_0 t4 222 15 8 10 93.6 2.34 1.46
+Q4_0 l4 220 16 7 12 125.6 2.51 1.51
+Q4_0 1650 216 19 6 7 70.8 7.70 1.54
+Q4_0 3050 218 16 2 9 99.7 2.47 1.47
+Q3_K_M t4 191 42 4 49 74.2 1.85 1.15
+Q3_K_M l4 186 45 2 48 111.1 2.22 1.34
+Q3_K_M 1650 183 49 3 49 55.9 6.08 1.22
+Q3_K_M 3050 191 44 3 45 64.2 1.59 0.95
+Q2_K t4 3 226 0 246 74.0 1.85 1.15
+Q2_K l4 6 225 2 247 139.5 2.78 1.68
+Q2_K 1650 5 225 1 247 62.2 6.76 1.36
+Q2_K 3050 3 229 0 249 95.0 2.36 1.40
+QAT_Q4_0 t4 221 15 7 6 87.8 2.19 1.37
+QAT_Q4_0 l4 219 15 5 8 125.7 2.51 1.51
+QAT_Q4_0 1650 222 11 4 6 70.9 7.71 1.54
+QAT_Q4_0 3050 221 15 4 6 99.8 2.48 1.47
+
+lost range F16..Q5_K_M: 1 to 8
+lost range Q4_K_M..Q4_0: 9 to 19
+lost range Q3_K_M: 42 to 49
+lost range F16..Q4_0: 1 to 19
+right range BF16: 229 to 232
+right range Q5_K_M: 226 to 231
+right range Q4_0: 216 to 222
+right range Q2_K: 3 to 6
+right range QAT_Q4_0: 219 to 222
+t4: QAT_Q4_0 minus Q4_0 right = -1
+t4: Q3_K_M lost cut off 34 of 42; Q2_K looped 228, cut off 246 of 250
+t4: fastest rung Q4_0 93.6; GPU MiB BF16 4671 Q4_0 1639
+l4: QAT_Q4_0 minus Q4_0 right = -1
+l4: Q3_K_M lost cut off 36 of 45; Q2_K looped 218, cut off 247 of 250
+l4: fastest rung Q2_K 139.5; GPU MiB BF16 4772 Q4_0 1740
+1650: QAT_Q4_0 minus Q4_0 right = 6
+1650: Q3_K_M lost cut off 36 of 49; Q2_K looped 217, cut off 247 of 250
+1650: fastest rung Q4_0 70.8; GPU MiB BF16 2617 Q4_0 1591
+3050: QAT_Q4_0 minus Q4_0 right = 3
+3050: Q3_K_M lost cut off 33 of 44; Q2_K looped 208, cut off 249 of 250
+3050: fastest rung Q4_0 99.7; GPU MiB BF16 4651 Q4_0 1619
+l4 Q2_K wrong: 244 of 250
+Q8_0 bytes as % of BF16: 53.3
+Q5_K_M bytes as % of BF16: 39.0
+Q4_0 bytes as % of BF16: 36.1
+graded differently BF16, any two GPUs: 2 to 4
+graded differently F16, any two GPUs: 3 to 5
+graded differently Q8_0, any two GPUs: 3 to 9
+graded differently Q6_K, any two GPUs: 4 to 10
+graded differently Q5_K_M, any two GPUs: 7 to 10
+graded differently Q4_K_M, any two GPUs: 9 to 15
+graded differently Q4_0, any two GPUs: 12 to 22
+graded differently Q3_K_M, any two GPUs: 26 to 34
+graded differently Q2_K, any two GPUs: 6 to 9
+1650 run: 2026-10-29T15:48:29Z to 2026-10-30T04:13:48Z, 12 h 25 min
+3050 run: 2026-10-29T22:04:37Z to 2026-10-30T03:20:37Z, 5 h 16 min

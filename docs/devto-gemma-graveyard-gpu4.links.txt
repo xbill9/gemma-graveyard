@@ -1,0 +1,5 @@
+devto_id = 4947208
+devto-gde = https://dev.to/gde/four-gpus-one-quantization-ladder-gemma-4-e2b-from-a-4-gb-laptop-to-an-nvidia-l4-e9m-temp-slug-3611640
+medium = PENDING
+substack = PENDING
+linkedin = PENDING

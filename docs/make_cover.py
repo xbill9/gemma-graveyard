@@ -22,7 +22,10 @@ BG, ALIVE, DEAD = (24, 20, 34), (244, 160, 36), (92, 92, 104)
 
 
 def main(run_dir, out_dir):
-    rows = {r: {x["id"]: x["right"] for x in map(json.loads, open(os.path.join(run_dir, f"{r}.jsonl")))} for r in RUNGS}
+    rows = {}
+    for r in RUNGS:
+        with open(os.path.join(run_dir, f"{r}.jsonl")) as f:
+            rows[r] = {x["id"]: x["right"] for x in map(json.loads, f)}
     ids = sorted(rows["BF16"], key=lambda i: (not rows["BF16"][i], i))  # BF16's right answers first
     img = Image.new("RGB", (W * S, H * S), BG)
     d = ImageDraw.Draw(img)

@@ -4,7 +4,7 @@ Writes docs/evidence/derived-think.txt: python3 docs/think_derived.py > docs/evi
 import json
 
 OFF, ON = "runs/2026-10-27-ladder", "runs/2026-10-28-think"
-RUNGS = "BF16 Q8_0 Q6_K Q5_K_M Q4_K_M Q4_0 Q3_K_M".split()
+RUNGS = ["BF16", "Q8_0", "Q6_K", "Q5_K_M", "Q4_K_M", "Q4_0", "Q3_K_M"]
 
 
 def rows(d, r):

@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc 3.11" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Four GPUs, One Quantization Ladder: Gemma 4 E2B From a 4 GB Laptop to an NVIDIA L4</title>
+  <meta name="description" content="Gemma 4 E2B from BF16 to Q2_K on a Tesla T4, an NVIDIA L4, a GTX 1650 laptop and an RTX 3050 desktop, with byte-identical GGUF files and the same llama.cpp build. The ladder keeps its shape on all four cards, 218 questions die on all four, and any two GPUs grade 2 to 4 questions differently at BF16." />
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      white-space: pre-wrap;
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+  <style>
+    body{font-family:-apple-system,'Segoe UI',Roboto,'Liberation Sans',Arial,sans-serif;
+         font-size:18px;line-height:1.58;max-width:42em;color:#242424;}
+    h1,h2,h3,h4{font-weight:700;line-height:1.25;margin-top:1.8em;}
+    h4{font-size:1.25em;}
+    img{max-width:100%;height:auto;display:block;margin:1.6em 0;}
+    pre{background:#f7f7f7;border:1px solid #e6e6e6;border-radius:4px;
+        padding:12px 14px;overflow-x:auto;font-size:14px;line-height:1.45;}
+    code{font-family:'Liberation Mono',Menlo,Consolas,monospace;}
+    :not(pre)>code{background:#f2f2f2;padding:1px 5px;border-radius:3px;font-size:.9em;}
+    blockquote{border-left:3px solid #ddd;margin-left:0;padding-left:1em;color:#555;}
+    hr{border:0;border-top:1px solid #e6e6e6;margin:2.4em 0;}
+  </style>
+</head>
+<body>
+<p>This article provides a step by step guide to running Gemma 4 E2B's
+quantization ladder, BF16 down to Q2_K, on four NVIDIA GPUs with the
+same nine GGUF files and the same llama.cpp build, and comparing the
+four cards question by question.</p>
+<figure><img src="https://raw.githubusercontent.com/xbill9/gemma-graveyard/main/medium/img/devto-cover-gpu4.27a7f25f.jpg" alt="Four GPUs, One Quantization Ladder: Gemma 4 E2B From a 4 GB Laptop to an NVIDIA L4" /></figure>
+<p><a
+href="https://github.com/xbill9/gemma-graveyard">https://github.com/xbill9/gemma-graveyard</a></p>
+<p>The <a
+href="https://dev.to/gde/accuracy-vs-speed-gemma-4-e2b-quantization-tradeoffs-bf16-to-q2k-aea">first
+article</a> asked every rung of the ladder the same 250 GSM8K questions
+on a Tesla T4. The <a
+href="https://dev.to/gde/performance-vs-quality-gemma-4-e2b-quantization-on-an-nvidia-l4-and-a-tesla-t4-4b90">second</a>
+repeated it on an NVIDIA L4 in AWS. This one adds two consumer cards: a
+GTX 1650 Ti laptop GPU with 4 GB and an RTX 3050 desktop card with 8 GB.
+All four run llama.cpp <code>b11699</code> on files with the same
+sha256, and each card gives identical text when BF16 is run twice.</p>
+<hr />
+<h4 id="the-results-in-brief">The Results in Brief</h4>
+<p>The ladder keeps its shape on all four GPUs. Against each card's own
+BF16, F16 to Q5_K_M lose 1 to 8 answers, Q4_K_M and Q4_0 lose 9 to 19,
+Q3_K_M loses 42 to 49, and Q2_K gets 3 to 6 right out of 250.</p>
+<p>The counts agree; the questions move. Any two GPUs grade 2 to 4
+questions differently at BF16 and 12 to 22 at Q4_0. No question is lost
+at F16 or Q8_0 on all four cards, while 216 are lost at Q2_K on all
+four. 218 questions die at some rung on every GPU, and 147 of them die
+first at the same rung on every GPU.</p>
+<p>The 4 GB laptop runs every quantized rung entirely on its GPU. BF16
+and F16 do not fit, so llama.cpp splits them between GPU and CPU, and
+they decode at 9.2 and 9.6 tokens per second against 45.9 for Q8_0 on
+the same card.</p>
+<p>The cover lays the four GPUs' grades over each other. One row per
+rung, BF16 at the top and Q2_K at the bottom, one cell per question:
+marigold where all four GPUs answer right, grey where all four answer
+wrong, violet where they disagree. <code>docs/make_cover_gpu4.py</code>
+draws it from the committed rows.</p>
+<hr />
+<h4 id="what-changes-and-what-stays">What Changes and What Stays</h4>
+<p><img src="https://raw.githubusercontent.com/xbill9/gemma-graveyard/main/medium/img/devto-gemma-graveyard-gpu4-table-1.png"
+alt="Table: Tesla T4, NVIDIA L4, GTX 1650 Ti, RTX 3050" /></p>
+<p>The same on all four: llama.cpp <code>b11699</code> with
+<code>GGML_CUDA=ON</code>, built for each card's own compute capability;
+the nine GGUFs and Google's QAT Q4_0 file, byte for byte; the 250
+questions in <code>data/heldout.jsonl</code>; temperature 0, one request
+at a time, thinking off, 1,024 max tokens,
+<code>llama-server -c 4096 -np 1 --seed 0</code>. Every rung runs with
+<code>-ngl 99</code> except BF16 and F16 on the GTX 1650 (Step 4).</p>
+<hr />
+<h4 id="at-this-point-you-should-have">At This Point You Should
+Have…</h4>
+<ul>
+<li>An NVIDIA GPU with at least 4 GB and a CUDA toolkit</li>
+<li>About 58 GB of free disk for the checkpoint, the nine GGUFs and the
+QAT file</li>
+<li>A clone:
+<code>git clone https://github.com/xbill9/gemma-graveyard</code></li>
+<li>The T4 run's committed results in
+<code>runs/2026-10-27-ladder/</code></li>
+</ul>
+<hr />
+<h4 id="step-1--build-llamacpp-at-the-same-tag">Step 1 — Build llama.cpp
+at the Same Tag</h4>
+<p>On the RTX 3050:</p>
+<pre class="text"><code>git -C ~/llama.cpp worktree add --detach /android/graveyard/llama.cpp b11699
+cd /android/graveyard/llama.cpp
+cmake -B build -DGGML_CUDA=ON -DCMAKE_CUDA_ARCHITECTURES=86 -DCMAKE_BUILD_TYPE=Release
+cmake --build build -j12 --target llama-server llama-quantize</code></pre>
+<p>The one build flag that changes per card is
+<code>CMAKE_CUDA_ARCHITECTURES</code>: 75 for the T4 and the GTX 1650,
+89 for the L4, 86 for the RTX 3050.</p>
+<pre class="text"><code>nvidia-smi --query-gpu=name,memory.total,compute_cap,driver_version --format=csv
+name, memory.total [MiB], compute_cap, driver_version
+NVIDIA GeForce RTX 3050 OEM, 8192 MiB, 8.6, 615.78.08</code></pre>
+<p>🔎 <strong>Tip: keep the pinned build in its own worktree.</strong>
+The desktop already had a newer llama.cpp checkout
+(<code>b11983</code>).
+<code>git worktree add --detach &lt;dir&gt; b11699</code> gives a second
+working copy at the tag from the same clone, so the measured build and
+the everyday build sit side by side.</p>
+<hr />
+<h4 id="step-2--rebuild-the-ladder-and-check-it-against-the-t4">Step 2 —
+Rebuild the Ladder and Check It Against the T4</h4>
+<p><code>ladder.sh</code> converts the checkpoint to BF16 and F16 and
+quantizes seven rungs from BF16. Each run script then compares every
+file's size and sha256 with the T4's <code>ladder.tsv</code>:</p>
+<pre class="text"><code>diff &lt;(cut -f1,3,4 runs/2026-10-27-ladder/ladder.tsv) &lt;(cut -f1,3,4 runs/2026-10-29-3050/ladder.tsv) &amp;&amp; echo &quot;ladder matches T4 sha256&quot;
+ladder matches T4 sha256</code></pre>
+<p>The GTX 1650 and the RTX 3050 both print the same line, and Google's
+QAT Q4_0 file matches too (sha256 <code>fa401b55…</code>). Across the
+four machines, the GGUF bytes are identical; the card, its driver, its
+CUDA version and the kernels built for it are what differ.</p>
+<p>🔎 <strong>Tip: the converter writes the checkpoint directory into
+the GGUF.</strong> <code>convert_hf_to_gguf.py</code> copies the model
+card and takes the model's name from the directory it reads. A
+checkpoint taken straight from the Hugging Face cache snapshot has
+neither the <code>README.md</code> nor the name
+<code>gemma-4-E2B-it</code>, and gives different bytes. Download with
+<code>hf download google/gemma-4-E2B-it --local-dir &lt;dir&gt;/gemma-4-E2B-it</code>.</p>
+<hr />
+<h4 id="step-3--prove-each-card-repeats-itself">Step 3 — Prove Each Card
+Repeats Itself</h4>
+<p>BF16 on 50 questions, twice, on every GPU:</p>
+<pre class="text"><code>./graveyard.py repeat runs/2026-10-29-3050/determinism-1 runs/2026-10-29-3050/determinism-2 BF16
+{&quot;rung&quot;: &quot;BF16&quot;, &quot;n&quot;: 50, &quot;mismatched_extracted&quot;: 0, &quot;mismatched_text&quot;: 0, &quot;mismatched_right&quot;: 0, &quot;right_a&quot;: 46, &quot;right_b&quot;: 46}</code></pre>
+<p>The T4, the L4 and the GTX 1650 give the same result: 0 mismatched
+characters and 46 of 50 right both times. Each card on its own is
+deterministic, so a difference between two cards comes from the GPU and
+its CUDA stack.</p>
+<hr />
+<h4 id="step-4--fit-the-16-bit-rungs-on-4-gb">Step 4 — Fit the 16-bit
+Rungs on 4 GB</h4>
+<p>BF16 and F16 need a 4,384.87 MiB GPU buffer for their 36 layers (from
+the T4's load log), and the GTX 1650 has 4,096 MiB. With
+<code>-ngl 99</code> the load fails.
+<code>graveyard.py run --ngl auto</code> leaves <code>-ngl</code> off,
+and llama.cpp's fit step places what it can:</p>
+<pre class="text"><code>common_params_fit_impl:   - CUDA0 (NVIDIA GeForce GTX 1650 Ti with Max-Q Design): 14 layers,   2546 MiB used,   1125 MiB free
+load_tensors: offloaded 14/36 layers to GPU
+load_tensors:        CUDA0 model buffer size =  2407.92 MiB</code></pre>
+<p>Every other rung fits whole. Q8_0 on the same card:</p>
+<pre class="text"><code>load_tensors: offloaded 36/36 layers to GPU
+load_tensors:        CUDA0 model buffer size =  2342.30 MiB</code></pre>
+<p>The split changes speed and leaves the grades in line with the other
+GPUs: the GTX 1650's BF16 scores 229, the same as the T4 and the L4, and
+grades 2 to 4 questions differently from each of them. The 8 GB RTX 3050
+holds BF16 whole at 4,651 MiB.</p>
+<hr />
+<h4 id="step-5--run-the-ladder-on-each-card-and-score-it">Step 5 — Run
+the Ladder on Each Card and Score It</h4>
+<p>Each run script runs the nine rungs and QAT Q4_0, then scores every
+rung against that card's own BF16:</p>
+<pre class="text"><code>./graveyard.py bury runs/2026-10-29-3050 BF16 F16 Q8_0 Q6_K Q5_K_M Q4_K_M Q4_0 Q3_K_M Q2_K --json graveyard-ladder.json</code></pre>
+<p>Right answers, out of 250:</p>
+<p><img src="https://raw.githubusercontent.com/xbill9/gemma-graveyard/main/medium/img/devto-gemma-graveyard-gpu4-table-2.png"
+alt="Table: Rung, T4, L4, GTX 1650, RTX 3050" /></p>
+<p>Lost, against the same card's BF16:</p>
+<p><img src="https://raw.githubusercontent.com/xbill9/gemma-graveyard/main/medium/img/devto-gemma-graveyard-gpu4-table-3.png"
+alt="Table: Rung, T4, L4, GTX 1650, RTX 3050" /></p>
+<p><strong>Lost</strong>: right at BF16, wrong at this rung, on the same
+GPU.</p>
+<p>The failures fall into the same kinds on every card. Q3_K_M runs out
+of room: 33 to 36 of its losses on each GPU are answers cut off at 1,024
+tokens. Q2_K loops: 208 to 228 of its 250 answers repeat a line five or
+more times, and 246 to 249 hit the token cap.</p>
+<hr />
+<h4 id="step-6--line-the-four-gpus-up-question-by-question">Step 6 —
+Line the Four GPUs Up, Question by Question</h4>
+<p><code>docs/gpu4_derived.py</code> rebuilds the T4's grid from its
+committed results and reads the other three from their rows, then
+compares all six pairs of GPUs at every rung:</p>
+<pre class="text"><code>python3 docs/gpu4_derived.py &gt; runs/2026-10-29-3050/four-gpus.txt</code></pre>
+<p><img src="https://raw.githubusercontent.com/xbill9/gemma-graveyard/main/medium/img/devto-gemma-graveyard-gpu4-table-4.png"
+alt="Table: Rung, Graded differently, any two GPUs, Lost on all four" /></p>
+<p><strong>Graded differently</strong>: right on one GPU and wrong on
+the other, at that rung, for the closest and the furthest of the six
+pairs.</p>
+<ul>
+<li><strong>The light rungs lose different questions on each
+card.</strong> F16 and Q8_0 lose 1 to 7 answers per GPU, and none of
+them is lost on all four.</li>
+<li><strong>The deep losses are shared.</strong> Q3_K_M loses 20
+questions on all four GPUs and Q2_K 216.</li>
+<li><strong>Most of the graveyard is common ground.</strong> Each GPU
+has 226 questions that die at some rung, the RTX 3050 230. 218 die on
+all four, and 147 die first at the same rung on all four. One question
+dies only on the RTX 3050 (<code>test-358</code>) and one only on the
+GTX 1650 (<code>test-147</code>).</li>
+<li><strong>BF16 itself moves a few answers.</strong> 227 questions are
+right at BF16 on all four cards and 18 wrong on all four. Against the
+L4, the RTX 3050's BF16 changes the text of 31 answers out of 250, the
+extracted number of 4 and the grade of 3.</li>
+</ul>
+<hr />
+<h4 id="step-7--googles-qat-q4_0-on-four-cards">Step 7 — Google's QAT
+Q4_0 on Four Cards</h4>
+<pre class="text"><code>./graveyard.py bury runs/2026-10-29-3050 BF16 QAT_Q4_0 Q4_0 --json graveyard-qat.json</code></pre>
+<p><img src="https://raw.githubusercontent.com/xbill9/gemma-graveyard/main/medium/img/devto-gemma-graveyard-gpu4-table-5.png"
+alt="Table: GPU, QAT Q4_0 right, Q4_0 right, QAT Q4_0 lost, Q4_0 lost" /></p>
+<p>QAT Q4_0 scores 219 to 222 on the four cards and plain Q4_0 216 to
+222. On the T4 and the L4 the plain file is ahead by 1; on the GTX 1650
+QAT is ahead by 6 and on the RTX 3050 by 3. The two files lose mostly
+different questions: on the RTX 3050, 5 questions are lost under both,
+10 only under QAT and 11 only under the plain Q4_0. Across the four
+GPUs, 6 of QAT's losses and 5 of Q4_0's are lost on every card.</p>
+<hr />
+<h4 id="step-8--speed-on-each-card">Step 8 — Speed on Each Card</h4>
+<p>Median decode speed in tokens per second. Each column is one machine;
+read down a column.</p>
+<p><img src="https://raw.githubusercontent.com/xbill9/gemma-graveyard/main/medium/img/devto-gemma-graveyard-gpu4-table-6.png"
+alt="Table: Rung, T4, L4, GTX 1650, RTX 3050" /></p>
+<ul>
+<li><strong>Q4_0 is the fastest rung on three of the four
+cards</strong>; on the L4 it is Q2_K, which is wrong on 244 of 250
+questions.</li>
+<li><strong>Q5_K_M decodes 1.21 to 1.35 times as fast as Q8_0 on each
+card</strong> (arithmetic, from the table). Q8_0 is the baseline here
+because it is the largest rung that fits whole on all four GPUs.</li>
+<li><strong>Q3_K_M is slower than Q4_0 on every card</strong>, and on
+the RTX 3050 it is slower than Q8_0.</li>
+<li><strong>BF16 and F16 run at the same speed on the T4, the L4 and the
+RTX 3050.</strong> On the GTX 1650, with 22 of 36 layers on the CPU,
+they run at a fifth of Q8_0's speed.</li>
+</ul>
+<p>The full ladder with QAT took 5 hours 16 minutes on the RTX 3050 and
+12 hours 25 minutes on the GTX 1650, from the first log line to the last
+(<code>run-3050.log</code>, <code>run-1650.log</code>).</p>
+<hr />
+<h4 id="compare-and-contrast">Compare and Contrast</h4>
+<p><img src="https://raw.githubusercontent.com/xbill9/gemma-graveyard/main/medium/img/devto-gemma-graveyard-gpu4-table-7.png"
+alt="Table: T4, L4, GTX 1650, RTX 3050" /></p>
+<hr />
+<h4 id="so-which-one">So, Which One?</h4>
+<p>On any of the four cards, take Q5_K_M: 39.0% of BF16's bytes, 226 to
+231 right, 3 to 8 answers lost against the card's own BF16, and 1.21 to
+1.35 times Q8_0's decode speed. For the fastest file that stays within
+19 answers, take Q4_0, the fastest rung on three of the cards. On a 4 GB
+card, every quantized rung fits whole and the 16-bit rungs run at under
+10 tokens per second. To compare two quantizations question by question,
+run both on one GPU: a different card moves 2 to 4 grades at BF16 and up
+to 34 at Q3_K_M.</p>
+<hr />
+<h4 id="summary">Summary</h4>
+<p>The goal of this article was to run Gemma 4 E2B's quantization ladder
+on four GPUs, from a 4 GB laptop card to a data-centre L4, and see which
+grades hold. The key was holding everything else fixed: byte-identical
+GGUFs, the same llama.cpp tag and the same sampling, with each card
+checked to give identical text twice. The four-GPU results were:</p>
+<ul>
+<li>🟢 All nine GGUFs and the QAT file match the T4's sha256 on every
+machine, and BF16 gives identical text twice on 50 questions on every
+card.</li>
+<li>🟢 The ladder keeps its shape on all four GPUs: F16 to Q5_K_M lose 1
+to 8, Q4_K_M and Q4_0 lose 9 to 19, Q3_K_M loses 42 to 49.</li>
+<li>🟢 Q5_K_M is the best trade on every card: 226 to 231 right at 1.21
+to 1.35 times Q8_0's speed.</li>
+<li>🟢 A 4 GB GTX 1650 runs every quantized rung whole on the GPU; BF16
+and F16 run split, 14 of 36 layers on the GPU, at 9.2 and 9.6 tokens per
+second.</li>
+<li>⚠️ Any two GPUs grade 2 to 4 questions differently at BF16 and 12 to
+22 at Q4_0; no question is lost at F16 or Q8_0 on all four.</li>
+<li>⚠️ 218 questions die on all four GPUs, 147 of them first at the same
+rung.</li>
+<li>⚠️ QAT Q4_0 and plain Q4_0 trade places by card: plain ahead by 1 on
+the T4 and L4, QAT ahead by 6 on the GTX 1650 and by 3 on the RTX
+3050.</li>
+<li>❌ Q3_K_M loses 42 to 49, mostly answers cut off at 1,024 tokens;
+Q2_K gets 3 to 6 right, with 208 to 228 looping answers per card.</li>
+</ul>
+<p>Scope: one run of each rung per GPU on four NVIDIA cards (a Tesla T4
+on GCE, an L4 on AWS, a GTX 1650 Ti laptop GPU and an RTX 3050 desktop
+card), 250 GSM8K test questions, greedy, thinking off, 1,024 max tokens,
+llama.cpp <code>b11699</code> built for each card. Determinism checked
+at BF16 on each card. The T4 grid is rebuilt from its committed
+per-question results. The hosts also differ in CPU, RAM, driver and CUDA
+version, and on the GTX 1650 BF16 and F16 run split between GPU and CPU.
+Speed is compared within each card only.</p>
+<p>The strategy for measuring Gemma 4's accuracy one quantization rung
+at a time on four GPUs was validated with an incremental step by step
+approach.</p>
+<hr />
+<h4 id="references">References</h4>
+<ul>
+<li><a
+href="https://dev.to/gde/accuracy-vs-speed-gemma-4-e2b-quantization-tradeoffs-bf16-to-q2k-aea">Accuracy
+vs Speed: Gemma 4 E2B Quantization Tradeoffs, BF16 to Q2_K</a>, the T4
+article</li>
+<li><a
+href="https://dev.to/gde/performance-vs-quality-gemma-4-e2b-quantization-on-an-nvidia-l4-and-a-tesla-t4-4b90">Performance
+vs Quality: Gemma 4 E2B Quantization on an NVIDIA L4 and a Tesla T4</a>,
+the L4 article</li>
+<li><a href="https://github.com/xbill9/gemma-graveyard">gemma-graveyard
+on GitHub</a></li>
+<li><a
+href="https://github.com/xbill9/gemma-graveyard/tree/main/runs/2026-10-29-1650">GTX
+1650 run: runs/2026-10-29-1650</a></li>
+<li><a
+href="https://github.com/xbill9/gemma-graveyard/tree/main/runs/2026-10-29-3050">RTX
+3050 run: runs/2026-10-29-3050</a></li>
+<li><a href="https://github.com/ggml-org/llama.cpp">llama.cpp</a></li>
+<li><a
+href="https://huggingface.co/google/gemma-4-E2B-it">google/gemma-4-E2B-it</a></li>
+<li><a
+href="https://huggingface.co/google/gemma-4-E2B-it-qat-q4_0-gguf">google/gemma-4-E2B-it-qat-q4_0-gguf</a></li>
+<li><a href="https://github.com/openai/grade-school-math">GSM8K</a></li>
+</ul>
+</body>
+</html>

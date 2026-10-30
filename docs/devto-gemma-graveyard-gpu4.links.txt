@@ -1,6 +1,4 @@
 devto-gde = https://dev.to/gde/four-gpus-one-quantization-ladder-gemma-4-e2b-from-a-4-gb-laptop-to-an-nvidia-l4-4olp
-# medium draft: https://medium.com/p/039332e4f2f2/edit
-medium = PENDING
-# substack draft: https://xbill9.substack.com/publish/post/222783657
-substack = PENDING
+medium = https://medium.com/@xbill999/four-gpus-one-quantization-ladder-gemma-4-e2b-from-a-4-gb-laptop-to-an-nvidia-l4-039332e4f2f2
+substack = https://xbill9.substack.com/p/four-gpus-one-quantization-ladder
 linkedin = PENDING

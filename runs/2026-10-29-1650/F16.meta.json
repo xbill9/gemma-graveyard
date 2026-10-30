@@ -1,0 +1,25 @@
+{
+ "rung": "F16",
+ "model": "/home/xbill/graveyard-gguf/e2b-F16.gguf",
+ "bytes": 9311305152,
+ "load_seconds": 5.0,
+ "gpu_mib_before": 3,
+ "gpu_mib_loaded": 2617,
+ "think": false,
+ "max_tokens": 1024,
+ "cmd": [
+  "/home/xbill/graveyard-llama/build/bin/llama-server",
+  "-m",
+  "/home/xbill/graveyard-gguf/e2b-F16.gguf",
+  "-c",
+  "4096",
+  "-np",
+  "1",
+  "--port",
+  "8090",
+  "--seed",
+  "0"
+ ],
+ "n": 250,
+ "gpu_mib_after": 2635
+}

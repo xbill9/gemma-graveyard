@@ -1,0 +1,14 @@
+0.00.149.656 I common_params_fit_impl: getting device memory data for initial parameters:
+0.00.818.958 I common_params_fit_impl: projected to use 2502 MiB of device memory vs. 3671 MiB of free device memory
+0.00.818.961 I common_params_fit_impl: will leave 1169 >= 1024 MiB of free device memory, no changes needed
+0.03.897.874 I load_tensors: offloading output layer to GPU
+0.03.897.877 I load_tensors: offloading 34 repeating layers to GPU
+0.03.897.878 I load_tensors: offloaded 36/36 layers to GPU
+0.03.897.882 I load_tensors:   CPU_Mapped model buffer size =  2380.00 MiB
+0.03.897.889 I load_tensors:   CPU_Mapped model buffer size =   408.00 MiB
+0.03.897.891 I load_tensors:        CUDA0 model buffer size =  2342.30 MiB
+0.04.223.968 I llama_context:  CUDA_Host  output buffer size =     1.00 MiB
+0.04.224.095 I llama_kv_cache:      CUDA0 KV buffer size =    24.00 MiB
+0.04.224.610 I llama_kv_cache:      CUDA0 KV buffer size =    12.00 MiB
+0.04.241.910 I sched_reserve:      CUDA0 compute buffer size =   124.02 MiB
+0.04.241.914 I sched_reserve:  CUDA_Host compute buffer size =    34.53 MiB

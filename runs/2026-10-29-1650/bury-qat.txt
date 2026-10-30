@@ -1,0 +1,4 @@
+{"rung": "BF16", "n": 250, "right": 229, "errors": 0, "truncated": 4, "median_decode_tps": 9.2, "mean_tokens": 389.1, "dead": 0, "ghosts": 0, "answer_changed": 0, "bytes": 9311305152, "gpu_mib_loaded": 2617, "gpu_mib_before": 3}
+{"rung": "QAT_Q4_0", "n": 250, "right": 222, "errors": 0, "truncated": 6, "median_decode_tps": 70.9, "mean_tokens": 395.7, "dead": 11, "ghosts": 4, "answer_changed": 21, "bytes": 3349516256, "gpu_mib_loaded": 1581, "gpu_mib_before": 3}
+{"rung": "Q4_0", "n": 250, "right": 216, "errors": 0, "truncated": 7, "median_decode_tps": 70.8, "mean_tokens": 429.4, "dead": 19, "ghosts": 6, "answer_changed": 28, "bytes": 3360161216, "gpu_mib_loaded": 1591, "gpu_mib_before": 3}
+{"first_deaths_by_rung": {"QAT_Q4_0": 11, "Q4_0": 13}, "tombstones": 24, "ghosts": 8}

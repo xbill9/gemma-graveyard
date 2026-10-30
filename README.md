@@ -9,7 +9,9 @@ Status: every check in `SPEC.md` has passed; results in
 Follow-on (not part of the challenge entry): the same ladder on an NVIDIA L4 (AWS `g6.xlarge`) with
 byte-identical GGUFs, in [`runs/2026-10-28-l4/`](runs/2026-10-28-l4/) and
 [`docs/devto-gemma-graveyard-l4.md`](docs/devto-gemma-graveyard-l4.md). `docs/gpu_derived.py` compares the two
-GPUs question by question.
+GPUs question by question. A third run, on a 4 GB GTX 1650 laptop with the same files and llama.cpp build
+(BF16 and F16 split between GPU and CPU), is in [`runs/2026-10-29-1650/`](runs/2026-10-29-1650/REPORT.md);
+`docs/gpu3_derived.py` compares all three GPUs.
 
 On one Tesla T4, against the 229 of 250 questions BF16 gets right: Q8_0 to Q5_K_M stay within 2 of it,
 Q4_K_M and Q4_0 lose 5 and 7, Q3_K_M loses 38 (most of its deaths cut off at 1,024 tokens), and Q2_K gets 3

@@ -2,14 +2,15 @@
 """graveyard.py -- which GSM8K answers each quantization rung of Gemma 4 E2B loses, scored in code.
 
   graveyard.py run <rung> <model.gguf> <data.jsonl> <out-dir> [--llama DIR] [--port P] [--limit N]
-                   [--think] [--max-tokens M] [--ctx C]
+                   [--think] [--max-tokens M] [--ctx C] [--ngl N|auto]
   graveyard.py bury <out-dir> <rung> [<rung> ...] [--json FILE]
   graveyard.py autopsy <out-dir> <rung> [<rung> ...]
   graveyard.py repeat <dir-a> <dir-b> <rung> [<rung> ...] [--common]
 
 run starts a llama-server on one GGUF, asks every question once (greedy, one request at a time,
 no prompt cache) and writes <out-dir>/<rung>.jsonl plus <rung>.meta.json (file size, load time,
-GPU memory after load, server command). bury reads the rungs in the order given; the first one is
+GPU memory after load, server command). --ngl auto leaves -ngl off so llama.cpp's -fit splits a
+model too big for the GPU between GPU and CPU; with -ngl set, -fit gives up and the load fails. bury reads the rungs in the order given; the first one is
 the reference. A question dies at the first rung that gets it wrong after the reference got it right;
 it is a ghost at any rung that gets it right after the reference got it wrong. Every count is
 computed here, never by a model. bury writes the per-question tombstones to <out-dir>/graveyard.json
@@ -97,7 +98,8 @@ def run(a):
     recs = load(a.data)[: a.limit] if a.limit else load(a.data)
     cmd = [
         os.path.join(a.llama, "build", "bin", "llama-server"),
-        "-m", a.model, "-ngl", "99", "-c", str(a.ctx), "-np", "1", "--port", str(a.port), "--seed", "0",
+        "-m", a.model, *([] if a.ngl == "auto" else ["-ngl", a.ngl]),
+        "-c", str(a.ctx), "-np", "1", "--port", str(a.port), "--seed", "0",
     ]  # fmt: skip
     url = f"http://127.0.0.1:{a.port}"
     before = gpu_used_mib()
@@ -297,6 +299,7 @@ def main():
     r.add_argument("--think", action="store_true")
     r.add_argument("--max-tokens", type=int, default=1024)
     r.add_argument("--ctx", type=int, default=4096)
+    r.add_argument("--ngl", default="99", help="GPU layers, or auto to let llama.cpp fit the model")
     b = sub.add_parser("bury")
     b.add_argument("out_dir")
     b.add_argument("rungs", nargs="+")

@@ -1,0 +1,27 @@
+{
+ "rung": "Q4_0",
+ "model": "/android/graveyard/graveyard-gguf/e2b-Q4_0.gguf",
+ "bytes": 3360161216,
+ "load_seconds": 9.0,
+ "gpu_mib_before": 1,
+ "gpu_mib_loaded": 1619,
+ "think": false,
+ "max_tokens": 1024,
+ "cmd": [
+  "/android/graveyard/llama.cpp/build/bin/llama-server",
+  "-m",
+  "/android/graveyard/graveyard-gguf/e2b-Q4_0.gguf",
+  "-ngl",
+  "99",
+  "-c",
+  "4096",
+  "-np",
+  "1",
+  "--port",
+  "8090",
+  "--seed",
+  "0"
+ ],
+ "n": 250,
+ "gpu_mib_after": 1639
+}

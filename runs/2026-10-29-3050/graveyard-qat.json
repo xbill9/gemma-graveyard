@@ -1,0 +1,298 @@
+{
+ "reference": "BF16",
+ "table": [
+  {
+   "rung": "BF16",
+   "n": 250,
+   "right": 232,
+   "errors": 0,
+   "truncated": 4,
+   "median_decode_tps": 40.3,
+   "mean_tokens": 386.9,
+   "dead": 0,
+   "ghosts": 0,
+   "answer_changed": 0,
+   "bytes": 9311305152,
+   "gpu_mib_loaded": 4651,
+   "gpu_mib_before": 1
+  },
+  {
+   "rung": "QAT_Q4_0",
+   "n": 250,
+   "right": 221,
+   "errors": 0,
+   "truncated": 6,
+   "median_decode_tps": 99.8,
+   "mean_tokens": 393.2,
+   "dead": 15,
+   "ghosts": 4,
+   "answer_changed": 24,
+   "bytes": 3349516256,
+   "gpu_mib_loaded": 1609,
+   "gpu_mib_before": 1
+  },
+  {
+   "rung": "Q4_0",
+   "n": 250,
+   "right": 218,
+   "errors": 0,
+   "truncated": 9,
+   "median_decode_tps": 99.7,
+   "mean_tokens": 432.0,
+   "dead": 16,
+   "ghosts": 2,
+   "answer_changed": 23,
+   "bytes": 3360161216,
+   "gpu_mib_loaded": 1619,
+   "gpu_mib_before": 1
+  }
+ ],
+ "tombstones": [
+  {
+   "id": "test-1068",
+   "died_at": "QAT_Q4_0",
+   "answer": "24",
+   "said": 12.0,
+   "right_again_at": []
+  },
+  {
+   "id": "test-1074",
+   "died_at": "QAT_Q4_0",
+   "answer": "750",
+   "said": 500.0,
+   "right_again_at": []
+  },
+  {
+   "id": "test-1082",
+   "died_at": "QAT_Q4_0",
+   "answer": "2",
+   "said": 1.0,
+   "right_again_at": [
+    "Q4_0"
+   ]
+  },
+  {
+   "id": "test-1165",
+   "died_at": "Q4_0",
+   "answer": "1248",
+   "said": 0.4,
+   "right_again_at": []
+  },
+  {
+   "id": "test-1202",
+   "died_at": "Q4_0",
+   "answer": "19",
+   "said": 7.0,
+   "right_again_at": []
+  },
+  {
+   "id": "test-1240",
+   "died_at": "QAT_Q4_0",
+   "answer": "2",
+   "said": 4.0,
+   "right_again_at": [
+    "Q4_0"
+   ]
+  },
+  {
+   "id": "test-1249",
+   "died_at": "QAT_Q4_0",
+   "answer": "56",
+   "said": 13.0,
+   "right_again_at": [
+    "Q4_0"
+   ]
+  },
+  {
+   "id": "test-143",
+   "died_at": "QAT_Q4_0",
+   "answer": "16",
+   "said": 15.7,
+   "right_again_at": []
+  },
+  {
+   "id": "test-147",
+   "died_at": "Q4_0",
+   "answer": "75",
+   "said": 15.0,
+   "right_again_at": []
+  },
+  {
+   "id": "test-187",
+   "died_at": "Q4_0",
+   "answer": "106",
+   "said": 106.120808,
+   "right_again_at": []
+  },
+  {
+   "id": "test-2",
+   "died_at": "Q4_0",
+   "answer": "70000",
+   "said": 50000.0,
+   "right_again_at": []
+  },
+  {
+   "id": "test-271",
+   "died_at": "QAT_Q4_0",
+   "answer": "20",
+   "said": 0.0,
+   "right_again_at": [
+    "Q4_0"
+   ]
+  },
+  {
+   "id": "test-322",
+   "died_at": "QAT_Q4_0",
+   "answer": "9",
+   "said": 10.0,
+   "right_again_at": []
+  },
+  {
+   "id": "test-369",
+   "died_at": "QAT_Q4_0",
+   "answer": "1198",
+   "said": 1200.0,
+   "right_again_at": [
+    "Q4_0"
+   ]
+  },
+  {
+   "id": "test-382",
+   "died_at": "Q4_0",
+   "answer": "350",
+   "said": 20150.0,
+   "right_again_at": []
+  },
+  {
+   "id": "test-389",
+   "died_at": "QAT_Q4_0",
+   "answer": "6",
+   "said": 12.0,
+   "right_again_at": [
+    "Q4_0"
+   ]
+  },
+  {
+   "id": "test-4",
+   "died_at": "Q4_0",
+   "answer": "20",
+   "said": 35.0,
+   "right_again_at": []
+  },
+  {
+   "id": "test-532",
+   "died_at": "Q4_0",
+   "answer": "25",
+   "said": 9.0,
+   "right_again_at": []
+  },
+  {
+   "id": "test-563",
+   "died_at": "QAT_Q4_0",
+   "answer": "12",
+   "said": 3.0,
+   "right_again_at": [
+    "Q4_0"
+   ]
+  },
+  {
+   "id": "test-577",
+   "died_at": "Q4_0",
+   "answer": "40",
+   "said": 64.0,
+   "right_again_at": []
+  },
+  {
+   "id": "test-589",
+   "died_at": "Q4_0",
+   "answer": "15",
+   "said": 2.5,
+   "right_again_at": []
+  },
+  {
+   "id": "test-6",
+   "died_at": "QAT_Q4_0",
+   "answer": "260",
+   "said": 280.0,
+   "right_again_at": []
+  },
+  {
+   "id": "test-687",
+   "died_at": "QAT_Q4_0",
+   "answer": "13",
+   "said": 25.5,
+   "right_again_at": [
+    "Q4_0"
+   ]
+  },
+  {
+   "id": "test-829",
+   "died_at": "Q4_0",
+   "answer": "14000",
+   "said": 0.0,
+   "right_again_at": []
+  },
+  {
+   "id": "test-855",
+   "died_at": "QAT_Q4_0",
+   "answer": "13",
+   "said": 3.0,
+   "right_again_at": [
+    "Q4_0"
+   ]
+  },
+  {
+   "id": "test-93",
+   "died_at": "QAT_Q4_0",
+   "answer": "36",
+   "said": 36.36363636363637,
+   "right_again_at": [
+    "Q4_0"
+   ]
+  }
+ ],
+ "ghosts": [
+  {
+   "id": "test-1012",
+   "reference_said": 3.0,
+   "right_at": [
+    "Q4_0"
+   ]
+  },
+  {
+   "id": "test-1146",
+   "reference_said": 0.0,
+   "right_at": [
+    "QAT_Q4_0"
+   ]
+  },
+  {
+   "id": "test-1166",
+   "reference_said": 1000.0,
+   "right_at": [
+    "Q4_0"
+   ]
+  },
+  {
+   "id": "test-1251",
+   "reference_said": 32.5,
+   "right_at": [
+    "QAT_Q4_0"
+   ]
+  },
+  {
+   "id": "test-306",
+   "reference_said": 5.0,
+   "right_at": [
+    "QAT_Q4_0"
+   ]
+  },
+  {
+   "id": "test-912",
+   "reference_said": 7.0,
+   "right_at": [
+    "QAT_Q4_0"
+   ]
+  }
+ ]
+}

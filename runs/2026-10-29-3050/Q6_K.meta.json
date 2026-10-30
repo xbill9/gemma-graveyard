@@ -1,0 +1,27 @@
+{
+ "rung": "Q6_K",
+ "model": "/android/graveyard/graveyard-gguf/e2b-Q6_K.gguf",
+ "bytes": 3845346752,
+ "load_seconds": 10.0,
+ "gpu_mib_before": 1,
+ "gpu_mib_loaded": 2083,
+ "think": false,
+ "max_tokens": 1024,
+ "cmd": [
+  "/android/graveyard/llama.cpp/build/bin/llama-server",
+  "-m",
+  "/android/graveyard/graveyard-gguf/e2b-Q6_K.gguf",
+  "-ngl",
+  "99",
+  "-c",
+  "4096",
+  "-np",
+  "1",
+  "--port",
+  "8090",
+  "--seed",
+  "0"
+ ],
+ "n": 250,
+ "gpu_mib_after": 2103
+}

@@ -1,0 +1,27 @@
+{
+ "rung": "BF16",
+ "model": "/android/graveyard/graveyard-gguf/e2b-BF16.gguf",
+ "bytes": 9311305152,
+ "load_seconds": 3.0,
+ "gpu_mib_before": 1,
+ "gpu_mib_loaded": 4651,
+ "think": false,
+ "max_tokens": 1024,
+ "cmd": [
+  "/android/graveyard/llama.cpp/build/bin/llama-server",
+  "-m",
+  "/android/graveyard/graveyard-gguf/e2b-BF16.gguf",
+  "-ngl",
+  "99",
+  "-c",
+  "4096",
+  "-np",
+  "1",
+  "--port",
+  "8090",
+  "--seed",
+  "0"
+ ],
+ "n": 50,
+ "gpu_mib_after": 4671
+}

@@ -1,0 +1,23 @@
+More Gemma 4 adventures.
+Same model files, same llama.cpp build, four NVIDIA GPUs from a 4 GB laptop to an L4. Does the quantization ladder keep its shape?
+
+Gemma 4 E2B, nine quantization rungs from BF16 down to Q2_K, byte-identical GGUF files, on a Tesla T4, an NVIDIA L4, a GTX 1650 laptop and an RTX 3050 desktop.
+
+The ladder keeps its shape on all four: F16 to Q5_K_M lose 1 to 8 questions, Q4_K_M and Q4_0 lose 9 to 19, Q3_K_M loses 42 to 49.
+
+Q5_K_M is the best trade on every card: 226 to 231 right at 1.21 to 1.35 times Q8_0's speed.
+
+A 4 GB GTX 1650 runs every quantized rung whole on the GPU. 218 questions die on all four cards, and any two GPUs grade 2 to 4 questions differently at BF16.
+
+Write ups are here:
+
+dev.to:
+https://dev.to/gde/four-gpus-one-quantization-ladder-gemma-4-e2b-from-a-4-gb-laptop-to-an-nvidia-l4-4olp
+
+Medium:
+https://medium.com/@xbill999/four-gpus-one-quantization-ladder-gemma-4-e2b-from-a-4-gb-laptop-to-an-nvidia-l4-039332e4f2f2
+
+Substack:
+https://xbill9.substack.com/p/four-gpus-one-quantization-ladder
+
+#gemma #llamacpp #quantization #nvidia #gpu

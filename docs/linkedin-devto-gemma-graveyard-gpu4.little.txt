@@ -1,0 +1,14 @@
+Four GPUs, One Quantization Ladder: Gemma 4 E2B From a 4 GB Laptop to an NVIDIA L4
+
+Gemma 4 E2B from BF16 to Q2\_K on a Tesla T4, an NVIDIA L4, a GTX 1650 laptop and an RTX 3050 desktop, with byte-identical GGUF files and the same llama.cpp build. The ladder keeps its shape on all four cards, 218 questions die on all four, and any two GPUs grade 2 to 4 questions differently at BF16.
+
+What is in it:
+
+- 🟢 All nine GGUFs and the QAT file match the T4's sha256 on every machine, and BF16 gives identical text twice on 50 questions on every card.
+- 🟢 The ladder keeps its shape on all four GPUs: F16 to Q5\_K\_M lose 1 to 8, Q4\_K\_M and Q4\_0 lose 9 to 19, Q3\_K\_M loses 42 to 49.
+- 🟢 Q5\_K\_M is the best trade on every card: 226 to 231 right at 1.21 to 1.35 times Q8\_0's speed.
+- 🟢 A 4 GB GTX 1650 runs every quantized rung whole on the GPU; BF16 and F16 run split, 14 of 36 layers on the GPU, at 9.2 and 9.6 tokens per second.
+
+dev.to \(Google Developer Experts\): https://dev.to/gde/four-gpus-one-quantization-ladder-gemma-4-e2b-from-a-4-gb-laptop-to-an-nvidia-l4-4olp
+Medium: https://medium.com/\@xbill999/four-gpus-one-quantization-ladder-gemma-4-e2b-from-a-4-gb-laptop-to-an-nvidia-l4-039332e4f2f2
+Substack: https://xbill9.substack.com/p/four-gpus-one-quantization-ladder

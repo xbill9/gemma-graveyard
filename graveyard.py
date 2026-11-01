@@ -2,7 +2,7 @@
 """graveyard.py -- which GSM8K answers each quantization rung of Gemma 4 E2B loses, scored in code.
 
   graveyard.py run <rung> <model.gguf> <data.jsonl> <out-dir> [--llama DIR] [--port P] [--limit N]
-                   [--think] [--max-tokens M] [--ctx C] [--ngl N|auto]
+                   [--think] [--max-tokens M] [--ctx C] [--ngl N|auto] [--server-arg A ...]
   graveyard.py bury <out-dir> <rung> [<rung> ...] [--json FILE]
   graveyard.py autopsy <out-dir> <rung> [<rung> ...]
   graveyard.py repeat <dir-a> <dir-b> <rung> [<rung> ...] [--common]
@@ -99,7 +99,7 @@ def run(a):
     cmd = [
         os.path.join(a.llama, "build", "bin", "llama-server"),
         "-m", a.model, *([] if a.ngl == "auto" else ["-ngl", a.ngl]),
-        "-c", str(a.ctx), "-np", "1", "--port", str(a.port), "--seed", "0",
+        "-c", str(a.ctx), "-np", "1", "--port", str(a.port), "--seed", "0", *a.server_arg,
     ]  # fmt: skip
     url = f"http://127.0.0.1:{a.port}"
     before = gpu_used_mib()
@@ -300,6 +300,7 @@ def main():
     r.add_argument("--max-tokens", type=int, default=1024)
     r.add_argument("--ctx", type=int, default=4096)
     r.add_argument("--ngl", default="99", help="GPU layers, or auto to let llama.cpp fit the model")
+    r.add_argument("--server-arg", action="append", default=[], help="passed to llama-server; repeat for each word")
     b = sub.add_parser("bury")
     b.add_argument("out_dir")
     b.add_argument("rungs", nargs="+")

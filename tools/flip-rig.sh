@@ -54,12 +54,12 @@ one() {  # one <mode> <rung> [flags...]
   ./graveyard.py run "$r" "$G/e2b-$r.gguf" data/heldout.jsonl "$D/$m" --llama "$L" "$@" | tail -1
 }
 one default Q8_0
-one ub1 Q8_0 --server-arg -ub --server-arg 1
+one ub1 Q8_0 --server-arg=-ub --server-arg=1
 one default BF16
-one ub1 BF16 --server-arg -ub --server-arg 1
+one ub1 BF16 --server-arg=-ub --server-arg=1
 one repeat Q8_0
 one default Q4_0
-one ub1 Q4_0 --server-arg -ub --server-arg 1
+one ub1 Q4_0 --server-arg=-ub --server-arg=1
 one repeat Q4_0
 if [ "$CARD" = l4 ]; then
   export GGML_CUDA_CUBLAS_COMPUTE_TYPE=f32

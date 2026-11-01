@@ -30,6 +30,7 @@ log "build done"
 
 if [ ! -s "$G/e2b-Q4_0.gguf" ]; then
   python3 -m pip install -q --user --break-system-packages -r "$L/requirements/requirements-convert_hf_to_gguf.txt" huggingface_hub 2>&1 | tail -1
+  python3 -m pip install -q --user --break-system-packages transformers==5.19.0 2>&1 | tail -1  # the pinned requirement cannot read this tokenizer config
   hf download google/gemma-4-E2B-it --revision 3e22461f --local-dir "$H" 2>&1 | tail -1
   mkdir -p "$G"
   python3 "$L/convert_hf_to_gguf.py" "$H" --outtype bf16 --outfile "$G/e2b-BF16.gguf" > "$W/convert.log" 2>&1 || { log "convert failed"; exit 1; }

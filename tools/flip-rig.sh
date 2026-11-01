@@ -15,6 +15,8 @@ H=$W/ckpt/gemma-4-E2B-it
 D=runs/2026-11-01-flips/$CARD
 export PIP_CACHE_DIR=$W/pipcache TMPDIR=$W/tmp HF_HOME=$W/hf PYTHONUSERBASE=$W/pyuser PATH=$W/pyuser/bin:$PATH
 mkdir -p "$TMPDIR" "$D"
+# 16 GB of RAM does not hold the conversion of a 10 GB checkpoint
+swapon --show | grep -q . || { sudo fallocate -l 32G $W/swapfile && sudo chmod 600 $W/swapfile && sudo mkswap $W/swapfile >/dev/null && sudo swapon $W/swapfile; }
 log() { echo "$(date -u +%FT%TZ) $*"; }
 CC=$(nvidia-smi --query-gpu=compute_cap --format=csv,noheader | tr -d .)
 log "card $CARD compute cap $CC"

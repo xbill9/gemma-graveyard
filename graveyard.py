@@ -69,6 +69,8 @@ def ask(upstream, rec, a):
         "chat_template_kwargs": {"enable_thinking": a.think},
         "cache_prompt": False,
     }
+    if a.top_logprobs:  # check the text against a plain run: fork_probe.py --plain-a/--plain-b
+        body.update(logprobs=True, top_logprobs=a.top_logprobs)
     out = {"id": rec["id"], "answer": rec["answer"]}
     t0 = time.time()
     try:
@@ -90,6 +92,9 @@ def ask(upstream, rec, a):
         extracted=extract(msg.get("content")),
         right=right(msg.get("content"), rec["answer"]),
     )
+    lp = (r["choices"][0].get("logprobs") or {}).get("content")
+    if a.top_logprobs and lp:  # per token: the chosen token, then the top candidates as [token, logprob]
+        out["tokens"] = [[t["token"], [[c["token"], c["logprob"]] for c in t["top_logprobs"]]] for t in lp]
     return out
 
 
@@ -301,6 +306,7 @@ def main():
     r.add_argument("--ctx", type=int, default=4096)
     r.add_argument("--ngl", default="99", help="GPU layers, or auto to let llama.cpp fit the model")
     r.add_argument("--server-arg", action="append", default=[], help="passed to llama-server; repeat for each word")
+    r.add_argument("--top-logprobs", type=int, default=0, help="also record each token's top N candidates and logprobs")
     b = sub.add_parser("bury")
     b.add_argument("out_dir")
     b.add_argument("rungs", nargs="+")

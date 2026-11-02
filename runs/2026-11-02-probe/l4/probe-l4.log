@@ -1,0 +1,11 @@
+2026-11-02T19:27:16Z card l4 compute cap 89
+2026-11-02T20:05:36Z build done
+  path: /opt/dlami/nvme/ckpt/gemma-4-E2B-it
+2026-11-02T20:12:08Z sha ok Q8_0 6b0301104c89a43c3bec5bae4b14d744f6000bc21e00e46e887fbbfe024de38a
+2026-11-02T20:12:08Z start default
+{"rung": "Q8_0", "n": 250, "right": 228, "errors": 0, "truncated": 5, "median_decode_tps": 74.7, "mean_tokens": 392.8}
+2026-11-02T20:34:23Z start ub1
+{"rung": "Q8_0", "n": 250, "right": 230, "errors": 0, "truncated": 6, "median_decode_tps": 74.7, "mean_tokens": 397.5}
+2026-11-02T21:00:34Z start cc75-ub1
+{"rung": "Q8_0", "n": 250, "right": 226, "errors": 0, "truncated": 5, "median_decode_tps": 74.7, "mean_tokens": 389.8}
+2026-11-02T21:27:15Z ALL DONE

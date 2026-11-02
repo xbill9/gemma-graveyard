@@ -3,8 +3,12 @@
 import json
 import sys
 
-prompts, rows, tag, limit = json.load(open(sys.argv[1])), sys.argv[2], sys.argv[3], int(sys.argv[4])
-for k, line in enumerate(open(rows)):
+rows, tag, limit = sys.argv[2], sys.argv[3], int(sys.argv[4])
+with open(sys.argv[1]) as f:
+    prompts = json.load(f)
+with open(rows) as f:
+    lines = f.readlines()
+for k, line in enumerate(lines):
     x = json.loads(line)
     if k < limit and x.get("text"):
         print(f"{tag}:{x['id']}\t{prompts[x['id']]['p'].encode().hex()}\t{x['text'].encode().hex()}")

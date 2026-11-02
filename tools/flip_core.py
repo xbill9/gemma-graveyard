@@ -9,8 +9,9 @@ import statistics as st
 import sys
 
 sys.path[:0] = ["docs", "."]
-from gpu_derived import IDS, LADDER, t4_grid  # noqa: E402
-from lazy_eval import load  # noqa: E402
+from gpu_derived import IDS, LADDER, t4_grid
+
+from lazy_eval import load
 
 D = {"l4": "runs/2026-10-28-l4", "1650": "runs/2026-10-29-1650", "3050": "runs/2026-10-29-3050"}
 LIGHT = LADDER[:7]  # BF16 to Q4_0
@@ -32,7 +33,7 @@ def main():
     out = {"runs": n, "always_right": sum(v == n for v in score.values()), "always_wrong": sum(v == 0 for v in score.values()), "contested": len(contested)}
 
     # answers per contested question, three cards with text
-    per, top2, wrong_share, majority_wrong, repeat_wrong = [], [], [], 0, 0
+    per, top2, majority_wrong, repeat_wrong = [], [], 0, 0
     table = []
     for i in contested:
         ans = C.Counter(str(T[g][r][i].get("extracted")) for g in D for r in LIGHT)

@@ -1,0 +1,60 @@
+2026-11-01T19:26:35Z card l4 compute cap 89
+2026-11-01T19:45:44Z build done
+/opt/dlami/nvme/ckpt/gemma-4-E2B-it
+2026-11-01T19:48:01Z convert failed
+2026-11-01T20:40:24Z card l4 compute cap 89
+2026-11-01T20:40:24Z build done
+  path: /opt/dlami/nvme/ckpt/gemma-4-E2B-it
+tools/flip-rig.sh: line 38:  8670 Killed                  python3 "$L/convert_hf_to_gguf.py" "$H" --outtype bf16 --outfile "$G/e2b-BF16.gguf" > "$W/convert.log" 2>&1
+2026-11-01T20:41:12Z convert failed
+2026-11-01T20:41:55Z card l4 compute cap 89
+2026-11-01T20:41:55Z build done
+  path: /opt/dlami/nvme/ckpt/gemma-4-E2B-it
+2026-11-01T20:46:31Z sha ok BF16
+2026-11-01T20:46:43Z sha ok Q8_0
+2026-11-01T20:46:51Z sha ok Q4_0
+2026-11-01T20:46:51Z start default Q8_0
+{"rung": "Q8_0", "n": 250, "right": 228, "errors": 0, "truncated": 5, "median_decode_tps": 82.3, "mean_tokens": 392.8}
+2026-11-01T21:07:09Z start ub1 Q8_0
+usage: graveyard.py run [-h] [--llama LLAMA] [--port PORT] [--limit LIMIT]
+                        [--think] [--max-tokens MAX_TOKENS] [--ctx CTX]
+                        [--ngl NGL] [--server-arg SERVER_ARG]
+                        rung model data out_dir
+graveyard.py run: error: argument --server-arg: expected one argument
+2026-11-01T21:07:09Z start default BF16
+{"rung": "BF16", "n": 250, "right": 229, "errors": 0, "truncated": 4, "median_decode_tps": 49.8, "mean_tokens": 390.1}
+2026-11-01T21:40:09Z start ub1 BF16
+usage: graveyard.py run [-h] [--llama LLAMA] [--port PORT] [--limit LIMIT]
+                        [--think] [--max-tokens MAX_TOKENS] [--ctx CTX]
+                        [--ngl NGL] [--server-arg SERVER_ARG]
+                        rung model data out_dir
+graveyard.py run: error: argument --server-arg: expected one argument
+2026-11-01T21:40:09Z start repeat Q8_0
+{"rung": "Q8_0", "n": 250, "right": 228, "errors": 0, "truncated": 5, "median_decode_tps": 82.4, "mean_tokens": 392.8}
+2026-11-01T22:00:16Z start default Q4_0
+{"rung": "Q4_0", "n": 250, "right": 220, "errors": 0, "truncated": 12, "median_decode_tps": 124.2, "mean_tokens": 437.6}
+2026-11-01T22:15:17Z start ub1 Q4_0
+usage: graveyard.py run [-h] [--llama LLAMA] [--port PORT] [--limit LIMIT]
+                        [--think] [--max-tokens MAX_TOKENS] [--ctx CTX]
+                        [--ngl NGL] [--server-arg SERVER_ARG]
+                        rung model data out_dir
+graveyard.py run: error: argument --server-arg: expected one argument
+2026-11-01T22:15:17Z start repeat Q4_0
+{"rung": "Q4_0", "n": 250, "right": 220, "errors": 0, "truncated": 12, "median_decode_tps": 124.2, "mean_tokens": 437.6}
+2026-11-01T22:30:11Z start f32 Q8_0
+{"rung": "Q8_0", "n": 250, "right": 225, "errors": 0, "truncated": 5, "median_decode_tps": 82.4, "mean_tokens": 392.5}
+2026-11-01T22:50:16Z start f32 Q4_0
+{"rung": "Q4_0", "n": 250, "right": 218, "errors": 0, "truncated": 8, "median_decode_tps": 124.1, "mean_tokens": 436.1}
+2026-11-01T23:05:07Z ALL DONE
+2026-11-01T23:05:08Z card l4 compute cap 89
+2026-11-01T23:05:08Z build done
+2026-11-01T23:05:30Z sha ok BF16
+2026-11-01T23:05:34Z sha ok Q8_0
+2026-11-01T23:05:36Z sha ok Q4_0
+2026-11-01T23:05:37Z start ub1 Q8_0
+{"rung": "Q8_0", "n": 250, "right": 230, "errors": 0, "truncated": 6, "median_decode_tps": 82.6, "mean_tokens": 397.5}
+2026-11-01T23:29:44Z start ub1 BF16
+{"rung": "BF16", "n": 250, "right": 228, "errors": 0, "truncated": 4, "median_decode_tps": 49.8, "mean_tokens": 390.7}
+2026-11-02T00:09:02Z start ub1 Q4_0
+{"rung": "Q4_0", "n": 250, "right": 220, "errors": 0, "truncated": 7, "median_decode_tps": 124.4, "mean_tokens": 438.2}
+2026-11-02T00:26:15Z ALL DONE

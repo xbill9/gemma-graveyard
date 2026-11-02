@@ -1,0 +1,35 @@
+## repeat: same card, same build
+t4/default       vs t4/repeat          Q8_0  n 250  text   0  answer   0  grade   0  right 227/227
+t4/default       vs t4/repeat          Q4_0  n 250  text   0  answer   0  grade   0  right 222/222
+l4/default       vs l4/repeat          Q8_0  n 250  text   0  answer   0  grade   0  right 228/228
+l4/default       vs l4/repeat          Q4_0  n 250  text   0  answer   0  grade   0  right 220/220
+## L4 new vs L4 recorded 2026-10-28
+l4/default       vs ../2026-10-28-l4   BF16  n 250  text   0  answer   0  grade   0  right 229/229
+l4/default       vs ../2026-10-28-l4   Q8_0  n 250  text   0  answer   0  grade   0  right 228/228
+l4/default       vs ../2026-10-28-l4   Q4_0  n 250  text   0  answer   0  grade   0  right 220/220
+## L4 vs T4, normal settings
+l4/default       vs t4/default         BF16  n 250  text  25  answer   2  grade   2  right 229/229
+l4/default       vs t4/default         Q8_0  n 250  text 172  answer  10  grade   3  right 228/227
+l4/default       vs t4/default         Q4_0  n 250  text 238  answer  23  grade  16  right 220/222
+## L4 vs T4, both -ub 1
+l4/ub1           vs t4/ub1             BF16  n 250  text   3  answer   0  grade   0  right 228/228
+l4/ub1           vs t4/ub1             Q8_0  n 250  text 161  answer  14  grade  10  right 230/226
+l4/ub1           vs t4/ub1             Q4_0  n 250  text 238  answer  21  grade  16  right 220/226
+## same card, normal vs -ub 1
+l4/default       vs l4/ub1             BF16  n 250  text  25  answer   1  grade   1  right 229/228
+l4/default       vs l4/ub1             Q8_0  n 250  text 165  answer   9  grade   4  right 228/230
+l4/default       vs l4/ub1             Q4_0  n 250  text 243  answer  22  grade  14  right 220/220
+t4/default       vs t4/ub1             BF16  n 250  text   7  answer   1  grade   1  right 229/228
+t4/default       vs t4/ub1             Q8_0  n 250  text 166  answer  12  grade   9  right 227/226
+t4/default       vs t4/ub1             Q4_0  n 250  text 241  answer  20  grade  14  right 222/226
+## L4, cuBLAS 16-bit vs 32-bit
+l4/default       vs l4/f32             Q8_0  n 250  text 159  answer  11  grade   5  right 228/225
+l4/default       vs l4/f32             Q4_0  n 250  text 238  answer  25  grade  12  right 220/218
+## L4 built for T4 (sm_75), normal settings
+l4/cc75-default  vs t4/default         BF16  n 250  text  25  answer   3  grade   3  right 230/229
+l4/cc75-default  vs t4/default         Q8_0  n 250  text 174  answer   7  grade   4  right 227/227
+l4/cc75-default  vs l4/default         BF16  n 250  text  30  answer   3  grade   3  right 230/229
+l4/cc75-default  vs l4/default         Q8_0  n 250  text 172  answer  11  grade   7  right 227/228
+## L4 built for T4 (sm_75), both -ub 1
+l4/cc75-ub1      vs t4/ub1             Q8_0  n 250  text   0  answer   0  grade   0  right 226/226
+l4/cc75-ub1      vs l4/ub1             Q8_0  n 250  text 161  answer  14  grade  10  right 226/230

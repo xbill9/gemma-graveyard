@@ -1,0 +1,22 @@
+Note: switching to '7182ef71e6d5dd0c8ea76486fac134fcd25025d4'.
+
+You are in 'detached HEAD' state. You can look around, make experimental
+changes and commit them, and you can discard any commits you make in this
+state without impacting any branches by switching back to a branch.
+
+If you want to create a new branch to retain commits you create, you may
+do so (now or later) by using -c with the switch command. Example:
+
+  git switch -c <new-branch-name>
+
+Or undo this operation with:
+
+  git switch -
+
+Turn off this advice by setting config variable advice.detachedHead to false
+
+build done Mon Nov 2 01:16:26 UTC 2026
+{"rung": "Q8_0", "n": 250, "right": 226, "errors": 0, "truncated": 5, "median_decode_tps": 82.2, "mean_tokens": 389.8}
+{"rung": "Q8_0", "n": 250, "right": 227, "errors": 0, "truncated": 6, "median_decode_tps": 82.2, "mean_tokens": 392.1}
+{"rung": "BF16", "n": 250, "right": 230, "errors": 0, "truncated": 4, "median_decode_tps": 49.6, "mean_tokens": 390.2}
+CC75 DONE Mon Nov 2 02:34:43 UTC 2026

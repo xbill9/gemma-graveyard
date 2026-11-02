@@ -12,7 +12,7 @@ import time
 import urllib.request
 
 sys.path.insert(0, ".")
-from lazy_eval import extract, right  # noqa: E402
+from lazy_eval import extract, right
 
 D = {"l4": "runs/2026-10-28-l4", "1650": "runs/2026-10-29-1650", "3050": "runs/2026-10-29-3050"}
 PORT = 8092
@@ -43,7 +43,8 @@ def main():
     p.add_argument("--llama", default="llama.cpp")
     p.add_argument("--threads", default="10")
     a = p.parse_args()
-    prompts = json.load(open("runs/2026-11-01-flips/prompts.json"))
+    with open("runs/2026-11-01-flips/prompts.json") as f:
+        prompts = json.load(f)
     g = {k: rows(k, a.rung) for k in D}
     seen = set()
     srv = subprocess.Popen([f"{a.llama}/build/bin/llama-server", "-m", a.gguf, "-c", "4096", "-np", "1", "--port", str(PORT),

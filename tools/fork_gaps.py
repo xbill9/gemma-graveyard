@@ -4,7 +4,6 @@ Baseline: every token of every replayed answer. Fork token: the recorded token w
 character. Gap: top-1 logit minus top-2 logit on this CPU; rec_gap: top-1 logit minus the recorded token's logit.
 Prints JSON; every figure is computed here."""
 import json
-import statistics as st
 import sys
 
 import numpy as np
@@ -36,7 +35,7 @@ def main():
     r = sys.argv[1]
     g = {k: rows(k, r) for k in D}
     gaps, recgap_all, ranks = [], [], []
-    fgap, frec, fsame, other_is_top2 = [], [], 0, 0
+    fgap, frec, other_is_top2 = [], [], 0
     nf = unaligned = 0
     pos = {}
     with open(f"runs/2026-11-01-flips/replay/{r}.jsonl", errors="surrogateescape") as f:

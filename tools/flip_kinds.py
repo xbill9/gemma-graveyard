@@ -14,7 +14,7 @@ import sys
 from scipy.stats import fisher_exact
 
 sys.path[:0] = ["docs", "."]
-from gpu_derived import IDS, LADDER, t4_grid  # noqa: E402
+from gpu_derived import IDS, LADDER, t4_grid
 
 D = {"l4": "runs/2026-10-28-l4", "1650": "runs/2026-10-29-1650", "3050": "runs/2026-10-29-3050"}
 LIGHT = LADDER[:7]

@@ -5,9 +5,11 @@
 //
 // in.tsv: one line per answer, key<TAB>hex(prompt)<TAB>hex(answer). Prompt is tokenized with special tokens
 // parsed, the answer as plain text. Built against libllama from a llama.cpp checkout; see tools/build_replay.sh.
+// REPLAY_NGL=99 runs on the GPU. REPLAY_UB=N follows the server: prompt in chunks of N, then the answer one token at a time.
 #include "llama.h"
 #include <algorithm>
 #include <cstdio>
+#include <cstdlib>
 #include <fstream>
 #include <iostream>
 #include <sstream>
@@ -47,13 +49,14 @@ int main(int argc, char **argv) {
     llama_backend_init();
     llama_log_set([](ggml_log_level l, const char *t, void *) { if (l >= GGML_LOG_LEVEL_ERROR) fputs(t, stderr); }, nullptr);
     auto mp = llama_model_default_params();
-    mp.n_gpu_layers = 0;
+    mp.n_gpu_layers = getenv("REPLAY_NGL") ? atoi(getenv("REPLAY_NGL")) : 0;
+    const int ub = getenv("REPLAY_UB") ? atoi(getenv("REPLAY_UB")) : 0;
     llama_model *m = llama_model_load_from_file(argv[1], mp);
     if (!m) return 3;
     const llama_vocab *v = llama_model_get_vocab(m);
     const int nv = llama_vocab_n_tokens(v);
     auto cp = llama_context_default_params();
-    cp.n_ctx = 4096; cp.n_batch = 4096; cp.n_ubatch = 64; cp.n_threads = threads; cp.n_threads_batch = threads;
+    cp.n_ctx = 4096; cp.n_batch = 4096; cp.n_ubatch = ub ? ub : 64; cp.n_threads = threads; cp.n_threads_batch = threads;
     llama_context *c = llama_init_from_model(m, cp);
     std::ifstream in(argv[2]);
     std::ofstream out(argv[3], std::ios::app);
@@ -73,8 +76,8 @@ int main(int argc, char **argv) {
         std::ostringstream o;
         o << "{\"key\":\"" << key << "\",\"prompt_tokens\":" << np << ",\"t\":[";
         bool first = true;
-        for (int s = 0; s < n; s += step) {
-            int e = std::min(n, s + step);
+        for (int s = 0, e; s < n; s = e) {
+            e = !ub ? std::min(n, s + step) : s < np ? std::min(np, s + ub) : s + 1;
             llama_batch b = llama_batch_init(e - s, 0, 1);
             for (int i = s; i < e; i++) {
                 int k = i - s;

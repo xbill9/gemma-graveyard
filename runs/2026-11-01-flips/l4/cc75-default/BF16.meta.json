@@ -1,0 +1,27 @@
+{
+ "rung": "BF16",
+ "model": "/opt/dlami/nvme/gguf/e2b-BF16.gguf",
+ "bytes": 9311305152,
+ "load_seconds": 7.0,
+ "gpu_mib_before": 0,
+ "gpu_mib_loaded": 4772,
+ "think": false,
+ "max_tokens": 1024,
+ "cmd": [
+  "/opt/dlami/nvme/l75/build/bin/llama-server",
+  "-m",
+  "/opt/dlami/nvme/gguf/e2b-BF16.gguf",
+  "-ngl",
+  "99",
+  "-c",
+  "4096",
+  "-np",
+  "1",
+  "--port",
+  "8090",
+  "--seed",
+  "0"
+ ],
+ "n": 250,
+ "gpu_mib_after": 4796
+}

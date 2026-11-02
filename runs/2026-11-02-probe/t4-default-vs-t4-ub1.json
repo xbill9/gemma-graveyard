@@ -1,0 +1,5168 @@
+{
+ "summary": {
+  "a": "runs/2026-11-02-probe/t4/default/Q8_0.jsonl",
+  "b": "runs/2026-11-02-probe/t4/ub1/Q8_0.jsonl",
+  "questions": 250,
+  "text_differs": 166,
+  "forks": 166,
+  "forks_choice": 166,
+  "forks_swapped_top2": 160,
+  "fork_lead_a_median": 0.1348552703857422,
+  "fork_lead_b_median": 0.1429567039012909,
+  "fork_lead_max": 2.4839725643396378,
+  "grade_differs": 9,
+  "shared_tokens": 50197,
+  "shared_tokens_same_logprob": 30044,
+  "shared_logprob_absdiff_median": 0.00014107127208262682,
+  "shared_logprob_absdiff_p99": 0.144048810005188,
+  "shared_logprob_absdiff_max": 0.5630285292863846
+ },
+ "forks": [
+  {
+   "id": "test-1002",
+   "at": 205,
+   "kind": "choice",
+   "context": "8$ boxes.\n\n**4. Set up the equation",
+   "a_top2": [
+    [
+     " for",
+     -0.6890112161636353
+    ],
+    [
+     " based",
+     -0.8224684000015259
+    ]
+   ],
+   "b_top2": [
+    [
+     " based",
+     -0.5696346163749695
+    ],
+    [
+     " for",
+     -0.9849788546562195
+    ]
+   ],
+   "a_lead": 0.13345718383789062,
+   "b_lead": 0.41534423828125,
+   "swapped": true,
+   "grade_a": true,
+   "grade_b": true
+  },
+  {
+   "id": "test-1012",
+   "at": 330,
+   "kind": "choice",
+   "context": "A$ be the time spent losing 9% per hour",
+   "a_top2": [
+    [
+     ",",
+     -0.673654317855835
+    ],
+    [
+     ".",
+     -0.7183816432952881
+    ]
+   ],
+   "b_top2": [
+    [
+     ".",
+     -0.6430522799491882
+    ],
+    [
+     ",",
+     -0.7508060932159424
+    ]
+   ],
+   "a_lead": 0.044727325439453125,
+   "b_lead": 0.10775381326675415,
+   "swapped": true,
+   "grade_a": false,
+   "grade_b": false
+  },
+  {
+   "id": "test-102",
+   "at": 28,
+   "kind": "choice",
+   "context": " the days in a week:** A week has 7 days",
+   "a_top2": [
+    [
+     " (",
+     -0.6554034948348999
+    ],
+    [
+     ".",
+     -0.7443565726280212
+    ]
+   ],
+   "b_top2": [
+    [
+     ".",
+     -0.6260716915130615
+    ],
+    [
+     " (",
+     -0.7802864909172058
+    ]
+   ],
+   "a_lead": 0.08895307779312134,
+   "b_lead": 0.1542147994041443,
+   "swapped": true,
+   "grade_a": false,
+   "grade_b": false
+  },
+  {
+   "id": "test-1031",
+   "at": 168,
+   "kind": "choice",
+   "context": ".\n\n**Step 4: Determine the number of graduates",
+   "a_top2": [
+    [
+     " who",
+     -0.775812029838562
+    ],
+    [
+     ".**",
+     -0.9659919142723083
+    ]
+   ],
+   "b_top2": [
+    [
+     ".**",
+     -0.7607206106185913
+    ],
+    [
+     " who",
+     -0.8980926275253296
+    ]
+   ],
+   "a_lead": 0.19017988443374634,
+   "b_lead": 0.13737201690673828,
+   "swapped": true,
+   "grade_a": true,
+   "grade_b": true
+  },
+  {
+   "id": "test-1033",
+   "at": 95,
+   "kind": "choice",
+   "context": "\nMelissa is paid $\\$15$ per day for the",
+   "a_top2": [
+    [
+     " time",
+     -0.8152703642845154
+    ],
+    [
+     " ",
+     -1.001372218132019
+    ]
+   ],
+   "b_top2": [
+    [
+     " ",
+     -0.6780995726585388
+    ],
+    [
+     " time",
+     -1.0534639358520508
+    ]
+   ],
+   "a_lead": 0.18610185384750366,
+   "b_lead": 0.37536436319351196,
+   "swapped": true,
+   "grade_a": true,
+   "grade_b": true
+  },
+  {
+   "id": "test-1040",
+   "at": 365,
+   "kind": "choice",
+   "context": "5 + 102 + 209$",
+   "a_top2": [
+    [
+     "\n",
+     -0.6763346195220947
+    ],
+    [
+     "\n\n",
+     -0.7102473378181458
+    ]
+   ],
+   "b_top2": [
+    [
+     "\n\n",
+     -0.6209263801574707
+    ],
+    [
+     "\n",
+     -0.7709927558898926
+    ]
+   ],
+   "a_lead": 0.033912718296051025,
+   "b_lead": 0.15006637573242188,
+   "swapped": true,
+   "grade_a": true,
+   "grade_b": true
+  },
+  {
+   "id": "test-1047",
+   "at": 232,
+   "kind": "choice",
+   "context": " into the total equation $(***)$:**\nWe want to",
+   "a_top2": [
+    [
+     " express",
+     -0.6193710565567017
+    ],
+    [
+     " solve",
+     -0.7792755365371704
+    ]
+   ],
+   "b_top2": [
+    [
+     " solve",
+     -0.6924119591712952
+    ],
+    [
+     " express",
+     -0.6999592781066895
+    ]
+   ],
+   "a_lead": 0.15990447998046875,
+   "b_lead": 0.007547318935394287,
+   "swapped": true,
+   "grade_a": true,
+   "grade_b": true
+  },
+  {
+   "id": "test-1067",
+   "at": 446,
+   "kind": "choice",
+   "context": "how much does he spend on postage total,\" and the calculation",
+   "a_top2": [
+    [
+     " resulted",
+     -1.357420563697815
+    ],
+    [
+     " yields",
+     -1.3634095191955566
+    ]
+   ],
+   "b_top2": [
+    [
+     " yields",
+     -1.2827143669128418
+    ],
+    [
+     " resulted",
+     -1.2913583517074585
+    ]
+   ],
+   "a_lead": 0.005988955497741699,
+   "b_lead": 0.0086439847946167,
+   "swapped": true,
+   "grade_a": false,
+   "grade_b": false
+  },
+  {
+   "id": "test-1068",
+   "at": 158,
+   "kind": "choice",
+   "context": "{ (remaining)} + 3 \\text{ (new",
+   "a_top2": [
+    [
+     " order",
+     -0.7274262309074402
+    ],
+    [
+     ")}",
+     -0.77811598777771
+    ]
+   ],
+   "b_top2": [
+    [
+     ")}",
+     -0.6201387643814087
+    ],
+    [
+     " order",
+     -0.8988348245620728
+    ]
+   ],
+   "a_lead": 0.050689756870269775,
+   "b_lead": 0.27869606018066406,
+   "swapped": true,
+   "grade_a": true,
+   "grade_b": true
+  },
+  {
+   "id": "test-1074",
+   "at": 226,
+   "kind": "choice",
+   "context": " in the second part of the sentence.\nTotal pieces placed",
+   "a_top2": [
+    [
+     " in",
+     -0.9703665971755981
+    ],
+    [
+     " during",
+     -1.1251460313796997
+    ]
+   ],
+   "b_top2": [
+    [
+     " =",
+     -0.9966645836830139
+    ],
+    [
+     " in",
+     -1.1478028297424316
+    ]
+   ],
+   "a_lead": 0.15477943420410156,
+   "b_lead": 0.15113824605941772,
+   "swapped": false,
+   "grade_a": false,
+   "grade_b": false
+  },
+  {
+   "id": "test-1080",
+   "at": 60,
+   "kind": "choice",
+   "context": " creates 1 jellyfish per second.\n\n2.  **",
+   "a_top2": [
+    [
+     "Calculate",
+     -0.6668591499328613
+    ],
+    [
+     "Determine",
+     -0.7201465964317322
+    ]
+   ],
+   "b_top2": [
+    [
+     "Determine",
+     -0.6276114583015442
+    ],
+    [
+     "Calculate",
+     -0.7632830142974854
+    ]
+   ],
+   "a_lead": 0.05328744649887085,
+   "b_lead": 0.13567155599594116,
+   "swapped": true,
+   "grade_a": true,
+   "grade_b": true
+  },
+  {
+   "id": "test-1082",
+   "at": 94,
+   "kind": "choice",
+   "context": " time taken to reach the halfway point:**\n    *   ",
+   "a_top2": [
+    [
+     "James",
+     -0.6388375759124756
+    ],
+    [
+     "Speed",
+     -0.7762067914009094
+    ]
+   ],
+   "b_top2": [
+    [
+     "Speed",
+     -0.6946015954017639
+    ],
+    [
+     "James",
+     -0.7299847602844238
+    ]
+   ],
+   "a_lead": 0.13736921548843384,
+   "b_lead": 0.03538316488265991,
+   "swapped": true,
+   "grade_a": true,
+   "grade_b": false
+  },
+  {
+   "id": "test-1084",
+   "at": 160,
+   "kind": "choice",
+   "context": " = 100$$\n\n**4. Solve for",
+   "a_top2": [
+    [
+     " Sam",
+     -0.6884077191352844
+    ],
+    [
+     " S",
+     -0.8055665493011475
+    ]
+   ],
+   "b_top2": [
+    [
+     " S",
+     -0.7018254995346069
+    ],
+    [
+     " Sam",
+     -0.8481706380844116
+    ]
+   ],
+   "a_lead": 0.11715883016586304,
+   "b_lead": 0.1463451385498047,
+   "swapped": true,
+   "grade_a": true,
+   "grade_b": true
+  },
+  {
+   "id": "test-1090",
+   "at": 16,
+   "kind": "choice",
+   "context": "-by-step solution:\n\n**1. Convert the",
+   "a_top2": [
+    [
+     " first",
+     -0.7247306704521179
+    ],
+    [
+     " height",
+     -1.159470796585083
+    ]
+   ],
+   "b_top2": [
+    [
+     " height",
+     -0.3940960466861725
+    ],
+    [
+     " first",
+     -1.4423195123672485
+    ]
+   ],
+   "a_lead": 0.4347401261329651,
+   "b_lead": 1.048223465681076,
+   "swapped": true,
+   "grade_a": true,
+   "grade_b": true
+  },
+  {
+   "id": "test-1094",
+   "at": 37,
+   "kind": "choice",
+   "context": "12 sodas.\nShe shakes 3 of them",
+   "a_top2": [
+    [
+     ".",
+     -0.6663729548454285
+    ],
+    [
+     " up",
+     -0.7236735224723816
+    ]
+   ],
+   "b_top2": [
+    [
+     " up",
+     -0.5945151448249817
+    ],
+    [
+     ".",
+     -0.8058455586433411
+    ]
+   ],
+   "a_lead": 0.057300567626953125,
+   "b_lead": 0.21133041381835938,
+   "swapped": true,
+   "grade_a": true,
+   "grade_b": true
+  },
+  {
+   "id": "test-1106",
+   "at": 187,
+   "kind": "choice",
+   "context": " final cut = $5 \\text{ cm}$\n\n**",
+   "a_top2": [
+    [
+     "Step",
+     -0.9766834378242493
+    ],
+    [
+     "Verification",
+     -1.1462172269821167
+    ]
+   ],
+   "b_top2": [
+    [
+     "Verification",
+     -0.8521206974983215
+    ],
+    [
+     "Step",
+     -1.389436960220337
+    ]
+   ],
+   "a_lead": 0.16953378915786743,
+   "b_lead": 0.5373162627220154,
+   "swapped": true,
+   "grade_a": true,
+   "grade_b": true
+  },
+  {
+   "id": "test-1112",
+   "at": 249,
+   "kind": "choice",
+   "context": "text{ kg}$.\n\n5.  **Calculate the amount",
+   "a_top2": [
+    [
+     " James",
+     -0.6959912776947021
+    ],
+    [
+     " remaining",
+     -1.178405523300171
+    ]
+   ],
+   "b_top2": [
+    [
+     " remaining",
+     -0.9529275894165039
+    ],
+    [
+     " James",
+     -1.0897455215454102
+    ]
+   ],
+   "a_lead": 0.48241424560546875,
+   "b_lead": 0.13681793212890625,
+   "swapped": true,
+   "grade_a": true,
+   "grade_b": true
+  },
+  {
+   "id": "test-1114",
+   "at": 326,
+   "kind": "choice",
+   "context": "1. Start: $\\$21$\n2. Save",
+   "a_top2": [
+    [
+     " $\\$",
+     -0.6433617472648621
+    ],
+    [
+     ":",
+     -0.7528377771377563
+    ]
+   ],
+   "b_top2": [
+    [
+     ":",
+     -0.6471970081329346
+    ],
+    [
+     " $\\$",
+     -0.7495377063751221
+    ]
+   ],
+   "a_lead": 0.10947602987289429,
+   "b_lead": 0.1023406982421875,
+   "swapped": true,
+   "grade_a": true,
+   "grade_b": true
+  },
+  {
+   "id": "test-1120",
+   "at": 194,
+   "kind": "choice",
+   "context": "{ miles}$\n\n**3. Determine the total number of",
+   "a_top2": [
+    [
+     " round",
+     -0.6715112328529358
+    ],
+    [
+     " trips",
+     -0.7636275291442871
+    ]
+   ],
+   "b_top2": [
+    [
+     " trips",
+     -0.5370700359344482
+    ],
+    [
+     " round",
+     -0.9376800060272217
+    ]
+   ],
+   "a_lead": 0.09211629629135132,
+   "b_lead": 0.40060997009277344,
+   "swapped": true,
+   "grade_a": true,
+   "grade_b": true
+  },
+  {
+   "id": "test-1121",
+   "at": 38,
+   "kind": "choice",
+   "context": "\nSofie plans to walk 10 miles every day",
+   "a_top2": [
+    [
+     ".",
+     -0.6553649306297302
+    ],
+    [
+     " for",
+     -0.7330532073974609
+    ]
+   ],
+   "b_top2": [
+    [
+     " for",
+     -0.6802771687507629
+    ],
+    [
+     ".",
+     -0.7069265842437744
+    ]
+   ],
+   "a_lead": 0.07768827676773071,
+   "b_lead": 0.026649415493011475,
+   "swapped": true,
+   "grade_a": true,
+   "grade_b": true
+  },
+  {
+   "id": "test-1146",
+   "at": 23,
+   "kind": "choice",
+   "context": "**Step 1: Calculate how many rocks Adam can buy",
+   "a_top2": [
+    [
+     ".**",
+     -0.4992612600326538
+    ],
+    [
+     " with",
+     -0.9353879690170288
+    ]
+   ],
+   "b_top2": [
+    [
+     " with",
+     -0.6533001661300659
+    ],
+    [
+     ".**",
+     -0.7360657453536987
+    ]
+   ],
+   "a_lead": 0.436126708984375,
+   "b_lead": 0.08276557922363281,
+   "swapped": true,
+   "grade_a": false,
+   "grade_b": true
+  },
+  {
+   "id": "test-1148",
+   "at": 167,
+   "kind": "choice",
+   "context": " = $36 / 4$\n    *   ",
+   "a_top2": [
+    [
+     "Eggs",
+     -0.5579432845115662
+    ],
+    [
+     "$",
+     -0.8495349287986755
+    ]
+   ],
+   "b_top2": [
+    [
+     "$",
+     -0.421737939119339
+    ],
+    [
+     "Eggs",
+     -1.0668433904647827
+    ]
+   ],
+   "a_lead": 0.2915916442871094,
+   "b_lead": 0.6451054513454437,
+   "swapped": true,
+   "grade_a": true,
+   "grade_b": true
+  },
+  {
+   "id": "test-1165",
+   "at": 313,
+   "kind": "choice",
+   "context": " week.**\nJohn collects garbage 3 times a week from",
+   "a_top2": [
+    [
+     " each",
+     -0.6419032216072083
+    ],
+    [
+     " *",
+     -0.7490084767341614
+    ]
+   ],
+   "b_top2": [
+    [
+     " *",
+     -0.6853495240211487
+    ],
+    [
+     " each",
+     -0.7023269534111023
+    ]
+   ],
+   "a_lead": 0.10710525512695312,
+   "b_lead": 0.016977429389953613,
+   "swapped": true,
+   "grade_a": true,
+   "grade_b": true
+  },
+  {
+   "id": "test-1166",
+   "at": 209,
+   "kind": "choice",
+   "context": "0 fruits less than a 10-year-old",
+   "a_top2": [
+    [
+     " tree",
+     -0.6532341837882996
+    ],
+    [
+     " one",
+     -0.8261658549308777
+    ]
+   ],
+   "b_top2": [
+    [
+     " one",
+     -0.7390758991241455
+    ],
+    [
+     " tree",
+     -0.7794488072395325
+    ]
+   ],
+   "a_lead": 0.17293167114257812,
+   "b_lead": 0.04037290811538696,
+   "swapped": true,
+   "grade_a": true,
+   "grade_b": false
+  },
+  {
+   "id": "test-1175",
+   "at": 415,
+   "kind": "choice",
+   "context": "4.5$ goals.\n\n*Revisiting the",
+   "a_top2": [
+    [
+     " fractional",
+     -1.643078088760376
+    ],
+    [
+     " assumption",
+     -1.6862585544586182
+    ]
+   ],
+   "b_top2": [
+    [
+     " assumption",
+     -1.6120727062225342
+    ],
+    [
+     " fractional",
+     -1.6792094707489014
+    ]
+   ],
+   "a_lead": 0.04318046569824219,
+   "b_lead": 0.06713676452636719,
+   "swapped": true,
+   "grade_a": false,
+   "grade_b": false
+  },
+  {
+   "id": "test-1179",
+   "at": 66,
+   "kind": "choice",
+   "context": " capped.**\nThe problem states that the dentist caps 7",
+   "a_top2": [
+    [
+     " more",
+     -0.5429715514183044
+    ],
+    [
+     " *",
+     -0.8700627684593201
+    ]
+   ],
+   "b_top2": [
+    [
+     " *",
+     -0.6724119186401367
+    ],
+    [
+     " more",
+     -0.7144689559936523
+    ]
+   ],
+   "a_lead": 0.3270912170410156,
+   "b_lead": 0.042057037353515625,
+   "swapped": true,
+   "grade_a": true,
+   "grade_b": true
+  },
+  {
+   "id": "test-118",
+   "at": 46,
+   "kind": "choice",
+   "context": " container had 5 vehicles.\nInitial number of vehicles =",
+   "a_top2": [
+    [
+     " (",
+     -0.9470694065093994
+    ],
+    [
+     " $",
+     -1.15877366065979
+    ]
+   ],
+   "b_top2": [
+    [
+     " Number",
+     -1.0263056755065918
+    ],
+    [
+     " (",
+     -1.1529194116592407
+    ]
+   ],
+   "a_lead": 0.21170425415039062,
+   "b_lead": 0.12661373615264893,
+   "swapped": false,
+   "grade_a": true,
+   "grade_b": true
+  },
+  {
+   "id": "test-1187",
+   "at": 335,
+   "kind": "choice",
+   "context": " the snowball count after 5 hours.\n\n*   **",
+   "a_top2": [
+    [
+     "Total",
+     -0.672404408454895
+    ],
+    [
+     "Snow",
+     -0.7223712205886841
+    ]
+   ],
+   "b_top2": [
+    [
+     "Snow",
+     -0.5871168375015259
+    ],
+    [
+     "Total",
+     -0.8184839487075806
+    ]
+   ],
+   "a_lead": 0.04996681213378906,
+   "b_lead": 0.2313671112060547,
+   "swapped": true,
+   "grade_a": true,
+   "grade_b": true
+  },
+  {
+   "id": "test-1202",
+   "at": 42,
+   "kind": "choice",
+   "context": " eyeshadow palettes, and each palette has four colors.\nInitial",
+   "a_top2": [
+    [
+     " palette",
+     -0.6544938087463379
+    ],
+    [
+     " colors",
+     -0.7393251061439514
+    ]
+   ],
+   "b_top2": [
+    [
+     " colors",
+     -0.5543525815010071
+    ],
+    [
+     " palette",
+     -0.8629672527313232
+    ]
+   ],
+   "a_lead": 0.08483129739761353,
+   "b_lead": 0.30861467123031616,
+   "swapped": true,
+   "grade_a": true,
+   "grade_b": true
+  },
+  {
+   "id": "test-1203",
+   "at": 26,
+   "kind": "choice",
+   "context": "**Determine Mattison's height:**\n    Mattison",
+   "a_top2": [
+    [
+     " is",
+     -0.6690592169761658
+    ],
+    [
+     "'",
+     -0.7178396582603455
+    ]
+   ],
+   "b_top2": [
+    [
+     "'",
+     -0.661604642868042
+    ],
+    [
+     " is",
+     -0.7257277965545654
+    ]
+   ],
+   "a_lead": 0.04878044128417969,
+   "b_lead": 0.06412315368652344,
+   "swapped": true,
+   "grade_a": true,
+   "grade_b": true
+  },
+  {
+   "id": "test-1207",
+   "at": 71,
+   "kind": "choice",
+   "context": " Tuna 3: 26 kg\n\nTotal weight =",
+   "a_top2": [
+    [
+     " Weight",
+     -0.5910844206809998
+    ],
+    [
+     " $",
+     -0.8079231977462769
+    ]
+   ],
+   "b_top2": [
+    [
+     " $",
+     -0.5042809844017029
+    ],
+    [
+     " Weight",
+     -0.9276933073997498
+    ]
+   ],
+   "a_lead": 0.2168387770652771,
+   "b_lead": 0.4234123229980469,
+   "swapped": true,
+   "grade_a": true,
+   "grade_b": true
+  },
+  {
+   "id": "test-1217",
+   "at": 37,
+   "kind": "choice",
+   "context": "5 years.**\nPauline visits the museum 3 times",
+   "a_top2": [
+    [
+     " per",
+     -0.6497803330421448
+    ],
+    [
+     " a",
+     -0.7384805679321289
+    ]
+   ],
+   "b_top2": [
+    [
+     " a",
+     -0.6930227279663086
+    ],
+    [
+     " per",
+     -0.6932716369628906
+    ]
+   ],
+   "a_lead": 0.08870023488998413,
+   "b_lead": 0.00024890899658203125,
+   "swapped": true,
+   "grade_a": true,
+   "grade_b": true
+  },
+  {
+   "id": "test-1221",
+   "at": 39,
+   "kind": "choice",
+   "context": " gets 16 meatballs from each pound of ground beef.",
+   "a_top2": [
+    [
+     " He",
+     -0.62428218126297
+    ],
+    [
+     "\n",
+     -0.7678636312484741
+    ]
+   ],
+   "b_top2": [
+    [
+     "\n",
+     -0.6563104391098022
+    ],
+    [
+     " He",
+     -0.7319750189781189
+    ]
+   ],
+   "a_lead": 0.14358144998550415,
+   "b_lead": 0.07566457986831665,
+   "swapped": true,
+   "grade_a": true,
+   "grade_b": true
+  },
+  {
+   "id": "test-1233",
+   "at": 375,
+   "kind": "choice",
+   "context": "\nTotal money received = $27 \\times \\$3",
+   "a_top2": [
+    [
+     " =",
+     -0.6904743909835815
+    ],
+    [
+     "$",
+     -0.6958473920822144
+    ]
+   ],
+   "b_top2": [
+    [
+     "$",
+     -0.5371048450469971
+    ],
+    [
+     " =",
+     -0.8781444430351257
+    ]
+   ],
+   "a_lead": 0.0053730010986328125,
+   "b_lead": 0.34103959798812866,
+   "swapped": true,
+   "grade_a": true,
+   "grade_b": true
+  },
+  {
+   "id": "test-1236",
+   "at": 183,
+   "kind": "choice",
+   "context": " initial supply, and the 6 grapes Madeline ate were also",
+   "a_top2": [
+    [
+     " from",
+     -0.6943615078926086
+    ],
+    [
+     " taken",
+     -0.7899921536445618
+    ]
+   ],
+   "b_top2": [
+    [
+     " taken",
+     -0.6706275939941406
+    ],
+    [
+     " from",
+     -0.8233357071876526
+    ]
+   ],
+   "a_lead": 0.09563064575195312,
+   "b_lead": 0.15270811319351196,
+   "swapped": true,
+   "grade_a": true,
+   "grade_b": true
+  },
+  {
+   "id": "test-1240",
+   "at": 271,
+   "kind": "choice",
+   "context": "10 books.\n*   Number of bookcases needed =",
+   "a_top2": [
+    [
+     " $\\",
+     -0.9174999594688416
+    ],
+    [
+     " (",
+     -1.0593150854110718
+    ]
+   ],
+   "b_top2": [
+    [
+     " (",
+     -0.9273470044136047
+    ],
+    [
+     " $\\",
+     -0.9703902006149292
+    ]
+   ],
+   "a_lead": 0.14181512594223022,
+   "b_lead": 0.04304319620132446,
+   "swapped": true,
+   "grade_a": true,
+   "grade_b": true
+  },
+  {
+   "id": "test-1241",
+   "at": 80,
+   "kind": "choice",
+   "context": ": Calculate the total cost of the eggs.**\nRose bought",
+   "a_top2": [
+    [
+     " five",
+     -0.9301827549934387
+    ],
+    [
+     " the",
+     -1.226270079612732
+    ]
+   ],
+   "b_top2": [
+    [
+     " the",
+     -1.1410835981369019
+    ],
+    [
+     " five",
+     -1.163035273551941
+    ]
+   ],
+   "a_lead": 0.2960873246192932,
+   "b_lead": 0.021951675415039062,
+   "swapped": true,
+   "grade_a": true,
+   "grade_b": true
+  },
+  {
+   "id": "test-1249",
+   "at": 53,
+   "kind": "choice",
+   "context": " flashlight.\n*   There are 8 rooms, and",
+   "a_top2": [
+    [
+     " there",
+     -0.688061535358429
+    ],
+    [
+     " ",
+     -1.1888407468795776
+    ]
+   ],
+   "b_top2": [
+    [
+     " ",
+     -0.7143023610115051
+    ],
+    [
+     " there",
+     -1.2936089038848877
+    ]
+   ],
+   "a_lead": 0.5007792115211487,
+   "b_lead": 0.5793065428733826,
+   "swapped": true,
+   "grade_a": true,
+   "grade_b": true
+  },
+  {
+   "id": "test-125",
+   "at": 123,
+   "kind": "choice",
+   "context": " after sampling: $(P + 5) - 3",
+   "a_top2": [
+    [
+     "$",
+     -0.6257981657981873
+    ],
+    [
+     " =",
+     -0.7660645246505737
+    ]
+   ],
+   "b_top2": [
+    [
+     " =",
+     -0.5294957160949707
+    ],
+    [
+     "$",
+     -0.8895859718322754
+    ]
+   ],
+   "a_lead": 0.14026635885238647,
+   "b_lead": 0.3600902557373047,
+   "swapped": true,
+   "grade_a": true,
+   "grade_b": true
+  },
+  {
+   "id": "test-1251",
+   "at": 18,
+   "kind": "choice",
+   "context": "-step solution:\n\n1.  **Determine the time",
+   "a_top2": [
+    [
+     " for",
+     -0.6871654391288757
+    ],
+    [
+     " taken",
+     -0.7441608309745789
+    ]
+   ],
+   "b_top2": [
+    [
+     " taken",
+     -0.5937390327453613
+    ],
+    [
+     " for",
+     -0.8501850366592407
+    ]
+   ],
+   "a_lead": 0.056995391845703125,
+   "b_lead": 0.2564460039138794,
+   "swapped": true,
+   "grade_a": false,
+   "grade_b": true
+  },
+  {
+   "id": "test-1253",
+   "at": 23,
+   "kind": "choice",
+   "context": "**Step 1: Calculate the total time Tim spends answering",
+   "a_top2": [
+    [
+     " calls",
+     -0.3633149564266205
+    ],
+    [
+     " phones",
+     -1.1886605024337769
+    ]
+   ],
+   "b_top2": [
+    [
+     " phones",
+     -0.6454961895942688
+    ],
+    [
+     " calls",
+     -0.7431890964508057
+    ]
+   ],
+   "a_lead": 0.8253455460071564,
+   "b_lead": 0.09769290685653687,
+   "swapped": true,
+   "grade_a": true,
+   "grade_b": true
+  },
+  {
+   "id": "test-1254",
+   "at": 219,
+   "kind": "choice",
+   "context": ": Calculate how much longer it will take with the new varnish",
+   "a_top2": [
+    [
+     " compared",
+     -0.5600534081459045
+    ],
+    [
+     ".**",
+     -0.8488336205482483
+    ]
+   ],
+   "b_top2": [
+    [
+     ".**",
+     -0.5642893314361572
+    ],
+    [
+     " compared",
+     -0.8429320454597473
+    ]
+   ],
+   "a_lead": 0.28878021240234375,
+   "b_lead": 0.2786427140235901,
+   "swapped": true,
+   "grade_a": true,
+   "grade_b": true
+  },
+  {
+   "id": "test-1266",
+   "at": 249,
+   "kind": "choice",
+   "context": " weekly food: (Total daily food) $\\times 7",
+   "a_top2": [
+    [
+     " \\",
+     -0.6505522727966309
+    ],
+    [
+     "$",
+     -0.737678050994873
+    ]
+   ],
+   "b_top2": [
+    [
+     "$",
+     -0.47062504291534424
+    ],
+    [
+     " \\",
+     -0.9798394441604614
+    ]
+   ],
+   "a_lead": 0.08712577819824219,
+   "b_lead": 0.5092144012451172,
+   "swapped": true,
+   "grade_a": true,
+   "grade_b": true
+  },
+  {
+   "id": "test-1270",
+   "at": 121,
+   "kind": "choice",
+   "context": "**2. Calculate the value after the first year:**\n",
+   "a_top2": [
+    [
+     "When",
+     -0.6483752131462097
+    ],
+    [
+     "If",
+     -0.7607409358024597
+    ]
+   ],
+   "b_top2": [
+    [
+     "If",
+     -0.6287103295326233
+    ],
+    [
+     "When",
+     -0.7885289788246155
+    ]
+   ],
+   "a_lead": 0.11236572265625,
+   "b_lead": 0.1598186492919922,
+   "swapped": true,
+   "grade_a": true,
+   "grade_b": true
+  },
+  {
+   "id": "test-1271",
+   "at": 319,
+   "kind": "choice",
+   "context": " colors.\n    Number of pink candies = Total candies -",
+   "a_top2": [
+    [
+     " Total",
+     -0.6032726168632507
+    ],
+    [
+     " (",
+     -0.7920771837234497
+    ]
+   ],
+   "b_top2": [
+    [
+     " (",
+     -0.6561996936798096
+    ],
+    [
+     " Total",
+     -0.7316849827766418
+    ]
+   ],
+   "a_lead": 0.18880456686019897,
+   "b_lead": 0.07548528909683228,
+   "swapped": true,
+   "grade_a": true,
+   "grade_b": true
+  },
+  {
+   "id": "test-128",
+   "at": 18,
+   "kind": "choice",
+   "context": "-step solution:\n\n**1. Determine the cost of",
+   "a_top2": [
+    [
+     " a",
+     -0.6158577799797058
+    ],
+    [
+     " each",
+     -0.7781159281730652
+    ]
+   ],
+   "b_top2": [
+    [
+     " each",
+     -0.5566928386688232
+    ],
+    [
+     " a",
+     -0.8525111079216003
+    ]
+   ],
+   "a_lead": 0.16225814819335938,
+   "b_lead": 0.2958182692527771,
+   "swapped": true,
+   "grade_a": true,
+   "grade_b": true
+  },
+  {
+   "id": "test-1290",
+   "at": 156,
+   "kind": "choice",
+   "context": "8$ seeds.\nNow, add this amount to the",
+   "a_top2": [
+    [
+     " small",
+     -0.7446127533912659
+    ],
+    [
+     " number",
+     -0.7472677826881409
+    ]
+   ],
+   "b_top2": [
+    [
+     " number",
+     -0.7323709726333618
+    ],
+    [
+     " small",
+     -0.7683969140052795
+    ]
+   ],
+   "a_lead": 0.002655029296875,
+   "b_lead": 0.036025941371917725,
+   "swapped": true,
+   "grade_a": true,
+   "grade_b": true
+  },
+  {
+   "id": "test-1297",
+   "at": 269,
+   "kind": "choice",
+   "context": " 10 jars):*\n\n1.  **Total",
+   "a_top2": [
+    [
+     " cost",
+     -0.5238588452339172
+    ],
+    [
+     " Cost",
+     -0.9752501249313354
+    ]
+   ],
+   "b_top2": [
+    [
+     " Cost",
+     -0.7113001942634583
+    ],
+    [
+     " cost",
+     -0.7664645314216614
+    ]
+   ],
+   "a_lead": 0.4513912796974182,
+   "b_lead": 0.055164337158203125,
+   "swapped": true,
+   "grade_a": true,
+   "grade_b": true
+  },
+  {
+   "id": "test-1298",
+   "at": 359,
+   "kind": "choice",
+   "context": " 100 cents in a dollar, divide the total",
+   "a_top2": [
+    [
+     " cents",
+     -0.5109302997589111
+    ],
+    [
+     " number",
+     -0.9164021015167236
+    ]
+   ],
+   "b_top2": [
+    [
+     " number",
+     -0.6562255024909973
+    ],
+    [
+     " cents",
+     -0.7316993474960327
+    ]
+   ],
+   "a_lead": 0.4054718017578125,
+   "b_lead": 0.0754738450050354,
+   "swapped": true,
+   "grade_a": true,
+   "grade_b": true
+  },
+  {
+   "id": "test-130",
+   "at": 42,
+   "kind": "choice",
+   "context": " seasonal workers.\nInitial number of elves = 60",
+   "a_top2": [
+    [
+     "\n\n",
+     -0.6767603754997253
+    ],
+    [
+     ".",
+     -0.7098070383071899
+    ]
+   ],
+   "b_top2": [
+    [
+     ".",
+     -0.5650520324707031
+    ],
+    [
+     "\n\n",
+     -0.8400955200195312
+    ]
+   ],
+   "a_lead": 0.0330466628074646,
+   "b_lead": 0.2750434875488281,
+   "swapped": true,
+   "grade_a": true,
+   "grade_b": true
+  },
+  {
+   "id": "test-1300",
+   "at": 293,
+   "kind": "choice",
+   "context": "2 \\text{ weeks} = 30$ cars",
+   "a_top2": [
+    [
+     ")*",
+     -0.7944874167442322
+    ],
+    [
+     ".)",
+     -0.9129509329795837
+    ]
+   ],
+   "b_top2": [
+    [
+     ".)",
+     -0.774311363697052
+    ],
+    [
+     ")*",
+     -0.9074461460113525
+    ]
+   ],
+   "a_lead": 0.11846351623535156,
+   "b_lead": 0.13313478231430054,
+   "swapped": true,
+   "grade_a": true,
+   "grade_b": true
+  },
+  {
+   "id": "test-141",
+   "at": 342,
+   "kind": "choice",
+   "context": "6.  **Calculate the number of baby bees ($B",
+   "a_top2": [
+    [
+     "$",
+     -0.6504617929458618
+    ],
+    [
+     "$)",
+     -0.7379156351089478
+    ]
+   ],
+   "b_top2": [
+    [
+     "$)",
+     -0.6577733755111694
+    ],
+    [
+     "$",
+     -0.7299932241439819
+    ]
+   ],
+   "a_lead": 0.08745384216308594,
+   "b_lead": 0.0722198486328125,
+   "swapped": true,
+   "grade_a": true,
+   "grade_b": true
+  },
+  {
+   "id": "test-143",
+   "at": 83,
+   "kind": "choice",
+   "context": " nonfood items and calculate the tax on them.**\nThe",
+   "a_top2": [
+    [
+     " items",
+     -0.8914992809295654
+    ],
+    [
+     " problem",
+     -1.156904935836792
+    ]
+   ],
+   "b_top2": [
+    [
+     " problem",
+     -0.9601894021034241
+    ],
+    [
+     " items",
+     -1.1081463098526
+    ]
+   ],
+   "a_lead": 0.26540565490722656,
+   "b_lead": 0.14795690774917603,
+   "swapped": true,
+   "grade_a": true,
+   "grade_b": false
+  },
+  {
+   "id": "test-147",
+   "at": 224,
+   "kind": "choice",
+   "context": "   We need to calculate the total number of bees that left",
+   "a_top2": [
+    [
+     " *",
+     -0.7193076610565186
+    ],
+    [
+     " before",
+     -0.7652729153633118
+    ]
+   ],
+   "b_top2": [
+    [
+     " before",
+     -0.7444033026695251
+    ],
+    [
+     " *",
+     -0.7460817098617554
+    ]
+   ],
+   "a_lead": 0.04596525430679321,
+   "b_lead": 0.0016784071922302246,
+   "swapped": true,
+   "grade_a": true,
+   "grade_b": true
+  },
+  {
+   "id": "test-151",
+   "at": 29,
+   "kind": "choice",
+   "context": " cost per tire:** Each tire costs 25 cents,",
+   "a_top2": [
+    [
+     " which",
+     -0.6679506897926331
+    ],
+    [
+     " or",
+     -0.7189950942993164
+    ]
+   ],
+   "b_top2": [
+    [
+     " or",
+     -0.6498726606369019
+    ],
+    [
+     " which",
+     -0.7383794188499451
+    ]
+   ],
+   "a_lead": 0.05104440450668335,
+   "b_lead": 0.08850675821304321,
+   "swapped": true,
+   "grade_a": true,
+   "grade_b": true
+  },
+  {
+   "id": "test-161",
+   "at": 57,
+   "kind": "choice",
+   "context": "\n*   Clownfish caught by Anakin: 3",
+   "a_top2": [
+    [
+     "\n\n",
+     -0.5630636215209961
+    ],
+    [
+     "\n",
+     -0.8427190780639648
+    ]
+   ],
+   "b_top2": [
+    [
+     "\n",
+     -0.5693163871765137
+    ],
+    [
+     "\n\n",
+     -0.8345084190368652
+    ]
+   ],
+   "a_lead": 0.27965545654296875,
+   "b_lead": 0.26519203186035156,
+   "swapped": true,
+   "grade_a": true,
+   "grade_b": true
+  },
+  {
+   "id": "test-164",
+   "at": 55,
+   "kind": "choice",
+   "context": "3 fewer hours of freelance work.\n    *   Cost",
+   "a_top2": [
+    [
+     ":",
+     -0.742598295211792
+    ],
+    [
+     " (",
+     -0.747206449508667
+    ]
+   ],
+   "b_top2": [
+    [
+     " (",
+     -0.6573969125747681
+    ],
+    [
+     ":",
+     -0.8362528085708618
+    ]
+   ],
+   "a_lead": 0.004608154296875,
+   "b_lead": 0.17885589599609375,
+   "swapped": true,
+   "grade_a": true,
+   "grade_b": true
+  },
+  {
+   "id": "test-168",
+   "at": 207,
+   "kind": "choice",
+   "context": "$\n\n5.  **Final check:**\n    If",
+   "a_top2": [
+    [
+     " Ethel",
+     -0.2216406911611557
+    ],
+    [
+     " Jimmy",
+     -1.6157294511795044
+    ]
+   ],
+   "b_top2": [
+    [
+     " Jimmy",
+     -0.5830827951431274
+    ],
+    [
+     " Ethel",
+     -0.8169561624526978
+    ]
+   ],
+   "a_lead": 1.3940887600183487,
+   "b_lead": 0.2338733673095703,
+   "swapped": true,
+   "grade_a": true,
+   "grade_b": true
+  },
+  {
+   "id": "test-170",
+   "at": 92,
+   "kind": "choice",
+   "context": "C_J$) = $3 \\times C_H",
+   "a_top2": [
+    [
+     "$",
+     -0.5884426832199097
+    ],
+    [
+     " =",
+     -0.8101109266281128
+    ]
+   ],
+   "b_top2": [
+    [
+     " =",
+     -0.6508513689041138
+    ],
+    [
+     "$",
+     -0.7373115420341492
+    ]
+   ],
+   "a_lead": 0.22166824340820312,
+   "b_lead": 0.0864601731300354,
+   "swapped": true,
+   "grade_a": true,
+   "grade_b": true
+  },
+  {
+   "id": "test-186",
+   "at": 300,
+   "kind": "choice",
+   "context": "   The problem asks for the number of rats in *each",
+   "a_top2": [
+    [
+     "*",
+     -0.6464730501174927
+    ],
+    [
+     " cage",
+     -0.7421170473098755
+    ]
+   ],
+   "b_top2": [
+    [
+     " cage",
+     -0.6576212644577026
+    ],
+    [
+     "*",
+     -0.7299917340278625
+    ]
+   ],
+   "a_lead": 0.09564399719238281,
+   "b_lead": 0.07237046957015991,
+   "swapped": true,
+   "grade_a": false,
+   "grade_b": false
+  },
+  {
+   "id": "test-194",
+   "at": 48,
+   "kind": "choice",
+   "context": ".  **Determine the cost per crayon:** One crayon costs",
+   "a_top2": [
+    [
+     " \\$",
+     -0.9283017516136169
+    ],
+    [
+     " $\\$",
+     -0.9548940062522888
+    ]
+   ],
+   "b_top2": [
+    [
+     " $\\$",
+     -0.8628168106079102
+    ],
+    [
+     " \\$",
+     -0.9200429320335388
+    ]
+   ],
+   "a_lead": 0.026592254638671875,
+   "b_lead": 0.05722612142562866,
+   "swapped": true,
+   "grade_a": true,
+   "grade_b": true
+  },
+  {
+   "id": "test-206",
+   "at": 51,
+   "kind": "choice",
+   "context": " will use the minimum stated frequency of 5 times per week",
+   "a_top2": [
+    [
+     ".",
+     -0.7378726601600647
+    ],
+    [
+     " for",
+     -0.7754168510437012
+    ]
+   ],
+   "b_top2": [
+    [
+     " for",
+     -0.7145033478736877
+    ],
+    [
+     ".",
+     -0.7830916047096252
+    ]
+   ],
+   "a_lead": 0.037544190883636475,
+   "b_lead": 0.0685882568359375,
+   "swapped": true,
+   "grade_a": true,
+   "grade_b": true
+  },
+  {
+   "id": "test-236",
+   "at": 22,
+   "kind": "choice",
+   "context": "\n\n**1. Understand the initial situation:**\nRam starts",
+   "a_top2": [
+    [
+     " by",
+     -0.6422399878501892
+    ],
+    [
+     " with",
+     -0.746785581111908
+    ]
+   ],
+   "b_top2": [
+    [
+     " with",
+     -0.6024606227874756
+    ],
+    [
+     " by",
+     -0.7928854823112488
+    ]
+   ],
+   "a_lead": 0.10454559326171875,
+   "b_lead": 0.1904248595237732,
+   "swapped": true,
+   "grade_a": false,
+   "grade_b": false
+  },
+  {
+   "id": "test-237",
+   "at": 47,
+   "kind": "choice",
+   "context": "**Step 2: Calculate the total amount of money Johnny",
+   "a_top2": [
+    [
+     " had",
+     -0.6281176805496216
+    ],
+    [
+     " invested",
+     -0.7634783983230591
+    ]
+   ],
+   "b_top2": [
+    [
+     " invested",
+     -0.6028813123703003
+    ],
+    [
+     " had",
+     -0.7935837507247925
+    ]
+   ],
+   "a_lead": 0.1353607177734375,
+   "b_lead": 0.1907024383544922,
+   "swapped": true,
+   "grade_a": true,
+   "grade_b": true
+  },
+  {
+   "id": "test-240",
+   "at": 79,
+   "kind": "choice",
+   "context": "\n* \"James has 6 more candies than Robert\":",
+   "a_top2": [
+    [
+     " $",
+     -0.675694465637207
+    ],
+    [
+     "\n",
+     -0.7220335006713867
+    ]
+   ],
+   "b_top2": [
+    [
+     "\n",
+     -0.5847113132476807
+    ],
+    [
+     " $",
+     -0.8272058963775635
+    ]
+   ],
+   "a_lead": 0.04633903503417969,
+   "b_lead": 0.2424945831298828,
+   "swapped": true,
+   "grade_a": true,
+   "grade_b": true
+  },
+  {
+   "id": "test-245",
+   "at": 249,
+   "kind": "choice",
+   "context": " = 28$.\n\n4.  **Use the",
+   "a_top2": [
+    [
+     " condition",
+     -0.7130976319313049
+    ],
+    [
+     " given",
+     -0.7997961640357971
+    ]
+   ],
+   "b_top2": [
+    [
+     " given",
+     -0.6754448413848877
+    ],
+    [
+     " condition",
+     -0.8236363530158997
+    ]
+   ],
+   "a_lead": 0.08669853210449219,
+   "b_lead": 0.14819151163101196,
+   "swapped": true,
+   "grade_a": false,
+   "grade_b": false
+  },
+  {
+   "id": "test-25",
+   "at": 56,
+   "kind": "choice",
+   "context": " the milk:**\n    Marie bought 5 packs of milk",
+   "a_top2": [
+    [
+     ",",
+     -0.6104455590248108
+    ],
+    [
+     " at",
+     -0.7834516167640686
+    ]
+   ],
+   "b_top2": [
+    [
+     " at",
+     -0.609964907169342
+    ],
+    [
+     ",",
+     -0.7840276956558228
+    ]
+   ],
+   "a_lead": 0.1730060577392578,
+   "b_lead": 0.1740627884864807,
+   "swapped": true,
+   "grade_a": true,
+   "grade_b": true
+  },
+  {
+   "id": "test-253",
+   "at": 32,
+   "kind": "choice",
+   "context": " Bill starts on the 3rd floor.\n    Starting",
+   "a_top2": [
+    [
+     " Floor",
+     -0.6548676490783691
+    ],
+    [
+     " floor",
+     -0.732950747013092
+    ]
+   ],
+   "b_top2": [
+    [
+     " floor",
+     -0.6273748874664307
+    ],
+    [
+     " Floor",
+     -0.7635519504547119
+    ]
+   ],
+   "a_lead": 0.0780830979347229,
+   "b_lead": 0.13617706298828125,
+   "swapped": true,
+   "grade_a": true,
+   "grade_b": true
+  },
+  {
+   "id": "test-255",
+   "at": 196,
+   "kind": "choice",
+   "context": " stall.\n\n4.  **Calculate the total number of",
+   "a_top2": [
+    [
+     " new",
+     -0.5861119627952576
+    ],
+    [
+     " cows",
+     -0.8197164535522461
+    ]
+   ],
+   "b_top2": [
+    [
+     " cows",
+     -0.3894917666912079
+    ],
+    [
+     " new",
+     -1.1384332180023193
+    ]
+   ],
+   "a_lead": 0.23360449075698853,
+   "b_lead": 0.7489414513111115,
+   "swapped": true,
+   "grade_a": false,
+   "grade_b": false
+  },
+  {
+   "id": "test-271",
+   "at": 15,
+   "kind": "choice",
+   "context": " step-by-step solution:\n\n1.  **",
+   "a_top2": [
+    [
+     "Calculate",
+     -0.8248562812805176
+    ],
+    [
+     "Determine",
+     -0.8871797919273376
+    ]
+   ],
+   "b_top2": [
+    [
+     "Determine",
+     -0.6632850766181946
+    ],
+    [
+     "Calculate",
+     -1.1832005977630615
+    ]
+   ],
+   "a_lead": 0.06232351064682007,
+   "b_lead": 0.5199155211448669,
+   "swapped": true,
+   "grade_a": true,
+   "grade_b": true
+  },
+  {
+   "id": "test-28",
+   "at": 95,
+   "kind": "choice",
+   "context": " stop was 15 miles before the end of the trip",
+   "a_top2": [
+    [
+     ".",
+     -0.6122356057167053
+    ],
+    [
+     " (",
+     -0.7812190651893616
+    ]
+   ],
+   "b_top2": [
+    [
+     " (",
+     -0.6581555604934692
+    ],
+    [
+     ".",
+     -0.7294389009475708
+    ]
+   ],
+   "a_lead": 0.16898345947265625,
+   "b_lead": 0.07128334045410156,
+   "swapped": true,
+   "grade_a": true,
+   "grade_b": true
+  },
+  {
+   "id": "test-29",
+   "at": 185,
+   "kind": "choice",
+   "context": ":**\n    Total cost of heels ($H_{total}$)",
+   "a_top2": [
+    [
+     " $=",
+     -1.087674617767334
+    ],
+    [
+     " =",
+     -1.10304594039917
+    ]
+   ],
+   "b_top2": [
+    [
+     " is",
+     -1.050229549407959
+    ],
+    [
+     " $=",
+     -1.0824580192565918
+    ]
+   ],
+   "a_lead": 0.015371322631835938,
+   "b_lead": 0.03222846984863281,
+   "swapped": false,
+   "grade_a": true,
+   "grade_b": true
+  },
+  {
+   "id": "test-299",
+   "at": 11,
+   "kind": "choice",
+   "context": "Here is the step-by-step calculation to determine",
+   "a_top2": [
+    [
+     " John",
+     -0.6780006885528564
+    ],
+    [
+     " the",
+     -0.7818921208381653
+    ]
+   ],
+   "b_top2": [
+    [
+     " the",
+     -0.613425612449646
+    ],
+    [
+     " John",
+     -0.8877003788948059
+    ]
+   ],
+   "a_lead": 0.10389143228530884,
+   "b_lead": 0.2742747664451599,
+   "swapped": true,
+   "grade_a": true,
+   "grade_b": true
+  },
+  {
+   "id": "test-3",
+   "at": 70,
+   "kind": "choice",
+   "context": ".  **Calculate the total number of sprints per week:**",
+   "a_top2": [
+    [
+     " Multiply",
+     -0.529657244682312
+    ],
+    [
+     "\n",
+     -0.9029138684272766
+    ]
+   ],
+   "b_top2": [
+    [
+     "\n",
+     -0.6573326587677002
+    ],
+    [
+     " Multiply",
+     -0.7434551119804382
+    ]
+   ],
+   "a_lead": 0.3732566237449646,
+   "b_lead": 0.08612245321273804,
+   "swapped": true,
+   "grade_a": true,
+   "grade_b": true
+  },
+  {
+   "id": "test-30",
+   "at": 125,
+   "kind": "choice",
+   "context": "\nValue of one part = $\\frac{\\text{Total",
+   "a_top2": [
+    [
+     " age",
+     -0.6440026760101318
+    ],
+    [
+     " Age",
+     -0.7448327541351318
+    ]
+   ],
+   "b_top2": [
+    [
+     " Age",
+     -0.6759280562400818
+    ],
+    [
+     " age",
+     -0.7106685042381287
+    ]
+   ],
+   "a_lead": 0.100830078125,
+   "b_lead": 0.034740447998046875,
+   "swapped": true,
+   "grade_a": true,
+   "grade_b": true
+  },
+  {
+   "id": "test-306",
+   "at": 175,
+   "kind": "choice",
+   "context": "0$ loaves.\n\n**Step 4: Calculate the",
+   "a_top2": [
+    [
+     " number",
+     -0.7245404124259949
+    ],
+    [
+     " amount",
+     -0.9219757914543152
+    ]
+   ],
+   "b_top2": [
+    [
+     " amount",
+     -0.7984433770179749
+    ],
+    [
+     " number",
+     -0.8369946479797363
+    ]
+   ],
+   "a_lead": 0.1974353790283203,
+   "b_lead": 0.038551270961761475,
+   "swapped": true,
+   "grade_a": false,
+   "grade_b": false
+  },
+  {
+   "id": "test-314",
+   "at": 140,
+   "kind": "choice",
+   "context": "        $$O + D + S = 105",
+   "a_top2": [
+    [
+     "$$",
+     -0.6704996228218079
+    ],
+    [
+     " \\",
+     -0.7163199186325073
+    ]
+   ],
+   "b_top2": [
+    [
+     " \\",
+     -0.6540194749832153
+    ],
+    [
+     "$$",
+     -0.7338687181472778
+    ]
+   ],
+   "a_lead": 0.04582029581069946,
+   "b_lead": 0.0798492431640625,
+   "swapped": true,
+   "grade_a": true,
+   "grade_b": true
+  },
+  {
+   "id": "test-322",
+   "at": 84,
+   "kind": "choice",
+   "context": " $3B + 2 = 26$.\n",
+   "a_top2": [
+    [
+     "Solve",
+     -0.7507526278495789
+    ],
+    [
+     "Subtract",
+     -0.7933151125907898
+    ]
+   ],
+   "b_top2": [
+    [
+     "Subtract",
+     -0.7204526662826538
+    ],
+    [
+     "Solve",
+     -0.8148892521858215
+    ]
+   ],
+   "a_lead": 0.04256248474121094,
+   "b_lead": 0.09443658590316772,
+   "swapped": true,
+   "grade_a": true,
+   "grade_b": true
+  },
+  {
+   "id": "test-324",
+   "at": 14,
+   "kind": "choice",
+   "context": " the step-by-step solution to the problem:\n\n",
+   "a_top2": [
+    [
+     "1",
+     -0.49776074290275574
+    ],
+    [
+     "**",
+     -0.9367122650146484
+    ]
+   ],
+   "b_top2": [
+    [
+     "**",
+     -0.6259220838546753
+    ],
+    [
+     "1",
+     -0.7658643126487732
+    ]
+   ],
+   "a_lead": 0.4389515221118927,
+   "b_lead": 0.1399422287940979,
+   "swapped": true,
+   "grade_a": true,
+   "grade_b": true
+  },
+  {
+   "id": "test-327",
+   "at": 13,
+   "kind": "choice",
+   "context": " is the step-by-step solution:\n\n1.",
+   "a_top2": [
+    [
+     " **",
+     -0.6282269954681396
+    ],
+    [
+     "  ",
+     -0.7625768184661865
+    ]
+   ],
+   "b_top2": [
+    [
+     "  ",
+     -0.6837279200553894
+    ],
+    [
+     " **",
+     -0.7026564478874207
+    ]
+   ],
+   "a_lead": 0.13434982299804688,
+   "b_lead": 0.01892852783203125,
+   "swapped": true,
+   "grade_a": true,
+   "grade_b": true
+  },
+  {
+   "id": "test-33",
+   "at": 364,
+   "kind": "choice",
+   "context": " 110$ (Correct)\n    *   ",
+   "a_top2": [
+    [
+     "Difference",
+     -0.5346634984016418
+    ],
+    [
+     "Gold",
+     -0.8816141486167908
+    ]
+   ],
+   "b_top2": [
+    [
+     "Gold",
+     -0.6263323426246643
+    ],
+    [
+     "Difference",
+     -0.764796257019043
+    ]
+   ],
+   "a_lead": 0.3469506502151489,
+   "b_lead": 0.13846391439437866,
+   "swapped": true,
+   "grade_a": true,
+   "grade_b": true
+  },
+  {
+   "id": "test-331",
+   "at": 73,
+   "kind": "choice",
+   "context": ": 2000 hours\n    *   Gross",
+   "a_top2": [
+    [
+     " Income",
+     -0.6533516049385071
+    ],
+    [
+     " Annual",
+     -0.7521036267280579
+    ]
+   ],
+   "b_top2": [
+    [
+     " Annual",
+     -0.6659362316131592
+    ],
+    [
+     " Income",
+     -0.7376563549041748
+    ]
+   ],
+   "a_lead": 0.09875202178955078,
+   "b_lead": 0.07172012329101562,
+   "swapped": true,
+   "grade_a": true,
+   "grade_b": true
+  },
+  {
+   "id": "test-339",
+   "at": 407,
+   "kind": "choice",
+   "context": " 4 = 80$$\n\nTotal number of legs",
+   "a_top2": [
+    [
+     " all",
+     -0.531761884689331
+    ],
+    [
+     ":",
+     -1.1027305126190186
+    ]
+   ],
+   "b_top2": [
+    [
+     ":",
+     -0.7245818972587585
+    ],
+    [
+     " all",
+     -0.8235522508621216
+    ]
+   ],
+   "a_lead": 0.5709686279296875,
+   "b_lead": 0.09897035360336304,
+   "swapped": true,
+   "grade_a": true,
+   "grade_b": true
+  },
+  {
+   "id": "test-346",
+   "at": 148,
+   "kind": "choice",
+   "context": " husband eats per week:**\nHer husband eats 1 cookie",
+   "a_top2": [
+    [
+     " per",
+     -0.6202406883239746
+    ],
+    [
+     " a",
+     -0.7717956900596619
+    ]
+   ],
+   "b_top2": [
+    [
+     " a",
+     -0.6705103516578674
+    ],
+    [
+     " per",
+     -0.7163134217262268
+    ]
+   ],
+   "a_lead": 0.15155500173568726,
+   "b_lead": 0.045803070068359375,
+   "swapped": true,
+   "grade_a": true,
+   "grade_b": true
+  },
+  {
+   "id": "test-358",
+   "at": 24,
+   "kind": "choice",
+   "context": "Step 1: Calculate the cost of one lollipop.**\n",
+   "a_top2": [
+    [
+     "Each",
+     -0.5814356207847595
+    ],
+    [
+     "The",
+     -0.8191179633140564
+    ]
+   ],
+   "b_top2": [
+    [
+     "The",
+     -0.6194820404052734
+    ],
+    [
+     "Each",
+     -0.7728996276855469
+    ]
+   ],
+   "a_lead": 0.23768234252929688,
+   "b_lead": 0.15341758728027344,
+   "swapped": true,
+   "grade_a": false,
+   "grade_b": true
+  },
+  {
+   "id": "test-385",
+   "at": 181,
+   "kind": "choice",
+   "context": " female members could not make it to the show.**\nHalf",
+   "a_top2": [
+    [
+     " of",
+     -0.5267742276191711
+    ],
+    [
+     " the",
+     -0.893912136554718
+    ]
+   ],
+   "b_top2": [
+    [
+     " the",
+     -0.6927319169044495
+    ],
+    [
+     " of",
+     -0.6943874955177307
+    ]
+   ],
+   "a_lead": 0.3671379089355469,
+   "b_lead": 0.00165557861328125,
+   "swapped": true,
+   "grade_a": true,
+   "grade_b": true
+  },
+  {
+   "id": "test-386",
+   "at": 17,
+   "kind": "choice",
+   "context": "by-step solution to find Wilson's current math grade",
+   "a_top2": [
+    [
+     ".",
+     -0.6681522727012634
+    ],
+    [
+     ":",
+     -0.7187828421592712
+    ]
+   ],
+   "b_top2": [
+    [
+     ":",
+     -0.5861120820045471
+    ],
+    [
+     ".",
+     -0.8130274415016174
+    ]
+   ],
+   "a_lead": 0.05063056945800781,
+   "b_lead": 0.2269153594970703,
+   "swapped": true,
+   "grade_a": true,
+   "grade_b": true
+  },
+  {
+   "id": "test-389",
+   "at": 45,
+   "kind": "choice",
+   "context": " bracelet for $\\$30$.\n* This bracelet gives him",
+   "a_top2": [
+    [
+     " ",
+     -0.4728403389453888
+    ],
+    [
+     " access",
+     -0.9789934754371643
+    ]
+   ],
+   "b_top2": [
+    [
+     " access",
+     -0.6256164908409119
+    ],
+    [
+     " ",
+     -0.767841637134552
+    ]
+   ],
+   "a_lead": 0.5061531364917755,
+   "b_lead": 0.14222514629364014,
+   "swapped": true,
+   "grade_a": true,
+   "grade_b": true
+  },
+  {
+   "id": "test-393",
+   "at": 241,
+   "kind": "choice",
+   "context": " hours}$.\n\n**Step 3: Calculate the percentage of",
+   "a_top2": [
+    [
+     " total",
+     -0.5866501331329346
+    ],
+    [
+     " time",
+     -0.8329470157623291
+    ]
+   ],
+   "b_top2": [
+    [
+     " time",
+     -0.5960010290145874
+    ],
+    [
+     " total",
+     -0.8172515034675598
+    ]
+   ],
+   "a_lead": 0.24629688262939453,
+   "b_lead": 0.2212504744529724,
+   "swapped": true,
+   "grade_a": true,
+   "grade_b": true
+  },
+  {
+   "id": "test-4",
+   "at": 18,
+   "kind": "choice",
+   "context": "-step solution:\n\n1.  **Determine the feed",
+   "a_top2": [
+    [
+     " required",
+     -0.714844286441803
+    ],
+    [
+     " given",
+     -0.9533610939979553
+    ]
+   ],
+   "b_top2": [
+    [
+     " given",
+     -0.7322988510131836
+    ],
+    [
+     " required",
+     -0.866999626159668
+    ]
+   ],
+   "a_lead": 0.23851680755615234,
+   "b_lead": 0.13470077514648438,
+   "swapped": true,
+   "grade_a": true,
+   "grade_b": true
+  },
+  {
+   "id": "test-408",
+   "at": 90,
+   "kind": "choice",
+   "context": " words} = 45 \\times 200",
+   "a_top2": [
+    [
+     " =",
+     -0.6806280612945557
+    ],
+    [
+     "$$",
+     -0.7058299779891968
+    ]
+   ],
+   "b_top2": [
+    [
+     "$$",
+     -0.5697321891784668
+    ],
+    [
+     " =",
+     -0.8339724540710449
+    ]
+   ],
+   "a_lead": 0.025201916694641113,
+   "b_lead": 0.2642402648925781,
+   "swapped": true,
+   "grade_a": true,
+   "grade_b": true
+  },
+  {
+   "id": "test-416",
+   "at": 73,
+   "kind": "choice",
+   "context": "Heads Equation:** Each animal has one head.\n    ",
+   "a_top2": [
+    [
+     "$$",
+     -0.875844419002533
+    ],
+    [
+     "The",
+     -0.953452467918396
+    ]
+   ],
+   "b_top2": [
+    [
+     "The",
+     -0.782680332660675
+    ],
+    [
+     "$$",
+     -1.1200692653656006
+    ]
+   ],
+   "a_lead": 0.07760804891586304,
+   "b_lead": 0.33738893270492554,
+   "swapped": true,
+   "grade_a": true,
+   "grade_b": true
+  },
+  {
+   "id": "test-447",
+   "at": 179,
+   "kind": "choice",
+   "context": " how many points Joey is winning, which means calculating the difference",
+   "a_top2": [
+    [
+     " between",
+     -0.6797951459884644
+    ],
+    [
+     ":",
+     -0.7356594800949097
+    ]
+   ],
+   "b_top2": [
+    [
+     ":",
+     -0.6218971610069275
+    ],
+    [
+     " between",
+     -0.8013672828674316
+    ]
+   ],
+   "a_lead": 0.05586433410644531,
+   "b_lead": 0.17947012186050415,
+   "swapped": true,
+   "grade_a": true,
+   "grade_b": true
+  },
+  {
+   "id": "test-452",
+   "at": 14,
+   "kind": "choice",
+   "context": " the step-by-step solution to find the average speed",
+   "a_top2": [
+    [
+     ":",
+     -0.6754904389381409
+    ],
+    [
+     " of",
+     -1.297957420349121
+    ]
+   ],
+   "b_top2": [
+    [
+     " of",
+     -0.9258813261985779
+    ],
+    [
+     ":",
+     -1.000899314880371
+    ]
+   ],
+   "a_lead": 0.6224669814109802,
+   "b_lead": 0.07501798868179321,
+   "swapped": true,
+   "grade_a": true,
+   "grade_b": true
+  },
+  {
+   "id": "test-454",
+   "at": 183,
+   "kind": "choice",
+   "context": " \\times 30 = 240$\n\n",
+   "a_top2": [
+    [
+     "Alternatively",
+     -1.152873158454895
+    ],
+    [
+     "Thus",
+     -1.4920560121536255
+    ]
+   ],
+   "b_top2": [
+    [
+     "Thus",
+     -1.407042384147644
+    ],
+    [
+     "Therefore",
+     -1.4444130659103394
+    ]
+   ],
+   "a_lead": 0.33918285369873047,
+   "b_lead": 0.03737068176269531,
+   "swapped": false,
+   "grade_a": false,
+   "grade_b": false
+  },
+  {
+   "id": "test-456",
+   "at": 84,
+   "kind": "choice",
+   "context": " cards.\nFirst, calculate 60% of the",
+   "a_top2": [
+    [
+     " number",
+     -0.6029375791549683
+    ],
+    [
+     " red",
+     -0.7923087477684021
+    ]
+   ],
+   "b_top2": [
+    [
+     " red",
+     -0.625810980796814
+    ],
+    [
+     " number",
+     -0.765346884727478
+    ]
+   ],
+   "a_lead": 0.18937116861343384,
+   "b_lead": 0.13953590393066406,
+   "swapped": true,
+   "grade_a": true,
+   "grade_b": true
+  },
+  {
+   "id": "test-488",
+   "at": 32,
+   "kind": "choice",
+   "context": " of Pomeranians.**\nJana has 27 puppies",
+   "a_top2": [
+    [
+     ",",
+     -0.6880216002464294
+    ],
+    [
+     " in",
+     -0.7281731367111206
+    ]
+   ],
+   "b_top2": [
+    [
+     " in",
+     -0.5162296295166016
+    ],
+    [
+     ",",
+     -0.9457149505615234
+    ]
+   ],
+   "a_lead": 0.04015153646469116,
+   "b_lead": 0.4294853210449219,
+   "swapped": true,
+   "grade_a": true,
+   "grade_b": true
+  },
+  {
+   "id": "test-490",
+   "at": 162,
+   "kind": "choice",
+   "context": "$ days\n\n**Step 4: Final check.**\n",
+   "a_top2": [
+    [
+     "If",
+     -0.676079511642456
+    ],
+    [
+     "In",
+     -1.0725810527801514
+    ]
+   ],
+   "b_top2": [
+    [
+     "In",
+     -0.8289163708686829
+    ],
+    [
+     "If",
+     -0.871478796005249
+    ]
+   ],
+   "a_lead": 0.3965015411376953,
+   "b_lead": 0.04256242513656616,
+   "swapped": true,
+   "grade_a": true,
+   "grade_b": true
+  },
+  {
+   "id": "test-491",
+   "at": 63,
+   "kind": "choice",
+   "context": " so the total capacity is $2 \\times 24",
+   "a_top2": [
+    [
+     " =",
+     -0.7124295830726624
+    ],
+    [
+     "$",
+     -0.8514218330383301
+    ]
+   ],
+   "b_top2": [
+    [
+     "$",
+     -0.7557746767997742
+    ],
+    [
+     " =",
+     -0.8224861025810242
+    ]
+   ],
+   "a_lead": 0.13899224996566772,
+   "b_lead": 0.06671142578125,
+   "swapped": true,
+   "grade_a": true,
+   "grade_b": true
+  },
+  {
+   "id": "test-497",
+   "at": 122,
+   "kind": "choice",
+   "context": ". Calculate the total money spent:**\nTotal money spent =",
+   "a_top2": [
+    [
+     " Cost",
+     -0.7832461595535278
+    ],
+    [
+     " Total",
+     -0.7881518602371216
+    ]
+   ],
+   "b_top2": [
+    [
+     " Total",
+     -0.6967397332191467
+    ],
+    [
+     " Cost",
+     -0.9825387597084045
+    ]
+   ],
+   "a_lead": 0.00490570068359375,
+   "b_lead": 0.2857990264892578,
+   "swapped": true,
+   "grade_a": true,
+   "grade_b": true
+  },
+  {
+   "id": "test-499",
+   "at": 224,
+   "kind": "choice",
+   "context": "N = 25N$\n\n**5. Solve",
+   "a_top2": [
+    [
+     " for",
+     -0.6481015682220459
+    ],
+    [
+     " the",
+     -0.7403180003166199
+    ]
+   ],
+   "b_top2": [
+    [
+     " the",
+     -0.6086946725845337
+    ],
+    [
+     " for",
+     -0.7853952646255493
+    ]
+   ],
+   "a_lead": 0.09221643209457397,
+   "b_lead": 0.17670059204101562,
+   "swapped": true,
+   "grade_a": true,
+   "grade_b": true
+  },
+  {
+   "id": "test-513",
+   "at": 147,
+   "kind": "choice",
+   "context": "Step 3: Calculate the amount spent on CDs.**\n",
+   "a_top2": [
+    [
+     "Julie",
+     -0.684573769569397
+    ],
+    [
+     "She",
+     -0.701917290687561
+    ]
+   ],
+   "b_top2": [
+    [
+     "She",
+     -0.6248449683189392
+    ],
+    [
+     "Julie",
+     -0.7665685415267944
+    ]
+   ],
+   "a_lead": 0.017343521118164062,
+   "b_lead": 0.14172357320785522,
+   "swapped": true,
+   "grade_a": true,
+   "grade_b": true
+  },
+  {
+   "id": "test-530",
+   "at": 29,
+   "kind": "choice",
+   "context": "**Determine the baseline workout time:** Josh worked out for ",
+   "a_top2": [
+    [
+     "8",
+     -0.6022559404373169
+    ],
+    [
+     "4",
+     -0.7931681871414185
+    ]
+   ],
+   "b_top2": [
+    [
+     "4",
+     -0.5909442901611328
+    ],
+    [
+     "8",
+     -0.8070392608642578
+    ]
+   ],
+   "a_lead": 0.19091224670410156,
+   "b_lead": 0.216094970703125,
+   "swapped": true,
+   "grade_a": true,
+   "grade_b": true
+  },
+  {
+   "id": "test-532",
+   "at": 55,
+   "kind": "choice",
+   "context": " $J$ be Jame's current age.\n",
+   "a_top2": [
+    [
+     "$",
+     -0.7651829719543457
+    ],
+    [
+     "In",
+     -0.8333840370178223
+    ]
+   ],
+   "b_top2": [
+    [
+     "In",
+     -0.5633358955383301
+    ],
+    [
+     "$",
+     -1.0510832071304321
+    ]
+   ],
+   "a_lead": 0.06820106506347656,
+   "b_lead": 0.48774731159210205,
+   "swapped": true,
+   "grade_a": true,
+   "grade_b": false
+  },
+  {
+   "id": "test-533",
+   "at": 24,
+   "kind": "choice",
+   "context": ".  **Identify the known costs:**\n    *   ",
+   "a_top2": [
+    [
+     "Cost",
+     -0.343415230512619
+    ],
+    [
+     "Total",
+     -1.2370702028274536
+    ]
+   ],
+   "b_top2": [
+    [
+     "Total",
+     -0.6059603095054626
+    ],
+    [
+     "Cost",
+     -0.7896055579185486
+    ]
+   ],
+   "a_lead": 0.8936549723148346,
+   "b_lead": 0.18364524841308594,
+   "swapped": true,
+   "grade_a": true,
+   "grade_b": true
+  },
+  {
+   "id": "test-54",
+   "at": 82,
+   "kind": "choice",
+   "context": ".  **Calculate the number of kittens Patchy had:**",
+   "a_top2": [
+    [
+     " Patch",
+     -0.5834718942642212
+    ],
+    [
+     " The",
+     -0.8202024698257446
+    ]
+   ],
+   "b_top2": [
+    [
+     " The",
+     -0.6938106417655945
+    ],
+    [
+     " Patch",
+     -0.6966220140457153
+    ]
+   ],
+   "a_lead": 0.23673057556152344,
+   "b_lead": 0.0028113722801208496,
+   "swapped": true,
+   "grade_a": true,
+   "grade_b": true
+  },
+  {
+   "id": "test-555",
+   "at": 210,
+   "kind": "choice",
+   "context": " $\\$80 / \\$40 \\text{ per week",
+   "a_top2": [
+    [
+     "}",
+     -0.5208168029785156
+    ],
+    [
+     "}$",
+     -0.9015025496482849
+    ]
+   ],
+   "b_top2": [
+    [
+     "}$",
+     -0.6482826471328735
+    ],
+    [
+     "}",
+     -0.7401310205459595
+    ]
+   ],
+   "a_lead": 0.3806857466697693,
+   "b_lead": 0.09184837341308594,
+   "swapped": true,
+   "grade_a": true,
+   "grade_b": true
+  },
+  {
+   "id": "test-563",
+   "at": 86,
+   "kind": "choice",
+   "context": ": Determine the total number of candles needed.**\nThe problem",
+   "a_top2": [
+    [
+     " implies",
+     -0.7080328464508057
+    ],
+    [
+     " states",
+     -0.778728723526001
+    ]
+   ],
+   "b_top2": [
+    [
+     " states",
+     -0.6839192509651184
+    ],
+    [
+     " implies",
+     -0.8299667835235596
+    ]
+   ],
+   "a_lead": 0.07069587707519531,
+   "b_lead": 0.14604753255844116,
+   "swapped": true,
+   "grade_a": true,
+   "grade_b": false
+  },
+  {
+   "id": "test-564",
+   "at": 87,
+   "kind": "choice",
+   "context": " Judy read for 15 minutes each night\" as a",
+   "a_top2": [
+    [
+     " fixed",
+     -1.3086439371109009
+    ],
+    [
+     " total",
+     -1.6211516857147217
+    ]
+   ],
+   "b_top2": [
+    [
+     " total",
+     -1.2828820943832397
+    ],
+    [
+     " fixed",
+     -1.3559659719467163
+    ]
+   ],
+   "a_lead": 0.3125077486038208,
+   "b_lead": 0.07308387756347656,
+   "swapped": true,
+   "grade_a": false,
+   "grade_b": true
+  },
+  {
+   "id": "test-575",
+   "at": 298,
+   "kind": "choice",
+   "context": " + 12 = 36$\n(Alternatively",
+   "a_top2": [
+    [
+     ",",
+     -0.6552791595458984
+    ],
+    [
+     ":",
+     -0.7325058579444885
+    ]
+   ],
+   "b_top2": [
+    [
+     ":",
+     -0.645354688167572
+    ],
+    [
+     ",",
+     -0.7433391213417053
+    ]
+   ],
+   "a_lead": 0.07722669839859009,
+   "b_lead": 0.0979844331741333,
+   "swapped": true,
+   "grade_a": true,
+   "grade_b": true
+  },
+  {
+   "id": "test-577",
+   "at": 23,
+   "kind": "choice",
+   "context": " the average number of birds Mack saw per day.\n\n**",
+   "a_top2": [
+    [
+     "1",
+     -0.6855223774909973
+    ],
+    [
+     "Step",
+     -0.7008306980133057
+    ]
+   ],
+   "b_top2": [
+    [
+     "Step",
+     -0.5209318995475769
+    ],
+    [
+     "1",
+     -0.9013201594352722
+    ]
+   ],
+   "a_lead": 0.01530832052230835,
+   "b_lead": 0.3803882598876953,
+   "swapped": true,
+   "grade_a": true,
+   "grade_b": true
+  },
+  {
+   "id": "test-589",
+   "at": 35,
+   "kind": "choice",
+   "context": " over 5 weeks.**\n*   Rate of weight loss",
+   "a_top2": [
+    [
+     " with",
+     -0.811882495880127
+    ],
+    [
+     ":",
+     -1.1039376258850098
+    ]
+   ],
+   "b_top2": [
+    [
+     ":",
+     -0.9028435349464417
+    ],
+    [
+     " with",
+     -1.0525342226028442
+    ]
+   ],
+   "a_lead": 0.2920551300048828,
+   "b_lead": 0.1496906876564026,
+   "swapped": true,
+   "grade_a": true,
+   "grade_b": true
+  },
+  {
+   "id": "test-594",
+   "at": 97,
+   "kind": "choice",
+   "context": "\n\n**Step 2: Calculate the amount of protein John",
+   "a_top2": [
+    [
+     " gets",
+     -0.6798005700111389
+    ],
+    [
+     " eats",
+     -0.7980976104736328
+    ]
+   ],
+   "b_top2": [
+    [
+     " eats",
+     -0.42036160826683044
+    ],
+    [
+     " gets",
+     -1.2166905403137207
+    ]
+   ],
+   "a_lead": 0.1182970404624939,
+   "b_lead": 0.7963289320468903,
+   "swapped": true,
+   "grade_a": true,
+   "grade_b": true
+  },
+  {
+   "id": "test-617",
+   "at": 160,
+   "kind": "choice",
+   "context": "3: Calculate the number of days required to sell the entire",
+   "a_top2": [
+    [
+     " amount",
+     -0.6422646045684814
+    ],
+    [
+     " bull",
+     -1.0070679187774658
+    ]
+   ],
+   "b_top2": [
+    [
+     " bull",
+     -0.7388054728507996
+    ],
+    [
+     " amount",
+     -0.8518025279045105
+    ]
+   ],
+   "a_lead": 0.3648033142089844,
+   "b_lead": 0.11299705505371094,
+   "swapped": true,
+   "grade_a": true,
+   "grade_b": true
+  },
+  {
+   "id": "test-621",
+   "at": 56,
+   "kind": "choice",
+   "context": "\n\n**Step 2: Calculate the total number of weeks",
+   "a_top2": [
+    [
+     ".**",
+     -0.5942336320877075
+    ],
+    [
+     " of",
+     -1.207448124885559
+    ]
+   ],
+   "b_top2": [
+    [
+     " of",
+     -0.8240159153938293
+    ],
+    [
+     ".**",
+     -0.9117235541343689
+    ]
+   ],
+   "a_lead": 0.6132144927978516,
+   "b_lead": 0.08770763874053955,
+   "swapped": true,
+   "grade_a": true,
+   "grade_b": true
+  },
+  {
+   "id": "test-635",
+   "at": 48,
+   "kind": "choice",
+   "context": " per class is more than $\\$10$. Therefore, the",
+   "a_top2": [
+    [
+     " maximum",
+     -0.853664219379425
+    ],
+    [
+     " cost",
+     -0.899011492729187
+    ]
+   ],
+   "b_top2": [
+    [
+     " cost",
+     -0.7203333973884583
+    ],
+    [
+     " maximum",
+     -0.9449942708015442
+    ]
+   ],
+   "a_lead": 0.04534727334976196,
+   "b_lead": 0.22466087341308594,
+   "swapped": true,
+   "grade_a": false,
+   "grade_b": false
+  },
+  {
+   "id": "test-637",
+   "at": 128,
+   "kind": "choice",
+   "context": "Reggie ran 3 miles farther than Lynn.\n    ",
+   "a_top2": [
+    [
+     "This",
+     -0.48584336042404175
+    ],
+    [
+     "Reg",
+     -0.9641109704971313
+    ]
+   ],
+   "b_top2": [
+    [
+     "Reg",
+     -0.6445273756980896
+    ],
+    [
+     "This",
+     -0.7496318221092224
+    ]
+   ],
+   "a_lead": 0.4782676100730896,
+   "b_lead": 0.10510444641113281,
+   "swapped": true,
+   "grade_a": true,
+   "grade_b": true
+  },
+  {
+   "id": "test-64",
+   "at": 333,
+   "kind": "choice",
+   "context": " **Determine the amount of gas remaining in the tank after the",
+   "a_top2": [
+    [
+     " ",
+     -0.8858308792114258
+    ],
+    [
+     " first",
+     -0.9300356507301331
+    ]
+   ],
+   "b_top2": [
+    [
+     " first",
+     -0.8282101154327393
+    ],
+    [
+     " ",
+     -0.9718983769416809
+    ]
+   ],
+   "a_lead": 0.044204771518707275,
+   "b_lead": 0.14368826150894165,
+   "swapped": true,
+   "grade_a": true,
+   "grade_b": true
+  },
+  {
+   "id": "test-649",
+   "at": 301,
+   "kind": "choice",
+   "context": " week seems to be a specific data point, but the relationship",
+   "a_top2": [
+    [
+     " given",
+     -0.8679808378219604
+    ],
+    [
+     " $",
+     -0.9099367260932922
+    ]
+   ],
+   "b_top2": [
+    [
+     " $",
+     -0.775069534778595
+    ],
+    [
+     " given",
+     -1.0012485980987549
+    ]
+   ],
+   "a_lead": 0.04195588827133179,
+   "b_lead": 0.2261790633201599,
+   "swapped": true,
+   "grade_a": false,
+   "grade_b": false
+  },
+  {
+   "id": "test-655",
+   "at": 225,
+   "kind": "choice",
+   "context": " 15$ pages\nPages left = $\\frac{",
+   "a_top2": [
+    [
+     "3",
+     -0.6610051393508911
+    ],
+    [
+     "2",
+     -0.7263566851615906
+    ]
+   ],
+   "b_top2": [
+    [
+     "2",
+     -0.6795527338981628
+    ],
+    [
+     "3",
+     -0.7069289684295654
+    ]
+   ],
+   "a_lead": 0.06535154581069946,
+   "b_lead": 0.027376234531402588,
+   "swapped": true,
+   "grade_a": true,
+   "grade_b": true
+  },
+  {
+   "id": "test-664",
+   "at": 210,
+   "kind": "choice",
+   "context": " calculate $48 / 1.5$:\n$",
+   "a_top2": [
+    [
+     "1",
+     -0.5390898585319519
+    ],
+    [
+     "4",
+     -0.8753382563591003
+    ]
+   ],
+   "b_top2": [
+    [
+     "4",
+     -0.6175338625907898
+    ],
+    [
+     "1",
+     -0.7749492526054382
+    ]
+   ],
+   "a_lead": 0.33624839782714844,
+   "b_lead": 0.15741539001464844,
+   "swapped": true,
+   "grade_a": true,
+   "grade_b": true
+  },
+  {
+   "id": "test-666",
+   "at": 356,
+   "kind": "choice",
+   "context": "60$.\n\n**Step 5: Calculate how much",
+   "a_top2": [
+    [
+     " money",
+     -0.5100291967391968
+    ],
+    [
+     " each",
+     -0.922016441822052
+    ]
+   ],
+   "b_top2": [
+    [
+     " each",
+     -0.6926010847091675
+    ],
+    [
+     " money",
+     -0.6970548629760742
+    ]
+   ],
+   "a_lead": 0.4119872450828552,
+   "b_lead": 0.004453778266906738,
+   "swapped": true,
+   "grade_a": true,
+   "grade_b": true
+  },
+  {
+   "id": "test-667",
+   "at": 55,
+   "kind": "choice",
+   "context": " first three quarters:** There are 4 quarters in total,",
+   "a_top2": [
+    [
+     " but",
+     -0.4674067199230194
+    ],
+    [
+     " so",
+     -1.0215353965759277
+    ]
+   ],
+   "b_top2": [
+    [
+     " so",
+     -0.6689918041229248
+    ],
+    [
+     " but",
+     -0.7442730069160461
+    ]
+   ],
+   "a_lead": 0.5541286766529083,
+   "b_lead": 0.07528120279312134,
+   "swapped": true,
+   "grade_a": true,
+   "grade_b": true
+  },
+  {
+   "id": "test-67",
+   "at": 342,
+   "kind": "choice",
+   "context": "R$)\nInterpretation B: Twice the number of emeralds",
+   "a_top2": [
+    [
+     " equals",
+     -0.7332868576049805
+    ],
+    [
+     " is",
+     -0.8448916077613831
+    ]
+   ],
+   "b_top2": [
+    [
+     " is",
+     -0.7415649890899658
+    ],
+    [
+     " equals",
+     -0.8210594058036804
+    ]
+   ],
+   "a_lead": 0.11160475015640259,
+   "b_lead": 0.0794944167137146,
+   "swapped": true,
+   "grade_a": true,
+   "grade_b": true
+  },
+  {
+   "id": "test-681",
+   "at": 462,
+   "kind": "choice",
+   "context": " 96) + (73 + 61",
+   "a_top2": [
+    [
+     ")$",
+     -0.5620512962341309
+    ],
+    [
+     ")",
+     -0.844062328338623
+    ]
+   ],
+   "b_top2": [
+    [
+     ")",
+     -0.4949105978012085
+    ],
+    [
+     ")$",
+     -0.9406504034996033
+    ]
+   ],
+   "a_lead": 0.2820110321044922,
+   "b_lead": 0.4457398056983948,
+   "swapped": true,
+   "grade_a": true,
+   "grade_b": true
+  },
+  {
+   "id": "test-682",
+   "at": 42,
+   "kind": "choice",
+   "context": " of the dress in centimeters.\n\n**2. Model the",
+   "a_top2": [
+    [
+     " first",
+     -1.1832740306854248
+    ],
+    [
+     " extensions",
+     -1.2565391063690186
+    ]
+   ],
+   "b_top2": [
+    [
+     " extensions",
+     -1.1102012395858765
+    ],
+    [
+     " first",
+     -1.26137375831604
+    ]
+   ],
+   "a_lead": 0.07326507568359375,
+   "b_lead": 0.15117251873016357,
+   "swapped": true,
+   "grade_a": true,
+   "grade_b": true
+  },
+  {
+   "id": "test-686",
+   "at": 153,
+   "kind": "choice",
+   "context": "0$ cookies.\n\n**Step 4: Determine the",
+   "a_top2": [
+    [
+     " total",
+     -0.6741439700126648
+    ],
+    [
+     " number",
+     -0.7125255465507507
+    ]
+   ],
+   "b_top2": [
+    [
+     " number",
+     -0.4624447524547577
+    ],
+    [
+     " total",
+     -0.9935678243637085
+    ]
+   ],
+   "a_lead": 0.03838157653808594,
+   "b_lead": 0.5311230719089508,
+   "swapped": true,
+   "grade_a": true,
+   "grade_b": true
+  },
+  {
+   "id": "test-687",
+   "at": 11,
+   "kind": "choice",
+   "context": "Here is the step-by-step solution:\n\n",
+   "a_top2": [
+    [
+     "1",
+     -0.6915748715400696
+    ],
+    [
+     "**",
+     -0.6963241696357727
+    ]
+   ],
+   "b_top2": [
+    [
+     "**",
+     -0.6175597310066223
+    ],
+    [
+     "1",
+     -0.7771952152252197
+    ]
+   ],
+   "a_lead": 0.004749298095703125,
+   "b_lead": 0.1596354842185974,
+   "swapped": true,
+   "grade_a": true,
+   "grade_b": true
+  },
+  {
+   "id": "test-701",
+   "at": 101,
+   "kind": "choice",
+   "context": "\n\n**Step 2: Calculate the total number of seats",
+   "a_top2": [
+    [
+     " needed",
+     -0.9064822196960449
+    ],
+    [
+     ".**",
+     -0.9131922721862793
+    ]
+   ],
+   "b_top2": [
+    [
+     ".**",
+     -0.8038604855537415
+    ],
+    [
+     " needed",
+     -0.990408718585968
+    ]
+   ],
+   "a_lead": 0.006710052490234375,
+   "b_lead": 0.18654823303222656,
+   "swapped": true,
+   "grade_a": true,
+   "grade_b": true
+  },
+  {
+   "id": "test-721",
+   "at": 23,
+   "kind": "choice",
+   "context": "**1. Analyze the tapping rates:**\n*   **",
+   "a_top2": [
+    [
+     "Normal",
+     -0.63835209608078
+    ],
+    [
+     "T",
+     -0.7881295680999756
+    ]
+   ],
+   "b_top2": [
+    [
+     "T",
+     -0.6385645270347595
+    ],
+    [
+     "Normal",
+     -0.7909530997276306
+    ]
+   ],
+   "a_lead": 0.14977747201919556,
+   "b_lead": 0.1523885726928711,
+   "swapped": true,
+   "grade_a": true,
+   "grade_b": true
+  },
+  {
+   "id": "test-724",
+   "at": 104,
+   "kind": "choice",
+   "context": "**Step 3: Calculate the amount eaten by Bryce and",
+   "a_top2": [
+    [
+     " his",
+     -0.5680283308029175
+    ],
+    [
+     " two",
+     -0.8364437222480774
+    ]
+   ],
+   "b_top2": [
+    [
+     " two",
+     -0.5348968505859375
+    ],
+    [
+     " his",
+     -0.881495475769043
+    ]
+   ],
+   "a_lead": 0.2684153914451599,
+   "b_lead": 0.34659862518310547,
+   "swapped": true,
+   "grade_a": true,
+   "grade_b": true
+  },
+  {
+   "id": "test-734",
+   "at": 34,
+   "kind": "choice",
+   "context": " science books:**\n    Cindy has two math and science books",
+   "a_top2": [
+    [
+     ",",
+     -0.4312371611595154
+    ],
+    [
+     ".",
+     -1.049132227897644
+    ]
+   ],
+   "b_top2": [
+    [
+     ".",
+     -0.6921581029891968
+    ],
+    [
+     ",",
+     -0.6942790746688843
+    ]
+   ],
+   "a_lead": 0.6178950667381287,
+   "b_lead": 0.0021209716796875,
+   "swapped": true,
+   "grade_a": true,
+   "grade_b": true
+  },
+  {
+   "id": "test-74",
+   "at": 16,
+   "kind": "choice",
+   "context": "-by-step solution:\n\n**Step 1:",
+   "a_top2": [
+    [
+     " Round",
+     -0.5218722820281982
+    ],
+    [
+     " Determine",
+     -0.901776134967804
+    ]
+   ],
+   "b_top2": [
+    [
+     " Determine",
+     -0.6829158663749695
+    ],
+    [
+     " Round",
+     -0.7045851945877075
+    ]
+   ],
+   "a_lead": 0.3799038529396057,
+   "b_lead": 0.021669328212738037,
+   "swapped": true,
+   "grade_a": true,
+   "grade_b": true
+  },
+  {
+   "id": "test-758",
+   "at": 197,
+   "kind": "choice",
+   "context": "Final Price = $\\$133$\n\n*Alternative Method",
+   "a_top2": [
+    [
+     ":",
+     -0.6392105221748352
+    ],
+    [
+     " (",
+     -0.7725474834442139
+    ]
+   ],
+   "b_top2": [
+    [
+     " (",
+     -0.5868922472000122
+    ],
+    [
+     ":",
+     -0.8395453691482544
+    ]
+   ],
+   "a_lead": 0.13333696126937866,
+   "b_lead": 0.2526531219482422,
+   "swapped": true,
+   "grade_a": true,
+   "grade_b": true
+  },
+  {
+   "id": "test-761",
+   "at": 309,
+   "kind": "choice",
+   "context": "2}$$\n$$T = 27$$\n\n**",
+   "a_top2": [
+    [
+     "Check",
+     -1.01091730594635
+    ],
+    [
+     "Step",
+     -1.1775776147842407
+    ]
+   ],
+   "b_top2": [
+    [
+     "Step",
+     -0.9523170590400696
+    ],
+    [
+     "Check",
+     -1.1871670484542847
+    ]
+   ],
+   "a_lead": 0.16666030883789062,
+   "b_lead": 0.2348499894142151,
+   "swapped": true,
+   "grade_a": true,
+   "grade_b": true
+  },
+  {
+   "id": "test-775",
+   "at": 213,
+   "kind": "choice",
+   "context": ": Calculate the number of wheels left.**\nNumber of wheels",
+   "a_top2": [
+    [
+     " available",
+     -0.8069621920585632
+    ],
+    [
+     " Henry",
+     -0.9556609988212585
+    ]
+   ],
+   "b_top2": [
+    [
+     " Henry",
+     -0.7556688189506531
+    ],
+    [
+     " available",
+     -0.8719655871391296
+    ]
+   ],
+   "a_lead": 0.1486988067626953,
+   "b_lead": 0.11629676818847656,
+   "swapped": true,
+   "grade_a": true,
+   "grade_b": true
+  },
+  {
+   "id": "test-788",
+   "at": 103,
+   "kind": "choice",
+   "context": "3. Calculate the remaining cost John needs to cover:**\n",
+   "a_top2": [
+    [
+     "The",
+     -0.6832591891288757
+    ],
+    [
+     "Subtract",
+     -0.7582083940505981
+    ]
+   ],
+   "b_top2": [
+    [
+     "Subtract",
+     -0.5427331328392029
+    ],
+    [
+     "The",
+     -0.9161519408226013
+    ]
+   ],
+   "a_lead": 0.07494920492172241,
+   "b_lead": 0.37341880798339844,
+   "swapped": true,
+   "grade_a": true,
+   "grade_b": true
+  },
+  {
+   "id": "test-795",
+   "at": 32,
+   "kind": "choice",
+   "context": ".**\nThe original price of the jeans is $\\$40",
+   "a_top2": [
+    [
+     "$.",
+     -0.5793951749801636
+    ],
+    [
+     "$,",
+     -0.830802857875824
+    ]
+   ],
+   "b_top2": [
+    [
+     "$,",
+     -0.6322863101959229
+    ],
+    [
+     "$.",
+     -0.7644730806350708
+    ]
+   ],
+   "a_lead": 0.2514076828956604,
+   "b_lead": 0.13218677043914795,
+   "swapped": true,
+   "grade_a": true,
+   "grade_b": true
+  },
+  {
+   "id": "test-80",
+   "at": 283,
+   "kind": "choice",
+   "context": " left.**\nThe amount of water left is the initial total",
+   "a_top2": [
+    [
+     " minus",
+     -0.7566933035850525
+    ],
+    [
+     " amount",
+     -0.7719539999961853
+    ]
+   ],
+   "b_top2": [
+    [
+     " amount",
+     -0.6291436553001404
+    ],
+    [
+     " minus",
+     -0.9250668287277222
+    ]
+   ],
+   "a_lead": 0.015260696411132812,
+   "b_lead": 0.2959231734275818,
+   "swapped": true,
+   "grade_a": true,
+   "grade_b": true
+  },
+  {
+   "id": "test-82",
+   "at": 240,
+   "kind": "choice",
+   "context": "text{ pounds}$\n\n**Answer:** 623",
+   "a_top2": [
+    [
+     "",
+     -0.25153934955596924
+    ],
+    [
+     "\n\n",
+     -1.5038930177688599
+    ]
+   ],
+   "b_top2": [
+    [
+     "\n\n",
+     -0.3074335753917694
+    ],
+    [
+     "",
+     -1.3297781944274902
+    ]
+   ],
+   "a_lead": 1.2523536682128906,
+   "b_lead": 1.0223446190357208,
+   "swapped": true,
+   "grade_a": true,
+   "grade_b": true
+  },
+  {
+   "id": "test-822",
+   "at": 204,
+   "kind": "choice",
+   "context": " $\\$180.00 \\times 7$",
+   "a_top2": [
+    [
+     "\n\n",
+     -0.6222357749938965
+    ],
+    [
+     "\n",
+     -0.7694736123085022
+    ]
+   ],
+   "b_top2": [
+    [
+     "\n",
+     -0.5106683373451233
+    ],
+    [
+     "\n\n",
+     -0.916527271270752
+    ]
+   ],
+   "a_lead": 0.1472378373146057,
+   "b_lead": 0.40585893392562866,
+   "swapped": true,
+   "grade_a": true,
+   "grade_b": true
+  },
+  {
+   "id": "test-823",
+   "at": 46,
+   "kind": "choice",
+   "context": " game, Sasha scored 14 points.\nSasha",
+   "a_top2": [
+    [
+     "'",
+     -0.7150915861129761
+    ],
+    [
+     " (",
+     -0.9659632444381714
+    ]
+   ],
+   "b_top2": [
+    [
+     " (",
+     -0.6564861536026001
+    ],
+    [
+     "'",
+     -1.0222526788711548
+    ]
+   ],
+   "a_lead": 0.2508716583251953,
+   "b_lead": 0.3657665252685547,
+   "swapped": true,
+   "grade_a": false,
+   "grade_b": false
+  },
+  {
+   "id": "test-829",
+   "at": 11,
+   "kind": "choice",
+   "context": "Here is the step-by-step solution:\n\n",
+   "a_top2": [
+    [
+     "**",
+     -0.6097145080566406
+    ],
+    [
+     "1",
+     -0.7842465043067932
+    ]
+   ],
+   "b_top2": [
+    [
+     "1",
+     -0.6526610255241394
+    ],
+    [
+     "**",
+     -0.7354075908660889
+    ]
+   ],
+   "a_lead": 0.1745319962501526,
+   "b_lead": 0.08274656534194946,
+   "swapped": true,
+   "grade_a": true,
+   "grade_b": true
+  },
+  {
+   "id": "test-839",
+   "at": 259,
+   "kind": "choice",
+   "context": "2$ cows.\n\n**Step 4: Final check",
+   "a_top2": [
+    [
+     ".**",
+     -0.6411904096603394
+    ],
+    [
+     " (",
+     -0.7489365339279175
+    ]
+   ],
+   "b_top2": [
+    [
+     " (",
+     -0.4919944107532501
+    ],
+    [
+     ".**",
+     -0.9461475014686584
+    ]
+   ],
+   "a_lead": 0.10774612426757812,
+   "b_lead": 0.4541530907154083,
+   "swapped": true,
+   "grade_a": true,
+   "grade_b": true
+  },
+  {
+   "id": "test-855",
+   "at": 418,
+   "kind": "choice",
+   "context": "$6M + 9 = 87$\n\n",
+   "a_top2": [
+    [
+     "Solve",
+     -0.6447044014930725
+    ],
+    [
+     "Now",
+     -0.7440600991249084
+    ]
+   ],
+   "b_top2": [
+    [
+     "Now",
+     -0.5539054870605469
+    ],
+    [
+     "Solve",
+     -0.8549671173095703
+    ]
+   ],
+   "a_lead": 0.09935569763183594,
+   "b_lead": 0.30106163024902344,
+   "swapped": true,
+   "grade_a": true,
+   "grade_b": true
+  },
+  {
+   "id": "test-856",
+   "at": 187,
+   "kind": "choice",
+   "context": " interpret the result.**\n$54 \\div 8",
+   "a_top2": [
+    [
+     "$:",
+     -0.8076512217521667
+    ],
+    [
+     " =",
+     -1.0802266597747803
+    ]
+   ],
+   "b_top2": [
+    [
+     " =",
+     -0.9246953725814819
+    ],
+    [
+     "$:",
+     -0.9793199300765991
+    ]
+   ],
+   "a_lead": 0.2725754380226135,
+   "b_lead": 0.05462455749511719,
+   "swapped": true,
+   "grade_a": true,
+   "grade_b": true
+  },
+  {
+   "id": "test-858",
+   "at": 409,
+   "kind": "choice",
+   "context": " and infects 6 new people (total of 7",
+   "a_top2": [
+    [
+     " people",
+     -0.8253197073936462
+    ],
+    [
+     " times",
+     -0.896080493927002
+    ]
+   ],
+   "b_top2": [
+    [
+     " times",
+     -0.6318433284759521
+    ],
+    [
+     " people",
+     -1.1500815153121948
+    ]
+   ],
+   "a_lead": 0.07076078653335571,
+   "b_lead": 0.5182381868362427,
+   "swapped": true,
+   "grade_a": true,
+   "grade_b": true
+  },
+  {
+   "id": "test-871",
+   "at": 26,
+   "kind": "choice",
+   "context": " Calculate the number of pieces eaten on the first day.**\n",
+   "a_top2": [
+    [
+     "Tob",
+     -0.9494079947471619
+    ],
+    [
+     "The",
+     -1.0379700660705566
+    ]
+   ],
+   "b_top2": [
+    [
+     "The",
+     -0.8565836548805237
+    ],
+    [
+     "Tob",
+     -0.9883700013160706
+    ]
+   ],
+   "a_lead": 0.08856207132339478,
+   "b_lead": 0.13178634643554688,
+   "swapped": true,
+   "grade_a": true,
+   "grade_b": true
+  },
+  {
+   "id": "test-872",
+   "at": 175,
+   "kind": "choice",
+   "context": "3 bottles of soda.**\nCost of soda = Number of",
+   "a_top2": [
+    [
+     " bottles",
+     -0.6136817336082458
+    ],
+    [
+     " soda",
+     -0.7972716689109802
+    ]
+   ],
+   "b_top2": [
+    [
+     " soda",
+     -0.6764679551124573
+    ],
+    [
+     " bottles",
+     -0.7238751649856567
+    ]
+   ],
+   "a_lead": 0.18358993530273438,
+   "b_lead": 0.04740720987319946,
+   "swapped": true,
+   "grade_a": true,
+   "grade_b": true
+  },
+  {
+   "id": "test-889",
+   "at": 27,
+   "kind": "choice",
+   "context": ": Calculate the total number of petals on the orchids.**\n",
+   "a_top2": [
+    [
+     "*",
+     -0.5940186381340027
+    ],
+    [
+     "Jo",
+     -0.8034549951553345
+    ]
+   ],
+   "b_top2": [
+    [
+     "Jo",
+     -0.4493808150291443
+    ],
+    [
+     "*",
+     -1.0163592100143433
+    ]
+   ],
+   "a_lead": 0.2094363570213318,
+   "b_lead": 0.566978394985199,
+   "swapped": true,
+   "grade_a": true,
+   "grade_b": true
+  },
+  {
+   "id": "test-911",
+   "at": 283,
+   "kind": "choice",
+   "context": "0 \\times \\frac{2}{10} =",
+   "a_top2": [
+    [
+     " \\",
+     -0.641009509563446
+    ],
+    [
+     " ",
+     -0.7491695880889893
+    ]
+   ],
+   "b_top2": [
+    [
+     " ",
+     -0.6509886384010315
+    ],
+    [
+     " \\",
+     -0.7383013367652893
+    ]
+   ],
+   "a_lead": 0.10816007852554321,
+   "b_lead": 0.08731269836425781,
+   "swapped": true,
+   "grade_a": true,
+   "grade_b": true
+  },
+  {
+   "id": "test-912",
+   "at": 12,
+   "kind": "choice",
+   "context": "Here is the step-by-step solution:\n\n**",
+   "a_top2": [
+    [
+     "1",
+     -0.5591169595718384
+    ],
+    [
+     "Step",
+     -0.8479639291763306
+    ]
+   ],
+   "b_top2": [
+    [
+     "Step",
+     -0.632814884185791
+    ],
+    [
+     "1",
+     -0.7573551535606384
+    ]
+   ],
+   "a_lead": 0.2888469696044922,
+   "b_lead": 0.12454026937484741,
+   "swapped": true,
+   "grade_a": false,
+   "grade_b": false
+  },
+  {
+   "id": "test-914",
+   "at": 292,
+   "kind": "choice",
+   "context": " the starting point is mile 0, the tune-ups",
+   "a_top2": [
+    [
+     " occur",
+     -0.8703674077987671
+    ],
+    [
+     " are",
+     -0.9042858481407166
+    ]
+   ],
+   "b_top2": [
+    [
+     " are",
+     -0.8608208298683167
+    ],
+    [
+     " occur",
+     -0.900907576084137
+    ]
+   ],
+   "a_lead": 0.03391844034194946,
+   "b_lead": 0.04008674621582031,
+   "swapped": true,
+   "grade_a": true,
+   "grade_b": true
+  },
+  {
+   "id": "test-917",
+   "at": 121,
+   "kind": "choice",
+   "context": " of pieces eaten from the total number of pieces bought.\n",
+   "a_top2": [
+    [
+     "Pieces",
+     -0.6521428227424622
+    ],
+    [
+     "Remaining",
+     -0.7420056462287903
+    ]
+   ],
+   "b_top2": [
+    [
+     "Remaining",
+     -0.6408131718635559
+    ],
+    [
+     "Pieces",
+     -0.752793550491333
+    ]
+   ],
+   "a_lead": 0.08986282348632812,
+   "b_lead": 0.1119803786277771,
+   "swapped": true,
+   "grade_a": true,
+   "grade_b": true
+  },
+  {
+   "id": "test-92",
+   "at": 52,
+   "kind": "choice",
+   "context": " James (Ja).\n    *   James's age",
+   "a_top2": [
+    [
+     " is",
+     -1.0440237522125244
+    ],
+    [
+     " ($\\",
+     -1.1532118320465088
+    ]
+   ],
+   "b_top2": [
+    [
+     " ($\\",
+     -1.0229196548461914
+    ],
+    [
+     " is",
+     -1.2678823471069336
+    ]
+   ],
+   "a_lead": 0.10918807983398438,
+   "b_lead": 0.2449626922607422,
+   "swapped": true,
+   "grade_a": true,
+   "grade_b": true
+  },
+  {
+   "id": "test-93",
+   "at": 89,
+   "kind": "choice",
+   "context": " be able to run 2 seconds faster than Gerald.\n",
+   "a_top2": [
+    [
+     "Let",
+     -0.90987229347229
+    ],
+    [
+     "This",
+     -1.585085153579712
+    ]
+   ],
+   "b_top2": [
+    [
+     "This",
+     -1.144862174987793
+    ],
+    [
+     "Let",
+     -1.2952547073364258
+    ]
+   ],
+   "a_lead": 0.6752128601074219,
+   "b_lead": 0.1503925323486328,
+   "swapped": true,
+   "grade_a": false,
+   "grade_b": false
+  },
+  {
+   "id": "test-95",
+   "at": 177,
+   "kind": "choice",
+   "context": " number of girls = 120\n\n*(Alternatively,",
+   "a_top2": [
+    [
+     " if",
+     -1.1005971431732178
+    ],
+    [
+     " the",
+     -1.1563833951950073
+    ]
+   ],
+   "b_top2": [
+    [
+     " we",
+     -1.2025116682052612
+    ],
+    [
+     " if",
+     -1.2433937788009644
+    ]
+   ],
+   "a_lead": 0.05578625202178955,
+   "b_lead": 0.040882110595703125,
+   "swapped": false,
+   "grade_a": true,
+   "grade_b": true
+  },
+  {
+   "id": "test-956",
+   "at": 175,
+   "kind": "choice",
+   "context": " 6$ emails.\n\n5.  **Calculate the",
+   "a_top2": [
+    [
+     " remaining",
+     -0.6439852118492126
+    ],
+    [
+     " number",
+     -0.8108094930648804
+    ]
+   ],
+   "b_top2": [
+    [
+     " number",
+     -0.6254890561103821
+    ],
+    [
+     " remaining",
+     -0.8136585354804993
+    ]
+   ],
+   "a_lead": 0.16682428121566772,
+   "b_lead": 0.1881694793701172,
+   "swapped": true,
+   "grade_a": true,
+   "grade_b": true
+  },
+  {
+   "id": "test-963",
+   "at": 216,
+   "kind": "choice",
+   "context": " + 5$$\n\nFrom equation (3), we can",
+   "a_top2": [
+    [
+     " express",
+     -0.6859608888626099
+    ],
+    [
+     " solve",
+     -0.7005388140678406
+    ]
+   ],
+   "b_top2": [
+    [
+     " solve",
+     -0.5903223752975464
+    ],
+    [
+     " express",
+     -0.807947039604187
+    ]
+   ],
+   "a_lead": 0.014577925205230713,
+   "b_lead": 0.21762466430664062,
+   "swapped": true,
+   "grade_a": true,
+   "grade_b": true
+  },
+  {
+   "id": "test-965",
+   "at": 37,
+   "kind": "choice",
+   "context": "*   Direction: Southerly.\n    *   Time",
+   "a_top2": [
+    [
+     ":",
+     -0.622487485408783
+    ],
+    [
+     " ($",
+     -0.7897371649742126
+    ]
+   ],
+   "b_top2": [
+    [
+     " ($",
+     -0.5421546697616577
+    ],
+    [
+     ":",
+     -0.8902190923690796
+    ]
+   ],
+   "a_lead": 0.1672496795654297,
+   "b_lead": 0.3480644226074219,
+   "swapped": true,
+   "grade_a": true,
+   "grade_b": true
+  },
+  {
+   "id": "test-966",
+   "at": 137,
+   "kind": "choice",
+   "context": " brownies.\n\n**3. Account for the brownies received at",
+   "a_top2": [
+    [
+     " her",
+     -0.8091592192649841
+    ],
+    [
+     " the",
+     -0.8264608383178711
+    ]
+   ],
+   "b_top2": [
+    [
+     " the",
+     -0.5617512464523315
+    ],
+    [
+     " her",
+     -1.196146845817566
+    ]
+   ],
+   "a_lead": 0.017301619052886963,
+   "b_lead": 0.6343955993652344,
+   "swapped": true,
+   "grade_a": true,
+   "grade_b": true
+  },
+  {
+   "id": "test-975",
+   "at": 193,
+   "kind": "choice",
+   "context": " sum of the cherries held by Richard, Jerry, and Robert",
+   "a_top2": [
+    [
+     ".",
+     -0.6328891515731812
+    ],
+    [
+     ":",
+     -0.7623180747032166
+    ]
+   ],
+   "b_top2": [
+    [
+     ":",
+     -0.5763234496116638
+    ],
+    [
+     ".",
+     -0.8319272398948669
+    ]
+   ],
+   "a_lead": 0.1294289231300354,
+   "b_lead": 0.2556037902832031,
+   "swapped": true,
+   "grade_a": true,
+   "grade_b": true
+  },
+  {
+   "id": "test-976",
+   "at": 98,
+   "kind": "choice",
+   "context": " boxes of apple pie sold on Sunday.\n\n**2.",
+   "a_top2": [
+    [
+     " Determine",
+     -1.0346386432647705
+    ],
+    [
+     " Translate",
+     -1.1055243015289307
+    ]
+   ],
+   "b_top2": [
+    [
+     " Translate",
+     -1.0778100490570068
+    ],
+    [
+     " Determine",
+     -1.0918902158737183
+    ]
+   ],
+   "a_lead": 0.07088565826416016,
+   "b_lead": 0.014080166816711426,
+   "swapped": true,
+   "grade_a": true,
+   "grade_b": true
+  },
+  {
+   "id": "test-981",
+   "at": 304,
+   "kind": "choice",
+   "context": ".\nTotal servings = $\\frac{\\text{Total weight",
+   "a_top2": [
+    [
+     " caught",
+     -0.6387205123901367
+    ],
+    [
+     " in",
+     -0.8789986968040466
+    ]
+   ],
+   "b_top2": [
+    [
+     " in",
+     -0.667457103729248
+    ],
+    [
+     " caught",
+     -0.8402857780456543
+    ]
+   ],
+   "a_lead": 0.2402781844139099,
+   "b_lead": 0.17282867431640625,
+   "swapped": true,
+   "grade_a": true,
+   "grade_b": true
+  },
+  {
+   "id": "test-996",
+   "at": 133,
+   "kind": "choice",
+   "context": " H + W = 20$.\n    *   ",
+   "a_top2": [
+    [
+     "Hel",
+     -0.1276223510503769
+    ],
+    [
+     "Substitute",
+     -2.6115949153900146
+    ]
+   ],
+   "b_top2": [
+    [
+     "Substitute",
+     -0.9747475385665894
+    ],
+    [
+     "Hel",
+     -0.9844711422920227
+    ]
+   ],
+   "a_lead": 2.4839725643396378,
+   "b_lead": 0.00972360372543335,
+   "swapped": true,
+   "grade_a": true,
+   "grade_b": true
+  },
+  {
+   "id": "test-997",
+   "at": 128,
+   "kind": "choice",
+   "context": "**Calculate the total amount Walter has gathered (the total amount",
+   "a_top2": [
+    [
+     " \"",
+     -1.4983652830123901
+    ],
+    [
+     " he",
+     -1.6493853330612183
+    ]
+   ],
+   "b_top2": [
+    [
+     " he",
+     -1.6345646381378174
+    ],
+    [
+     " being",
+     -1.6909973621368408
+    ]
+   ],
+   "a_lead": 0.15102005004882812,
+   "b_lead": 0.05643272399902344,
+   "swapped": false,
+   "grade_a": true,
+   "grade_b": true
+  }
+ ]
+}

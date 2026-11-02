@@ -21,6 +21,9 @@ traced to a file in `docs/evidence-gpu4/` (derived ones by `docs/gpu4_arith.py`)
 Flip study (2026-11-01, after the deadline): which answers change between GPUs and why, in
 [`runs/2026-11-01-flips/REPORT.md`](runs/2026-11-01-flips/REPORT.md), with the tools in `tools/`. Each card repeats
 itself word for word; L4 built for the T4's CUDA target and run with `-ub 1` matches the T4 on all 250 Q8_0 answers.
+Probe (2026-11-02): the GPUs' own top-two scores at every token, in
+[`runs/2026-11-02-probe/REPORT.md`](runs/2026-11-02-probe/REPORT.md). Same code on L4 and T4 gives the same score at all
+97,450 tokens; changing the code path on one chip changes about 40% of scores, and every split is a near-tie swapped.
 
 On one Tesla T4, against the 229 of 250 questions BF16 gets right: Q8_0 to Q5_K_M stay within 2 of it,
 Q4_K_M and Q4_0 lose 5 and 7, Q3_K_M loses 38 (most of its deaths cut off at 1,024 tokens), and Q2_K gets 3

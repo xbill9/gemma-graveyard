@@ -67,7 +67,7 @@ from either side: a flip usually needs more than the first near-tie.
 - The closing runs on the L4 were lost when the instance shut down at 07:00 UTC before they were copied: L4
   sm_75 with `GGML_CUDA_FORCE_MMQ` at normal settings (would test item 6 without `-ub 1`), L4 sm_75 `-ub 1` at
   BF16 and Q4_0, and the direct GPU logit comparison between prompt routes (6 of 60 BF16 answers survive in
-  `l4/nudge/`). So the 0 holds for Q8_0 under `-ub 1` only.
+  `l4/nudge/`; measured on Q8_0 in `../2026-11-02-probe/`). So the 0 holds for Q8_0 under `-ub 1` only.
 - The rounding-order mechanism in item 6 is read from source, not measured.
 - GTX 1650 and RTX 3050 were not rerun: no repeat runs at quantized rungs, no `-ub 1`. The 1650 shares the T4's
   target and differs from AWS T4 on 165 Q8_0 answers; it has no tensor cores, so its MMQ path may differ. Untested.

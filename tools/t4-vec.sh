@@ -15,7 +15,7 @@ D=runs/2026-11-03-nsm
 export TMPDIR=${TMPDIR:-/opt1/tmp}
 if [ ! -x "$L/build/bin/llama-server" ]; then
   [ -d "$L" ] || git -C "$SRC" worktree add --detach "$L" 7182ef71e6d5dd0c8ea76486fac134fcd25025d4
-  git -C "$L" apply "$PWD/tools/graveyard-probe.patch"
+  git -C "$L" diff --quiet && git -C "$L" apply "$PWD/tools/graveyard-probe.patch"
   cmake -S "$L" -B "$L/build" -DGGML_CUDA=ON -DCMAKE_CUDA_ARCHITECTURES=75 -DCMAKE_BUILD_TYPE=Release -DGGML_NATIVE=ON > "$L/build-config.log" 2>&1
   cmake --build "$L/build" --target llama-server -j2 > "$L/build.log" 2>&1
 fi

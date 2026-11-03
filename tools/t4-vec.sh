@@ -13,6 +13,8 @@ L=${L:-/opt1/llama.cpp-nsm}
 G=${G:-$HOME/graveyard-gguf/e2b-Q8_0.gguf}
 D=runs/2026-11-03-nsm
 export TMPDIR=${TMPDIR:-/opt1/tmp}
+# the T4 login has no nvcc on PATH; /opt1/llama.cpp was configured with this one
+export CUDACXX=${CUDACXX:-$(command -v nvcc || echo /usr/local/cuda-13.4/bin/nvcc)}
 if [ ! -x "$L/build/bin/llama-server" ]; then
   [ -d "$L" ] || git -C "$SRC" worktree add --detach "$L" 7182ef71e6d5dd0c8ea76486fac134fcd25025d4
   git -C "$L" diff --quiet && git -C "$L" apply "$PWD/tools/graveyard-probe.patch"

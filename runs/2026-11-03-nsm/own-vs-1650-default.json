@@ -1,0 +1,21 @@
+{
+ "summary": {
+  "a": "runs/2026-11-03-nsm/own/Q8_0.jsonl",
+  "b": "runs/2026-11-02-probe/1650/default/Q8_0.jsonl",
+  "questions": 250,
+  "text_differs": 0,
+  "forks": 0,
+  "forks_choice": 0,
+  "forks_swapped_top2": 0,
+  "fork_lead_a_median": null,
+  "fork_lead_b_median": null,
+  "fork_lead_max": null,
+  "grade_differs": 0,
+  "shared_tokens": 97116,
+  "shared_tokens_same_logprob": 97116,
+  "shared_logprob_absdiff_median": null,
+  "shared_logprob_absdiff_p99": null,
+  "shared_logprob_absdiff_max": null
+ },
+ "forks": []
+}

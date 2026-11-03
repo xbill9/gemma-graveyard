@@ -1,0 +1,5 @@
+2026-11-03T16:46:45Z start own
+{"rung": "Q8_0", "n": 250, "right": 229, "errors": 0, "truncated": 4, "median_decode_tps": 43.2, "mean_tokens": 388.5}
+2026-11-03T17:25:37Z start nsm40
+{"rung": "Q8_0", "n": 250, "right": 225, "errors": 0, "truncated": 8, "median_decode_tps": 42.9, "mean_tokens": 392.2}
+2026-11-03T18:05:23Z ALL DONE

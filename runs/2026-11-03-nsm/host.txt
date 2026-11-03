@@ -1,0 +1,41 @@
+b11699
+7182ef71e6d5dd0c8ea76486fac134fcd25025d4
+diff --git a/ggml/src/ggml-cuda/ggml-cuda.cu b/ggml/src/ggml-cuda/ggml-cuda.cu
+index 6fa2228..d875c76 100644
+--- a/ggml/src/ggml-cuda/ggml-cuda.cu
++++ b/ggml/src/ggml-cuda/ggml-cuda.cu
+@@ -351,6 +351,10 @@ static ggml_cuda_device_info ggml_cuda_init() {
+         total_vram += device_vram;
+         info.devices[id].integrated = false; // Temporarily disabled due to issues with corrupted output (e.g. #15034)
+         info.devices[id].nsm        = prop.multiProcessorCount;
++        if (const char * nsm_env = getenv("GGML_CUDA_NSM_OVERRIDE")) {
++            info.devices[id].nsm = atoi(nsm_env);
++            GGML_LOG_INFO("%s: GGML_CUDA_NSM_OVERRIDE: device %d nsm %d -> %d\n", __func__, id, prop.multiProcessorCount, info.devices[id].nsm);
++        }
+         info.devices[id].smpb       = prop.sharedMemPerBlock;
+         info.devices[id].warp_size  = prop.warpSize;
+ 
+Tue Nov  3 11:46:35 2026       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 615.71.10              KMD Version: 615.71.10     CUDA UMD Version: 13.4     |
++-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  NVIDIA GeForce GTX 1650 ...    Off |   00000000:01:00.0 Off |                  N/A |
+| N/A   43C    P8              1W /   40W |       3MiB /   4096MiB |      0%      Default |
+|                                         |                        |                  N/A |
++-----------------------------------------+------------------------+----------------------+
+
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|    0   N/A  N/A            3387      G   /usr/bin/gnome-shell                      1MiB |
++-----------------------------------------------------------------------------------------+
+Model name:                              Intel(R) Core(TM) i7-10750H CPU @ 2.60GHz
+               total        used        free      shared  buff/cache   available
+Mem:           15659        5960        4038         602        6586        9699
+Swap:          48815         216       48599

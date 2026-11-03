@@ -1,0 +1,5 @@
+2026-11-03T02:55:24Z start default
+{"rung": "Q8_0", "n": 250, "right": 229, "errors": 0, "truncated": 4, "median_decode_tps": 42.8, "mean_tokens": 388.5}
+2026-11-03T03:34:50Z start ub1
+{"rung": "Q8_0", "n": 250, "right": 226, "errors": 0, "truncated": 5, "median_decode_tps": 42.9, "mean_tokens": 389.8}
+2026-11-03T04:19:50Z ALL DONE

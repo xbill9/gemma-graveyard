@@ -1,0 +1,5 @@
+2026-11-03T21:17:13Z start t4-patched
+{"rung": "Q8_0", "n": 250, "right": 227, "errors": 0, "truncated": 9, "median_decode_tps": 56.9, "mean_tokens": 394.5}
+2026-11-03T21:46:43Z start t4-vec
+{"rung": "Q8_0", "n": 250, "right": 229, "errors": 0, "truncated": 4, "median_decode_tps": 57.0, "mean_tokens": 389.5}
+2026-11-03T22:15:55Z ALL DONE

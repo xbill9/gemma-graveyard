@@ -1,0 +1,67 @@
+diff --git a/ggml/src/ggml-cuda/ggml-cuda.cu b/ggml/src/ggml-cuda/ggml-cuda.cu
+index 6fa2228..58fc878 100644
+--- a/ggml/src/ggml-cuda/ggml-cuda.cu
++++ b/ggml/src/ggml-cuda/ggml-cuda.cu
+@@ -351,6 +351,10 @@ static ggml_cuda_device_info ggml_cuda_init() {
+         total_vram += device_vram;
+         info.devices[id].integrated = false; // Temporarily disabled due to issues with corrupted output (e.g. #15034)
+         info.devices[id].nsm        = prop.multiProcessorCount;
++        if (const char * nsm_env = getenv("GGML_CUDA_NSM_OVERRIDE")) {
++            info.devices[id].nsm = atoi(nsm_env);
++            GGML_LOG_INFO("%s: GGML_CUDA_NSM_OVERRIDE: device %d nsm %d -> %d\n", __func__, id, prop.multiProcessorCount, info.devices[id].nsm);
++        }
+         info.devices[id].smpb       = prop.sharedMemPerBlock;
+         info.devices[id].warp_size  = prop.warpSize;
+ 
+@@ -1953,6 +1957,17 @@ static bool ggml_cuda_match_shared_expert(const ggml_cgraph * graph, int routed_
+     return true;
+ }
+ 
++// graveyard probe: GGML_CUDA_LOG_CUBLAS prints the first 200 matrix products that leave llama.cpp's own kernels.
++static void graveyard_log_cublas(const char * route, const ggml_tensor * src0, const ggml_tensor * src1) {
++    static const bool on = getenv("GGML_CUDA_LOG_CUBLAS") != nullptr;
++    static int n = 0;
++    if (on && n < 200) {
++        n++;
++        fprintf(stderr, "graveyard %s: %s %s [%lld x %lld] x src1 %s cols %lld\n", route, src0->name, ggml_type_name(src0->type),
++            (long long) src0->ne[0], (long long) src0->ne[1], ggml_type_name(src1->type), (long long) src1->ne[1]);
++    }
++}
++
+ static void ggml_cuda_mul_mat(ggml_backend_cuda_context & ctx, const ggml_tensor * src0, const ggml_tensor * src1, ggml_tensor * dst) {
+     GGML_TENSOR_BINARY_OP_LOCALS
+ 
+@@ -1966,6 +1981,7 @@ static void ggml_cuda_mul_mat(ggml_backend_cuda_context & ctx, const ggml_tensor
+     const bool bad_padding_clear = ggml_backend_buffer_get_usage(src0->buffer) == GGML_BACKEND_BUFFER_USAGE_COMPUTE
+         && ggml_nbytes(src0) != ggml_backend_buffer_get_alloc_size(src0->buffer, src0) && src0->view_src;
+     if (bad_padding_clear || src1->type != GGML_TYPE_F32 || dst->type != GGML_TYPE_F32) {
++        graveyard_log_cublas("cublas_type", src0, src1);
+         ggml_cuda_mul_mat_cublas(ctx, src0, src1, dst);
+         return;
+     }
+@@ -2005,6 +2021,25 @@ static void ggml_cuda_mul_mat(ggml_backend_cuda_context & ctx, const ggml_tensor
+         ggml_cuda_mul_mat_q(ctx, src0, src1, nullptr, dst);
+         return;
+     }
++    // graveyard probe: GGML_CUDA_SPLIT_TO_VEC sends a matrix that would go to cuBLAS through the one-column
++    // vector kernel instead, one column of src1 at a time (the route a single generated token takes).
++    static const bool split_to_vec = getenv("GGML_CUDA_SPLIT_TO_VEC") != nullptr;
++    if (split_to_vec && !ggml_is_quantized(src0->type) && ne02 == 1 && ne03 == 1 && ne12 == 1 && ne13 == 1
++            && ggml_is_contiguous(src1) && ggml_is_contiguous(dst)
++            && ggml_cuda_should_use_mmvf(src0->type, cc, warp_size, src0->ne, src0->nb, 1)) {
++        graveyard_log_cublas("split_to_vec", src0, src1);
++        for (int64_t j = 0; j < ne11; ++j) {
++            ggml_tensor s1 = *src1;
++            s1.ne[1] = 1; s1.nb[2] = s1.nb[1]; s1.nb[3] = s1.nb[1];
++            s1.data = (char *) src1->data + j*src1->nb[1];
++            ggml_tensor d = *dst;
++            d.ne[1] = 1; d.nb[2] = d.nb[1]; d.nb[3] = d.nb[1];
++            d.data = (char *) dst->data + j*dst->nb[1];
++            ggml_cuda_mul_mat_vec_f(ctx, src0, &s1, nullptr, &d);
++        }
++        return;
++    }
++    graveyard_log_cublas("cublas_fallback", src0, src1);
+     ggml_cuda_mul_mat_cublas(ctx, src0, src1, dst);
+ }
+ 

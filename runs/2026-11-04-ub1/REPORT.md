@@ -27,13 +27,36 @@ answers (`../2026-11-03-nsm/REPORT.md`).
    about two answers in three (T4 Q8_0: 166 of 250, `../2026-11-02-probe`). The setting makes the cards agree with each
    other. Accuracy stays level: 226 of 250 here, 229 at default settings on Q8_0 under the two-setting fix.
 
+## The 1650 Ti alone, K-quant rungs under `-ub 1`
+
+No T4 run to pair with (see Unmeasured), so this is the 1650's own record: each rung under `-ub 1` against the same
+card at default settings (`../2026-10-29-1650`) and against the two-setting fix (`../2026-11-03-nsm/ladder/1650-<rung>`,
+which matched the T4's fixed runs on every answer).
+
+| rung | right, `-ub 1` | right, default | text differs / grade differs vs default | right, two-setting fix | text differs / grade differs vs fix |
+|---|---|---|---|---|---|
+| Q6_K | 231 | 226 | 168 / 7 | 228 | 165 / 7 |
+| Q5_K_M | 228 | 226 | 189 / 10 | 230 | 194 / 6 |
+| Q4_K_M | 223 | 222 | 206 / 13 | 226 | 204 / 15 |
+| Q3_K_M | 190 | 183 | 229 / 37 | 195 | 229 / 39 |
+| Q2_K | 3 | 5 | 192 / 6 | 2 | 194 / 3 |
+
+4. **Each route gives its own set of answers, and none of them is the accurate one.** `-ub 1` is ahead of default
+   settings on four rungs and behind the two-setting fix on four. The spread is 2 to 12 right answers per rung; the
+   per-question changes (6 to 39) are larger than the change in the total.
+5. **Q2_K test-194 runs under `-ub 1`.** Under the two-setting fix it returns a server 500 on both cards
+   (`../2026-11-03-nsm`); here, as at default settings, it runs to the 1,024-token limit with no answer.
+
+Counts from the rows in `1650-<rung>/`; `1650.log` lacks the summary lines for Q4_K_M to Q2_K because the run was
+restarted after Q5_K_M.
+
 ## Unmeasured
 
 - The K-quant rungs (Q6_K, Q5_K_M, Q4_K_M, Q3_K_M, Q2_K) on the T4. Its Q6_K run stopped at answer 7 on 2026-11-04:
   an `apt-get upgrade` on the VM at 17:33 UTC filled the root disk and moved the NVIDIA user-space libraries to
   620.70.06 while the loaded kernel module stayed 615.71.10, so every GPU call fails until a reboot. The T4's Q4_0 run
   finished at 17:32, before the upgrade, on driver 615.71.10 like every earlier T4 run. The 1650's K-quant runs under
-  `-ub 1` are here (`1650-<rung>/`) with no T4 run to compare.
+  `-ub 1` are above, with no T4 run to compare.
 - Prompt speed under `-ub 1`. On the 1650, the whole Q8_0 run took 44.9 minutes against 39.3 at default settings
   (summed per-answer times, `../2026-11-02-probe/1650`); prompt time alone was not separated.
 - Cards with another SM count or compute capability. An L4 matched the T4 under `-ub 1` only when llama.cpp was built

@@ -3,3 +3,6 @@
 2026-11-04T17:34:29Z start Q6_K
 {"rung": "Q6_K", "n": 250, "right": 231, "errors": 0, "truncated": 4, "median_decode_tps": 50.9, "mean_tokens": 391.4}
 2026-11-04T18:12:26Z start Q5_K_M
+{"rung": "Q5_K_M", "n": 250, "right": 228, "errors": 0, "truncated": 2, "median_decode_tps": 55.1, "mean_tokens": 377.4}
+2026-11-04T18:46:25Z start Q4_K_M
+2026-11-04T21:36:12Z ALL DONE

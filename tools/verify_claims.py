@@ -48,7 +48,7 @@ def probe(a, b):
 def text_pair(a, b):
     a, b = load(a), load(b)
     ids = set(a) & set(b)
-    return (sum(a[i]["text"] != b[i]["text"] for i in ids), sum(bool(a[i].get("right")) != bool(b[i].get("right")) for i in ids))
+    return (sum(a[i].get("text") != b[i].get("text") for i in ids), sum(bool(a[i].get("right")) != bool(b[i].get("right")) for i in ids))
 
 
 def right(path):
@@ -220,6 +220,19 @@ def main():
     claim(r, "Q4_0 stock -ub 1: right on each card", (226, 226), (right(f"{U}/1650-Q4_0/Q4_0.jsonl"), right(f"{U}/t4-Q4_0/Q4_0.jsonl")))
     claim(r, "Q4_0 -ub 1: same GGUF sha256 on both cards", True,
           shas(f"{U}/1650-sha.txt")["Q4_0"] == shas(f"{U}/t4-sha.txt")["Q4_0"])
+    ub1_kq = {  # rung: right -ub 1, right default, (text, grade) vs default, right fix, (text, grade) vs fix
+        "Q6_K": (231, 226, (168, 7), 228, (165, 7)), "Q5_K_M": (228, 226, (189, 10), 230, (194, 6)),
+        "Q4_K_M": (223, 222, (206, 13), 226, (204, 15)), "Q3_K_M": (190, 183, (229, 37), 195, (229, 39)),
+        "Q2_K": (3, 5, (192, 6), 2, (194, 3)),
+    }
+    for g, (ru, rd, vd, rf, vf) in ub1_kq.items():
+        u, d, f = f"{U}/1650-{g}/{g}.jsonl", f"runs/2026-10-29-1650/{g}.jsonl", f"{N}/ladder/1650-{g}/{g}.jsonl"
+        claim(r, f"{g} 1650: right under -ub 1, default, fix", (ru, rd, rf), (right(u), right(d), right(f)))
+        claim(r, f"{g} 1650 -ub 1 vs default: text, grade differ", vd, text_pair(u, d))
+        claim(r, f"{g} 1650 -ub 1 vs fix: text, grade differ", vf, text_pair(u, f))
+    claim(r, "Q2_K test-194: 500 under fix, length limit under -ub 1",
+          ("HTTPError: HTTP Error 500: Internal Server Error", "length"),
+          (load(f"{N}/ladder/1650-Q2_K/Q2_K.jsonl")["test-194"].get("error"), load(f"{U}/1650-Q2_K/Q2_K.jsonl")["test-194"].get("finish")))
     claim(r, "T4 default vs T4 -ub 1, text differs", 166, probe(f"{P}/t4/default/{q8}", f"{P}/t4/ub1/{q8}")[0])
     speeds = {
         "1650 default": (f"{P}/1650/default", 289), "1650 -ub 1": (f"{P}/1650/ub1", 58), "1650 patch route": (f"{N}/nsm40-vec", 239),

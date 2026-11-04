@@ -1,0 +1,27 @@
+{
+ "rung": "Q6_K",
+ "model": "/opt1/graveyard-gguf/e2b-Q6_K.gguf",
+ "bytes": 3845346752,
+ "load_seconds": 20.0,
+ "gpu_mib_before": 0,
+ "gpu_mib_loaded": 2103,
+ "think": false,
+ "max_tokens": 1024,
+ "cmd": [
+  "/opt1/llama.cpp-nsm/build/bin/llama-server",
+  "-m",
+  "/opt1/graveyard-gguf/e2b-Q6_K.gguf",
+  "-ngl",
+  "99",
+  "-c",
+  "4096",
+  "-np",
+  "1",
+  "--port",
+  "8090",
+  "--seed",
+  "0"
+ ],
+ "n": 250,
+ "gpu_mib_after": 2109
+}

@@ -1,0 +1,11 @@
+2026-11-04T01:06:58Z start Q6_K
+{"rung": "Q6_K", "n": 250, "right": 228, "errors": 0, "truncated": 5, "median_decode_tps": 63.4, "mean_tokens": 387.6}
+2026-11-04T01:33:28Z start Q5_K_M
+{"rung": "Q5_K_M", "n": 250, "right": 230, "errors": 0, "truncated": 2, "median_decode_tps": 69.2, "mean_tokens": 378.3}
+2026-11-04T01:57:15Z start Q4_K_M
+{"rung": "Q4_K_M", "n": 250, "right": 226, "errors": 0, "truncated": 7, "median_decode_tps": 73.7, "mean_tokens": 397.8}
+2026-11-04T02:20:38Z start Q3_K_M
+{"rung": "Q3_K_M", "n": 250, "right": 195, "errors": 0, "truncated": 43, "median_decode_tps": 66.1, "mean_tokens": 615.5}
+2026-11-04T03:00:27Z start Q2_K
+{"rung": "Q2_K", "n": 250, "right": 2, "errors": 1, "truncated": 244, "median_decode_tps": 72.1, "mean_tokens": 1003.6}
+2026-11-04T03:59:09Z ALL DONE

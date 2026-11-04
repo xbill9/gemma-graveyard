@@ -1,0 +1,144 @@
+{
+ "runs": 7,
+ "questions": 250,
+ "text_varies": 219,
+ "grade_varies": 18,
+ "grade_varies_ids": [
+  [
+   "test-1074",
+   "right in 2/7"
+  ],
+  [
+   "test-1082",
+   "right in 5/7"
+  ],
+  [
+   "test-1146",
+   "right in 2/7"
+  ],
+  [
+   "test-1166",
+   "right in 5/7"
+  ],
+  [
+   "test-1217",
+   "right in 6/7"
+  ],
+  [
+   "test-1249",
+   "right in 6/7"
+  ],
+  [
+   "test-1251",
+   "right in 1/7"
+  ],
+  [
+   "test-143",
+   "right in 6/7"
+  ],
+  [
+   "test-187",
+   "right in 1/7"
+  ],
+  [
+   "test-358",
+   "right in 3/7"
+  ],
+  [
+   "test-389",
+   "right in 6/7"
+  ],
+  [
+   "test-532",
+   "right in 5/7"
+  ],
+  [
+   "test-563",
+   "right in 6/7"
+  ],
+  [
+   "test-564",
+   "right in 5/7"
+  ],
+  [
+   "test-635",
+   "right in 3/7"
+  ],
+  [
+   "test-724",
+   "right in 6/7"
+  ],
+  [
+   "test-734",
+   "right in 6/7"
+  ],
+  [
+   "test-912",
+   "right in 1/7"
+  ]
+ ],
+ "flag_any_token": [
+  {
+   "t": 0.05,
+   "flagged": 112,
+   "grade_varies_caught": "12/18",
+   "stable_flagged": "100/232"
+  },
+  {
+   "t": 0.1,
+   "flagged": 164,
+   "grade_varies_caught": "18/18",
+   "stable_flagged": "146/232"
+  },
+  {
+   "t": 0.25,
+   "flagged": 218,
+   "grade_varies_caught": "18/18",
+   "stable_flagged": "200/232"
+  },
+  {
+   "t": 0.5,
+   "flagged": 244,
+   "grade_varies_caught": "18/18",
+   "stable_flagged": "226/232"
+  },
+  {
+   "t": 1.0,
+   "flagged": 250,
+   "grade_varies_caught": "18/18",
+   "stable_flagged": "232/232"
+  }
+ ],
+ "flag_last_12_tokens": [
+  {
+   "t": 0.05,
+   "flagged": 5,
+   "grade_varies_caught": "0/18",
+   "stable_flagged": "5/232"
+  },
+  {
+   "t": 0.1,
+   "flagged": 10,
+   "grade_varies_caught": "1/18",
+   "stable_flagged": "9/232"
+  },
+  {
+   "t": 0.25,
+   "flagged": 20,
+   "grade_varies_caught": "3/18",
+   "stable_flagged": "17/232"
+  },
+  {
+   "t": 0.5,
+   "flagged": 36,
+   "grade_varies_caught": "5/18",
+   "stable_flagged": "31/232"
+  },
+  {
+   "t": 1.0,
+   "flagged": 57,
+   "grade_varies_caught": "8/18",
+   "stable_flagged": "49/232"
+  }
+ ]
+}

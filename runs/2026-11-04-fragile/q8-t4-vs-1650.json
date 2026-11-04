@@ -1,0 +1,2571 @@
+{
+ "a": "runs/2026-11-02-probe/t4/default/Q8_0.jsonl",
+ "b": "runs/2026-11-02-probe/1650/default/Q8_0.jsonl",
+ "questions": 250,
+ "text_differs": 165,
+ "grade_differs": 4,
+ "fork_lead_larger_of_two_median": 0.2418,
+ "fork_lead_larger_of_two_max": 2.484,
+ "min_lead_unchanged_median": 0.1836,
+ "min_lead_changed_median": 0.0357,
+ "by_threshold": [
+  {
+   "t": 0.01,
+   "flagged": 43,
+   "text_caught": "43/165",
+   "text_false_alarm": "0/85",
+   "grade_caught": "1/4"
+  },
+  {
+   "t": 0.05,
+   "flagged": 112,
+   "text_caught": "99/165",
+   "text_false_alarm": "13/85",
+   "grade_caught": "3/4"
+  },
+  {
+   "t": 0.1,
+   "flagged": 164,
+   "text_caught": "137/165",
+   "text_false_alarm": "27/85",
+   "grade_caught": "4/4"
+  },
+  {
+   "t": 0.25,
+   "flagged": 218,
+   "text_caught": "160/165",
+   "text_false_alarm": "58/85",
+   "grade_caught": "4/4"
+  },
+  {
+   "t": 0.5,
+   "flagged": 244,
+   "text_caught": "165/165",
+   "text_false_alarm": "79/85",
+   "grade_caught": "4/4"
+  },
+  {
+   "t": 1.0,
+   "flagged": 250,
+   "text_caught": "165/165",
+   "text_false_alarm": "85/85",
+   "grade_caught": "4/4"
+  },
+  {
+   "t": 2.0,
+   "flagged": 250,
+   "text_caught": "165/165",
+   "text_false_alarm": "85/85",
+   "grade_caught": "4/4"
+  },
+  {
+   "t": 4.0,
+   "flagged": 250,
+   "text_caught": "165/165",
+   "text_false_alarm": "85/85",
+   "grade_caught": "4/4"
+  }
+ ],
+ "rows": [
+  {
+   "id": "test-0",
+   "min_lead": 0.12754732370376587,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.12754732370376587,
+   "fork_lead_b": 0.014292657375335693,
+   "fork_at": 215,
+   "tokens": 249
+  },
+  {
+   "id": "test-1002",
+   "min_lead": 0.13345718383789062,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.13345718383789062,
+   "fork_lead_b": 0.18185043334960938,
+   "fork_at": 205,
+   "tokens": 440
+  },
+  {
+   "id": "test-1008",
+   "min_lead": 0.3543453812599182,
+   "text_differs": false,
+   "grade_differs": false,
+   "fork_lead_a": null,
+   "fork_lead_b": null,
+   "fork_at": null,
+   "tokens": 252
+  },
+  {
+   "id": "test-1010",
+   "min_lead": 0.7471886575222015,
+   "text_differs": false,
+   "grade_differs": false,
+   "fork_lead_a": null,
+   "fork_lead_b": null,
+   "fork_at": null,
+   "tokens": 282
+  },
+  {
+   "id": "test-1012",
+   "min_lead": 0.013643383979797363,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.0794944167137146,
+   "fork_lead_b": 0.06579965353012085,
+   "fork_at": 97,
+   "tokens": 1024
+  },
+  {
+   "id": "test-102",
+   "min_lead": 0.0138092041015625,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.2869778275489807,
+   "fork_lead_b": 0.2624378204345703,
+   "fork_at": 93,
+   "tokens": 261
+  },
+  {
+   "id": "test-1031",
+   "min_lead": 0.0005721449851989746,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.07344818115234375,
+   "fork_lead_b": 0.1714611053466797,
+   "fork_at": 275,
+   "tokens": 531
+  },
+  {
+   "id": "test-1033",
+   "min_lead": 0.006561279296875,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.17531198263168335,
+   "fork_lead_b": 0.30030447244644165,
+   "fork_at": 40,
+   "tokens": 295
+  },
+  {
+   "id": "test-1040",
+   "min_lead": 0.033912718296051025,
+   "text_differs": false,
+   "grade_differs": false,
+   "fork_lead_a": null,
+   "fork_lead_b": null,
+   "fork_at": null,
+   "tokens": 396
+  },
+  {
+   "id": "test-1041",
+   "min_lead": 0.07641500234603882,
+   "text_differs": false,
+   "grade_differs": false,
+   "fork_lead_a": null,
+   "fork_lead_b": null,
+   "fork_at": null,
+   "tokens": 221
+  },
+  {
+   "id": "test-1047",
+   "min_lead": 0.050235629081726074,
+   "text_differs": false,
+   "grade_differs": false,
+   "fork_lead_a": null,
+   "fork_lead_b": null,
+   "fork_at": null,
+   "tokens": 670
+  },
+  {
+   "id": "test-1067",
+   "min_lead": 0.005988955497741699,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.42571061849594116,
+   "fork_lead_b": 0.038539886474609375,
+   "fork_at": 122,
+   "tokens": 579
+  },
+  {
+   "id": "test-1068",
+   "min_lead": 0.050689756870269775,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.050689756870269775,
+   "fork_lead_b": 0.06563949584960938,
+   "fork_at": 158,
+   "tokens": 244
+  },
+  {
+   "id": "test-1074",
+   "min_lead": 0.09817320108413696,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.10326194763183594,
+   "fork_lead_b": 0.6877651810646057,
+   "fork_at": 75,
+   "tokens": 293
+  },
+  {
+   "id": "test-1080",
+   "min_lead": 0.038139402866363525,
+   "text_differs": false,
+   "grade_differs": false,
+   "fork_lead_a": null,
+   "fork_lead_b": null,
+   "fork_at": null,
+   "tokens": 383
+  },
+  {
+   "id": "test-1082",
+   "min_lead": 0.0001373291015625,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.01596832275390625,
+   "fork_lead_b": 0.034999847412109375,
+   "fork_at": 399,
+   "tokens": 1024
+  },
+  {
+   "id": "test-1084",
+   "min_lead": 0.01619541645050049,
+   "text_differs": false,
+   "grade_differs": false,
+   "fork_lead_a": null,
+   "fork_lead_b": null,
+   "fork_at": null,
+   "tokens": 425
+  },
+  {
+   "id": "test-1090",
+   "min_lead": 0.08688920736312866,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.4347401261329651,
+   "fork_lead_b": 1.1760693192481995,
+   "fork_at": 16,
+   "tokens": 311
+  },
+  {
+   "id": "test-1094",
+   "min_lead": 0.05440330505371094,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.1988581418991089,
+   "fork_lead_b": 0.28341299295425415,
+   "fork_at": 230,
+   "tokens": 477
+  },
+  {
+   "id": "test-1106",
+   "min_lead": 0.0021839141845703125,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.5984669029712677,
+   "fork_lead_b": 0.053061485290527344,
+   "fork_at": 16,
+   "tokens": 295
+  },
+  {
+   "id": "test-1107",
+   "min_lead": 0.12469953298568726,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.1674327850341797,
+   "fork_lead_b": 0.08144187927246094,
+   "fork_at": 344,
+   "tokens": 400
+  },
+  {
+   "id": "test-1112",
+   "min_lead": 0.42279815673828125,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.48241424560546875,
+   "fork_lead_b": 0.011785566806793213,
+   "fork_at": 249,
+   "tokens": 317
+  },
+  {
+   "id": "test-1114",
+   "min_lead": 0.01302725076675415,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.07672786712646484,
+   "fork_lead_b": 0.11887824535369873,
+   "fork_at": 85,
+   "tokens": 485
+  },
+  {
+   "id": "test-1120",
+   "min_lead": 0.09211629629135132,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.2527734041213989,
+   "fork_lead_b": 0.3262367844581604,
+   "fork_at": 224,
+   "tokens": 304
+  },
+  {
+   "id": "test-1121",
+   "min_lead": 0.03801918029785156,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.07768827676773071,
+   "fork_lead_b": 0.004680633544921875,
+   "fork_at": 38,
+   "tokens": 312
+  },
+  {
+   "id": "test-1123",
+   "min_lead": 0.09210014343261719,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.2618235945701599,
+   "fork_lead_b": 0.08744609355926514,
+   "fork_at": 23,
+   "tokens": 410
+  },
+  {
+   "id": "test-1128",
+   "min_lead": 0.09650421142578125,
+   "text_differs": false,
+   "grade_differs": false,
+   "fork_lead_a": null,
+   "fork_lead_b": null,
+   "fork_at": null,
+   "tokens": 344
+  },
+  {
+   "id": "test-1131",
+   "min_lead": 0.1972617506980896,
+   "text_differs": false,
+   "grade_differs": false,
+   "fork_lead_a": null,
+   "fork_lead_b": null,
+   "fork_at": null,
+   "tokens": 350
+  },
+  {
+   "id": "test-1146",
+   "min_lead": 0.00063323974609375,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.436126708984375,
+   "fork_lead_b": 0.2183837890625,
+   "fork_at": 23,
+   "tokens": 1024
+  },
+  {
+   "id": "test-1148",
+   "min_lead": 0.09901052713394165,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.09901052713394165,
+   "fork_lead_b": 0.41373246908187866,
+   "fork_at": 78,
+   "tokens": 180
+  },
+  {
+   "id": "test-1149",
+   "min_lead": 0.4643058180809021,
+   "text_differs": false,
+   "grade_differs": false,
+   "fork_lead_a": null,
+   "fork_lead_b": null,
+   "fork_at": null,
+   "tokens": 162
+  },
+  {
+   "id": "test-1162",
+   "min_lead": 0.3765658736228943,
+   "text_differs": false,
+   "grade_differs": false,
+   "fork_lead_a": null,
+   "fork_lead_b": null,
+   "fork_at": null,
+   "tokens": 308
+  },
+  {
+   "id": "test-1163",
+   "min_lead": 0.04400634765625,
+   "text_differs": false,
+   "grade_differs": false,
+   "fork_lead_a": null,
+   "fork_lead_b": null,
+   "fork_at": null,
+   "tokens": 217
+  },
+  {
+   "id": "test-1165",
+   "min_lead": 0.0015505552291870117,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.05386543273925781,
+   "fork_lead_b": 0.2942390441894531,
+   "fork_at": 421,
+   "tokens": 504
+  },
+  {
+   "id": "test-1166",
+   "min_lead": 0.011407732963562012,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.17293167114257812,
+   "fork_lead_b": 0.15601158142089844,
+   "fork_at": 209,
+   "tokens": 959
+  },
+  {
+   "id": "test-1175",
+   "min_lead": 0.0036450624465942383,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.0036450624465942383,
+   "fork_lead_b": 0.18045246601104736,
+   "fork_at": 471,
+   "tokens": 633
+  },
+  {
+   "id": "test-1178",
+   "min_lead": 0.2792491912841797,
+   "text_differs": false,
+   "grade_differs": false,
+   "fork_lead_a": null,
+   "fork_lead_b": null,
+   "fork_at": null,
+   "tokens": 190
+  },
+  {
+   "id": "test-1179",
+   "min_lead": 0.0077533721923828125,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.03238677978515625,
+   "fork_lead_b": 0.016332566738128662,
+   "fork_at": 21,
+   "tokens": 595
+  },
+  {
+   "id": "test-118",
+   "min_lead": 0.021823883056640625,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.21170425415039062,
+   "fork_lead_b": 0.34313005208969116,
+   "fork_at": 46,
+   "tokens": 304
+  },
+  {
+   "id": "test-1187",
+   "min_lead": 0.04996681213378906,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.30634117126464844,
+   "fork_lead_b": 0.025884628295898438,
+   "fork_at": 103,
+   "tokens": 482
+  },
+  {
+   "id": "test-1194",
+   "min_lead": 0.6751213669776917,
+   "text_differs": false,
+   "grade_differs": false,
+   "fork_lead_a": null,
+   "fork_lead_b": null,
+   "fork_at": null,
+   "tokens": 208
+  },
+  {
+   "id": "test-1202",
+   "min_lead": 0.016105711460113525,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.5533121824264526,
+   "fork_lead_b": 0.6006889343261719,
+   "fork_at": 63,
+   "tokens": 323
+  },
+  {
+   "id": "test-1203",
+   "min_lead": 0.03887748718261719,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.03887748718261719,
+   "fork_lead_b": 0.008474349975585938,
+   "fork_at": 507,
+   "tokens": 517
+  },
+  {
+   "id": "test-1207",
+   "min_lead": 0.0861319899559021,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.5961017608642578,
+   "fork_lead_b": 0.3038178086280823,
+   "fork_at": 16,
+   "tokens": 306
+  },
+  {
+   "id": "test-1208",
+   "min_lead": 0.05837434530258179,
+   "text_differs": false,
+   "grade_differs": false,
+   "fork_lead_a": null,
+   "fork_lead_b": null,
+   "fork_at": null,
+   "tokens": 295
+  },
+  {
+   "id": "test-1217",
+   "min_lead": 0.08728790283203125,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.08728790283203125,
+   "fork_lead_b": 0.10812187194824219,
+   "fork_at": 80,
+   "tokens": 499
+  },
+  {
+   "id": "test-1221",
+   "min_lead": 0.023361146450042725,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.14358144998550415,
+   "fork_lead_b": 0.2866535186767578,
+   "fork_at": 39,
+   "tokens": 249
+  },
+  {
+   "id": "test-1222",
+   "min_lead": 0.30989837646484375,
+   "text_differs": false,
+   "grade_differs": false,
+   "fork_lead_a": null,
+   "fork_lead_b": null,
+   "fork_at": null,
+   "tokens": 180
+  },
+  {
+   "id": "test-1232",
+   "min_lead": 0.011503159999847412,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.011503159999847412,
+   "fork_lead_b": 0.07216644287109375,
+   "fork_at": 214,
+   "tokens": 369
+  },
+  {
+   "id": "test-1233",
+   "min_lead": 0.0053730010986328125,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.5543079376220703,
+   "fork_lead_b": 0.1314716339111328,
+   "fork_at": 119,
+   "tokens": 387
+  },
+  {
+   "id": "test-1235",
+   "min_lead": 0.19600486755371094,
+   "text_differs": false,
+   "grade_differs": false,
+   "fork_lead_a": null,
+   "fork_lead_b": null,
+   "fork_at": null,
+   "tokens": 371
+  },
+  {
+   "id": "test-1236",
+   "min_lead": 0.0033512115478515625,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.09563064575195312,
+   "fork_lead_b": 0.015735626220703125,
+   "fork_at": 183,
+   "tokens": 512
+  },
+  {
+   "id": "test-1240",
+   "min_lead": 0.02233976125717163,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.14181512594223022,
+   "fork_lead_b": 0.10733026266098022,
+   "fork_at": 271,
+   "tokens": 358
+  },
+  {
+   "id": "test-1241",
+   "min_lead": 0.1724509596824646,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.1724509596824646,
+   "fork_lead_b": 0.00177001953125,
+   "fork_at": 153,
+   "tokens": 335
+  },
+  {
+   "id": "test-1249",
+   "min_lead": 0.05407530069351196,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.05407530069351196,
+   "fork_lead_b": 0.023912429809570312,
+   "fork_at": 193,
+   "tokens": 434
+  },
+  {
+   "id": "test-125",
+   "min_lead": 0.05788034200668335,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.05788034200668335,
+   "fork_lead_b": 0.42458343505859375,
+   "fork_at": 209,
+   "tokens": 355
+  },
+  {
+   "id": "test-1251",
+   "min_lead": 0.00063323974609375,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.04473501443862915,
+   "fork_lead_b": 0.25121504068374634,
+   "fork_at": 209,
+   "tokens": 1024
+  },
+  {
+   "id": "test-1253",
+   "min_lead": 0.08933830261230469,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.09772694110870361,
+   "fork_lead_b": 0.9658584594726562,
+   "fork_at": 41,
+   "tokens": 239
+  },
+  {
+   "id": "test-1254",
+   "min_lead": 0.015819549560546875,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.28878021240234375,
+   "fork_lead_b": 0.10428422689437866,
+   "fork_at": 219,
+   "tokens": 359
+  },
+  {
+   "id": "test-1266",
+   "min_lead": 0.08712577819824219,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.08712577819824219,
+   "fork_lead_b": 0.49060818552970886,
+   "fork_at": 249,
+   "tokens": 297
+  },
+  {
+   "id": "test-127",
+   "min_lead": 0.37961387634277344,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.37961387634277344,
+   "fork_lead_b": 0.27194780111312866,
+   "fork_at": 140,
+   "tokens": 191
+  },
+  {
+   "id": "test-1270",
+   "min_lead": 0.11236572265625,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.11236572265625,
+   "fork_lead_b": 0.4364166259765625,
+   "fork_at": 121,
+   "tokens": 640
+  },
+  {
+   "id": "test-1271",
+   "min_lead": 0.15450090169906616,
+   "text_differs": false,
+   "grade_differs": false,
+   "fork_lead_a": null,
+   "fork_lead_b": null,
+   "fork_at": null,
+   "tokens": 367
+  },
+  {
+   "id": "test-128",
+   "min_lead": 0.00107574462890625,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.2009182572364807,
+   "fork_lead_b": 0.21332740783691406,
+   "fork_at": 85,
+   "tokens": 404
+  },
+  {
+   "id": "test-1280",
+   "min_lead": 0.16255182027816772,
+   "text_differs": false,
+   "grade_differs": false,
+   "fork_lead_a": null,
+   "fork_lead_b": null,
+   "fork_at": null,
+   "tokens": 160
+  },
+  {
+   "id": "test-1290",
+   "min_lead": 0.002655029296875,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.4253387451171875,
+   "fork_lead_b": 0.2389240860939026,
+   "fork_at": 180,
+   "tokens": 297
+  },
+  {
+   "id": "test-1296",
+   "min_lead": 0.0703325867652893,
+   "text_differs": false,
+   "grade_differs": false,
+   "fork_lead_a": null,
+   "fork_lead_b": null,
+   "fork_at": null,
+   "tokens": 221
+  },
+  {
+   "id": "test-1297",
+   "min_lead": 0.22379881143569946,
+   "text_differs": false,
+   "grade_differs": false,
+   "fork_lead_a": null,
+   "fork_lead_b": null,
+   "fork_at": null,
+   "tokens": 399
+  },
+  {
+   "id": "test-1298",
+   "min_lead": 0.20510488748550415,
+   "text_differs": false,
+   "grade_differs": false,
+   "fork_lead_a": null,
+   "fork_lead_b": null,
+   "fork_at": null,
+   "tokens": 397
+  },
+  {
+   "id": "test-130",
+   "min_lead": 0.0330466628074646,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.0330466628074646,
+   "fork_lead_b": 0.3191413879394531,
+   "fork_at": 42,
+   "tokens": 269
+  },
+  {
+   "id": "test-1300",
+   "min_lead": 0.07157331705093384,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.07157331705093384,
+   "fork_lead_b": 0.05859565734863281,
+   "fork_at": 227,
+   "tokens": 361
+  },
+  {
+   "id": "test-1305",
+   "min_lead": 0.16240882873535156,
+   "text_differs": false,
+   "grade_differs": false,
+   "fork_lead_a": null,
+   "fork_lead_b": null,
+   "fork_at": null,
+   "tokens": 368
+  },
+  {
+   "id": "test-1311",
+   "min_lead": 0.23059850931167603,
+   "text_differs": false,
+   "grade_differs": false,
+   "fork_lead_a": null,
+   "fork_lead_b": null,
+   "fork_at": null,
+   "tokens": 186
+  },
+  {
+   "id": "test-1313",
+   "min_lead": 0.2785300612449646,
+   "text_differs": false,
+   "grade_differs": false,
+   "fork_lead_a": null,
+   "fork_lead_b": null,
+   "fork_at": null,
+   "tokens": 389
+  },
+  {
+   "id": "test-141",
+   "min_lead": 0.04265022277832031,
+   "text_differs": false,
+   "grade_differs": false,
+   "fork_lead_a": null,
+   "fork_lead_b": null,
+   "fork_at": null,
+   "tokens": 513
+  },
+  {
+   "id": "test-143",
+   "min_lead": 0.013475418090820312,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.26540565490722656,
+   "fork_lead_b": 0.14579206705093384,
+   "fork_at": 83,
+   "tokens": 633
+  },
+  {
+   "id": "test-147",
+   "min_lead": 0.0040988922119140625,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.0040988922119140625,
+   "fork_lead_b": 0.19718360900878906,
+   "fork_at": 255,
+   "tokens": 466
+  },
+  {
+   "id": "test-151",
+   "min_lead": 0.05104440450668335,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.05104440450668335,
+   "fork_lead_b": 0.3823738694190979,
+   "fork_at": 29,
+   "tokens": 454
+  },
+  {
+   "id": "test-161",
+   "min_lead": 0.14672857522964478,
+   "text_differs": false,
+   "grade_differs": false,
+   "fork_lead_a": null,
+   "fork_lead_b": null,
+   "fork_at": null,
+   "tokens": 363
+  },
+  {
+   "id": "test-164",
+   "min_lead": 0.004608154296875,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.23745721578598022,
+   "fork_lead_b": 0.12976449728012085,
+   "fork_at": 54,
+   "tokens": 442
+  },
+  {
+   "id": "test-165",
+   "min_lead": 0.0252419114112854,
+   "text_differs": false,
+   "grade_differs": false,
+   "fork_lead_a": null,
+   "fork_lead_b": null,
+   "fork_at": null,
+   "tokens": 302
+  },
+  {
+   "id": "test-168",
+   "min_lead": 0.002286970615386963,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.3285502791404724,
+   "fork_lead_b": 0.10889816284179688,
+   "fork_at": 98,
+   "tokens": 238
+  },
+  {
+   "id": "test-170",
+   "min_lead": 0.22166824340820312,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.22166824340820312,
+   "fork_lead_b": 0.2502784729003906,
+   "fork_at": 92,
+   "tokens": 315
+  },
+  {
+   "id": "test-183",
+   "min_lead": 0.3636665344238281,
+   "text_differs": false,
+   "grade_differs": false,
+   "fork_lead_a": null,
+   "fork_lead_b": null,
+   "fork_at": null,
+   "tokens": 427
+  },
+  {
+   "id": "test-186",
+   "min_lead": 0.007335662841796875,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.09430122375488281,
+   "fork_lead_b": 0.04673957824707031,
+   "fork_at": 418,
+   "tokens": 1024
+  },
+  {
+   "id": "test-187",
+   "min_lead": 0.029674649238586426,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.029674649238586426,
+   "fork_lead_b": 0.05747032165527344,
+   "fork_at": 86,
+   "tokens": 528
+  },
+  {
+   "id": "test-191",
+   "min_lead": 0.2099151611328125,
+   "text_differs": false,
+   "grade_differs": false,
+   "fork_lead_a": null,
+   "fork_lead_b": null,
+   "fork_at": null,
+   "tokens": 209
+  },
+  {
+   "id": "test-194",
+   "min_lead": 0.026592254638671875,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.2449740767478943,
+   "fork_lead_b": 0.018613874912261963,
+   "fork_at": 31,
+   "tokens": 162
+  },
+  {
+   "id": "test-2",
+   "min_lead": 0.1392230987548828,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.1424102783203125,
+   "fork_lead_b": 0.2589721083641052,
+   "fork_at": 23,
+   "tokens": 490
+  },
+  {
+   "id": "test-202",
+   "min_lead": 0.3862800598144531,
+   "text_differs": false,
+   "grade_differs": false,
+   "fork_lead_a": null,
+   "fork_lead_b": null,
+   "fork_at": null,
+   "tokens": 223
+  },
+  {
+   "id": "test-206",
+   "min_lead": 0.037544190883636475,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.5069884955883026,
+   "fork_lead_b": 0.533420592546463,
+   "fork_at": 12,
+   "tokens": 363
+  },
+  {
+   "id": "test-207",
+   "min_lead": 0.333160400390625,
+   "text_differs": false,
+   "grade_differs": false,
+   "fork_lead_a": null,
+   "fork_lead_b": null,
+   "fork_at": null,
+   "tokens": 423
+  },
+  {
+   "id": "test-223",
+   "min_lead": 0.44943806529045105,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.44943806529045105,
+   "fork_lead_b": 0.02768319845199585,
+   "fork_at": 85,
+   "tokens": 269
+  },
+  {
+   "id": "test-236",
+   "min_lead": 0.008751869201660156,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.10454559326171875,
+   "fork_lead_b": 0.14492708444595337,
+   "fork_at": 22,
+   "tokens": 428
+  },
+  {
+   "id": "test-237",
+   "min_lead": 0.10168272256851196,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.10168272256851196,
+   "fork_lead_b": 0.22524070739746094,
+   "fork_at": 111,
+   "tokens": 184
+  },
+  {
+   "id": "test-239",
+   "min_lead": 0.09235954284667969,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.22146034240722656,
+   "fork_lead_b": 0.008798599243164062,
+   "fork_at": 408,
+   "tokens": 461
+  },
+  {
+   "id": "test-240",
+   "min_lead": 0.01354604959487915,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.12607955932617188,
+   "fork_lead_b": 0.03296858072280884,
+   "fork_at": 172,
+   "tokens": 355
+  },
+  {
+   "id": "test-245",
+   "min_lead": 0.004802703857421875,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.069183349609375,
+   "fork_lead_b": 0.10005766153335571,
+   "fork_at": 123,
+   "tokens": 472
+  },
+  {
+   "id": "test-25",
+   "min_lead": 0.03596311807632446,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.38602548837661743,
+   "fork_lead_b": 0.1000632643699646,
+   "fork_at": 141,
+   "tokens": 554
+  },
+  {
+   "id": "test-253",
+   "min_lead": 0.014265060424804688,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.0780830979347229,
+   "fork_lead_b": 0.17584800720214844,
+   "fork_at": 32,
+   "tokens": 158
+  },
+  {
+   "id": "test-254",
+   "min_lead": 0.1944693922996521,
+   "text_differs": false,
+   "grade_differs": false,
+   "fork_lead_a": null,
+   "fork_lead_b": null,
+   "fork_at": null,
+   "tokens": 283
+  },
+  {
+   "id": "test-255",
+   "min_lead": 0.0282440185546875,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.13080787658691406,
+   "fork_lead_b": 0.010730743408203125,
+   "fork_at": 110,
+   "tokens": 364
+  },
+  {
+   "id": "test-266",
+   "min_lead": 0.06966578960418701,
+   "text_differs": false,
+   "grade_differs": false,
+   "fork_lead_a": null,
+   "fork_lead_b": null,
+   "fork_at": null,
+   "tokens": 377
+  },
+  {
+   "id": "test-267",
+   "min_lead": 0.0933150053024292,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.0933150053024292,
+   "fork_lead_b": 0.046726226806640625,
+   "fork_at": 231,
+   "tokens": 398
+  },
+  {
+   "id": "test-27",
+   "min_lead": 0.26263993978500366,
+   "text_differs": false,
+   "grade_differs": false,
+   "fork_lead_a": null,
+   "fork_lead_b": null,
+   "fork_at": null,
+   "tokens": 258
+  },
+  {
+   "id": "test-271",
+   "min_lead": 0.021253585815429688,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.06232351064682007,
+   "fork_lead_b": 0.4804353713989258,
+   "fork_at": 15,
+   "tokens": 519
+  },
+  {
+   "id": "test-276",
+   "min_lead": 0.07186508178710938,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.07186508178710938,
+   "fork_lead_b": 0.00415414571762085,
+   "fork_at": 42,
+   "tokens": 457
+  },
+  {
+   "id": "test-28",
+   "min_lead": 0.03405201435089111,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.5017833709716797,
+   "fork_lead_b": 0.8171214461326599,
+   "fork_at": 225,
+   "tokens": 363
+  },
+  {
+   "id": "test-285",
+   "min_lead": 0.44980722665786743,
+   "text_differs": false,
+   "grade_differs": false,
+   "fork_lead_a": null,
+   "fork_lead_b": null,
+   "fork_at": null,
+   "tokens": 215
+  },
+  {
+   "id": "test-286",
+   "min_lead": 0.3933486342430115,
+   "text_differs": false,
+   "grade_differs": false,
+   "fork_lead_a": null,
+   "fork_lead_b": null,
+   "fork_at": null,
+   "tokens": 272
+  },
+  {
+   "id": "test-29",
+   "min_lead": 0.015371322631835938,
+   "text_differs": false,
+   "grade_differs": false,
+   "fork_lead_a": null,
+   "fork_lead_b": null,
+   "fork_at": null,
+   "tokens": 431
+  },
+  {
+   "id": "test-291",
+   "min_lead": 0.4162921905517578,
+   "text_differs": false,
+   "grade_differs": false,
+   "fork_lead_a": null,
+   "fork_lead_b": null,
+   "fork_at": null,
+   "tokens": 287
+  },
+  {
+   "id": "test-299",
+   "min_lead": 0.0049399733543396,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.04634571075439453,
+   "fork_lead_b": 0.03916168212890625,
+   "fork_at": 34,
+   "tokens": 451
+  },
+  {
+   "id": "test-3",
+   "min_lead": 0.19242775440216064,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.3732566237449646,
+   "fork_lead_b": 0.030012011528015137,
+   "fork_at": 70,
+   "tokens": 290
+  },
+  {
+   "id": "test-30",
+   "min_lead": 0.04910475015640259,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.08025169372558594,
+   "fork_lead_b": 0.17828363180160522,
+   "fork_at": 72,
+   "tokens": 392
+  },
+  {
+   "id": "test-300",
+   "min_lead": 0.1795940399169922,
+   "text_differs": false,
+   "grade_differs": false,
+   "fork_lead_a": null,
+   "fork_lead_b": null,
+   "fork_at": null,
+   "tokens": 223
+  },
+  {
+   "id": "test-306",
+   "min_lead": 0.1916179656982422,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.1916179656982422,
+   "fork_lead_b": 0.021329879760742188,
+   "fork_at": 213,
+   "tokens": 338
+  },
+  {
+   "id": "test-314",
+   "min_lead": 0.006540358066558838,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.04582029581069946,
+   "fork_lead_b": 0.11180293560028076,
+   "fork_at": 140,
+   "tokens": 642
+  },
+  {
+   "id": "test-322",
+   "min_lead": 0.006992340087890625,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.12020111083984375,
+   "fork_lead_b": 0.5101051926612854,
+   "fork_at": 189,
+   "tokens": 575
+  },
+  {
+   "id": "test-324",
+   "min_lead": 0.047946929931640625,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.25501638650894165,
+   "fork_lead_b": 0.4576702117919922,
+   "fork_at": 19,
+   "tokens": 379
+  },
+  {
+   "id": "test-327",
+   "min_lead": 0.03236675262451172,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.03236675262451172,
+   "fork_lead_b": 0.21648597717285156,
+   "fork_at": 30,
+   "tokens": 272
+  },
+  {
+   "id": "test-33",
+   "min_lead": 0.3469506502151489,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.3469506502151489,
+   "fork_lead_b": 0.1411457657814026,
+   "fork_at": 364,
+   "tokens": 404
+  },
+  {
+   "id": "test-331",
+   "min_lead": 0.09860610961914062,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.13422393798828125,
+   "fork_lead_b": 0.061740875244140625,
+   "fork_at": 358,
+   "tokens": 600
+  },
+  {
+   "id": "test-339",
+   "min_lead": 0.1279582381248474,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.5709686279296875,
+   "fork_lead_b": 0.08710670471191406,
+   "fork_at": 407,
+   "tokens": 453
+  },
+  {
+   "id": "test-346",
+   "min_lead": 0.15155500173568726,
+   "text_differs": false,
+   "grade_differs": false,
+   "fork_lead_a": null,
+   "fork_lead_b": null,
+   "fork_at": null,
+   "tokens": 301
+  },
+  {
+   "id": "test-349",
+   "min_lead": 0.43835437297821045,
+   "text_differs": false,
+   "grade_differs": false,
+   "fork_lead_a": null,
+   "fork_lead_b": null,
+   "fork_at": null,
+   "tokens": 303
+  },
+  {
+   "id": "test-358",
+   "min_lead": 0.055633544921875,
+   "text_differs": true,
+   "grade_differs": true,
+   "fork_lead_a": 0.37944602966308594,
+   "fork_lead_b": 0.07332807779312134,
+   "fork_at": 124,
+   "tokens": 345
+  },
+  {
+   "id": "test-369",
+   "min_lead": 0.061493873596191406,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.27298158407211304,
+   "fork_lead_b": 0.002443850040435791,
+   "fork_at": 310,
+   "tokens": 391
+  },
+  {
+   "id": "test-376",
+   "min_lead": 0.2822362184524536,
+   "text_differs": false,
+   "grade_differs": false,
+   "fork_lead_a": null,
+   "fork_lead_b": null,
+   "fork_at": null,
+   "tokens": 291
+  },
+  {
+   "id": "test-378",
+   "min_lead": 0.11038017272949219,
+   "text_differs": false,
+   "grade_differs": false,
+   "fork_lead_a": null,
+   "fork_lead_b": null,
+   "fork_at": null,
+   "tokens": 222
+  },
+  {
+   "id": "test-382",
+   "min_lead": 0.027273178100585938,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.2846794128417969,
+   "fork_lead_b": 0.21801376342773438,
+   "fork_at": 339,
+   "tokens": 438
+  },
+  {
+   "id": "test-385",
+   "min_lead": 0.0808868408203125,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.2418079972267151,
+   "fork_lead_b": 0.09446525573730469,
+   "fork_at": 159,
+   "tokens": 348
+  },
+  {
+   "id": "test-386",
+   "min_lead": 0.05063056945800781,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.05063056945800781,
+   "fork_lead_b": 0.07648658752441406,
+   "fork_at": 17,
+   "tokens": 360
+  },
+  {
+   "id": "test-387",
+   "min_lead": 0.08058738708496094,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.08058738708496094,
+   "fork_lead_b": 0.09383964538574219,
+   "fork_at": 11,
+   "tokens": 206
+  },
+  {
+   "id": "test-389",
+   "min_lead": 0.08802223205566406,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.13195788860321045,
+   "fork_lead_b": 0.08371925354003906,
+   "fork_at": 365,
+   "tokens": 524
+  },
+  {
+   "id": "test-391",
+   "min_lead": 0.019254684448242188,
+   "text_differs": false,
+   "grade_differs": false,
+   "fork_lead_a": null,
+   "fork_lead_b": null,
+   "fork_at": null,
+   "tokens": 405
+  },
+  {
+   "id": "test-393",
+   "min_lead": 0.10848426818847656,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.10848426818847656,
+   "fork_lead_b": 0.0979117751121521,
+   "fork_at": 125,
+   "tokens": 417
+  },
+  {
+   "id": "test-398",
+   "min_lead": 0.6938076615333557,
+   "text_differs": false,
+   "grade_differs": false,
+   "fork_lead_a": null,
+   "fork_lead_b": null,
+   "fork_at": null,
+   "tokens": 328
+  },
+  {
+   "id": "test-4",
+   "min_lead": 0.029245376586914062,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.49452975392341614,
+   "fork_lead_b": 0.35417747497558594,
+   "fork_at": 68,
+   "tokens": 371
+  },
+  {
+   "id": "test-408",
+   "min_lead": 0.025201916694641113,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.025201916694641113,
+   "fork_lead_b": 0.24603837728500366,
+   "fork_at": 90,
+   "tokens": 747
+  },
+  {
+   "id": "test-416",
+   "min_lead": 0.03780937194824219,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.39629465341567993,
+   "fork_lead_b": 0.10342603921890259,
+   "fork_at": 85,
+   "tokens": 489
+  },
+  {
+   "id": "test-418",
+   "min_lead": 0.011001527309417725,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.1673755645751953,
+   "fork_lead_b": 0.11807054281234741,
+   "fork_at": 106,
+   "tokens": 455
+  },
+  {
+   "id": "test-431",
+   "min_lead": 0.1151389479637146,
+   "text_differs": false,
+   "grade_differs": false,
+   "fork_lead_a": null,
+   "fork_lead_b": null,
+   "fork_at": null,
+   "tokens": 210
+  },
+  {
+   "id": "test-437",
+   "min_lead": 0.22419166564941406,
+   "text_differs": false,
+   "grade_differs": false,
+   "fork_lead_a": null,
+   "fork_lead_b": null,
+   "fork_at": null,
+   "tokens": 233
+  },
+  {
+   "id": "test-44",
+   "min_lead": 0.08491134643554688,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.08491134643554688,
+   "fork_lead_b": 0.028093397617340088,
+   "fork_at": 43,
+   "tokens": 408
+  },
+  {
+   "id": "test-440",
+   "min_lead": 0.07853895425796509,
+   "text_differs": false,
+   "grade_differs": false,
+   "fork_lead_a": null,
+   "fork_lead_b": null,
+   "fork_at": null,
+   "tokens": 473
+  },
+  {
+   "id": "test-447",
+   "min_lead": 0.05586433410644531,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.05586433410644531,
+   "fork_lead_b": 0.3359699249267578,
+   "fork_at": 179,
+   "tokens": 262
+  },
+  {
+   "id": "test-448",
+   "min_lead": 0.1471967101097107,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.31065744161605835,
+   "fork_lead_b": 0.02803325653076172,
+   "fork_at": 19,
+   "tokens": 345
+  },
+  {
+   "id": "test-451",
+   "min_lead": 0.0205230712890625,
+   "text_differs": false,
+   "grade_differs": false,
+   "fork_lead_a": null,
+   "fork_lead_b": null,
+   "fork_at": null,
+   "tokens": 447
+  },
+  {
+   "id": "test-452",
+   "min_lead": 0.05310630798339844,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.6224669814109802,
+   "fork_lead_b": 0.252593994140625,
+   "fork_at": 14,
+   "tokens": 458
+  },
+  {
+   "id": "test-454",
+   "min_lead": 0.19002336263656616,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.19002336263656616,
+   "fork_lead_b": 0.1968058943748474,
+   "fork_at": 189,
+   "tokens": 294
+  },
+  {
+   "id": "test-456",
+   "min_lead": 0.18937116861343384,
+   "text_differs": false,
+   "grade_differs": false,
+   "fork_lead_a": null,
+   "fork_lead_b": null,
+   "fork_at": null,
+   "tokens": 410
+  },
+  {
+   "id": "test-46",
+   "min_lead": 0.13129431009292603,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.6667174100875854,
+   "fork_lead_b": 0.06838041543960571,
+   "fork_at": 209,
+   "tokens": 400
+  },
+  {
+   "id": "test-482",
+   "min_lead": 0.22372525930404663,
+   "text_differs": false,
+   "grade_differs": false,
+   "fork_lead_a": null,
+   "fork_lead_b": null,
+   "fork_at": null,
+   "tokens": 187
+  },
+  {
+   "id": "test-488",
+   "min_lead": 0.04015153646469116,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.04015153646469116,
+   "fork_lead_b": 0.26822853088378906,
+   "fork_at": 32,
+   "tokens": 216
+  },
+  {
+   "id": "test-490",
+   "min_lead": 0.07807546854019165,
+   "text_differs": false,
+   "grade_differs": false,
+   "fork_lead_a": null,
+   "fork_lead_b": null,
+   "fork_at": null,
+   "tokens": 242
+  },
+  {
+   "id": "test-491",
+   "min_lead": 0.13899224996566772,
+   "text_differs": false,
+   "grade_differs": false,
+   "fork_lead_a": null,
+   "fork_lead_b": null,
+   "fork_at": null,
+   "tokens": 252
+  },
+  {
+   "id": "test-495",
+   "min_lead": 0.02611076831817627,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.02611076831817627,
+   "fork_lead_b": 0.7348308563232422,
+   "fork_at": 17,
+   "tokens": 211
+  },
+  {
+   "id": "test-497",
+   "min_lead": 0.00490570068359375,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.00490570068359375,
+   "fork_lead_b": 0.1367092728614807,
+   "fork_at": 122,
+   "tokens": 270
+  },
+  {
+   "id": "test-499",
+   "min_lead": 0.09221643209457397,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.09221643209457397,
+   "fork_lead_b": 0.0400124192237854,
+   "fork_at": 224,
+   "tokens": 413
+  },
+  {
+   "id": "test-513",
+   "min_lead": 0.014883041381835938,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.10928833484649658,
+   "fork_lead_b": 0.008968234062194824,
+   "fork_at": 262,
+   "tokens": 350
+  },
+  {
+   "id": "test-530",
+   "min_lead": 0.0003795623779296875,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.0003795623779296875,
+   "fork_lead_b": 0.14693832397460938,
+   "fork_at": 139,
+   "tokens": 558
+  },
+  {
+   "id": "test-532",
+   "min_lead": 0.05127716064453125,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.5566884279251099,
+   "fork_lead_b": 0.05337709188461304,
+   "fork_at": 0,
+   "tokens": 511
+  },
+  {
+   "id": "test-533",
+   "min_lead": 0.04932403564453125,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.8936549723148346,
+   "fork_lead_b": 0.393043577671051,
+   "fork_at": 24,
+   "tokens": 494
+  },
+  {
+   "id": "test-54",
+   "min_lead": 0.038212716579437256,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.1389121413230896,
+   "fork_lead_b": 0.0582466721534729,
+   "fork_at": 131,
+   "tokens": 279
+  },
+  {
+   "id": "test-555",
+   "min_lead": 0.2562733292579651,
+   "text_differs": false,
+   "grade_differs": false,
+   "fork_lead_a": null,
+   "fork_lead_b": null,
+   "fork_at": null,
+   "tokens": 268
+  },
+  {
+   "id": "test-563",
+   "min_lead": 0.03830158710479736,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.10511022806167603,
+   "fork_lead_b": 0.043434083461761475,
+   "fork_at": 146,
+   "tokens": 507
+  },
+  {
+   "id": "test-564",
+   "min_lead": 0.018737852573394775,
+   "text_differs": true,
+   "grade_differs": true,
+   "fork_lead_a": 0.2940426468849182,
+   "fork_lead_b": 0.029714584350585938,
+   "fork_at": 90,
+   "tokens": 1024
+  },
+  {
+   "id": "test-575",
+   "min_lead": 0.07722669839859009,
+   "text_differs": false,
+   "grade_differs": false,
+   "fork_lead_a": null,
+   "fork_lead_b": null,
+   "fork_at": null,
+   "tokens": 352
+  },
+  {
+   "id": "test-577",
+   "min_lead": 0.0030364990234375,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.01530832052230835,
+   "fork_lead_b": 0.15161508321762085,
+   "fork_at": 23,
+   "tokens": 472
+  },
+  {
+   "id": "test-589",
+   "min_lead": 0.02975475788116455,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.30356401205062866,
+   "fork_lead_b": 0.029552459716796875,
+   "fork_at": 39,
+   "tokens": 510
+  },
+  {
+   "id": "test-594",
+   "min_lead": 0.03573423624038696,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.15262800455093384,
+   "fork_lead_b": 0.03840065002441406,
+   "fork_at": 26,
+   "tokens": 323
+  },
+  {
+   "id": "test-596",
+   "min_lead": 0.09763723611831665,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.1469554901123047,
+   "fork_lead_b": 0.0403289794921875,
+   "fork_at": 309,
+   "tokens": 370
+  },
+  {
+   "id": "test-6",
+   "min_lead": 0.06181907653808594,
+   "text_differs": false,
+   "grade_differs": false,
+   "fork_lead_a": null,
+   "fork_lead_b": null,
+   "fork_at": null,
+   "tokens": 248
+  },
+  {
+   "id": "test-616",
+   "min_lead": 0.3447303771972656,
+   "text_differs": false,
+   "grade_differs": false,
+   "fork_lead_a": null,
+   "fork_lead_b": null,
+   "fork_at": null,
+   "tokens": 250
+  },
+  {
+   "id": "test-617",
+   "min_lead": 0.010847151279449463,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.010847151279449463,
+   "fork_lead_b": 0.1753901243209839,
+   "fork_at": 259,
+   "tokens": 266
+  },
+  {
+   "id": "test-621",
+   "min_lead": 0.07461553812026978,
+   "text_differs": false,
+   "grade_differs": false,
+   "fork_lead_a": null,
+   "fork_lead_b": null,
+   "fork_at": null,
+   "tokens": 390
+  },
+  {
+   "id": "test-635",
+   "min_lead": 0.0047721266746521,
+   "text_differs": true,
+   "grade_differs": true,
+   "fork_lead_a": 0.14435577392578125,
+   "fork_lead_b": 0.08024215698242188,
+   "fork_at": 151,
+   "tokens": 1024
+  },
+  {
+   "id": "test-637",
+   "min_lead": 0.04847532510757446,
+   "text_differs": false,
+   "grade_differs": false,
+   "fork_lead_a": null,
+   "fork_lead_b": null,
+   "fork_at": null,
+   "tokens": 318
+  },
+  {
+   "id": "test-639",
+   "min_lead": 0.10425567626953125,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.10425567626953125,
+   "fork_lead_b": 0.04002952575683594,
+   "fork_at": 372,
+   "tokens": 384
+  },
+  {
+   "id": "test-64",
+   "min_lead": 0.04059416055679321,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.04059416055679321,
+   "fork_lead_b": 0.06882667541503906,
+   "fork_at": 275,
+   "tokens": 521
+  },
+  {
+   "id": "test-647",
+   "min_lead": 0.29019349813461304,
+   "text_differs": false,
+   "grade_differs": false,
+   "fork_lead_a": null,
+   "fork_lead_b": null,
+   "fork_at": null,
+   "tokens": 310
+  },
+  {
+   "id": "test-649",
+   "min_lead": 0.0014020204544067383,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.26509857177734375,
+   "fork_lead_b": 0.36436277627944946,
+   "fork_at": 85,
+   "tokens": 1024
+  },
+  {
+   "id": "test-655",
+   "min_lead": 0.06535154581069946,
+   "text_differs": false,
+   "grade_differs": false,
+   "fork_lead_a": null,
+   "fork_lead_b": null,
+   "fork_at": null,
+   "tokens": 245
+  },
+  {
+   "id": "test-664",
+   "min_lead": 0.2641602158546448,
+   "text_differs": false,
+   "grade_differs": false,
+   "fork_lead_a": null,
+   "fork_lead_b": null,
+   "fork_at": null,
+   "tokens": 322
+  },
+  {
+   "id": "test-666",
+   "min_lead": 0.00311279296875,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.00311279296875,
+   "fork_lead_b": 0.1685943603515625,
+   "fork_at": 167,
+   "tokens": 425
+  },
+  {
+   "id": "test-667",
+   "min_lead": 0.02021026611328125,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.5541286766529083,
+   "fork_lead_b": 0.19532012939453125,
+   "fork_at": 55,
+   "tokens": 321
+  },
+  {
+   "id": "test-67",
+   "min_lead": 0.008771836757659912,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.30274009704589844,
+   "fork_lead_b": 0.12271690368652344,
+   "fork_at": 168,
+   "tokens": 987
+  },
+  {
+   "id": "test-676",
+   "min_lead": 0.23151594400405884,
+   "text_differs": false,
+   "grade_differs": false,
+   "fork_lead_a": null,
+   "fork_lead_b": null,
+   "fork_at": null,
+   "tokens": 506
+  },
+  {
+   "id": "test-681",
+   "min_lead": 0.07382971048355103,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.2820110321044922,
+   "fork_lead_b": 0.5997237265110016,
+   "fork_at": 462,
+   "tokens": 490
+  },
+  {
+   "id": "test-682",
+   "min_lead": 0.01884084939956665,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.05776405334472656,
+   "fork_lead_b": 0.09602546691894531,
+   "fork_at": 80,
+   "tokens": 512
+  },
+  {
+   "id": "test-684",
+   "min_lead": 0.0028934478759765625,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.0028934478759765625,
+   "fork_lead_b": 0.01221466064453125,
+   "fork_at": 134,
+   "tokens": 205
+  },
+  {
+   "id": "test-686",
+   "min_lead": 0.03838157653808594,
+   "text_differs": false,
+   "grade_differs": false,
+   "fork_lead_a": null,
+   "fork_lead_b": null,
+   "fork_at": null,
+   "tokens": 223
+  },
+  {
+   "id": "test-687",
+   "min_lead": 0.004749298095703125,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.004749298095703125,
+   "fork_lead_b": 0.17774391174316406,
+   "fork_at": 11,
+   "tokens": 671
+  },
+  {
+   "id": "test-701",
+   "min_lead": 0.006710052490234375,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.006710052490234375,
+   "fork_lead_b": 0.06502342224121094,
+   "fork_at": 101,
+   "tokens": 379
+  },
+  {
+   "id": "test-717",
+   "min_lead": 0.4176597595214844,
+   "text_differs": false,
+   "grade_differs": false,
+   "fork_lead_a": null,
+   "fork_lead_b": null,
+   "fork_at": null,
+   "tokens": 229
+  },
+  {
+   "id": "test-721",
+   "min_lead": 0.032760560512542725,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.14977747201919556,
+   "fork_lead_b": 0.266787588596344,
+   "fork_at": 23,
+   "tokens": 475
+  },
+  {
+   "id": "test-724",
+   "min_lead": 0.004943788051605225,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.2684153914451599,
+   "fork_lead_b": 0.06744003295898438,
+   "fork_at": 104,
+   "tokens": 1024
+  },
+  {
+   "id": "test-731",
+   "min_lead": 0.003757476806640625,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.3680000305175781,
+   "fork_lead_b": 0.26938819885253906,
+   "fork_at": 152,
+   "tokens": 322
+  },
+  {
+   "id": "test-733",
+   "min_lead": 0.04704093933105469,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.04704093933105469,
+   "fork_lead_b": 0.023008286952972412,
+   "fork_at": 83,
+   "tokens": 191
+  },
+  {
+   "id": "test-734",
+   "min_lead": 0.04615211486816406,
+   "text_differs": true,
+   "grade_differs": true,
+   "fork_lead_a": 0.04615211486816406,
+   "fork_lead_b": 0.008337914943695068,
+   "fork_at": 29,
+   "tokens": 326
+  },
+  {
+   "id": "test-735",
+   "min_lead": 0.06599229574203491,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.16036605834960938,
+   "fork_lead_b": 0.3137999176979065,
+   "fork_at": 389,
+   "tokens": 445
+  },
+  {
+   "id": "test-74",
+   "min_lead": 0.12322998046875,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.12322998046875,
+   "fork_lead_b": 0.08077239990234375,
+   "fork_at": 41,
+   "tokens": 403
+  },
+  {
+   "id": "test-758",
+   "min_lead": 0.08160215616226196,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.13333696126937866,
+   "fork_lead_b": 0.2985764145851135,
+   "fork_at": 197,
+   "tokens": 300
+  },
+  {
+   "id": "test-761",
+   "min_lead": 0.16666030883789062,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.16666030883789062,
+   "fork_lead_b": 0.03402519226074219,
+   "fork_at": 309,
+   "tokens": 400
+  },
+  {
+   "id": "test-775",
+   "min_lead": 0.1486988067626953,
+   "text_differs": false,
+   "grade_differs": false,
+   "fork_lead_a": null,
+   "fork_lead_b": null,
+   "fork_at": null,
+   "tokens": 279
+  },
+  {
+   "id": "test-788",
+   "min_lead": 0.0032740235328674316,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.07545089721679688,
+   "fork_lead_b": 0.03174781799316406,
+   "fork_at": 104,
+   "tokens": 248
+  },
+  {
+   "id": "test-79",
+   "min_lead": 0.2114238739013672,
+   "text_differs": false,
+   "grade_differs": false,
+   "fork_lead_a": null,
+   "fork_lead_b": null,
+   "fork_at": null,
+   "tokens": 260
+  },
+  {
+   "id": "test-794",
+   "min_lead": 0.7499485611915588,
+   "text_differs": false,
+   "grade_differs": false,
+   "fork_lead_a": null,
+   "fork_lead_b": null,
+   "fork_at": null,
+   "tokens": 251
+  },
+  {
+   "id": "test-795",
+   "min_lead": 0.1504802703857422,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.1504802703857422,
+   "fork_lead_b": 0.10354036092758179,
+   "fork_at": 219,
+   "tokens": 271
+  },
+  {
+   "id": "test-80",
+   "min_lead": 0.015260696411132812,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.015260696411132812,
+   "fork_lead_b": 0.3480624556541443,
+   "fork_at": 283,
+   "tokens": 341
+  },
+  {
+   "id": "test-801",
+   "min_lead": 0.1697978377342224,
+   "text_differs": false,
+   "grade_differs": false,
+   "fork_lead_a": null,
+   "fork_lead_b": null,
+   "fork_at": null,
+   "tokens": 336
+  },
+  {
+   "id": "test-816",
+   "min_lead": 0.31770509481430054,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.31770509481430054,
+   "fork_lead_b": 0.10143095254898071,
+   "fork_at": 11,
+   "tokens": 208
+  },
+  {
+   "id": "test-82",
+   "min_lead": 0.0013275146484375,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.10939979553222656,
+   "fork_lead_b": 0.6366805136203766,
+   "fork_at": 233,
+   "tokens": 241
+  },
+  {
+   "id": "test-822",
+   "min_lead": 0.1472378373146057,
+   "text_differs": false,
+   "grade_differs": false,
+   "fork_lead_a": null,
+   "fork_lead_b": null,
+   "fork_at": null,
+   "tokens": 299
+  },
+  {
+   "id": "test-823",
+   "min_lead": 0.049892425537109375,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.06791681051254272,
+   "fork_lead_b": 0.14695638418197632,
+   "fork_at": 231,
+   "tokens": 271
+  },
+  {
+   "id": "test-829",
+   "min_lead": 0.10360139608383179,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.1745319962501526,
+   "fork_lead_b": 0.1856842041015625,
+   "fork_at": 11,
+   "tokens": 346
+  },
+  {
+   "id": "test-839",
+   "min_lead": 0.06733137369155884,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.10774612426757812,
+   "fork_lead_b": 0.4454135298728943,
+   "fork_at": 259,
+   "tokens": 307
+  },
+  {
+   "id": "test-848",
+   "min_lead": 0.3614635467529297,
+   "text_differs": false,
+   "grade_differs": false,
+   "fork_lead_a": null,
+   "fork_lead_b": null,
+   "fork_at": null,
+   "tokens": 259
+  },
+  {
+   "id": "test-850",
+   "min_lead": 0.6105595231056213,
+   "text_differs": false,
+   "grade_differs": false,
+   "fork_lead_a": null,
+   "fork_lead_b": null,
+   "fork_at": null,
+   "tokens": 336
+  },
+  {
+   "id": "test-855",
+   "min_lead": 0.01134490966796875,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.13750839233398438,
+   "fork_lead_b": 0.08589941263198853,
+   "fork_at": 400,
+   "tokens": 693
+  },
+  {
+   "id": "test-856",
+   "min_lead": 0.00058746337890625,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.10690879821777344,
+   "fork_lead_b": 0.3407154083251953,
+   "fork_at": 202,
+   "tokens": 415
+  },
+  {
+   "id": "test-858",
+   "min_lead": 0.07076078653335571,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.07076078653335571,
+   "fork_lead_b": 0.25499534606933594,
+   "fork_at": 409,
+   "tokens": 537
+  },
+  {
+   "id": "test-861",
+   "min_lead": 0.24669647216796875,
+   "text_differs": false,
+   "grade_differs": false,
+   "fork_lead_a": null,
+   "fork_lead_b": null,
+   "fork_at": null,
+   "tokens": 334
+  },
+  {
+   "id": "test-871",
+   "min_lead": 0.0649985671043396,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.08856207132339478,
+   "fork_lead_b": 0.10304832458496094,
+   "fork_at": 26,
+   "tokens": 439
+  },
+  {
+   "id": "test-872",
+   "min_lead": 0.18358993530273438,
+   "text_differs": false,
+   "grade_differs": false,
+   "fork_lead_a": null,
+   "fork_lead_b": null,
+   "fork_at": null,
+   "tokens": 314
+  },
+  {
+   "id": "test-889",
+   "min_lead": 0.0036220550537109375,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.2094363570213318,
+   "fork_lead_b": 0.813667356967926,
+   "fork_at": 27,
+   "tokens": 237
+  },
+  {
+   "id": "test-893",
+   "min_lead": 0.17162513732910156,
+   "text_differs": false,
+   "grade_differs": false,
+   "fork_lead_a": null,
+   "fork_lead_b": null,
+   "fork_at": null,
+   "tokens": 237
+  },
+  {
+   "id": "test-905",
+   "min_lead": 0.12571150064468384,
+   "text_differs": false,
+   "grade_differs": false,
+   "fork_lead_a": null,
+   "fork_lead_b": null,
+   "fork_at": null,
+   "tokens": 342
+  },
+  {
+   "id": "test-906",
+   "min_lead": 0.04123497009277344,
+   "text_differs": false,
+   "grade_differs": false,
+   "fork_lead_a": null,
+   "fork_lead_b": null,
+   "fork_at": null,
+   "tokens": 238
+  },
+  {
+   "id": "test-911",
+   "min_lead": 0.0313568115234375,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.27813345193862915,
+   "fork_lead_b": 0.2910746932029724,
+   "fork_at": 91,
+   "tokens": 343
+  },
+  {
+   "id": "test-912",
+   "min_lead": 0.002759993076324463,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.1354656219482422,
+   "fork_lead_b": 0.07066720724105835,
+   "fork_at": 11,
+   "tokens": 638
+  },
+  {
+   "id": "test-914",
+   "min_lead": 0.03391844034194946,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.23558610677719116,
+   "fork_lead_b": 0.027742445468902588,
+   "fork_at": 11,
+   "tokens": 322
+  },
+  {
+   "id": "test-917",
+   "min_lead": 0.08986282348632812,
+   "text_differs": false,
+   "grade_differs": false,
+   "fork_lead_a": null,
+   "fork_lead_b": null,
+   "fork_at": null,
+   "tokens": 155
+  },
+  {
+   "id": "test-92",
+   "min_lead": 0.10918807983398438,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.10918807983398438,
+   "fork_lead_b": 0.015089035034179688,
+   "fork_at": 52,
+   "tokens": 419
+  },
+  {
+   "id": "test-922",
+   "min_lead": 0.03309816122055054,
+   "text_differs": false,
+   "grade_differs": false,
+   "fork_lead_a": null,
+   "fork_lead_b": null,
+   "fork_at": null,
+   "tokens": 272
+  },
+  {
+   "id": "test-93",
+   "min_lead": 0.011976301670074463,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.30544090270996094,
+   "fork_lead_b": 0.039947509765625,
+   "fork_at": 181,
+   "tokens": 558
+  },
+  {
+   "id": "test-937",
+   "min_lead": 0.5007095634937286,
+   "text_differs": false,
+   "grade_differs": false,
+   "fork_lead_a": null,
+   "fork_lead_b": null,
+   "fork_at": null,
+   "tokens": 362
+  },
+  {
+   "id": "test-95",
+   "min_lead": 0.05578625202178955,
+   "text_differs": false,
+   "grade_differs": false,
+   "fork_lead_a": null,
+   "fork_lead_b": null,
+   "fork_at": null,
+   "tokens": 496
+  },
+  {
+   "id": "test-956",
+   "min_lead": 0.12830543518066406,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.16682428121566772,
+   "fork_lead_b": 0.3937053680419922,
+   "fork_at": 175,
+   "tokens": 341
+  },
+  {
+   "id": "test-963",
+   "min_lead": 0.014577925205230713,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.06394767761230469,
+   "fork_lead_b": 0.021486282348632812,
+   "fork_at": 173,
+   "tokens": 861
+  },
+  {
+   "id": "test-965",
+   "min_lead": 0.0032711029052734375,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.02708578109741211,
+   "fork_lead_b": 0.10629463195800781,
+   "fork_at": 154,
+   "tokens": 856
+  },
+  {
+   "id": "test-966",
+   "min_lead": 0.017301619052886963,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.017301619052886963,
+   "fork_lead_b": 0.26310157775878906,
+   "fork_at": 137,
+   "tokens": 316
+  },
+  {
+   "id": "test-975",
+   "min_lead": 0.11660194396972656,
+   "text_differs": false,
+   "grade_differs": false,
+   "fork_lead_a": null,
+   "fork_lead_b": null,
+   "fork_at": null,
+   "tokens": 340
+  },
+  {
+   "id": "test-976",
+   "min_lead": 0.004835069179534912,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.15033143758773804,
+   "fork_lead_b": 0.014547228813171387,
+   "fork_at": 119,
+   "tokens": 678
+  },
+  {
+   "id": "test-981",
+   "min_lead": 0.2402781844139099,
+   "text_differs": false,
+   "grade_differs": false,
+   "fork_lead_a": null,
+   "fork_lead_b": null,
+   "fork_at": null,
+   "tokens": 348
+  },
+  {
+   "id": "test-986",
+   "min_lead": 0.22473526000976562,
+   "text_differs": false,
+   "grade_differs": false,
+   "fork_lead_a": null,
+   "fork_lead_b": null,
+   "fork_at": null,
+   "tokens": 378
+  },
+  {
+   "id": "test-995",
+   "min_lead": 0.22154521942138672,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.22154521942138672,
+   "fork_lead_b": 0.14907175302505493,
+   "fork_at": 170,
+   "tokens": 213
+  },
+  {
+   "id": "test-996",
+   "min_lead": 0.05623829364776611,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 2.4839725643396378,
+   "fork_lead_b": 0.14665210247039795,
+   "fork_at": 133,
+   "tokens": 462
+  },
+  {
+   "id": "test-997",
+   "min_lead": 0.00257110595703125,
+   "text_differs": true,
+   "grade_differs": false,
+   "fork_lead_a": 0.7048388123512268,
+   "fork_lead_b": 0.4091939926147461,
+   "fork_at": 89,
+   "tokens": 317
+  }
+ ]
+}

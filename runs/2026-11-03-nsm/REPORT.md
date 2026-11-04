@@ -34,6 +34,16 @@ the `*.json` here.
 | patch inert, T4: variables unset vs T4 stock (2026-11-02) | 0 | 0 | 98,637 | 98,637 (100%) |
 | 1650 told 40 SMs: vector route vs cuBLAS | 167 | 10 | 50,648 | 30,132 (59.5%) |
 
+Q4_0 (sha256 `2d84758474be87d0a74edfa98efbeb602484e26f2e5fa8695fd9641ad323c7b2` on both machines), same settings:
+
+| pair (Q4_0, 250 answers) | text differs | grade differs | tokens compared | same score on both |
+|---|---|---|---|---|
+| 1650 stock (`../2026-10-29-1650`) vs AWS T4 stock (`../2026-11-01-flips/t4/default`), text only | 238 | 22 | — | — |
+| **1650 told 40 SMs, cuBLAS matrix on the vector route vs T4, same route** | **0** | 0 | 108,281 | **108,281 (100%)** |
+
+At Q4_0 too, `per_layer_model_proj` is the only product that goes to cuBLAS (200 of 200 logged on each card). Both runs
+get 224 of 250 right. The stock pair is counted from answer text in python (no per-token scores were recorded then).
+
 1. **Two things make the cards differ at default settings, and together they are all of it.** With the 1650 told
    the T4's SM count and the one cuBLAS product moved to the vector route on both cards, every answer matches word
    for word and every one of 97,380 scores is the same number. Both runs get 229 of 250 right.
@@ -54,8 +64,8 @@ the `*.json` here.
 - Which cuBLAS routine each card picks, and why its result differs. cuBLAS is closed source; the test removes it
   and shows the differences go with it.
 - Whether a third card with compute capability 7.5 joins this match under the same two settings. Two cards tested.
-- Q8_0 only. The other rungs quantize more matrices but leave `per_layer_model_proj` in BF16 too (same rule in
-  llama-quant.cpp); not run.
+- Q8_0 and Q4_0 only. The other rungs leave `per_layer_model_proj` in BF16 too (the rule at llama-quant.cpp:324
+  has no exception by type); BF16, F16 and the K-quants were not run under the two settings.
 - The server logs capture no ggml-cuda start-up lines, so the SM override's own log line never appears. The
   override taking effect is shown by the output change (row 2).
 
@@ -64,4 +74,5 @@ the `*.json` here.
 1650: `own/`, `nsm40/`, `nsm40-vec/`, `host.txt`, `sha.txt`, `nsm-test.log`, `nsm40-vec.log`.
 T4: `t4-patched/`, `t4-vec/`, `t4-host.txt`, `t4-sha.txt`, `t4-vec.log`.
 Pair outputs: `own-vs-1650-default.json`, `nsm40-vs-t4-default.json`, `nsm40-vs-1650-default.json`,
-`nsm40-vec-vs-nsm40.json`, `t4-patched-vs-t4-default.json`, `nsm40-vec-vs-t4-vec.json`.
+`nsm40-vec-vs-nsm40.json`, `t4-patched-vs-t4-default.json`, `nsm40-vec-vs-t4-vec.json`, `q4-nsm40-vec-vs-t4-vec.json`.
+Q4_0: `nsm40-vec-q4/`, `nsm40-vec-q4.log`, `q4-sha.txt` (1650); `t4-vec-q4/`, `t4-vec-q4.log`, `t4-q4-sha.txt` (T4).

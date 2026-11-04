@@ -3,8 +3,10 @@
 The 1650 has the T4's build target (sm_75, `~/graveyard-llama`, b11699), but on 2026-10-29 it differed from the
 AWS T4 on 165 of 250 Q8_0 answers. These two runs record the 1650's own top-two scores at every token, so they
 can be compared with the T4 and L4 probe runs in `runs/2026-11-02-probe/`. They answer one question: with `-ub 1`,
-does the 1650 give the same scores as the T4 and the sm_75 L4, or does it take a third code path? It has no
-tensor cores, so its quantized matrix code may differ from the T4's. Untested.
+does the 1650 give the same scores as the T4 and the sm_75 L4, or does it take a third code path? Answered 2026-11-03: with
+`-ub 1` it gives the T4's scores at every token (97,450 of 97,450). Its default-settings difference comes from its SM
+count (16 against 40) and one cuBLAS product (`runs/2026-11-03-nsm`); tensor cores play no part, since llama.cpp
+picks kernels by compute capability.
 
 Two runs of Q8_0, 250 questions each, about 30–35 minutes each at the 1650's 45.9 tokens/s (Q8_0, `bury.txt` of
 `runs/2026-10-29-1650`).

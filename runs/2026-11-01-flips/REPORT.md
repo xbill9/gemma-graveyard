@@ -14,17 +14,18 @@ Every count below comes from a script in `tools/`; its output is in this directo
    median lead of the top token is 16.6 (BF16), 17.0 (Q8_0), 15.3 (Q4_0) logits. At the first token where two
    cards' texts part, the median lead is 0.044, 0.203 and 0.401 (`replay/`, `tools/fork_gaps.py`; BF16 from 103
    answers). Near-ties are equally common at every rung: about 1.1–1.4% of tokens lead by under 0.25.
-3. **Most text differences change nothing.** Text differs between cards on 165–250 of 250 answers; grades
-   differ on 3–16 above Q3_K_M. Forks that flip a grade fall early in the answer and on wording, not on
+3. **Most text differences change nothing.** Between the three cards with recorded text (L4, 1650, 3050), text
+   differs on 31–65 of 250 answers at BF16 and F16 and on 162–242 at Q8_0 to Q4_0; grades differ on 3–5 and 5–22. Forks that flip a grade fall early in the answer and on wording, not on
    arithmetic: false `a op b = c` claims stay at 3–9 per 1000 from BF16 to Q3_K_M and reach 597 at Q2_K
    (`tools/flip_arith.py`).
 4. **Flips come from a fixed pool of fragile questions.** Over 28 runs (4 cards × BF16..Q4_0): 184 always right,
    7 never, 59 contested. The 30 most contested hold 80.7% of minority results. Contested questions have longer
-   solutions (BF16 median 477 vs 329 tokens, AUC 0.81) and usually two competing answers (median 2).
+   solutions (BF16 median 476 vs 328 tokens on the L4 and the 1650, 457 vs 328 on the 3050; AUC 0.79–0.80,
+   `tools/flip_extra.py`) and usually two competing answers (median 2).
    Which fragile questions flip changes with every card and rung.
-5. **Totals stay steady because flips go both ways.** Spread of the right-answer count across four cards
-   matches what independent coin flips on the contested questions predict (SD 1.3–2.6 measured vs 1.5–2.6
-   predicted, Q8_0..Q4_0). Shuffling card labels: no card is better (all p ≥ 0.27).
+5. **Totals stay steady because flips go both ways.** Spread of the right-answer count across four cards is
+   close to what independent coin flips on each question predict (SD 1.09–2.24 measured vs 1.12–1.92 predicted,
+   Q8_0..Q4_0, `tools/flip_extra.py`). Shuffling card labels: no card is better (all p ≥ 0.27).
 6. **The difference between L4 and T4 is in the software build and its code path, not the chip.**
    L4 compiled for the T4's target (`CMAKE_CUDA_ARCHITECTURES=75`) and run with `-ub 1` produced the same text
    as T4 with `-ub 1` on **all 250** Q8_0 answers. Each half alone leaves the cards apart:
@@ -70,8 +71,18 @@ from either side: a flip usually needs more than the first near-tie.
   `l4/nudge/`; measured on Q8_0 in `../2026-11-02-probe/`). So the 0 holds for Q8_0 under `-ub 1` only.
 - The rounding-order mechanism in item 6 is read from source, not measured.
 - GTX 1650 and RTX 3050 were not rerun: no repeat runs at quantized rungs, no `-ub 1`. The 1650 shares the T4's
-  target and differs from AWS T4 on 165 Q8_0 answers; it has no tensor cores, so its MMQ path may differ. Untested.
+  target and differs from AWS T4 on 165 Q8_0 answers. Measured later (`../2026-11-03-nsm`): the cause is its SM
+  count (16 against the T4's 40) and one cuBLAS product; tensor cores play no part, since llama.cpp picks kernels by
+  compute capability.
 - GCE T4 (2026-10-27) has grades only; AWS T4 text cannot be compared to it word for word.
+
+## Corrections, 2026-11-04
+
+`tools/verify_claims.py` recomputes this report's figures from the committed runs. Three did not reproduce and are
+replaced above with what the committed tools compute: item 3's ranges (were "165–250" and "3–16"), item 4's token
+medians and AUC (were 477 vs 329, 0.81) and item 5's spreads (were 1.3–2.6 and 1.5–2.6). No script in the repo
+produced the earlier values. The conclusions of items 3–5 hold with the new figures. The 1650 line under Unmeasured
+is updated with the measured cause.
 
 ## Files
 

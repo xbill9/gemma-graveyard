@@ -5,7 +5,8 @@ verify_claims.py [--llama DIR]
 
 Each claim is (report it appears in, what it says, expected value, computed value). Every computed value comes
 from files in git under runs/ (and, with --llama, from a llama.cpp checkout at b11699 for the source lines cited).
-Exit status 1 if any claim fails. Reports covered: runs/2026-11-03-nsm, runs/2026-11-04-ub1, runs/2026-11-04-fragile.
+Exit status 1 if any claim fails. Reports covered: runs/2026-11-01-flips, runs/2026-11-02-probe, runs/2026-11-03-nsm, runs/2026-11-04-ub1,
+runs/2026-11-04-fragile.
 """
 
 import argparse
@@ -73,6 +74,106 @@ def source_line(llama, rel, n):
     return read(os.path.join(llama, rel)).splitlines()[n - 1]
 
 
+def tool_json(name, *args):
+    out = subprocess.run([sys.executable, f"{HERE}/{name}", *args], capture_output=True, text=True, check=True)
+    return json.loads(out.stdout)
+
+
+def probe_full(a, b):
+    out = subprocess.run([sys.executable, f"{HERE}/fork_probe.py", a, b], capture_output=True, text=True, check=True)
+    lines = out.stdout.splitlines()
+    return json.loads(lines[0]), [json.loads(x) for x in lines[1:]]
+
+
+def modes():
+    """flip_modes.py lines -> {(left, right, rung): (text, answer, grade)}"""
+    out = subprocess.run([sys.executable, f"{HERE}/flip_modes.py"], capture_output=True, text=True, check=True).stdout
+    m = {}
+    for ln in out.splitlines():
+        x = re.match(r"(\S+)\s+vs\s+(\S+)\s+(\S+)\s+n\s+\d+\s+text\s+(\d+)\s+answer\s+(\d+)\s+grade\s+(\d+)", ln)
+        if x:
+            m[x.group(1), x.group(2), x.group(3)] = tuple(int(x.group(k)) for k in (4, 5, 6))
+    return m
+
+
+def text_cards_pairs(rungs):
+    d = {"l4": "runs/2026-10-28-l4", "1650": "runs/2026-10-29-1650", "3050": "runs/2026-10-29-3050"}
+    t, g = [], []
+    for r in rungs:
+        for x, y in (("l4", "1650"), ("l4", "3050"), ("1650", "3050")):
+            a, b = load(f"{d[x]}/{r}.jsonl"), load(f"{d[y]}/{r}.jsonl")
+            t.append(sum(a[i]["text"] != b[i]["text"] for i in a))
+            g.append(sum(bool(a[i]["right"]) != bool(b[i]["right"]) for i in a))
+    return (min(t), max(t)), (min(g), max(g))
+
+
+def earlier_reports():
+    r = "runs/2026-11-01-flips/REPORT.md"
+    m = modes()
+    for k in [("t4/default", "t4/repeat", "Q8_0"), ("t4/default", "t4/repeat", "Q4_0"), ("l4/default", "l4/repeat", "Q8_0"),
+              ("l4/default", "l4/repeat", "Q4_0"), ("l4/default", "../2026-10-28-l4", "BF16"),
+              ("l4/default", "../2026-10-28-l4", "Q8_0"), ("l4/default", "../2026-10-28-l4", "Q4_0")]:
+        claim(r, f"item 1, repeat matches word for word: {' vs '.join(k)}", 0, m[k][0])
+    g = {x: tool_json("fork_gaps.py", x) for x in ("BF16", "Q8_0", "Q4_0")}
+    claim(r, "item 2, median lead, all tokens (BF16, Q8_0, Q4_0)", (16.6, 17.0, 15.3), tuple(round(g[x]["all_tokens_gap"]["median"], 1) for x in g))
+    claim(r, "item 2, median lead at the fork (BF16, Q8_0, Q4_0)", (0.044, 0.203, 0.401), tuple(g[x]["fork_tokens_gap"]["median"] for x in g))
+    claim(r, "item 2, BF16 replay answers", 103, g["BF16"]["answers"])
+    claim(r, "item 2, share of tokens leading by under 0.25, percent", (1.1, 1.4),
+          (round(min(g[x]["share_all_gap_under"]["0.25"] for x in g) * 100, 1), round(max(g[x]["share_all_gap_under"]["0.25"] for x in g) * 100, 1)))
+    claim(r, "item 3, text cards BF16 and F16: text differs, grade differs (ranges)", ((31, 65), (3, 5)), text_cards_pairs(["BF16", "F16"]))
+    claim(r, "item 3, text cards Q8_0..Q4_0: text differs, grade differs (ranges)", ((162, 242), (5, 22)),
+          text_cards_pairs(["Q8_0", "Q6_K", "Q5_K_M", "Q4_K_M", "Q4_0"]))
+    ar = subprocess.run([sys.executable, f"{HERE}/flip_arith.py"], capture_output=True, text=True, check=True).stdout.splitlines()[1:]
+    per = {ln.split()[0]: float(ln.split()[3]) for ln in ar if ln.split()}
+    claim(r, "item 3, false equations per 1000, BF16..Q3_K_M range", (3.0, 8.6),
+          (round(min(v for k, v in per.items() if k != "Q2_K"), 1), round(max(v for k, v in per.items() if k != "Q2_K"), 1)))
+    claim(r, "item 3, false equations per 1000 at Q2_K", 597, round(per["Q2_K"]))
+    c = tool_json("flip_core.py")["summary"]
+    claim(r, "item 4, 28 runs: always right, never, contested", (28, 184, 7, 59), (c["runs"], c["always_right"], c["always_wrong"], c["contested"]))
+    claim(r, "item 4, distinct answers per contested question, median", 2, c["distinct_answers_median"])
+    e = tool_json("flip_extra.py")
+    claim(r, "item 4, 30 most contested hold this share of minority results, percent", 80.7, round(e["minority_top30_share"] * 100, 1))
+    t = e["bf16_tokens_median"]
+    claim(r, "item 4, BF16 median tokens contested vs not (L4, 1650, 3050)", ((476, 328), (476, 328), (457, 328)),
+          tuple((t[k]["contested"], t[k]["uncontested"]) for k in ("l4", "1650", "3050")))
+    claim(r, "item 4, AUC of tokens, range", (0.79, 0.8), (round(min(v["auc"] for v in t.values()), 2), round(max(v["auc"] for v in t.values()), 2)))
+    sd = e["sd_by_rung"]
+    q = ["Q8_0", "Q6_K", "Q5_K_M", "Q4_K_M", "Q4_0"]
+    claim(r, "item 5, SD of four totals Q8_0..Q4_0, observed range", (1.09, 2.24), (min(sd[x]["observed"] for x in q), max(sd[x]["observed"] for x in q)))
+    claim(r, "item 5, SD if independent coin flips, Q8_0..Q4_0 range", (1.12, 1.92),
+          (min(sd[x]["independent_flips_median"] for x in q), max(sd[x]["independent_flips_median"] for x in q)))
+    claim(r, "item 5, card shuffle: smallest p over rungs >= 0.27", True, min(v["share_sims_at_least_observed"] for v in c["card_shuffle"].values()) >= 0.27)
+    for k, v in {("l4/default", "t4/default", "Q8_0"): 172, ("l4/ub1", "t4/ub1", "Q8_0"): 161, ("l4/cc75-default", "t4/default", "Q8_0"): 174,
+                 ("l4/cc75-ub1", "t4/ub1", "Q8_0"): 0, ("l4/cc75-ub1", "l4/ub1", "Q8_0"): 161, ("l4/default", "t4/default", "BF16"): 25,
+                 ("l4/ub1", "t4/ub1", "BF16"): 3, ("l4/default", "t4/default", "Q4_0"): 238, ("l4/ub1", "t4/ub1", "Q4_0"): 238,
+                 ("l4/default", "l4/f32", "Q8_0"): 159}.items():
+        claim(r, f"items 6-7, text differs: {' vs '.join(k)}", v, m[k][0])
+    for rung, exp in (("Q8_0", (19, 12, 5, 2, 0)), ("Q4_0", (35, 16, 12, 4, 3))):
+        b = [json.loads(x) for x in read(f"runs/2026-11-01-flips/branch-{rung}.jsonl").splitlines()]
+        got = (len(b), sum(x["right"]["right"] and x["wrong"]["right"] for x in b), sum(x["right"]["right"] and not x["wrong"]["right"] for x in b),
+               sum(not x["right"]["right"] and x["wrong"]["right"] for x in b), sum(not x["right"]["right"] and not x["wrong"]["right"] for x in b))
+        claim(r, f"forced branches {rung}: flips, both right, reproduces, reversed, both wrong", exp, got)
+
+    r = f"{P}/REPORT.md"
+    rows = {("l4/cc75-ub1", "t4/ub1"): (0, 0, 97450, 97450, None), ("l4/default", "l4/ub1"): (165, 4, 51758, 58.7, 159),
+            ("t4/default", "t4/ub1"): (166, 9, 50197, 59.9, 160), ("l4/default", "t4/default"): (172, 3, 47942, 58.8, 164)}
+    for (x, y), exp in rows.items():
+        d, forks = probe_full(f"{P}/{x}/Q8_0.jsonl", f"{P}/{y}/Q8_0.jsonl")
+        same = d["shared_tokens_same_logprob"] if not d["text_differs"] else round(100 * d["shared_tokens_same_logprob"] / d["shared_tokens"], 1)
+        got = (d["text_differs"], d["grade_differs"], d["shared_tokens"], same, d["forks_swapped_top2"] or None)
+        claim(r, f"table: {x} vs {y} (text, grade, tokens, same score, swaps)", exp, got)
+        if d["text_differs"]:
+            claim(r, f"item 3, {x} vs {y}: median fork lead within 0.11-0.15 on both sides", True,
+                  all(0.11 <= d[k] <= 0.15 for k in ("fork_lead_a_median", "fork_lead_b_median")))
+            small = sum(min(f["a_lead"], f["b_lead"]) < 0.5 for f in forks if f.get("a_lead") is not None and f.get("b_lead") is not None)
+            claim(r, f"item 3, {x} vs {y}: forks where the smaller lead is under 0.5", {165: 163, 166: 164, 172: 172}[d["text_differs"]], small)
+        if (x, y) in (("l4/default", "l4/ub1"), ("t4/default", "t4/ub1")):
+            claim(r, f"item 2, {x} vs {y}: median, largest score difference", {"l4/default": (0.00016, 0.54), "t4/default": (0.00014, 0.56)}[x],
+                  (round(d["shared_logprob_absdiff_median"], 5), round(d["shared_logprob_absdiff_max"], 2)))
+    claim(r, "1650, probed 2026-11-03: -ub 1 vs T4 -ub 1", (0, 0, 97450, 97450), probe(f"{P}/1650/ub1/Q8_0.jsonl", f"{P}/t4/ub1/Q8_0.jsonl"))
+    claim(r, "1650, probed 2026-11-03: default vs T4 default, text differs", 165, probe(f"{P}/1650/default/Q8_0.jsonl", f"{P}/t4/default/Q8_0.jsonl")[0])
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--llama", help="llama.cpp checkout at b11699, for the cited source lines")
@@ -138,6 +239,8 @@ def main():
     claim(r, "seven routes: answers graded differently somewhere", 18, d["grade_varies"])
     t01 = next(x for x in d["flag_any_token"] if x["t"] == 0.1)
     claim(r, "near-tie flag at 0.1: flagged, caught", (164, "18/18"), (t01["flagged"], t01["grade_varies_caught"]))
+
+    earlier_reports()
 
     if args.llama:
         r = f"{N}/REPORT.md"

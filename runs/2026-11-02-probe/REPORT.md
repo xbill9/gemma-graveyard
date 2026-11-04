@@ -44,7 +44,9 @@ Example, test-530, L4: after "Josh worked out for ", normal settings score "4" a
 - Q8_0 only. BF16 and Q4_0 were not probed.
 - Which addition inside the kernels rounds differently is read from source (`../2026-11-01-flips/REPORT.md`
   item 6), not measured.
-- GTX 1650 and RTX 3050 not probed.
+- RTX 3050 not probed. The GTX 1650 was probed on 2026-11-03 (`1650/`, `../../PROBE-1650.md`): with `-ub 1` it
+  matches the T4 on all 250 answers and 97,450 of 97,450 scores (`1650-ub1-vs-t4-ub1.json`); at default settings it
+  differs on 165, explained in `../2026-11-03-nsm`.
 
 ## Files
 

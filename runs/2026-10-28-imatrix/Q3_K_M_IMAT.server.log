@@ -1,0 +1,15 @@
+0.00.110.654 I srv  llama_server: initializing ...
+0.00.110.708 I cmn  common_param: common_params_print_info: verbosity = 3 (adjust with the `-lv N` CLI arg)
+0.00.111.245 W srv  llama_server: security: no API key is set and CORS allows all origins (see https://github.com/ggml-org/llama.cpp/pull/25655)
+0.00.113.675 I srv    load_model: loading model '/opt1/graveyard-gguf/e2b-Q3_K_M-imat.gguf'
+0.00.113.887 E gguf_init_from_file: failed to open GGUF file '/opt1/graveyard-gguf/e2b-Q3_K_M-imat.gguf' (No such file or directory)
+0.00.114.025 E llama_model_load: error loading model: llama_model_loader: failed to load model from /opt1/graveyard-gguf/e2b-Q3_K_M-imat.gguf
+0.00.114.054 E llama_model_load_from_file_impl: failed to load model
+0.00.114.095 E common_fit_params: encountered an error while trying to fit params to free device memory: failed to load model
+0.00.114.116 E gguf_init_from_file: failed to open GGUF file '/opt1/graveyard-gguf/e2b-Q3_K_M-imat.gguf' (No such file or directory)
+0.00.114.141 E llama_model_load: error loading model: llama_model_loader: failed to load model from /opt1/graveyard-gguf/e2b-Q3_K_M-imat.gguf
+0.00.114.147 E llama_model_load_from_file_impl: failed to load model
+0.00.114.151 E cmn  common_init_: failed to load model '/opt1/graveyard-gguf/e2b-Q3_K_M-imat.gguf'
+0.00.114.158 E srv    load_model: failed to load model, '/opt1/graveyard-gguf/e2b-Q3_K_M-imat.gguf'
+0.00.114.160 I srv    operator(): operator(): cleaning up before exit...
+0.00.114.532 E srv  llama_server: exiting due to model loading error

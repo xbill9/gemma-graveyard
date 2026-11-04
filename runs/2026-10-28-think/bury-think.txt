@@ -1,0 +1,8 @@
+{"rung": "BF16", "n": 250, "right": 227, "errors": 0, "truncated": 0, "median_decode_tps": 34.5, "mean_tokens": 842.2, "dead": 0, "ghosts": 0, "answer_changed": 0, "bytes": 9311305152, "gpu_mib_loaded": 4699, "gpu_mib_before": 0}
+{"rung": "Q8_0", "n": 250, "right": 230, "errors": 0, "truncated": 2, "median_decode_tps": 59.9, "mean_tokens": 851.8, "dead": 2, "ghosts": 5, "answer_changed": 10, "bytes": 4967497152, "gpu_mib_loaded": 2659, "gpu_mib_before": 0}
+{"rung": "Q6_K", "n": 250, "right": 230, "errors": 0, "truncated": 2, "median_decode_tps": 55.6, "mean_tokens": 838.5, "dead": 6, "ghosts": 9, "answer_changed": 20, "bytes": 3845346752, "gpu_mib_loaded": 2131, "gpu_mib_before": 0}
+{"rung": "Q5_K_M", "n": 250, "right": 230, "errors": 0, "truncated": 0, "median_decode_tps": 71.7, "mean_tokens": 806.2, "dead": 6, "ghosts": 9, "answer_changed": 18, "bytes": 3630288320, "gpu_mib_loaded": 1925, "gpu_mib_before": 0}
+{"rung": "Q4_K_M", "n": 250, "right": 226, "errors": 0, "truncated": 1, "median_decode_tps": 77.2, "mean_tokens": 856.8, "dead": 9, "ghosts": 8, "answer_changed": 22, "bytes": 3427880384, "gpu_mib_loaded": 1733, "gpu_mib_before": 0}
+{"rung": "Q4_0", "n": 250, "right": 219, "errors": 0, "truncated": 3, "median_decode_tps": 87.3, "mean_tokens": 897.0, "dead": 15, "ghosts": 7, "answer_changed": 25, "bytes": 3360161216, "gpu_mib_loaded": 1667, "gpu_mib_before": 0}
+{"rung": "Q3_K_M", "n": 250, "right": 208, "errors": 0, "truncated": 11, "median_decode_tps": 68.0, "mean_tokens": 1320.1, "dead": 26, "ghosts": 7, "answer_changed": 42, "bytes": 3201351104, "gpu_mib_loaded": 1517, "gpu_mib_before": 0}
+{"first_deaths_by_rung": {"Q6_K": 5, "Q4_0": 10, "Q3_K_M": 15, "Q4_K_M": 7, "Q8_0": 2, "Q5_K_M": 4}, "tombstones": 43, "ghosts": 15}

@@ -1,0 +1,68 @@
+ggml_cuda_init: found 1 CUDA devices (Total VRAM: 14927 MiB):
+  Device 0: Tesla T4, compute capability 7.5, VMM: yes, VRAM: 14927 MiB
+version: 0.7.0-dev (build 11699, commit 7182ef71e)
+built with GNU 14.2.0 for Linux x86_64
+llama_quantize: quantizing '/opt1/graveyard-gguf/e2b-BF16.gguf' to '/opt1/graveyard-gguf/e2b-Q3_K_M-imat.gguf.part' as Q3_K_M
+llama_model_loader: loaded meta data with 49 key-value pairs and 601 tensors from /opt1/graveyard-gguf/e2b-BF16.gguf (version GGUF V3 (latest))
+llama_model_loader: Dumping metadata keys/values. Note: KV overrides do not apply in this output.
+llama_model_loader: - kv   0:                       general.architecture str              = gemma4
+llama_model_loader: - kv   1:                               general.type str              = model
+llama_model_loader: - kv   2:                     general.sampling.top_k i32              = 64
+llama_model_loader: - kv   3:                     general.sampling.top_p f32              = 0.950000
+llama_model_loader: - kv   4:                      general.sampling.temp f32              = 1.000000
+llama_model_loader: - kv   5:                               general.name str              = Gemma 4 E2B It
+llama_model_loader: - kv   6:                         general.size_label str              = 4.6B
+llama_model_loader: - kv   7:                            general.license str              = apache-2.0
+llama_model_loader: - kv   8:                       general.license.link str              = https://ai.google.dev/gemma/docs/gemm...
+llama_model_loader: - kv   9:                   general.base_model.count u32              = 1
+llama_model_loader: - kv  10:                  general.base_model.0.name str              = Gemma 4 E2B
+llama_model_loader: - kv  11:          general.base_model.0.organization str              = Google
+llama_model_loader: - kv  12:              general.base_model.0.repo_url str              = https://huggingface.co/google/gemma-4...
+llama_model_loader: - kv  13:                               general.tags arr[str,1]       = ["any-to-any"]
+llama_model_loader: - kv  14:                         gemma4.block_count u32              = 35
+llama_model_loader: - kv  15:                      gemma4.context_length u32              = 131072
+llama_model_loader: - kv  16:                    gemma4.embedding_length u32              = 1536
+llama_model_loader: - kv  17:                 gemma4.feed_forward_length arr[i32,35]      = [6144, 6144, 6144, 6144, 6144, 6144, ...
+llama_model_loader: - kv  18:                gemma4.attention.head_count u32              = 8
+llama_model_loader: - kv  19:             gemma4.attention.head_count_kv u32              = 1
+llama_model_loader: - kv  20:                      gemma4.rope.freq_base f32              = 1000000.000000
+llama_model_loader: - kv  21:                  gemma4.rope.freq_base_swa f32              = 10000.000000
+llama_model_loader: - kv  22:    gemma4.attention.layer_norm_rms_epsilon f32              = 0.000001
+llama_model_loader: - kv  23:                gemma4.attention.key_length u32              = 512
+llama_model_loader: - kv  24:              gemma4.attention.value_length u32              = 512
+llama_model_loader: - kv  25:                          general.file_type u32              = 32
+llama_model_loader: - kv  26:             gemma4.final_logit_softcapping f32              = 30.000000
+llama_model_loader: - kv  27:            gemma4.attention.sliding_window u32              = 512
+llama_model_loader: - kv  28:          gemma4.attention.shared_kv_layers u32              = 20
+llama_model_loader: - kv  29:    gemma4.embedding_length_per_layer_input u32              = 256
+llama_model_loader: - kv  30:    gemma4.attention.sliding_window_pattern arr[bool,35]     = [true, true, true, true, false, true,...
+llama_model_loader: - kv  31:            gemma4.attention.key_length_swa u32              = 256
+llama_model_loader: - kv  32:          gemma4.attention.value_length_swa u32              = 256
+llama_model_loader: - kv  33:                gemma4.rope.dimension_count u32              = 512
+llama_model_loader: - kv  34:            gemma4.rope.dimension_count_swa u32              = 256
+llama_model_loader: - kv  35:               general.quantization_version u32              = 2
+llama_model_loader: - kv  36:                       tokenizer.ggml.model str              = gemma4
+llama_model_loader: - kv  37:                      tokenizer.ggml.tokens arr[str,262144]  = ["<pad>", "<eos>", "<bos>", "<unk>", ...
+llama_model_loader: - kv  38:                      tokenizer.ggml.scores arr[f32,262144]  = [-1000.000000, -1000.000000, -1000.00...
+llama_model_loader: - kv  39:                  tokenizer.ggml.token_type arr[i32,262144]  = [3, 3, 3, 3, 3, 1, 1, 1, 1, 1, 1, 1, ...
+llama_model_loader: - kv  40:                      tokenizer.ggml.merges arr[str,514906]  = ["\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n \n", ...
+llama_model_loader: - kv  41:                tokenizer.ggml.bos_token_id u32              = 2
+llama_model_loader: - kv  42:                tokenizer.ggml.eos_token_id u32              = 1
+llama_model_loader: - kv  43:            tokenizer.ggml.unknown_token_id u32              = 3
+llama_model_loader: - kv  44:            tokenizer.ggml.padding_token_id u32              = 0
+llama_model_loader: - kv  45:               tokenizer.ggml.mask_token_id u32              = 4
+llama_model_loader: - kv  46:                    tokenizer.chat_template str              = {#\n  Template: Google Gemma 4 Canonic...
+llama_model_loader: - kv  47:            tokenizer.ggml.add_space_prefix bool             = false
+llama_model_loader: - kv  48:               tokenizer.ggml.add_bos_token bool             = true
+llama_model_loader: - type  f32:  283 tensors
+llama_model_loader: - type bf16:  318 tensors
+
+llama_model_quantize_impl: have importance matrix data with 275 entries
+[   1/ 601] output_norm.weight                   - [  1536,      1,      1,      1], type =    f32, size =    0.006 MiB
+[   2/ 601] per_layer_model_proj.weight          - [  1536,   8960,      1,      1], type =   bf16, size =   26.250 MiB
+[   3/ 601] per_layer_proj_norm.weight           - [   256,      1,      1,      1], type =    f32, size =    0.001 MiB
+[   4/ 601] per_layer_token_embd.weight          - [  8960, 262144,      1,      1], type =   bf16, 
+====== llama_model_quantize_impl: did not find weights for per_layer_token_embd.weight
+converting to q6_K .. load_imatrix: imatrix datasets=['/opt1/tmp/gsm8k/calib.txt']
+load_imatrix: loaded 275 importance matrix entries from /opt1/graveyard-gguf/imatrix-gsm8k-train.gguf computed on 300 chunks
+prepare_imatrix: have 275 importance matrix entries

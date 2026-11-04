@@ -1,0 +1,4 @@
+2026-11-04T17:06:14Z start Q4_0
+{"rung": "Q4_0", "n": 250, "right": 226, "errors": 0, "truncated": 6, "median_decode_tps": 79.6, "mean_tokens": 428.8}
+2026-11-04T17:32:48Z start Q6_K
+OSError: [Errno 28] No space left on device

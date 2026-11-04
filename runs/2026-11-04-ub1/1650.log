@@ -1,0 +1,5 @@
+2026-11-04T17:00:59Z start Q4_0
+{"rung": "Q4_0", "n": 250, "right": 226, "errors": 0, "truncated": 6, "median_decode_tps": 62.3, "mean_tokens": 428.8}
+2026-11-04T17:34:29Z start Q6_K
+{"rung": "Q6_K", "n": 250, "right": 231, "errors": 0, "truncated": 4, "median_decode_tps": 50.9, "mean_tokens": 391.4}
+2026-11-04T18:12:26Z start Q5_K_M

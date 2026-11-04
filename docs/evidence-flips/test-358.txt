@@ -1,0 +1,21 @@
+question: Marisa gets $5 as pocket money every day from her parents. She buys 4 lollipops worth 25 cents each every day and saves the change in her piggy bank. How much money does she put in her piggy bank if she saves for 5 days?
+gold answer: 20
+tokens identical on both cards before the split: 124
+text before the split (last 120 chars): 'tep 3: Calculate the amount of money Marisa spends each day.**\nMarisa receives \\$5 (which is 500 cents) every day.\nMoney'
+GTX 1650 Ti at the split: ' spent' 51.4%, ' saved' 47.8%
+T4 at the split: ' saved' 59.1%, ' spent' 40.4%
+GTX 1650 Ti next 12 tokens: ' spent per day = Total pocket money - Cost of lollip'
+T4 next 12 tokens: ' saved per day = Money received - Money spent\nMoney saved'
+GTX 1650 Ti tokens generated: 412; final line: 'Answer: 20.00'; extracted 20.0; right True
+T4 tokens generated: 345; final line: 'Answer: 2000'; extracted 2000.0; right False
+
+test-358 on every Q8_0 route:
+  T4, default settings: extracted 2000.0, right False
+  GTX 1650 Ti, default settings: extracted 20.0, right True
+  L4, default settings: extracted 2000.0, right False
+  L4, -ub 1: extracted 2000.0, right False
+  T4, -ub 1: extracted 20.0, right True
+  GTX 1650 Ti, -ub 1: extracted 20.0, right True
+  GTX 1650 Ti told 40 SMs: extracted 2000.0, right False
+  GTX 1650 Ti, both fixes: extracted 20.0, right True
+  T4, matrix fix: extracted 20.0, right True

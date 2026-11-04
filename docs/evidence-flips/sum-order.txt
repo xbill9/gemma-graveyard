@@ -1,0 +1,5 @@
+8,960 float32 numbers, numpy default_rng(0).standard_normal, each share added in order, then the shares
+16 shares of 560: 47.0389595
+40 shares of 224: 47.0389099
+exact sum (math.fsum in float64): 47.0389371
+16-share and 40-share sums equal: False

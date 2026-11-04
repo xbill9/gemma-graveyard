@@ -1,0 +1,7 @@
+card | route | prompt tokens/s | prompt slowdown | median generation tokens/s | whole run, summed seconds | whole run vs default
+GTX 1650 Ti | default | 289 | 1.0x | 42.8 | 2358 | +0%
+GTX 1650 Ti | both fixes | 239 | 1.2x | 42.5 | 2403 | +2%
+GTX 1650 Ti | -ub 1 | 58 | 5.0x | 42.9 | 2696 | +14%
+T4 | default | 1270 | 1.0x | 57.9 | 1722 | +0%
+T4 | matrix fix | 1060 | 1.2x | 57.0 | 1734 | +1%
+T4 | -ub 1 | 81 | 15.7x | 58.0 | 1986 | +15%

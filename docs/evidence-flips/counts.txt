@@ -1,0 +1,8 @@
+same card twice, T4: same score on 98,637 of 98,637 tokens
+test-358 gold answer in dollars: $20
+Q8_0 default, 1650 vs T4: text differs on 165 of 250; text matches on 85 of 250
+test-358, T4 tokens after the split: 221 tokens
+Q8_0 -ub 1, 1650 vs T4: text matches on 250 of 250
+seven setups: text varies on 219 of 250
+flag at lead 0.1: 164 of 250 flagged, catching 18/18
+1650 both fixes, logged products sent off cuBLAS: 200 of 200 are per_layer_model_proj

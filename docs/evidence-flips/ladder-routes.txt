@@ -1,0 +1,8 @@
+rung | right -ub 1 | right default | text/grade differ vs default | right both fixes | text/grade differ vs fixes
+Q8_0 | 226 | 229 | 164/9 | 229 | 160/9
+Q6_K | 231 | 226 | 168/7 | 228 | 165/7
+Q5_K_M | 228 | 226 | 189/10 | 230 | 194/6
+Q4_K_M | 223 | 222 | 206/13 | 226 | 204/15
+Q4_0 | 226 | 216 | 238/18 | 224 | 242/16
+Q3_K_M | 190 | 183 | 229/37 | 195 | 229/39
+Q2_K | 3 | 5 | 192/6 | 2 | 194/3

@@ -1,0 +1,17 @@
+1650 default vs T4 default: text differs 165, grade differs 4, tokens compared 50572, same score 29969, median lead at the split 0.11807054281234741 / 0.13422393798828125, top two swapped 157 of 165
+1650 told 40 SMs vs T4 default: text differs 32, grade differs 2, tokens compared 87580, same score 85282, median lead at the split 0.13636690378189087 / 0.11552143096923828, top two swapped 31 of 32
+1650 both fixes vs T4 matrix fix: text differs 0, grade differs 0, tokens compared 97380, same score 97380, median lead at the split None / None, top two swapped 0 of 0
+1650 -ub 1 vs T4 -ub 1: text differs 0, grade differs 0, tokens compared 97450, same score 97450, median lead at the split None / None, top two swapped 0 of 0
+Q4_0: 1650 -ub 1 vs T4 -ub 1: text differs 0, grade differs 0, tokens compared 107195, same score 107195, median lead at the split None / None, top two swapped 0 of 0
+same card twice: 1650 default 2026-11-02 vs 1650 patched build, variables unset, 2026-11-03: text differs 0, grade differs 0, tokens compared 97116, same score 97116, median lead at the split None / None, top two swapped 0 of 0
+T4 default vs T4 -ub 1 (same card): text differs 166, grade differs 9, tokens compared 50197, same score 30044, median lead at the split 0.1348552703857422 / 0.1429567039012909, top two swapped 160 of 166
+
+right of 250, T4, default settings: 227
+right of 250, GTX 1650 Ti, default settings: 229
+right of 250, L4, default settings: 228
+right of 250, L4, -ub 1: 230
+right of 250, T4, -ub 1: 226
+right of 250, GTX 1650 Ti, -ub 1: 226
+right of 250, GTX 1650 Ti told 40 SMs: 225
+right of 250, GTX 1650 Ti, both fixes: 229
+right of 250, T4, matrix fix: 229

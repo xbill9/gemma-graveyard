@@ -1,0 +1,8 @@
+Fetched 2026-11-04.
+NVIDIA cuBLAS documentation, section 2.1.4 "Results Reproducibility", https://docs.nvidia.com/cuda/cublas/index.html#results-reproducibility
+"By design, all cuBLAS API routines from a given toolkit version, generate the same bit-wise results at every run when executed on GPUs with the same architecture and the same number of SMs."
+MIT Technology Review, "When the Butterfly Effect Took Flight", 2011-02-22, https://www.technologyreview.com/2011/02/22/196987/when-the-butterfly-effect-took-flight/
+"On this day, Lorenz was repeating a simulation he'd run earlier—but he had rounded off one variable from .506127 to .506."
+"that tiny alteration drastically transformed the whole pattern his program produced"
+dev.to comment by robertpaschal, 2026-10-29T17:46:13Z, id 3jd4d, on https://dev.to/gde/performance-vs-quality-gemma-4-e2b-quantization-on-an-nvidia-l4-and-a-tesla-t4-4b90
+"Same files, same build, and still 2 BF16 questions graded differently across the two cards is the part I keep coming back to."

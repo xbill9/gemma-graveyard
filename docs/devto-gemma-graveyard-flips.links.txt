@@ -1,4 +1,4 @@
 devto-gde = https://dev.to/gde/one-word-two-gpus-why-gemma-4-answers-the-same-question-differently-on-a-laptop-and-a-tesla-t4-1dj2
 medium = https://medium.com/@xbill999/one-word-two-gpus-why-gemma-4-answers-the-same-question-differently-on-a-laptop-and-a-tesla-t4-0e6f0f55620c
 substack = https://xbill9.substack.com/p/one-word-two-gpus-why-gemma-4-answers
-linkedin = PENDING
+linkedin = https://www.linkedin.com/posts/xbill_gemma-llamacpp-cuda-share-7524523491845668865-L84o/

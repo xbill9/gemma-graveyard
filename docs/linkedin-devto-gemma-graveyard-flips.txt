@@ -1,0 +1,38 @@
+Inference is pretty well established as its own stream within the AI world right now.
+
+At first glance it seems pretty well covered and open questions boil down
+to the best ways to slice and dice model weights for serving.
+
+Everything fits into neat little boxes - until it doesn't.
+
+One of the comments on my original dev.to article questioned why models
+kept flipping scores on different GPUs.
+
+Same model file, same llama.cpp build, temperature zero, two GPUs.
+
+Why do they give different answers?
+
+A GTX 1650 Ti laptop answers one GSM8K question with $20. A Tesla T4 answers the same question with 2000.
+
+Each card repeats itself exactly, on every token, every time. What differs is the number of processors on each chip: llama.cpp splits each big matrix sum into one share per processor, 16 on the laptop and 40 on the T4, and float32 rounds the last digits differently for each grouping.
+
+Most of the time that changes nothing. At a near-tie between two words, " spent" or " saved", it picks the other word, and the rest of the answer follows.
+
+At default settings the two cards word 165 of 250 answers differently. One stock setting, -ub 1, makes them match on every token, for about 15% more run time.
+
+After about a week of runs, and analysis- I finally had my answer.
+
+Rounding.
+
+Write ups are here:
+
+dev.to:
+https://dev.to/gde/one-word-two-gpus-why-gemma-4-answers-the-same-question-differently-on-a-laptop-and-a-tesla-t4-1dj2
+
+Medium:
+https://medium.com/@xbill999/one-word-two-gpus-why-gemma-4-answers-the-same-question-differently-on-a-laptop-and-a-tesla-t4-0e6f0f55620c
+
+Substack:
+https://xbill9.substack.com/p/one-word-two-gpus-why-gemma-4-answers
+
+#gemma #llamacpp #cuda #nvidia #gpu

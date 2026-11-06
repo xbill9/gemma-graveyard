@@ -12,6 +12,14 @@ https://github.com/xbill9/gemma-graveyard
 
 ---
 
+#### Same File, Same Build, Two Different Answers
+
+**Give a laptop GPU and a cloud GPU the same Gemma 4 file, the same llama.cpp build and temperature zero, and ask them the same grade-school math question. The laptop answers $20, and the Tesla T4 answers 2000.**
+
+Each card repeats itself exactly: the same answer, token for token, every time it runs. What differs is the number of processors on each chip. llama.cpp splits every big matrix product into one share per processor, 16 shares on the laptop and 40 on the T4, and float32 addition rounds the last digits differently when the same numbers are grouped differently. Those last-digit differences build up through the model's layers. After 124 identical tokens the model reaches a near-tie between " spent" and " saved", the two cards fall on opposite sides of it, and every word after that follows from the one that was picked. One stock llama.cpp setting, `-ub 1`, makes the two cards agree on every token.
+
+---
+
 #### A Week Down One Comment
 
 On 2026-10-29 the L4 article in this series picked up one line from a reader:

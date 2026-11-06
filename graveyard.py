@@ -3,6 +3,7 @@
 
   graveyard.py run <rung> <model.gguf> <data.jsonl> <out-dir> [--llama DIR] [--port P] [--limit N]
                    [--think] [--max-tokens M] [--ctx C] [--ngl N|auto] [--server-arg A ...]
+                   [--url URL --served-model NAME]
   graveyard.py bury <out-dir> <rung> [<rung> ...] [--json FILE]
   graveyard.py autopsy <out-dir> <rung> [<rung> ...]
   graveyard.py repeat <dir-a> <dir-b> <rung> [<rung> ...] [--common]
@@ -17,7 +18,9 @@ computed here, never by a model. bury writes the per-question tombstones to <out
 (--json picks another name, so a second bury in the same directory keeps the first). autopsy counts,
 per rung, answers cut off at max tokens, answers with any reasoning_content, answers that repeat one line five or more times, answers with
 empty content, and empty answers whose reasoning holds the right number (a diagnostic; only content is
-graded). repeat compares two runs of the same rung question by question (answer, text, right), the
+graded). With --url, run starts no server: it asks the one already serving at URL (a vLLM server, for
+the cross-engine follow-up), sends --served-model as the request's model, and records the URL in place
+of the server command; <model> is then only a label. repeat compares two runs of the same rung question by question (answer, text, right), the
 determinism check; --common limits it to the questions both runs have.
 
 Prompt, answer extraction and grading are lazy_eval.py's (copied from the Week 3 repo, which copied
@@ -69,6 +72,9 @@ def ask(upstream, rec, a):
         "chat_template_kwargs": {"enable_thinking": a.think},
         "cache_prompt": False,
     }
+    if a.url:  # vLLM: cache_prompt is llama.cpp's; prefix caching is turned off on the vLLM command line
+        body.pop("cache_prompt")
+        body["model"] = a.served_model
     if a.top_logprobs:  # check the text against a plain run: fork_probe.py --plain-a/--plain-b
         body.update(logprobs=True, top_logprobs=a.top_logprobs)
     out = {"id": rec["id"], "answer": rec["answer"]}
@@ -98,9 +104,32 @@ def ask(upstream, rec, a):
     return out
 
 
+def ask_all(url, recs, a):
+    rows = []
+    with open(os.path.join(a.out_dir, f"{a.rung}.jsonl"), "w") as f:  # written as it goes
+        for rec in recs:
+            row = ask(url, rec, a)
+            rows.append(row)
+            f.write(json.dumps(row) + "\n")
+            f.flush()
+    return rows
+
+
+def run_external(a, recs):
+    meta = {"rung": a.rung, "model": a.model, "url": a.url, "served_model": a.served_model,
+            "gpu_mib_loaded": gpu_used_mib(), "think": a.think, "max_tokens": a.max_tokens, "n": len(recs)}  # fmt: skip
+    rows = ask_all(a.url, recs, a)
+    meta["gpu_mib_after"] = gpu_used_mib()
+    with open(os.path.join(a.out_dir, f"{a.rung}.meta.json"), "w") as f:
+        json.dump(meta, f, indent=1)
+    print(json.dumps({"rung": a.rung, **rung_summary(rows)}))
+
+
 def run(a):
     os.makedirs(a.out_dir, exist_ok=True)
     recs = load(a.data)[: a.limit] if a.limit else load(a.data)
+    if a.url:
+        return run_external(a, recs)
     cmd = [
         os.path.join(a.llama, "build", "bin", "llama-server"),
         "-m", a.model, *([] if a.ngl == "auto" else ["-ngl", a.ngl]),
@@ -124,13 +153,7 @@ def run(a):
                 "cmd": cmd,
                 "n": len(recs),
             }
-            rows = []
-            with open(os.path.join(a.out_dir, f"{a.rung}.jsonl"), "w") as f:  # written as it goes
-                for rec in recs:
-                    row = ask(url, rec, a)
-                    rows.append(row)
-                    f.write(json.dumps(row) + "\n")
-                    f.flush()
+            rows = ask_all(url, recs, a)
             meta["gpu_mib_after"] = gpu_used_mib()
         finally:
             proc.terminate()
@@ -307,6 +330,8 @@ def main():
     r.add_argument("--ngl", default="99", help="GPU layers, or auto to let llama.cpp fit the model")
     r.add_argument("--server-arg", action="append", default=[], help="passed to llama-server; repeat for each word")
     r.add_argument("--top-logprobs", type=int, default=0, help="also record each token's top N candidates and logprobs")
+    r.add_argument("--url", help="ask the server already at URL instead of starting llama-server")
+    r.add_argument("--served-model", help="model name to send with --url")
     b = sub.add_parser("bury")
     b.add_argument("out_dir")
     b.add_argument("rungs", nargs="+")

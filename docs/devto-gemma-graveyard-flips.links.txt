@@ -1,4 +1,4 @@
-devto-gde = PENDING
+devto-gde = https://dev.to/gde/one-word-two-gpus-why-gemma-4-answers-the-same-question-differently-on-a-laptop-and-a-tesla-t4-1dj2
 medium = PENDING
 substack = PENDING
 linkedin = PENDING

@@ -24,6 +24,7 @@ itself word for word; L4 built for the T4's CUDA target and run with `-ub 1` mat
 Probe (2026-11-02): the GPUs' own top-two scores at every token, in
 [`runs/2026-11-02-probe/REPORT.md`](runs/2026-11-02-probe/REPORT.md). Same code on L4 and T4 gives the same score at all
 97,450 tokens; changing the code path on one chip changes about 40% of scores, and every split is a near-tie swapped.
+Article (2026-11-06): [One Word, Two GPUs](https://dev.to/gde/one-word-two-gpus-why-gemma-4-answers-the-same-question-differently-on-a-laptop-and-a-tesla-t4-1dj2) on dev.to, from `docs/devto-gemma-graveyard-flips.md`.
 vLLM follow-up (2026-11-06, planned, not run): [`FOLLOWUP-vllm.md`](FOLLOWUP-vllm.md).
 
 On one Tesla T4, against the 229 of 250 questions BF16 gets right: Q8_0 to Q5_K_M stay within 2 of it,
